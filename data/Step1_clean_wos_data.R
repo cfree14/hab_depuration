@@ -38,7 +38,11 @@ data <- data_orig %>%
          document_type,
          language) %>% 
   # Format
-  mutate(source=stringr::str_to_title(source))
+  mutate(source=stringr::str_to_title(source),
+         source=gsub(" & ", " and ", source),
+         source=gsub(" And ", " and ", source),
+         source=gsub(" Of ", " of ", source),
+         source=gsub(" In ", " in ", source))
 
 # Inspect data
 str(data)
@@ -65,7 +69,7 @@ jstats <- data %>%
   arrange(desc(n)) %>% 
   filter(n>1) %>% 
   mutate(source=recode(source,
-                       "Food Additives And Contaminants Part A-Chemistry Analysis Control Exposure & Risk Assessment"="Food Additives And Contaminants Part A"))
+                       "Food Additives and Contaminants Part A-Chemistry Analysis Control Exposure and Risk Assessment"="Food Additives and Contaminants Part A"))
 
 # Setup theme
 my_theme <-  theme(axis.text=element_text(size=8),
