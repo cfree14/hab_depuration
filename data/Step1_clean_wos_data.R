@@ -14,7 +14,7 @@ outdir <- "data/processed"
 plotdir <- "figures"
 
 # Read data
-data_orig <- readxl::read_excel(file.path(indir, "2024_11_06_WOS_search.xls"))
+data_orig <- readxl::read_excel(file.path(indir, "20250620_dep_exc_clr_bio_tox_mar_oce.xls"))
 
 
 # Format data
@@ -53,7 +53,8 @@ table(data$language)
 table(data$document_type)
 
 # Export data
-write.csv(data, file=file.path(outdir, "2024_11_06_WOS_search.csv"), row.names=F)
+# write.csv(data, file=file.path(outdir, "2024_11_06_WOS_search.csv"), row.names=F)
+write.csv(data, file=file.path(outdir, "2025_06_20_WOS_search.csv"), row.names=F)
 
 
 # Plot data
@@ -69,7 +70,9 @@ jstats <- data %>%
   arrange(desc(n)) %>% 
   filter(n>1) %>% 
   mutate(source=recode(source,
-                       "Food Additives and Contaminants Part A-Chemistry Analysis Control Exposure and Risk Assessment"="Food Additives and Contaminants Part A"))
+                       "Journal of Toxicology and Environmental Health-Part A-Current Issues" = "Journal of Toxicology and Environmental Health",
+                       "Journal of Venomous Animals and Toxins Including Tropical Diseases" =" Journal of Venomous Animals and Toxins",
+                       "Food Additives and Contaminants Part A-Chemistry Analysis Control Exposure and Risk Assessment" = "Food Additives and Contaminants Part A"))
 
 # Setup theme
 my_theme <-  theme(axis.text=element_text(size=8),
@@ -91,7 +94,8 @@ my_theme <-  theme(axis.text=element_text(size=8),
 g1 <- ggplot(ystats, aes(x=year, y=n)) +
   geom_bar(stat="identity") +
   # Labels
-  labs(x="Year of publication", y="Number of papers") +
+  labs(x="Year of publication", y="Number of papers", tag="A") +
+  # scale_x_continuous(breaks=seq(1995, 2025, 5)) +
   # Theme
   theme_bw() + my_theme
 g1
@@ -100,7 +104,7 @@ g1
 g2 <- ggplot(jstats, aes(y=reorder(source, desc(n)), x=n)) +
   geom_bar(stat="identity") +
   # Labels
-  labs(x="Number of papers", y="") +
+  labs(x="Number of papers", y="", tag="B") +
   theme_bw() + my_theme
 g2
 
