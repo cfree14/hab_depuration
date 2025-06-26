@@ -1,229 +1,232 @@
-"","paper_id","biotoxin","comm_name","sci_name_orig","sci_name","type","class","order","family","genus","species","condition"
-"1",160,"Amnesic","Atlantic sea scallop","Placopecten magellanicus","Placopecten magellanicus","invert","Bivalvia","Ostreoida","Pectinidae","Placopecten","magellanicus","Amnesic"
-"2",160,"Amnesic","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis","Amnesic"
-"3",51,"Amnesic","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis","Amnesic"
-"4",71,"Amnesic","Coho salmon","Oncorhynchus kisutch","Oncorhynchus kisutch","fish","Actinopterygii","Salmoniformes","Salmonidae","Oncorhynchus","kisutch","Amnesic"
-"5",53,"Amnesic","Common octopus","Octopus vulgaris","Octopus vulgaris","invert","Cephalopoda","Octopoda","Octopodidae","Octopus","vulgaris","Amnesic"
-"6",22,"Amnesic","Copepods","Calanus spp",NA,NA,NA,NA,NA,NA,NA,"Amnesic"
-"7",79,"Amnesic","Dungeness crab","Cancer magister","Metacarcinus magister","invert","Malacostraca","Decapoda","Cancridae","Metacarcinus","magister","Amnesic"
-"8",174,"Amnesic","King scallop","Pecten maximus","Pecten maximus","invert","Bivalvia","Ostreoida","Pectinidae","Pecten","maximus","Amnesic"
-"9",165,"Amnesic","King scallop","Pecten maximus","Pecten maximus","invert","Bivalvia","Ostreoida","Pectinidae","Pecten","maximus","Amnesic"
-"10",60,"Amnesic","King scallop","Pecten maximus","Pecten maximus","invert","Bivalvia","Ostreoida","Pectinidae","Pecten","maximus","Amnesic"
-"11",151,"Amnesic","King scallop","Pecten maximus","Pecten maximus","invert","Bivalvia","Ostreoida","Pectinidae","Pecten","maximus","Amnesic"
-"12",182,"Amnesic","King scallop","Pecten maximus","Pecten maximus","invert","Bivalvia","Ostreoida","Pectinidae","Pecten","maximus","Amnesic"
-"13",72,"Amnesic","King scallop","Pecten maximus","Pecten maximus","invert","Bivalvia","Ostreoida","Pectinidae","Pecten","maximus","Amnesic"
-"14",140,"Amnesic","King scallop","Pecten maximus","Pecten maximus","invert","Bivalvia","Ostreoida","Pectinidae","Pecten","maximus","Amnesic"
-"15",52,"Amnesic","Oysters",NA,NA,NA,NA,NA,NA,NA,NA,"Amnesic"
-"16",52,"Amnesic","mussels",NA,NA,NA,NA,NA,NA,NA,NA,"Amnesic"
-"17",100,"Amnesic","Pacific oyster","Crassostrea gigas","Crassostrea gigas","invert","Bivalvia","Ostreoida","Ostreidae","Crassostrea","gigas","Amnesic"
-"18",166,"Amnesic","Pacific oyster","Crassostrea gigas","Crassostrea gigas","invert","Bivalvia","Ostreoida","Ostreidae","Crassostrea","gigas","Amnesic"
-"19",166,"Amnesic","California mussel","Mytilus californianus","Mytilus californianus","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","californianus","Amnesic"
-"20",185,"Amnesic","Pacific oyster","Crassostrea gigas","Crassostrea gigas","invert","Bivalvia","Ostreoida","Ostreidae","Crassostrea","gigas","Amnesic"
-"21",185,"Amnesic","Farrer's scallop","Chlamys farreri","Chlamys farreri","invert","Bivalvia","Ostreoida","Pectinidae","Chlamys","farreri","Amnesic"
-"22",185,"Amnesic","East Asia surf clam","Mactra veneriformis","Mactra quadrangularis","invert","Bivalvia","Veneroida","Mactridae","Mactra","quadrangularis","Amnesic"
-"23",185,"Amnesic","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis","Amnesic"
-"24",179,"Amnesic","Pacific razor clam","Siliqua patula","Siliqua patula","invert","Bivalvia","Veneroida","Pharidae","Siliqua","patula","Amnesic"
-"25",55,"Amnesic","Peruivan calico scallop","Argopecten purpuratus","Argopecten purpuratus","invert","Bivalvia","Ostreoida","Pectinidae","Argopecten","purpuratus","Amnesic"
-"26",113,"Amnesic",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Amnesic"
-"27",131,"Amnesic",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Amnesic"
-"28",171,"Amnesic",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Amnesic"
-"29",67,"Amnesic",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Amnesic"
-"30",186,"Amnesic",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Amnesic"
-"31",5,"Amnesic",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Amnesic"
-"32",152,"Amnesic",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Amnesic"
-"33",163,"Amnesic",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Amnesic"
-"34",112,"Ciguatera","Orange-spotted grouper","Epinephelus coioides","Epinephelus coioides","fish","Actinopterygii","Perciformes","Serranidae","Epinephelus","coioides","Ciguatera"
-"35",169,"Ciguatera",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Ciguatera"
-"36",111,"Ciguatera","Spanish mackerel","Scomberomorus commerson","Scomberomorus commerson","fish","Actinopterygii","Perciformes","Scombridae","Scomberomorus","commerson","Ciguatera"
-"37",111,"Ciguatera","Coral trout","Plectropomus leopardus","Plectropomus leopardus","fish","Actinopterygii","Perciformes","Serranidae","Plectropomus","leopardus","Ciguatera"
-"38",24,"Ciguatera",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Ciguatera"
-"39",43,"Ciguatera",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Ciguatera"
-"40",96,"Ciguatera",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Ciguatera"
-"41",135,"Ciguatera",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Ciguatera"
-"42",132,"Ciguatera",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Ciguatera"
-"43",81,"Diarrhetic","Anomalocardia clam","Anomalocardia flexuosa","Anomalocardia flexuosa","invert","Bivalvia","Veneroida","Veneridae","Anomalocardia","flexuosa","Diarrhetic"
-"44",116,"Diarrhetic","Bay scallop","Argopecten irradians","Argopecten irradians","invert","Bivalvia","Ostreoida","Pectinidae","Argopecten","irradians","Diarrhetic"
-"45",27,"Diarrhetic","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis","Diarrhetic"
-"46",9,"Diarrhetic","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis","Diarrhetic"
-"47",84,"Diarrhetic","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis","Diarrhetic"
-"48",17,"Diarrhetic","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis","Diarrhetic"
-"49",14,"Diarrhetic","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis","Diarrhetic"
-"50",14,"Diarrhetic","European flat oyster","Ostrea edulis","Ostrea edulis","invert","Bivalvia","Ostreoida","Ostreidae","Ostrea","edulis","Diarrhetic"
-"51",117,"Diarrhetic","Brown crab","Cancer pagurus","Cancer pagurus","invert","Malacostraca","Decapoda","Cancridae","Cancer","pagurus","Diarrhetic"
-"52",13,"Diarrhetic","Brown crab","Cancer pagurus","Cancer pagurus","invert","Malacostraca","Decapoda","Cancridae","Cancer","pagurus","Diarrhetic"
-"53",104,"Diarrhetic","Indian medaka","Oryzias melastigma","Oryzias melastigma","fish","Actinopterygii","Beloniformes","Adrianichthyidae","Oryzias","melastigma","Diarrhetic"
-"54",97,"Diarrhetic","Mediterranean mussel","Mytilus galloprovincialis","Mytilus galloprovincialis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","galloprovincialis","Diarrhetic"
-"55",58,"Diarrhetic","Mediterranean mussel","Mytilus galloprovincialis","Mytilus galloprovincialis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","galloprovincialis","Diarrhetic"
-"56",39,"Diarrhetic","Mediterranean mussel","Mytilus galloprovincialis","Mytilus galloprovincialis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","galloprovincialis","Diarrhetic"
-"57",23,"Diarrhetic","Mediterranean mussel","Mytilus galloprovincialis","Mytilus galloprovincialis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","galloprovincialis","Diarrhetic"
-"58",128,"Diarrhetic","Mussel",NA,NA,NA,NA,NA,NA,NA,NA,"Diarrhetic"
-"59",145,"Diarrhetic","Mussel",NA,NA,NA,NA,NA,NA,NA,NA,"Diarrhetic"
-"60",44,"Diarrhetic","Wedge shell","Donax trunculus","Donax trunculus","invert","Bivalvia","Veneroida","Donacidae","Donax","trunculus","Diarrhetic"
-"61",120,"Diarrhetic",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Diarrhetic"
-"62",134,"Diarrhetic",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Diarrhetic"
-"63",38,"Diarrhetic",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Diarrhetic"
-"64",114,"Paralytic","Atlantic salmon","Salmo salar","Salmo salar","fish","Actinopterygii","Salmoniformes","Salmonidae","Salmo","salar","Paralytic"
-"65",114,"Paralytic","American lobster","Homarus americanus","Homarus americanus","invert","Malacostraca","Decapoda","Nephropidae","Homarus","americanus","Paralytic"
-"66",114,"Paralytic","Horse mussel","Modiolus modiolus","Modiolus modiolus","invert","Bivalvia","Mytiloida","Mytilidae","Modiolus","modiolus","Paralytic"
-"67",114,"Paralytic","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis","Paralytic"
-"68",45,"Paralytic","Atlantic sea scallop","Placopecten magellanicus","Placopecten magellanicus","invert","Bivalvia","Ostreoida","Pectinidae","Placopecten","magellanicus","Paralytic"
-"69",29,"Paralytic","Atlantic surfclam","Spisula solidissima","Spisula solidissima","invert","Bivalvia","Veneroida","Mactridae","Spisula","solidissima","Paralytic"
-"70",47,"Paralytic","Australian blacklip abalone","Haliotis rubra","Haliotis rubra","invert","Gastropoda","Patellogastropoda","Haliotidae","Haliotis","rubra","Paralytic"
-"71",87,"Paralytic","Australian blacklip abalone","Haliotis rubra","Haliotis rubra","invert","Gastropoda","Patellogastropoda","Haliotidae","Haliotis","rubra","Paralytic"
-"72",147,"Paralytic","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis","Paralytic"
-"73",133,"Paralytic","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis","Paralytic"
-"74",122,"Paralytic","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis","Paralytic"
-"75",10,"Paralytic","Common octopus","Octopus vulgaris","Octopus vulgaris","invert","Cephalopoda","Octopoda","Octopodidae","Octopus","vulgaris","Paralytic"
-"76",177,"Paralytic","Farrer's scallop","Chlamys farreri","Chlamys farreri","invert","Bivalvia","Ostreoida","Pectinidae","Chlamys","farreri","Paralytic"
-"77",177,"Paralytic","Mediterranean mussel","Mytilus galloprovincialis","Mytilus galloprovincialis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","galloprovincialis","Paralytic"
-"78",88,"Paralytic","Farrer's scallop","Chlamys farreri","Chlamys farreri","invert","Bivalvia","Ostreoida","Pectinidae","Chlamys","farreri","Paralytic"
-"79",88,"Paralytic","Mediterranean mussel","Mytilus galloprovincialis","Mytilus galloprovincialis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","galloprovincialis","Paralytic"
-"80",74,"Paralytic","Farrer's scallop","Chlamys farreri","Chlamys farreri","invert","Bivalvia","Ostreoida","Pectinidae","Chlamys","farreri","Paralytic"
-"81",74,"Paralytic","Mediterranean mussel","Mytilus galloprovincialis","Mytilus galloprovincialis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","galloprovincialis","Paralytic"
-"82",46,"Paralytic","Geoduck Clam","Panopea globosa","Panopea globosa","invert","Bivalvia","Myoida","Hiatellidae","Panopea","globosa","Paralytic"
-"83",36,"Paralytic","Gilthead seabream","Sparus aurata","Sparus aurata","fish","Actinopterygii","Perciformes","Sparidae","Sparus","aurata","Paralytic"
-"84",12,"Paralytic","Green-lipped mussel","Perna viridis","Perna viridis","invert","Bivalvia","Mytiloida","Mytilidae","Perna","viridis","Paralytic"
-"85",77,"Paralytic","Green-lipped mussel","Perna viridis","Perna viridis","invert","Bivalvia","Mytiloida","Mytilidae","Perna","viridis","Paralytic"
-"86",77,"Paralytic","Black sea bream","Acanthopagrus schlegeli","Acanthopagrus schlegelii","fish","Actinopterygii","Perciformes","Sparidae","Acanthopagrus","schlegelii","Paralytic"
-"87",8,"Paralytic","Grooved carpet shell","Ruditapes decussatus","Ruditapes decussatus","invert","Bivalvia","Veneroida","Veneridae","Ruditapes","decussatus","Paralytic"
-"88",48,"Paralytic","Japanese scallop","Patinopecten yessoensis","Mizuhopecten yessoensis","invert","Bivalvia","Ostreoida","Pectinidae","Mizuhopecten","yessoensis","Paralytic"
-"89",30,"Paralytic","Japanese scallop","Patinopecten yessoensis","Mizuhopecten yessoensis","invert","Bivalvia","Ostreoida","Pectinidae","Mizuhopecten","yessoensis","Paralytic"
-"90",3,"Paralytic","Japanese scallop","Patinopecten yessoensis","Mizuhopecten yessoensis","invert","Bivalvia","Ostreoida","Pectinidae","Mizuhopecten","yessoensis","Paralytic"
-"91",59,"Paralytic","Japanese scallop","Patinopecten yessoensis","Mizuhopecten yessoensis","invert","Bivalvia","Ostreoida","Pectinidae","Mizuhopecten","yessoensis","Paralytic"
-"92",4,"Paralytic","Jinjiang oyster","Ostrea rivularis","Magallana rivularis",NA,NA,NA,NA,NA,NA,"Paralytic"
-"93",49,"Paralytic","Jinjiang oyster","Ostrea rivularis","Magallana rivularis",NA,NA,NA,NA,NA,NA,"Paralytic"
-"94",130,"Paralytic","King scallop","Pecten maximus","Pecten maximus","invert","Bivalvia","Ostreoida","Pectinidae","Pecten","maximus","Paralytic"
-"95",164,"Paralytic","Korean hard-shelled mussel","Mytilus coruscus","Mytilus coruscus","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","coruscus","Paralytic"
-"96",68,"Paralytic","Mediterranean mussel","Mytilus galloprovincialis","Mytilus galloprovincialis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","galloprovincialis","Paralytic"
-"97",73,"Paralytic","Mediterranean mussel","Mytilus galloprovincialis","Mytilus galloprovincialis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","galloprovincialis","Paralytic"
-"98",73,"Paralytic","Common cockle","Cerastoderma edule","Cerastoderma edule","invert","Bivalvia","Veneroida","Cardiidae","Cerastoderma","edule","Paralytic"
-"99",73,"Paralytic","Grooved razor shell","Solen marginatus","Solen marginatus","invert","Bivalvia","Veneroida","Solenidae","Solen","marginatus","Paralytic"
-"100",115,"Paralytic","Mussel",NA,NA,NA,NA,NA,NA,NA,NA,"Paralytic"
-"101",158,"Paralytic","Noble scallop","Chlamys nobilis","Chlamys nobilis","invert","Bivalvia","Ostreoida","Pectinidae","Chlamys","nobilis","Paralytic"
-"102",158,"Paralytic","Chinese spiny lobster","Panulirus stimpsoni","Panulirus stimpsoni","invert","Malacostraca","Decapoda","Palinuridae","Panulirus","stimpsoni","Paralytic"
-"103",26,"Paralytic","Noble scallop","Chlamys nobilis","Chlamys nobilis","invert","Bivalvia","Ostreoida","Pectinidae","Chlamys","nobilis","Paralytic"
-"104",26,"Paralytic","Green-lipped mussel","Perna viridis","Perna viridis","invert","Bivalvia","Mytiloida","Mytilidae","Perna","viridis","Paralytic"
-"105",149,"Paralytic","Oyster",NA,NA,NA,NA,NA,NA,NA,NA,"Paralytic"
-"106",6,"Paralytic","Oyster",NA,NA,NA,NA,NA,NA,NA,NA,"Paralytic"
-"107",95,"Paralytic","Pacific oyster","Crassostrea gigas","Crassostrea gigas","invert","Bivalvia","Ostreoida","Ostreidae","Crassostrea","gigas","Paralytic"
-"108",188,"Paralytic","Pacific oyster","Crassostrea gigas","Crassostrea gigas","invert","Bivalvia","Ostreoida","Ostreidae","Crassostrea","gigas","Paralytic"
-"109",66,"Paralytic","Pacific oyster","Crassostrea gigas","Crassostrea gigas","invert","Bivalvia","Ostreoida","Ostreidae","Crassostrea","gigas","Paralytic"
-"110",99,"Paralytic","Purple clam","Hiatula rostrata","Hiatula rostrata",NA,NA,NA,NA,NA,NA,"Paralytic"
-"111",69,"Paralytic","Red drum","Sciaenops ocellatus","Sciaenops ocellatus","fish","Actinopterygii","Perciformes","Sciaenidae","Sciaenops","ocellatus","Paralytic"
-"112",64,"Paralytic","Southern rock lobster","Jasus edwardsii","Jasus edwardsii","invert","Malacostraca","Decapoda","Palinuridae","Jasus","edwardsii","Paralytic"
-"113",37,"Paralytic","Southern rock lobster","Jasus edwardsii","Jasus edwardsii","invert","Malacostraca","Decapoda","Palinuridae","Jasus","edwardsii","Paralytic"
-"114",28,"Paralytic","Southern rock lobster","Jasus edwardsii","Jasus edwardsii","invert","Malacostraca","Decapoda","Palinuridae","Jasus","edwardsii","Paralytic"
-"115",65,"Paralytic",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Paralytic"
-"116",105,"Paralytic",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Paralytic"
-"117",7,"Paralytic",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Paralytic"
-"118",25,"Paralytic",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Paralytic"
-"119",34,"Paralytic",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Paralytic"
-"120",21,"Paralytic",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Paralytic"
-"121",126,"Paralytic",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Paralytic"
-"122",148,"Paralytic",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Paralytic"
-"123",16,"Paralytic",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Paralytic"
-"124",85,"Paralytic",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Paralytic"
-"125",119,"Paralytic","Noble scallop","Chlamys nobilis","Chlamys nobilis","invert","Bivalvia","Ostreoida","Pectinidae","Chlamys","nobilis","Paralytic"
-"126",119,"Paralytic","Green-lipped mussel","Perna viridis","Perna viridis","invert","Bivalvia","Mytiloida","Mytilidae","Perna","viridis","Paralytic"
-"127",83,"Paralytic",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Paralytic"
-"128",42,"Paralytic",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Paralytic"
-"129",127,"Paralytic",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Paralytic"
-"130",123,"Paralytic",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Paralytic"
-"131",124,"Paralytic",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Paralytic"
-"132",94,"Paralytic","Pacific oyster","Crassostrea gigas","Crassostrea gigas","invert","Bivalvia","Ostreoida","Ostreidae","Crassostrea","gigas","Paralytic"
-"133",82,"Paralytic",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Paralytic"
-"134",11,"Paralytic",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Paralytic"
-"135",144,"Paralytic",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Paralytic"
-"136",108,"Paralytic",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Paralytic"
-"137",190,"Microcystin","Asian clam","Corbicula fluminea","Corbicula fluminea","invert","Bivalvia","Veneroida","Corbiculidae","Corbicula","fluminea","Microcystin"
-"138",98,"Nodularin","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis","Nodularin"
-"139",62,"Diarrhetic","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis","Diarrhetic"
-"140",78,"Nodularin","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis","Nodularin"
-"141",118,"Yessotoxin","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis","Yessotoxin"
-"142",109,NA,"Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis",NA
-"143",109,NA,"European flounder","Platichthys flesus","Platichthys flesus","fish","Actinopterygii","Pleuronectiformes","Pleuronectidae","Platichthys","flesus",NA
-"144",15,"Pectenotoxin","Brown crab","Cancer pagurus","Cancer pagurus","invert","Malacostraca","Decapoda","Cancridae","Cancer","pagurus","Pectenotoxin"
-"145",90,"Pectenotoxin","Brown crab","Cancer pagurus","Cancer pagurus","invert","Malacostraca","Decapoda","Cancridae","Cancer","pagurus","Pectenotoxin"
-"146",146,"Gymnodimine","Clam",NA,NA,NA,NA,NA,NA,NA,NA,"Gymnodimine"
-"147",170,"Brevetoxin","Eastern oyster","Crassostrea virginica","Crassostrea virginica","invert","Bivalvia","Ostreoida","Ostreidae","Crassostrea","virginica","Brevetoxin"
-"148",41,"Microcystin, Vibrio","Eastern oyster","Crassostrea virginica","Crassostrea virginica","invert","Bivalvia","Ostreoida","Ostreidae","Crassostrea","virginica","Microcystin, Vibrio"
-"149",102,"Brevetoxin","Eastern oyster","Crassostrea virginica","Crassostrea virginica","invert","Bivalvia","Ostreoida","Ostreidae","Crassostrea","virginica","Brevetoxin"
-"150",102,"Brevetoxin","Northern quahog","Mercenaria mercenaria","Mercenaria mercenaria","invert","Bivalvia","Veneroida","Veneridae","Mercenaria","mercenaria","Brevetoxin"
-"151",137,"Nodularin","European flounder","Platichthys flesus","Platichthys flesus","fish","Actinopterygii","Pleuronectiformes","Pleuronectidae","Platichthys","flesus","Nodularin"
-"152",137,"Nodularin","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis","Nodularin"
-"153",137,"Nodularin","Zebra mussel","Dreissena polymorpha","Dreissena polymorpha","invert","Bivalvia","Veneroida","Dreissenidae","Dreissena","polymorpha","Nodularin"
-"154",137,"Nodularin","Baltic macoma clam","Macoma balthica","Macoma balthica","invert","Bivalvia","Veneroida","Tellinidae","Macoma","balthica","Nodularin"
-"155",156,"Homoanatoxin","Giant clam","Tridacna maxima","Tridacna maxima","invert","Bivalvia","Veneroida","Cardiidae","Tridacna","maxima","Homoanatoxin"
-"156",189,"Microcystin","Giant freshwater prawn","Macrobrachium rosenbergii","Macrobrachium rosenbergii","invert","Malacostraca","Decapoda","Palaemonidae","Macrobrachium","rosenbergii","Microcystin"
-"157",101,NA,"Green-lipped mussel","Perna canaliculus","Perna canaliculus","invert","Bivalvia","Mytiloida","Mytilidae","Perna","canaliculus",NA
-"158",191,"Paralytic","Green-lipped mussel","Perna viridis","Perna viridis","invert","Bivalvia","Mytiloida","Mytilidae","Perna","viridis","Paralytic"
-"159",139,"Brevetoxin","Green-lipped mussel","Perna viridis","Perna viridis","invert","Bivalvia","Mytiloida","Mytilidae","Perna","viridis","Brevetoxin"
-"160",141,"Gymnodimine","Grooved carpet shell","Ruditapes decussatus","Ruditapes decussatus","invert","Bivalvia","Veneroida","Veneridae","Ruditapes","decussatus","Gymnodimine"
-"161",129,"Brevetoxin","Hard clam","Mercenaria campechiensis","Mercenaria campechiensis","invert","Bivalvia","Veneroida","Veneridae","Mercenaria","campechiensis","Brevetoxin"
-"162",110,"Diarrhetic","Mediterranean mussel","Mytilus galloprovincialis","Mytilus galloprovincialis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","galloprovincialis","Diarrhetic"
-"163",92,NA,"Mediterranean mussel","Mytilus galloprovincialis","Mytilus galloprovincialis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","galloprovincialis",NA
-"164",61,"Microcystin","Mediterranean mussel","Mytilus galloprovincialis","Mytilus galloprovincialis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","galloprovincialis","Microcystin"
-"165",86,NA,"Mediterranean mussel","Mytilus galloprovincialis","Mytilus galloprovincialis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","galloprovincialis",NA
-"166",18,"Microcystin","Mediterranean mussel","Mytilus galloprovincialis","Mytilus galloprovincialis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","galloprovincialis","Microcystin"
-"167",57,"Yessotoxin","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis","Yessotoxin"
-"168",57,"Yessotoxin","Pacific oyster","Crassostrea gigas","Crassostrea gigas","invert","Bivalvia","Ostreoida","Ostreidae","Crassostrea","gigas","Yessotoxin"
-"169",136,"Microcystin","Mussel",NA,NA,NA,NA,NA,NA,NA,NA,"Microcystin"
-"170",80,NA,"Mussel",NA,NA,NA,NA,NA,NA,NA,NA,NA
-"171",143,"Microcystin","Mysid crustacean","Neomysis awatschensi","Neomysis awatschensis","invert","Malacostraca","Mysida","Mysidae","Neomysis","awatschensis","Microcystin"
-"172",32,NA,"Nile tilapia","Oreochromis niloticus","Oreochromis niloticus","fish","Actinopterygii","Perciformes","Cichlidae","Oreochromis","niloticus",NA
-"173",172,NA,"Northern leopard frog","Lithobates pipiens","Lithobates pipiens",NA,NA,NA,NA,NA,NA,NA
-"174",154,NA,"Oyster",NA,NA,NA,NA,NA,NA,NA,NA,NA
-"175",54,"Microcystin","Pacific blue mussel","Mytilus trossulus","Mytilus trossulus","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","trossulus","Microcystin"
-"176",176,"Tetrodotoxin","Pacific oyster","Crassostrea gigas","Crassostrea gigas","invert","Bivalvia","Ostreoida","Ostreidae","Crassostrea","gigas","Tetrodotoxin"
-"177",150,NA,"Pacific oyster","Crassostrea gigas","Crassostrea gigas","invert","Bivalvia","Ostreoida","Ostreidae","Crassostrea","gigas",NA
-"178",138,"Microcystin","Pacific oyster","Crassostrea gigas","Crassostrea gigas","invert","Bivalvia","Ostreoida","Ostreidae","Crassostrea","gigas","Microcystin"
-"179",138,"Microcystin","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis","Microcystin"
-"180",125,"Microcystin","Pacific oyster","Crassostrea gigas","Crassostrea gigas","invert","Bivalvia","Ostreoida","Ostreidae","Crassostrea","gigas","Microcystin"
-"181",125,"Microcystin","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis","Microcystin"
-"182",2,NA,"Purple-hinged rock scallop","Crassadoma gigantea","Crassadoma gigantea","invert","Bivalvia","Ostreoida","Pectinidae","Crassadoma","gigantea",NA
-"183",63,"Tetrodotoxin","Pipi clam","Paphies australis","Paphies australis","invert","Bivalvia","Veneroida","Mesodesmatidae","Paphies","australis","Tetrodotoxin"
-"184",35,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"185",168,"Microcystin",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Microcystin"
-"186",183,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"187",157,"Brevetoxin","Atlantic menhaden","Brevoortia tyrannus","Brevoortia tyrannus","fish","Actinopterygii","Clupeiformes","Clupeidae","Brevoortia","tyrannus","Brevetoxin"
-"188",157,"Brevetoxin","Striped mullet","Mugil cephalus","Mugil cephalus","fish","Actinopterygii","Mugiliformes","Mugilidae","Mugil","cephalus","Brevetoxin"
-"189",103,"Diarrhetic",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Diarrhetic"
-"190",180,"Vibrio",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Vibrio"
-"191",89,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"192",93,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"193",142,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"194",56,"Microcystin","Chinese freshwater snail","Bellamya aeruginosa","Sinotaia aeruginosa",NA,NA,NA,NA,NA,NA,"Microcystin"
-"195",167,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"196",50,"Microcystin",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Microcystin"
-"197",75,"Diarrhetic",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Diarrhetic"
-"198",40,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"199",181,"Microcystin","Asian clam","Corbicula fluminea","Corbicula fluminea","invert","Bivalvia","Veneroida","Corbiculidae","Corbicula","fluminea","Microcystin"
-"200",184,"Microcystin",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Microcystin"
-"201",175,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"202",161,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"203",91,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"204",1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"205",106,"Microcystin",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Microcystin"
-"206",178,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"207",107,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"208",159,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"209",33,"Nodularin","Copepod","Eurytemora affinis","Eurytemora affinis","invert","Maxillopoda","Calanoida","Temoridae","Eurytemora","affinis","Nodularin"
-"210",153,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"211",162,"Tetrodotoxin","Mussels","Mytilus spp.",NA,NA,NA,NA,NA,NA,NA,"Tetrodotoxin"
-"212",162,"Tetrodotoxin","Pacific oyster","Crassostrea gigas","Crassostrea gigas","invert","Bivalvia","Ostreoida","Ostreidae","Crassostrea","gigas","Tetrodotoxin"
-"213",162,"Tetrodotoxin","European flat oyster","Ostrea edulis","Ostrea edulis","invert","Bivalvia","Ostreoida","Ostreidae","Ostrea","edulis","Tetrodotoxin"
-"214",162,"Tetrodotoxin","Northern quahog","Mercenaria mercenaria","Mercenaria mercenaria","invert","Bivalvia","Veneroida","Veneridae","Mercenaria","mercenaria","Tetrodotoxin"
-"215",162,"Tetrodotoxin","Manila clam","Ruditapes philippinarum","Ruditapes philippinarum","invert","Bivalvia","Veneroida","Veneridae","Ruditapes","philippinarum","Tetrodotoxin"
-"216",162,"Tetrodotoxin","Common cockle","Cerastoderma edule","Cerastoderma edule","invert","Bivalvia","Veneroida","Cardiidae","Cerastoderma","edule","Tetrodotoxin"
-"217",162,"Tetrodotoxin","Razor clam","Ensis spp.",NA,NA,NA,NA,NA,NA,NA,"Tetrodotoxin"
-"218",162,"Tetrodotoxin","Atlantic surf clam","Spisula solida","Spisula solida","invert","Bivalvia","Veneroida","Mactridae","Spisula","solida","Tetrodotoxin"
-"219",162,"Tetrodotoxin","King scallop","Pecten maximus","Pecten maximus","invert","Bivalvia","Ostreoida","Pectinidae","Pecten","maximus","Tetrodotoxin"
-"220",19,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"221",20,"Tetrodotoxin","Pipi clam","Paphies australis","Paphies australis","invert","Bivalvia","Veneroida","Mesodesmatidae","Paphies","australis","Tetrodotoxin"
-"222",155,"Gymnodimine",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Gymnodimine"
-"223",31,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"224",173,"Microcystin",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Microcystin"
-"225",76,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"226",121,"Microcystin",NA,NA,NA,NA,NA,NA,NA,NA,NA,"Microcystin"
-"227",70,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"228",187,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"","paper_id","syndrome","comm_name","sci_name_orig","sci_name","type","class","order","family","genus","species"
+"1",86,"Cyanotoxin","Mediterranean mussel","Mytilus galloprovincialis","Mytilus galloprovincialis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","galloprovincialis"
+"2",147,"Azaspiracid","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis"
+"3",177,"Azaspiracid","Farrer's scallop","Chlamys farreri","Chlamys farreri","invert","Bivalvia","Ostreoida","Pectinidae","Chlamys","farreri"
+"4",177,"Azaspiracid","Mediterranean mussel","Mytilus galloprovincialis","Mytilus galloprovincialis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","galloprovincialis"
+"5",108,"Azaspiracid, Other",NA,NA,NA,NA,NA,NA,NA,NA,NA
+"6",157,"Brevetoxin","Atlantic menhaden","Brevoortia tyrannus","Brevoortia tyrannus","fish","Actinopterygii","Clupeiformes","Clupeidae","Brevoortia","tyrannus"
+"7",157,"Brevetoxin","Striped mullet","Mugil cephalus","Mugil cephalus","fish","Actinopterygii","Mugiliformes","Mugilidae","Mugil","cephalus"
+"8",170,"Brevetoxin","Eastern oyster","Crassostrea virginica","Crassostrea virginica","invert","Bivalvia","Ostreoida","Ostreidae","Crassostrea","virginica"
+"9",102,"Brevetoxin","Eastern oyster","Crassostrea virginica","Crassostrea virginica","invert","Bivalvia","Ostreoida","Ostreidae","Crassostrea","virginica"
+"10",102,"Brevetoxin","Northern quahog","Mercenaria mercenaria","Mercenaria mercenaria","invert","Bivalvia","Veneroida","Veneridae","Mercenaria","mercenaria"
+"11",139,"Brevetoxin","Green-lipped mussel","Perna viridis","Perna viridis","invert","Bivalvia","Mytiloida","Mytilidae","Perna","viridis"
+"12",129,"Brevetoxin","Hard clam","Mercenaria campechiensis","Mercenaria campechiensis","invert","Bivalvia","Veneroida","Veneridae","Mercenaria","campechiensis"
+"13",76,"Brevetoxin","Turbot","Scophthalmus maximus","Scophthalmus maximus","fish","Actinopterygii","Pleuronectiformes","Scophthalmidae","Scophthalmus","maximus"
+"14",169,"Ciguatera",NA,NA,NA,NA,NA,NA,NA,NA,NA
+"15",96,"Ciguatera",NA,NA,NA,NA,NA,NA,NA,NA,NA
+"16",135,"Ciguatera",NA,NA,NA,NA,NA,NA,NA,NA,NA
+"17",132,"Ciguatera",NA,NA,NA,NA,NA,NA,NA,NA,NA
+"18",43,"Ciguatera","Lionfish","Pterois volitans","Pterois volitans","fish","Actinopterygii","Scorpaeniformes","Scorpaenidae","Pterois","volitans"
+"19",112,"Ciguatera","Orange-spotted grouper","Epinephelus coioides","Epinephelus coioides","fish","Actinopterygii","Perciformes","Serranidae","Epinephelus","coioides"
+"20",24,"Ciguatera","Pinfish","Lagodon rhomboides","Lagodon rhomboides","fish","Actinopterygii","Perciformes","Sparidae","Lagodon","rhomboides"
+"21",111,"Ciguatera","Spanish mackerel","Scomberomorus commerson","Scomberomorus commerson","fish","Actinopterygii","Perciformes","Scombridae","Scomberomorus","commerson"
+"22",111,"Ciguatera","Coral trout","Plectropomus leopardus","Plectropomus leopardus","fish","Actinopterygii","Perciformes","Serranidae","Plectropomus","leopardus"
+"23",160,"Amnesic","Atlantic sea scallop","Placopecten magellanicus","Placopecten magellanicus","invert","Bivalvia","Ostreoida","Pectinidae","Placopecten","magellanicus"
+"24",160,"Amnesic","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis"
+"25",51,"Amnesic","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis"
+"26",67,"Amnesic",NA,NA,NA,NA,NA,NA,NA,NA,NA
+"27",163,"Amnesic",NA,NA,NA,NA,NA,NA,NA,NA,NA
+"28",5,"Amnesic","Calanus finmarchicus copepod","Calanus finmarchicus","Calanus finmarchicus","invert","Maxillopoda","Calanoida","Calanidae","Calanus","finmarchicus"
+"29",71,"Amnesic","Coho salmon","Oncorhynchus kisutch","Oncorhynchus kisutch","fish","Actinopterygii","Salmoniformes","Salmonidae","Oncorhynchus","kisutch"
+"30",53,"Amnesic","Common octopus","Octopus vulgaris","Octopus vulgaris","invert","Cephalopoda","Octopoda","Octopodidae","Octopus","vulgaris"
+"31",22,"Amnesic","Copepods","Calanus spp",NA,NA,NA,NA,NA,NA,NA
+"32",79,"Amnesic","Dungeness crab","Cancer magister","Metacarcinus magister","invert","Malacostraca","Decapoda","Cancridae","Metacarcinus","magister"
+"33",174,"Amnesic","King scallop","Pecten maximus","Pecten maximus","invert","Bivalvia","Ostreoida","Pectinidae","Pecten","maximus"
+"34",165,"Amnesic","King scallop","Pecten maximus","Pecten maximus","invert","Bivalvia","Ostreoida","Pectinidae","Pecten","maximus"
+"35",60,"Amnesic","King scallop","Pecten maximus","Pecten maximus","invert","Bivalvia","Ostreoida","Pectinidae","Pecten","maximus"
+"36",151,"Amnesic","King scallop","Pecten maximus","Pecten maximus","invert","Bivalvia","Ostreoida","Pectinidae","Pecten","maximus"
+"37",182,"Amnesic","King scallop","Pecten maximus","Pecten maximus","invert","Bivalvia","Ostreoida","Pectinidae","Pecten","maximus"
+"38",72,"Amnesic","King scallop","Pecten maximus","Pecten maximus","invert","Bivalvia","Ostreoida","Pectinidae","Pecten","maximus"
+"39",140,"Amnesic","King scallop","Pecten maximus","Pecten maximus","invert","Bivalvia","Ostreoida","Pectinidae","Pecten","maximus"
+"40",171,"Amnesic","King scallop","Pecten maximus","Pecten maximus","invert","Bivalvia","Ostreoida","Pectinidae","Pecten","maximus"
+"41",186,"Amnesic","King scallop","Pecten maximus","Pecten maximus","invert","Bivalvia","Ostreoida","Pectinidae","Pecten","maximus"
+"42",152,"Amnesic","King scallop","Pecten maximus","Pecten maximus","invert","Bivalvia","Ostreoida","Pectinidae","Pecten","maximus"
+"43",131,"Amnesic","King scallop","Pecten maximus","Pecten maximus","invert","Bivalvia","Ostreoida","Pectinidae","Pecten","maximus"
+"44",131,"Amnesic","Common octopus","Octopus vulgaris","Octopus vulgaris","invert","Cephalopoda","Octopoda","Octopodidae","Octopus","vulgaris"
+"45",52,"Amnesic","Oysters",NA,NA,NA,NA,NA,NA,NA,NA
+"46",52,"Amnesic","mussels",NA,NA,NA,NA,NA,NA,NA,NA
+"47",166,"Amnesic","Pacific oyster","Crassostrea gigas","Crassostrea gigas","invert","Bivalvia","Ostreoida","Ostreidae","Crassostrea","gigas"
+"48",166,"Amnesic","California mussel","Mytilus californianus","Mytilus californianus","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","californianus"
+"49",185,"Amnesic","Pacific oyster","Crassostrea gigas","Crassostrea gigas","invert","Bivalvia","Ostreoida","Ostreidae","Crassostrea","gigas"
+"50",185,"Amnesic","Farrer's scallop","Chlamys farreri","Chlamys farreri","invert","Bivalvia","Ostreoida","Pectinidae","Chlamys","farreri"
+"51",185,"Amnesic","East Asia surf clam","Mactra veneriformis","Mactra quadrangularis","invert","Bivalvia","Veneroida","Mactridae","Mactra","quadrangularis"
+"52",185,"Amnesic","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis"
+"53",179,"Amnesic","Pacific razor clam","Siliqua patula","Siliqua patula","invert","Bivalvia","Veneroida","Pharidae","Siliqua","patula"
+"54",55,"Amnesic","Peruivan calico scallop","Argopecten purpuratus","Argopecten purpuratus","invert","Bivalvia","Ostreoida","Pectinidae","Argopecten","purpuratus"
+"55",113,"Amnesic, Paralytic",NA,NA,NA,NA,NA,NA,NA,NA,NA
+"56",100,"Amnesic, Vibrio","Pacific oyster","Crassostrea gigas","Crassostrea gigas","invert","Bivalvia","Ostreoida","Ostreidae","Crassostrea","gigas"
+"57",146,"Other","Clam",NA,NA,NA,NA,NA,NA,NA,NA
+"58",141,"Other","Grooved carpet shell","Ruditapes decussatus","Ruditapes decussatus","invert","Bivalvia","Veneroida","Veneridae","Ruditapes","decussatus"
+"59",155,"Other",NA,NA,NA,NA,NA,NA,NA,NA,NA
+"60",109,"Cyanotoxin","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis"
+"61",109,"Cyanotoxin","European flounder","Platichthys flesus","Platichthys flesus","fish","Actinopterygii","Pleuronectiformes","Pleuronectidae","Platichthys","flesus"
+"62",156,"Cyanotoxin","Giant clam","Tridacna maxima","Tridacna maxima","invert","Bivalvia","Veneroida","Cardiidae","Tridacna","maxima"
+"63",190,"Cyanotoxin","Asian clam","Corbicula fluminea","Corbicula fluminea","invert","Bivalvia","Veneroida","Corbiculidae","Corbicula","fluminea"
+"64",181,"Cyanotoxin","Asian clam","Corbicula fluminea","Corbicula fluminea","invert","Bivalvia","Veneroida","Corbiculidae","Corbicula","fluminea"
+"65",56,"Cyanotoxin","Chinese freshwater snail","Bellamya aeruginosa","Sinotaia aeruginosa",NA,NA,NA,NA,NA,NA
+"66",189,"Cyanotoxin","Giant freshwater prawn","Macrobrachium rosenbergii","Macrobrachium rosenbergii","invert","Malacostraca","Decapoda","Palaemonidae","Macrobrachium","rosenbergii"
+"67",61,"Cyanotoxin","Mediterranean mussel","Mytilus galloprovincialis","Mytilus galloprovincialis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","galloprovincialis"
+"68",18,"Cyanotoxin","Mediterranean mussel","Mytilus galloprovincialis","Mytilus galloprovincialis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","galloprovincialis"
+"69",136,"Cyanotoxin","Mussel",NA,NA,NA,NA,NA,NA,NA,NA
+"70",143,"Cyanotoxin","Mysid crustacean","Neomysis awatschensi","Neomysis awatschensis","invert","Malacostraca","Mysida","Mysidae","Neomysis","awatschensis"
+"71",54,"Cyanotoxin","Pacific blue mussel","Mytilus trossulus","Mytilus trossulus","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","trossulus"
+"72",138,"Cyanotoxin","Pacific oyster","Crassostrea gigas","Crassostrea gigas","invert","Bivalvia","Ostreoida","Ostreidae","Crassostrea","gigas"
+"73",138,"Cyanotoxin","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis"
+"74",125,"Cyanotoxin","Pacific oyster","Crassostrea gigas","Crassostrea gigas","invert","Bivalvia","Ostreoida","Ostreidae","Crassostrea","gigas"
+"75",125,"Cyanotoxin","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis"
+"76",168,"Cyanotoxin",NA,NA,NA,NA,NA,NA,NA,NA,NA
+"77",50,"Cyanotoxin",NA,NA,NA,NA,NA,NA,NA,NA,NA
+"78",184,"Cyanotoxin",NA,NA,NA,NA,NA,NA,NA,NA,NA
+"79",121,"Cyanotoxin","Shaw's jird","Meriones shawi","Meriones shawi",NA,NA,NA,NA,NA,NA
+"80",106,"Cyanotoxin",NA,NA,NA,NA,NA,NA,NA,NA,NA
+"81",173,"Cyanotoxin",NA,NA,NA,NA,NA,NA,NA,NA,NA
+"82",41,"Cyanotoxin, Vibrio","Eastern oyster","Crassostrea virginica","Crassostrea virginica","invert","Bivalvia","Ostreoida","Ostreidae","Crassostrea","virginica"
+"83",98,"Cyanotoxin","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis"
+"84",78,"Cyanotoxin","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis"
+"85",33,"Cyanotoxin","Eurytemora affinis copepod","Eurytemora affinis","Eurytemora affinis","invert","Maxillopoda","Calanoida","Temoridae","Eurytemora","affinis"
+"86",137,"Cyanotoxin","European flounder","Platichthys flesus","Platichthys flesus","fish","Actinopterygii","Pleuronectiformes","Pleuronectidae","Platichthys","flesus"
+"87",137,"Cyanotoxin","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis"
+"88",137,"Cyanotoxin","Zebra mussel","Dreissena polymorpha","Dreissena polymorpha","invert","Bivalvia","Veneroida","Dreissenidae","Dreissena","polymorpha"
+"89",137,"Cyanotoxin","Baltic macoma clam","Macoma balthica","Macoma balthica","invert","Bivalvia","Veneroida","Tellinidae","Macoma","balthica"
+"90",187,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"91",81,"Diarrhetic","Anomalocardia clam","Anomalocardia flexuosa","Anomalocardia flexuosa","invert","Bivalvia","Veneroida","Veneridae","Anomalocardia","flexuosa"
+"92",116,"Diarrhetic","Bay scallop","Argopecten irradians","Argopecten irradians","invert","Bivalvia","Ostreoida","Pectinidae","Argopecten","irradians"
+"93",27,"Diarrhetic","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis"
+"94",9,"Diarrhetic","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis"
+"95",84,"Diarrhetic","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis"
+"96",17,"Diarrhetic","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis"
+"97",14,"Diarrhetic","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis"
+"98",14,"Diarrhetic","European flat oyster","Ostrea edulis","Ostrea edulis","invert","Bivalvia","Ostreoida","Ostreidae","Ostrea","edulis"
+"99",117,"Diarrhetic","Brown crab","Cancer pagurus","Cancer pagurus","invert","Malacostraca","Decapoda","Cancridae","Cancer","pagurus"
+"100",13,"Diarrhetic","Brown crab","Cancer pagurus","Cancer pagurus","invert","Malacostraca","Decapoda","Cancridae","Cancer","pagurus"
+"101",120,"Diarrhetic",NA,NA,NA,NA,NA,NA,NA,NA,NA
+"102",134,"Diarrhetic",NA,NA,NA,NA,NA,NA,NA,NA,NA
+"103",38,"Diarrhetic",NA,NA,NA,NA,NA,NA,NA,NA,NA
+"104",104,"Diarrhetic","Indian medaka","Oryzias melastigma","Oryzias melastigma","fish","Actinopterygii","Beloniformes","Adrianichthyidae","Oryzias","melastigma"
+"105",97,"Diarrhetic","Mediterranean mussel","Mytilus galloprovincialis","Mytilus galloprovincialis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","galloprovincialis"
+"106",58,"Diarrhetic","Mediterranean mussel","Mytilus galloprovincialis","Mytilus galloprovincialis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","galloprovincialis"
+"107",39,"Diarrhetic","Mediterranean mussel","Mytilus galloprovincialis","Mytilus galloprovincialis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","galloprovincialis"
+"108",23,"Diarrhetic","Mediterranean mussel","Mytilus galloprovincialis","Mytilus galloprovincialis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","galloprovincialis"
+"109",128,"Diarrhetic","Mussel",NA,NA,NA,NA,NA,NA,NA,NA
+"110",145,"Diarrhetic","Mussel",NA,NA,NA,NA,NA,NA,NA,NA
+"111",103,"Diarrhetic",NA,NA,NA,NA,NA,NA,NA,NA,NA
+"112",75,"Diarrhetic",NA,NA,NA,NA,NA,NA,NA,NA,NA
+"113",44,"Diarrhetic","Wedge shell","Donax trunculus","Donax trunculus","invert","Bivalvia","Veneroida","Donacidae","Donax","trunculus"
+"114",62,"Diarrhetic","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis"
+"115",110,"Diarrhetic","Mediterranean mussel","Mytilus galloprovincialis","Mytilus galloprovincialis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","galloprovincialis"
+"116",15,"Other","Brown crab","Cancer pagurus","Cancer pagurus","invert","Malacostraca","Decapoda","Cancridae","Cancer","pagurus"
+"117",90,"Other","Brown crab","Cancer pagurus","Cancer pagurus","invert","Malacostraca","Decapoda","Cancridae","Cancer","pagurus"
+"118",172,NA,"Northern leopard frog","Lithobates pipiens","Lithobates pipiens",NA,NA,NA,NA,NA,NA
+"119",149,"Paralytic","Oyster",NA,NA,NA,NA,NA,NA,NA,NA
+"120",191,"Paralytic","Green-lipped mussel","Perna viridis","Perna viridis","invert","Bivalvia","Mytiloida","Mytilidae","Perna","viridis"
+"121",162,"Other","Mussels","Mytilus spp.",NA,NA,NA,NA,NA,NA,NA
+"122",162,"Other","Pacific oyster","Crassostrea gigas","Crassostrea gigas","invert","Bivalvia","Ostreoida","Ostreidae","Crassostrea","gigas"
+"123",162,"Other","European flat oyster","Ostrea edulis","Ostrea edulis","invert","Bivalvia","Ostreoida","Ostreidae","Ostrea","edulis"
+"124",162,"Other","Northern quahog","Mercenaria mercenaria","Mercenaria mercenaria","invert","Bivalvia","Veneroida","Veneridae","Mercenaria","mercenaria"
+"125",162,"Other","Manila clam","Ruditapes philippinarum","Ruditapes philippinarum","invert","Bivalvia","Veneroida","Veneridae","Ruditapes","philippinarum"
+"126",162,"Other","Common cockle","Cerastoderma edule","Cerastoderma edule","invert","Bivalvia","Veneroida","Cardiidae","Cerastoderma","edule"
+"127",162,"Other","Razor clam","Ensis spp.",NA,NA,NA,NA,NA,NA,NA
+"128",162,"Other","Atlantic surf clam","Spisula solida","Spisula solida","invert","Bivalvia","Veneroida","Mactridae","Spisula","solida"
+"129",162,"Other","King scallop","Pecten maximus","Pecten maximus","invert","Bivalvia","Ostreoida","Pectinidae","Pecten","maximus"
+"130",176,"Other","Pacific oyster","Crassostrea gigas","Crassostrea gigas","invert","Bivalvia","Ostreoida","Ostreidae","Crassostrea","gigas"
+"131",63,"Other","Pipi clam","Paphies australis","Paphies australis","invert","Bivalvia","Veneroida","Mesodesmatidae","Paphies","australis"
+"132",20,"Other","Pipi clam","Paphies australis","Paphies australis","invert","Bivalvia","Veneroida","Mesodesmatidae","Paphies","australis"
+"133",180,"Vibrio",NA,NA,NA,NA,NA,NA,NA,NA,NA
+"134",118,"Other","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis"
+"135",57,"Other","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis"
+"136",57,"Other","Pacific oyster","Crassostrea gigas","Crassostrea gigas","invert","Bivalvia","Ostreoida","Ostreidae","Crassostrea","gigas"
+"137",153,"Other",NA,NA,NA,NA,NA,NA,NA,NA,NA
+"138",21,"Paralytic","Acartia hudsonica copepod","Acartia hudsonica","Acartia hudsonica","invert","Maxillopoda","Calanoida","Acartiidae","Acartia","hudsonica"
+"139",114,"Paralytic","Atlantic salmon","Salmo salar","Salmo salar","fish","Actinopterygii","Salmoniformes","Salmonidae","Salmo","salar"
+"140",114,"Paralytic","American lobster","Homarus americanus","Homarus americanus","invert","Malacostraca","Decapoda","Nephropidae","Homarus","americanus"
+"141",114,"Paralytic","Horse mussel","Modiolus modiolus","Modiolus modiolus","invert","Bivalvia","Mytiloida","Mytilidae","Modiolus","modiolus"
+"142",114,"Paralytic","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis"
+"143",45,"Paralytic","Atlantic sea scallop","Placopecten magellanicus","Placopecten magellanicus","invert","Bivalvia","Ostreoida","Pectinidae","Placopecten","magellanicus"
+"144",29,"Paralytic","Atlantic surfclam","Spisula solidissima","Spisula solidissima","invert","Bivalvia","Veneroida","Mactridae","Spisula","solidissima"
+"145",47,"Paralytic","Australian blacklip abalone","Haliotis rubra","Haliotis rubra","invert","Gastropoda","Patellogastropoda","Haliotidae","Haliotis","rubra"
+"146",87,"Paralytic","Australian blacklip abalone","Haliotis rubra","Haliotis rubra","invert","Gastropoda","Patellogastropoda","Haliotidae","Haliotis","rubra"
+"147",133,"Paralytic","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis"
+"148",122,"Paralytic","Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis"
+"149",127,"Paralytic","Chilean abalone","Concholepas concholepas","Concholepas concholepas","invert","Gastropoda","Neogastropoda","Muricidae","Concholepas","concholepas"
+"150",34,"Paralytic","Common cockle","Cerastoderma edule","Cerastoderma edule","invert","Bivalvia","Veneroida","Cardiidae","Cerastoderma","edule"
+"151",10,"Paralytic","Common octopus","Octopus vulgaris","Octopus vulgaris","invert","Cephalopoda","Octopoda","Octopodidae","Octopus","vulgaris"
+"152",11,"Paralytic","Common warrener","Lunella undulata","Lunella undulata",NA,NA,NA,NA,NA,NA
+"153",88,"Paralytic","Farrer's scallop","Chlamys farreri","Chlamys farreri","invert","Bivalvia","Ostreoida","Pectinidae","Chlamys","farreri"
+"154",88,"Paralytic","Mediterranean mussel","Mytilus galloprovincialis","Mytilus galloprovincialis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","galloprovincialis"
+"155",74,"Paralytic","Farrer's scallop","Chlamys farreri","Chlamys farreri","invert","Bivalvia","Ostreoida","Pectinidae","Chlamys","farreri"
+"156",74,"Paralytic","Mediterranean mussel","Mytilus galloprovincialis","Mytilus galloprovincialis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","galloprovincialis"
+"157",46,"Paralytic","Geoduck clam","Panopea globosa","Panopea globosa","invert","Bivalvia","Myoida","Hiatellidae","Panopea","globosa"
+"158",36,"Paralytic","Gilthead seabream","Sparus aurata","Sparus aurata","fish","Actinopterygii","Perciformes","Sparidae","Sparus","aurata"
+"159",12,"Paralytic","Green-lipped mussel","Perna viridis","Perna viridis","invert","Bivalvia","Mytiloida","Mytilidae","Perna","viridis"
+"160",7,"Paralytic","Green-lipped mussel","Perna viridis","Perna viridis","invert","Bivalvia","Mytiloida","Mytilidae","Perna","viridis"
+"161",7,"Paralytic","Asiatic hard clam","Meretrix meretrix","Meretrix meretrix","invert","Bivalvia","Veneroida","Veneridae","Meretrix","meretrix"
+"162",77,"Paralytic","Green-lipped mussel","Perna viridis","Perna viridis","invert","Bivalvia","Mytiloida","Mytilidae","Perna","viridis"
+"163",77,"Paralytic","Black sea bream","Acanthopagrus schlegeli","Acanthopagrus schlegelii","fish","Actinopterygii","Perciformes","Sparidae","Acanthopagrus","schlegelii"
+"164",8,"Paralytic","Grooved carpet shell","Ruditapes decussatus","Ruditapes decussatus","invert","Bivalvia","Veneroida","Veneridae","Ruditapes","decussatus"
+"165",48,"Paralytic","Japanese scallop","Patinopecten yessoensis","Mizuhopecten yessoensis","invert","Bivalvia","Ostreoida","Pectinidae","Mizuhopecten","yessoensis"
+"166",30,"Paralytic","Japanese scallop","Patinopecten yessoensis","Mizuhopecten yessoensis","invert","Bivalvia","Ostreoida","Pectinidae","Mizuhopecten","yessoensis"
+"167",3,"Paralytic","Japanese scallop","Patinopecten yessoensis","Mizuhopecten yessoensis","invert","Bivalvia","Ostreoida","Pectinidae","Mizuhopecten","yessoensis"
+"168",59,"Paralytic","Japanese scallop","Patinopecten yessoensis","Mizuhopecten yessoensis","invert","Bivalvia","Ostreoida","Pectinidae","Mizuhopecten","yessoensis"
+"169",4,"Paralytic","Jinjiang oyster","Ostrea rivularis","Magallana rivularis",NA,NA,NA,NA,NA,NA
+"170",49,"Paralytic","Jinjiang oyster","Ostrea rivularis","Magallana rivularis",NA,NA,NA,NA,NA,NA
+"171",130,"Paralytic","King scallop","Pecten maximus","Pecten maximus","invert","Bivalvia","Ostreoida","Pectinidae","Pecten","maximus"
+"172",65,"Paralytic",NA,NA,NA,NA,NA,NA,NA,NA,NA
+"173",105,"Paralytic",NA,NA,NA,NA,NA,NA,NA,NA,NA
+"174",164,"Paralytic","Korean hard-shelled mussel","Mytilus coruscus","Mytilus coruscus","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","coruscus"
+"175",25,"Paralytic",NA,NA,NA,NA,NA,NA,NA,NA,NA
+"176",148,"Paralytic",NA,NA,NA,NA,NA,NA,NA,NA,NA
+"177",16,"Paralytic",NA,NA,NA,NA,NA,NA,NA,NA,NA
+"178",85,"Paralytic",NA,NA,NA,NA,NA,NA,NA,NA,NA
+"179",83,"Paralytic",NA,NA,NA,NA,NA,NA,NA,NA,NA
+"180",42,"Paralytic",NA,NA,NA,NA,NA,NA,NA,NA,NA
+"181",123,"Paralytic",NA,NA,NA,NA,NA,NA,NA,NA,NA
+"182",124,"Paralytic",NA,NA,NA,NA,NA,NA,NA,NA,NA
+"183",144,"Paralytic",NA,NA,NA,NA,NA,NA,NA,NA,NA
+"184",68,"Paralytic","Mediterranean mussel","Mytilus galloprovincialis","Mytilus galloprovincialis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","galloprovincialis"
+"185",73,"Paralytic","Mediterranean mussel","Mytilus galloprovincialis","Mytilus galloprovincialis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","galloprovincialis"
+"186",73,"Paralytic","Common cockle","Cerastoderma edule","Cerastoderma edule","invert","Bivalvia","Veneroida","Cardiidae","Cerastoderma","edule"
+"187",73,"Paralytic","Grooved razor shell","Solen marginatus","Solen marginatus","invert","Bivalvia","Veneroida","Solenidae","Solen","marginatus"
+"188",115,"Paralytic","Mussel",NA,NA,NA,NA,NA,NA,NA,NA
+"189",82,"Paralytic","Mussels","Mytilus spp.",NA,NA,NA,NA,NA,NA,NA
+"190",158,"Paralytic","Noble scallop","Chlamys nobilis","Chlamys nobilis","invert","Bivalvia","Ostreoida","Pectinidae","Chlamys","nobilis"
+"191",158,"Paralytic","Chinese spiny lobster","Panulirus stimpsoni","Panulirus stimpsoni","invert","Malacostraca","Decapoda","Palinuridae","Panulirus","stimpsoni"
+"192",26,"Paralytic","Noble scallop","Chlamys nobilis","Chlamys nobilis","invert","Bivalvia","Ostreoida","Pectinidae","Chlamys","nobilis"
+"193",26,"Paralytic","Green-lipped mussel","Perna viridis","Perna viridis","invert","Bivalvia","Mytiloida","Mytilidae","Perna","viridis"
+"194",119,"Paralytic","Noble scallop","Chlamys nobilis","Chlamys nobilis","invert","Bivalvia","Ostreoida","Pectinidae","Chlamys","nobilis"
+"195",119,"Paralytic","Green-lipped mussel","Perna viridis","Perna viridis","invert","Bivalvia","Mytiloida","Mytilidae","Perna","viridis"
+"196",6,"Paralytic","Oyster",NA,NA,NA,NA,NA,NA,NA,NA
+"197",126,"Paralytic","Pacific mole crab","Emerita analoga","Emerita analoga","invert","Malacostraca","Decapoda","Hippidae","Emerita","analoga"
+"198",95,"Paralytic","Pacific oyster","Crassostrea gigas","Crassostrea gigas","invert","Bivalvia","Ostreoida","Ostreidae","Crassostrea","gigas"
+"199",188,"Paralytic","Pacific oyster","Crassostrea gigas","Crassostrea gigas","invert","Bivalvia","Ostreoida","Ostreidae","Crassostrea","gigas"
+"200",66,"Paralytic","Pacific oyster","Crassostrea gigas","Crassostrea gigas","invert","Bivalvia","Ostreoida","Ostreidae","Crassostrea","gigas"
+"201",94,"Paralytic","Pacific oyster","Crassostrea gigas","Crassostrea gigas","invert","Bivalvia","Ostreoida","Ostreidae","Crassostrea","gigas"
+"202",99,"Paralytic","Purple clam","Hiatula rostrata","Hiatula rostrata",NA,NA,NA,NA,NA,NA
+"203",69,"Paralytic","Red drum","Sciaenops ocellatus","Sciaenops ocellatus","fish","Actinopterygii","Perciformes","Sciaenidae","Sciaenops","ocellatus"
+"204",64,"Paralytic","Southern rock lobster","Jasus edwardsii","Jasus edwardsii","invert","Malacostraca","Decapoda","Palinuridae","Jasus","edwardsii"
+"205",37,"Paralytic","Southern rock lobster","Jasus edwardsii","Jasus edwardsii","invert","Malacostraca","Decapoda","Palinuridae","Jasus","edwardsii"
+"206",28,"Paralytic","Southern rock lobster","Jasus edwardsii","Jasus edwardsii","invert","Malacostraca","Decapoda","Palinuridae","Jasus","edwardsii"
+"207",93,NA,"Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis"
+"208",91,NA,"Blue mussel","Mytilus edulis","Mytilus edulis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","edulis"
+"209",101,NA,"Green-lipped mussel","Perna canaliculus","Perna canaliculus","invert","Bivalvia","Mytiloida","Mytilidae","Perna","canaliculus"
+"210",1,NA,"Japanese scallop","Patinopecten yessoensis","Mizuhopecten yessoensis","invert","Bivalvia","Ostreoida","Pectinidae","Mizuhopecten","yessoensis"
+"211",92,NA,"Mediterranean mussel","Mytilus galloprovincialis","Mytilus galloprovincialis","invert","Bivalvia","Mytiloida","Mytilidae","Mytilus","galloprovincialis"
+"212",80,NA,"Mussel",NA,NA,NA,NA,NA,NA,NA,NA
+"213",32,NA,"Nile tilapia","Oreochromis niloticus","Oreochromis niloticus","fish","Actinopterygii","Perciformes","Cichlidae","Oreochromis","niloticus"
+"214",35,NA,"Northern quahog","Mercenaria mercenaria","Mercenaria mercenaria","invert","Bivalvia","Veneroida","Veneridae","Mercenaria","mercenaria"
+"215",35,NA,"Constricted tagelus","Sinonovacula constricta","Sinonovacula constricta","invert","Bivalvia","Veneroida","Solecurtidae","Sinonovacula","constricta"
+"216",154,NA,"Oyster",NA,NA,NA,NA,NA,NA,NA,NA
+"217",150,NA,"Pacific oyster","Crassostrea gigas","Crassostrea gigas","invert","Bivalvia","Ostreoida","Ostreidae","Crassostrea","gigas"
+"218",183,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"219",89,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"220",142,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"221",2,NA,"Purple-hinged rock scallop","Crassadoma gigantea","Crassadoma gigantea","invert","Bivalvia","Ostreoida","Pectinidae","Crassadoma","gigantea"
+"222",167,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"223",40,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"224",175,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"225",161,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"226",178,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"227",107,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"228",159,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"229",19,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"230",31,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"231",70,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA

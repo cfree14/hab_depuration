@@ -14,11 +14,25 @@ outdir <- "data/processed"
 plotdir <- "figures"
 
 # Read data
-data_orig <- readxl::read_excel(file.path(indir, "20250620_dep_exc_clr_bio_tox_mar_oce.xls"))
+data_orig <- readxl::read_excel(file.path(indir, "20250618_depuration_biotoxin_marine_ocean_sea.xls"))
+# data_orig <- readxl::read_excel(file.path(indir, "20250620_dep_exc_clr_bio_tox_mar_oce.xls"))
 
+# Things to do:
+# Fill in missing countries
 
 # Format data
 ################################################################################
+
+# Function to extract the country of the first author
+get_first_author_country <- function(affiliation_str) {
+  if (is.na(affiliation_str) || affiliation_str == "") return(NA)
+  # Extract the first affiliation
+  first_affiliation <- sub("^(\\[[^]]+\\])\\s*([^;]+);?.*$", "\\2", affiliation_str)
+  # Extract the last part after the last comma
+  parts <- strsplit(first_affiliation, ",")[[1]]
+  country <- trimws(tail(parts, 1))
+  return(country)
+}
 
 # Format data
 data <- data_orig %>% 
@@ -27,6 +41,8 @@ data <- data_orig %>%
   rename(source=source_title,
          year=publication_year,
          title=article_title) %>% 
+  # Extract country
+  mutate(country_orig=sapply(addresses, get_first_author_country)) %>% 
   # Simplify
   select(year,
          title,
@@ -36,13 +52,18 @@ data <- data_orig %>%
          issue,
          doi,
          document_type,
-         language) %>% 
+         language,
+         country_orig) %>% 
   # Format
   mutate(source=stringr::str_to_title(source),
          source=gsub(" & ", " and ", source),
          source=gsub(" And ", " and ", source),
          source=gsub(" Of ", " of ", source),
-         source=gsub(" In ", " in ", source))
+         source=gsub(" In ", " in ", source)) %>% 
+  # Clean country
+  mutate(country=countrycode::countrycode(country_orig, "country.name", "country.name"),
+         iso3=countrycode::countrycode(country, "country.name", "iso3c"))
+
 
 # Inspect data
 str(data)
@@ -54,67 +75,5 @@ table(data$document_type)
 
 # Export data
 # write.csv(data, file=file.path(outdir, "2024_11_06_WOS_search.csv"), row.names=F)
-write.csv(data, file=file.path(outdir, "2025_06_20_WOS_search.csv"), row.names=F)
-
-
-# Plot data
-################################################################################
-
-# Year stats
-ystats <- data %>% 
-  count(year) 
-
-# Journal stats
-jstats <- data %>% 
-  count(source, ) %>% 
-  arrange(desc(n)) %>% 
-  filter(n>1) %>% 
-  mutate(source=recode(source,
-                       "Journal of Toxicology and Environmental Health-Part A-Current Issues" = "Journal of Toxicology and Environmental Health",
-                       "Journal of Venomous Animals and Toxins Including Tropical Diseases" =" Journal of Venomous Animals and Toxins",
-                       "Food Additives and Contaminants Part A-Chemistry Analysis Control Exposure and Risk Assessment" = "Food Additives and Contaminants Part A"))
-
-# Setup theme
-my_theme <-  theme(axis.text=element_text(size=8),
-                   axis.title=element_text(size=9),
-                   legend.text=element_text(size=8),
-                   legend.title=element_text(size=9),
-                   strip.text=element_text(size=8),
-                   plot.title=element_text(size=9),
-                   # Gridlines
-                   panel.grid.major = element_blank(), 
-                   panel.grid.minor = element_blank(),
-                   panel.background = element_blank(), 
-                   axis.line = element_line(colour = "black"),
-                   # Legend
-                   legend.key = element_rect(fill = NA, color=NA),
-                   legend.background = element_rect(fill=alpha('blue', 0)))
-
-# Year
-g1 <- ggplot(ystats, aes(x=year, y=n)) +
-  geom_bar(stat="identity") +
-  # Labels
-  labs(x="Year of publication", y="Number of papers", tag="A") +
-  # scale_x_continuous(breaks=seq(1995, 2025, 5)) +
-  # Theme
-  theme_bw() + my_theme
-g1
-
-# Journal
-g2 <- ggplot(jstats, aes(y=reorder(source, desc(n)), x=n)) +
-  geom_bar(stat="identity") +
-  # Labels
-  labs(x="Number of papers", y="", tag="B") +
-  theme_bw() + my_theme
-g2
-
-# Merge
-layout_matrix <- matrix(data=c(1,2, 
-                               3,2), ncol=2, byrow=T)
-g <- gridExtra::grid.arrange(g1, g2, layout_matrix=layout_matrix)
-
-# Export
-ggsave(g, filename=file.path(plotdir, "Fig1_year_journal_stats.png"), 
-       width=10.5, height=6.5, units="in", dpi=600)
-
+write.csv(data, file=file.path(outdir, "2025_06_18_WOS_search.csv"), row.names=F)
 
