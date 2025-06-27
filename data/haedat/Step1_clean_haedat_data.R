@@ -28,6 +28,11 @@ str(data_orig)
 eez <- readRDS("/Users/cfree/Dropbox/Chris/UCSB/data/eezs/processed/EEZ_v12_polygons.Rds")
 eez_df <- eez %>% sf::st_drop_geometry()
 
+# Identify countries with only one EEZ
+eez_stats <- eez_df %>% 
+  group_by(sovereign) %>% 
+  summarize(neez=n_distinct(eez))
+
 
 # Format data
 ################################################################################

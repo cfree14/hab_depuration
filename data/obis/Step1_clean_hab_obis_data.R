@@ -27,6 +27,7 @@ data_orig <- readr::read_tsv(file.path(indir, "Occurrence.tsv")) %>%
 eez <- readRDS("/Users/cfree/Dropbox/Chris/UCSB/data/eezs/processed/EEZ_v12_polygons.Rds")
 eez_df <- eez %>% sf::st_drop_geometry()
 
+
 # Clean data
 ################################################################################
 
@@ -58,17 +59,19 @@ data <- data_orig %>%
   # Add genus
   mutate(genus=get_first_word(species)) %>% 
   # Simplify 
-  select(year, lat_dd, long_dd,
+  select(year, lat_dd, long_dd, 
          bathy_m, shore_km, sst_c, depth_m, salinity_psu,
          genus, species) %>% 
   # Add syndrome
-  mutate(syndrome=case_when(genus=="Pseudo-nitzschia" ~ "Amnesic",
+  mutate(syndrome=case_when(genus %in% c("Pseudo-nitzschia", "Nitzschia") ~ "Amnesic",
                             genus %in% c("Azadinium", "Amphidoma") ~ "Azaspiracid",
                             genus %in% c("Gambierdiscus", "Fukuyoa") ~ "Ciguatera",
                             genus %in% c("Dinophysis", "Prorocentrum") ~ "Diarrhetic",
                             genus=="Karenia" ~ "Neurotoxic",
-                            genus %in% c("Alexandrium", "Gymnodinium", "Pyrodinium") ~ "Paralytic", 
-                            genus %in% c("Microcystis", "Planktothrix", "Anabaena", "Oscillatoria", "Nodularia", "Raphidiopsis") ~ "Cyanotoxin",
+                            genus %in% c("Alexandrium", "Gymnodinium", "Pyrodinium", "Gonyaulax") ~ "Paralytic", # Gonyaulax is old name for Alexandrium
+                            genus %in% c("Microcystis", "Planktothrix", "Anabaena", "Oscillatoria", # microcystins
+                                         "Nodularia", # nodularins
+                                         "Raphidiopsis") ~ "Cyanotoxin", # homoanatoxins
                             T ~ "Other"))
 
 # Inspect
@@ -79,6 +82,10 @@ freeR::complete(data)
 spp_key <- data %>% 
   count(genus, species, syndrome)
 
+# Genera in other syndrome  group
+spp_key %>% 
+  filter(syndrome=="Other") %>% pull(genus) %>% unique() %>% sort()
+
 # Quick plot
 ggplot(data, aes(x=long_dd, y=lat_dd, color=syndrome)) +
   facet_wrap(~syndrome, ncol=4) +
@@ -87,30 +94,54 @@ ggplot(data, aes(x=long_dd, y=lat_dd, color=syndrome)) +
 # Add EEZ
 ################################################################################
 
-# Disable fetaure if fixing geometry doesn't work
-sf::sf_use_s2(FALSE)
 
-# Convert data frame to an sf POINT object
+
+
+# Convert data to sf POINT object
 data_sf <- sf::st_as_sf(data, coords = c("long_dd", "lat_dd"), crs = sf::st_crs(eez))
 
-# Perform spatial join to get the eez_id from the polygons
-data_with_eez <- sf::st_join(data_sf, eez %>% select(eez_id))
+# Find index of nearest polygon for each point
+nearest_idx <- sf::st_nearest_feature(data_sf, eez)
 
-# Convert back to a regular dataframe with lat/lon columns
-data_with_eez_df <- data_with_eez %>%
-  mutate(long_dd = sf::st_coordinates(.)[,1],
-         lat_dd = sf::st_coordinates(.)[,2]) %>%
-  sf::st_drop_geometry() %>% 
-  left_join(eez_df)
-  
+# Assign eez_id based on nearest polygon
+data_eez <- data %>% 
+  mutate(eez_id=eez$eez_id[nearest_idx]) %>% 
+  # Add EZ details
+  left_join(eez_df %>% select(eez_id, eez, territory, sovereign), by=c("eez_id")) %>% 
+  # Arrange
+  select(year, sovereign, territory, eez, eez_id, lat_dd, long_dd, 
+         everything())
+
+# Inspect
+freeR::complete(data_eez)
+
 
 # Export
 ################################################################################
 
 # Export data
-saveRDS(data_with_eez_df, file=file.path(outdir, "HAB_OBIS_data.Rds"))
+saveRDS(data_eez, file=file.path(outdir, "HAB_OBIS_data.Rds"))
 
 
 
-
+# Old code for dining data inside EEZ
+# # Disable fetaure if fixing geometry doesn't work
+# sf::sf_use_s2(FALSE)
+# 
+# # Convert data frame to an sf POINT object
+# data_sf <- sf::st_as_sf(data, coords = c("long_dd", "lat_dd"), crs = sf::st_crs(eez))
+# 
+# # Perform spatial join to get the eez_id from the polygons
+# data_with_eez <- sf::st_join(data_sf, eez %>% select(eez_id))
+# 
+# # Convert back to a regular dataframe with lat/lon columns
+# data_with_eez_df <- data_with_eez %>%
+#   mutate(long_dd = sf::st_coordinates(.)[,1],
+#          lat_dd = sf::st_coordinates(.)[,2]) %>%
+#   sf::st_drop_geometry() %>% 
+#   # Add EZ details
+#   left_join(eez_df, by=c("eez_id")) %>% 
+#   # Arrange
+#   select(year, sovereign, territory, eez, lat_dd, long_dd, 
+#          everything())
 
