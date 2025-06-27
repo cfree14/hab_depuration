@@ -27,7 +27,11 @@ sort(unique(data_spp$class))
 stats <- data_spp %>% 
   # Remove unknown taxa
   filter(!is.na(order)) %>% 
-  # Format syndrome
+  # Format syndrome: TEMPORARY - NOT NECESSARY WHEN 1 ROW PER RATE AND FILLED
+  mutate(syndrome=ifelse(is.na(syndrome), "Other", syndrome),
+         syndrome=recode(syndrome,
+                         "Amnesic, Vibrio"="Amnesic",
+                         "Cyanotoxin, Vibrio"="Cyanotoxin")) %>% 
   # mutate(syndrome=ifelse(!syndrome %in% c("Amnesic", "Paralytic", "Diarrhetic", "Microcystin", "Tetrodotoxin"), "Other", syndrome)) %>%
   # Summarize number of species
   group_by(class, comm_name, syndrome) %>% 
@@ -103,10 +107,10 @@ g1 <- ggplot(stats_ordered, aes(x=n, fill=syndrome, y=comm_name))+
   # Labels
   labs(x="Number of papers\n\n\n", y="") +
   # Legend
-  scale_fill_ordinal(name="Toxin") +
+  scale_fill_ordinal(name="Toxin syndrome") +
   # Theme
   theme_bw() + base_theme +
-  theme(legend.position=c(0.7,0.2),
+  theme(legend.position=c(0.65,0.35),
         strip.text = element_blank())
 g1
 
@@ -117,7 +121,7 @@ g2 <- ggplot(stats_ordered, aes(x=syndrome,
   facet_grid(class~., space="free_y", scales="free_y") +
   geom_tile() +
   # Labels
-  labs(x="Toxin", y="") +
+  labs(x="Toxin syndrome", y="") +
   # Legend
   scale_fill_gradientn(name="Number of papers", 
                        colors=RColorBrewer::brewer.pal(9, "Spectral") %>% rev()) +
@@ -131,7 +135,7 @@ g2 <- ggplot(stats_ordered, aes(x=syndrome,
 g2
 
 # Merge
-g <- gridExtra::grid.arrange(g1, g2, nrow=1)
+g <- gridExtra::grid.arrange(g1, g2, nrow=1, widths=c(0.45, 0.55))
 
 # Export
 ggsave(g, filename=file.path(plotdir, "Fig2_species_sample_size.png"), 
