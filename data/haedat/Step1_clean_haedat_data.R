@@ -33,6 +33,9 @@ eez_stats <- eez_df %>%
   group_by(sovereign) %>% 
   summarize(neez=n_distinct(eez))
 
+# TO-DO LIST
+# 1. This is going to be really tricky to assign to EEZs
+
 
 # Format data
 ################################################################################
