@@ -14,20 +14,18 @@ outdir <- "data/lit_review/processed"
 plotdir <- "figures"
 
 # Read data
-data_orig <- readxl::read_excel(file.path(indir, "20250618_depuration_biotoxin_marine_ocean_sea_plus.xlsx"), sheet="Done")
+data_orig <- readxl::read_excel(file.path(indir, "20250618_depuration_biotoxin_marine_ocean_sea_plus.xlsx"), sheet="Done", na = "N/A")
 
 # Read taxa key for those not in SeaLifeBase
 taxa_key_missing <- readxl::read_excel(file.path(indir, "taxa_key_for_species_not_in_sealifebase.xlsx"))
 
 # Things to do
-# 1. Group tissues into broad groups
 # 2. Harmonize experiment type and treatments
-# 3. Tissues and toxins should not be experiment types
 # 4. Add sub-biotoxin?
 # 5. Record 1 or 2 compartement (or no model)
 
 
-# Build species skey
+# Build species key
 ################################################################################
 
 # Build species key
@@ -69,7 +67,9 @@ spp_key1 <- spp_key %>%
   # fill(type:family, .direction = "updown") %>% 
   # ungroup() %>% 
   # Remove species
-  select(-species)
+  select(-species) %>% 
+  # Rename
+  rename(invert_yn=type)
 
 
 # Format data
@@ -81,14 +81,36 @@ data <- data_orig %>%
   rename(sci_name_orig=sci_name) %>% 
   # Add taxa info
   left_join(spp_key1 %>% select(-comm_name) %>% unique(), by="sci_name_orig") %>% 
+  # Format daily rate
+  mutate(rate_d=abs(rate_d), 
+         hlife_d=ifelse(is.na(hlife_d), log(2)/rate_d, hlife_d),
+         rate_d=ifelse(is.na(rate_d), hlife_d/log(2), rate_d)) %>% 
+  # Format hourly rate
+  mutate(rate_hr=abs(rate_hr), 
+         hlife_hr=ifelse(is.na(hlife_hr), log(2)/rate_hr, hlife_hr),
+         rate_hr=ifelse(is.na(rate_hr), hlife_hr/log(2), rate_hr)) %>% 
+  # Format tissue
+  # Digestive tract includes the hepatopancreas/digestive gland
+  rename(tissue_orig=tissue) %>% 
+  mutate(tissue=case_when(class=="Malacostraca" & tissue_orig %in% c("hepatopancreas", "digestive gland") ~ "hepatopancreas",
+                           class=="Malacostraca" & tissue_orig %in% c("whole", "soft tissue") ~ "soft tissue",
+                           class=="Gastropoda" & tissue_orig %in% c("muscle", "foot") ~ "foot",
+                           class=="Gastropoda" & tissue_orig %in% c("digestive gland", "hepatopancreas") ~ "hepatopancreas",
+                           class=="Bivalvia" & tissue_orig %in% c("digestive gland", "hepatopancreas") ~ "hepatopancreas",
+                           class=="Bivalvia" & tissue_orig %in% c("whole", "soft tissue", "tissue", "edible portion", "whole flesh", "meat") ~ "soft tissue",
+                            T ~ tissue_orig)) %>% 
   # Order
   select(-include_YN) %>% 
   select(id, article_title, 
-         comm_name, sci_name_orig, sci_name, genus, family, order, class, type,
+         comm_name, sci_name_orig, sci_name, genus, family, order, class, invert_yn,
+         syndrome, hab_species, biotoxin,
+         study_type, exp_type, treatment, feed_scenario,
+         tissue, tissue_orig,
          everything())
 
 # Inspect
 freeR::complete(data)
+str(data)
 
 # HAB things
 table(data$syndrome)
@@ -109,22 +131,31 @@ table(data$feed_scenario)
 table(data$rate_type)
 
 
-# Tissues
+
+# Tissue key
 ################################################################################
 
 # Tissue stats
 tissues <- data %>% 
-  count(class, tissue)
+  group_by(class, tissue) %>% 
+  summarize(n=n_distinct(id))
 
 # Plot tissue stats
 ggplot(tissues, aes(x=n, y=reorder(tissue, n))) +
   facet_grid(class~., space="free_y", scales="free_y") +
   geom_bar(stat="identity") +
   # Labels
-  labs(x="Number of measurements", y="") +
+  labs(x="Number of papers", y="") +
   # Theme
   theme_bw() +
   theme(strip.text.y = element_text(angle = 0))
+
+
+# Export
+################################################################################
+
+# Save
+saveRDS(data, file=file.path(outdir, "database.Rds"))
 
 
 

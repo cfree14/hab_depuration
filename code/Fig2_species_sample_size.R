@@ -9,30 +9,58 @@ rm(list = ls())
 library(tidyverse)
 
 # Directories
-indir <- "data/raw"
-outdir <- "data/processed"
+indir <- "data/lit_review/raw"
+outdir <- "data/lit_review/processed"
 plotdir <- "figures"
 
 # Read data
-data_spp <- read.csv(file=file.path(outdir, "data_for_proposal.csv"), as.is=T)
+data_orig <- readRDS(file.path(outdir, "database.Rds")) %>% 
+  # Recode some common namae
+  mutate(comm_name=ifelse(grepl("Pacific oyster", comm_name), "Pacific oyster", comm_name))
 
+
+# Stats for paper
+################################################################################
+
+n_distinct(data_orig$sci_name)
+n_distinct(data_orig$genus)
+n_distinct(data_orig$family)
+n_distinct(data_orig$order)
+n_distinct(data_orig$class)
+
+# Number of species by class
+npapers_tot <- n_distinct(data_orig$id)
+data_orig %>% 
+  group_by(class) %>% 
+  summarize(npapers=n_distinct(id),
+            p_papers=npapers/npapers_tot)
+n_distinct(data_orig$id[data_orig$class!="Actinopterygii"])
+
+# Number of papers by species
+spp_stats <- data_orig %>% 
+  group_by(comm_name) %>% 
+  summarize(npapers=n_distinct(id),
+            p_papers=npapers/npapers_tot) %>% 
+  arrange(desc(npapers))
+
+# Number of papers by biotoxin
+data_orig %>% 
+  group_by(syndrome) %>% 
+  summarize(npapers=n_distinct(id),
+            p_papers=npapers/npapers_tot) %>% 
+  arrange(desc(npapers))
 
 # Build data
 ################################################################################
 
 # Classes
-sort(unique(data_spp$class))
+sort(unique(data_orig$class))
 
 # Summarize
-stats <- data_spp %>% 
-  # Remove unknown taxa
-  filter(!is.na(order)) %>% 
-  # Format syndrome: TEMPORARY - NOT NECESSARY WHEN 1 ROW PER RATE AND FILLED
-  mutate(syndrome=ifelse(is.na(syndrome), "Other", syndrome),
-         syndrome=recode(syndrome,
-                         "Amnesic, Vibrio"="Amnesic",
-                         "Cyanotoxin, Vibrio"="Cyanotoxin")) %>% 
-  # mutate(syndrome=ifelse(!syndrome %in% c("Amnesic", "Paralytic", "Diarrhetic", "Microcystin", "Tetrodotoxin"), "Other", syndrome)) %>%
+stats <- data_orig %>% 
+  # Simplify
+  select(id, class, comm_name, syndrome) %>% 
+  unique() %>% 
   # Summarize number of species
   group_by(class, comm_name, syndrome) %>% 
   summarize(n=n()) %>% 
@@ -41,8 +69,8 @@ stats <- data_spp %>%
   mutate(class=recode(class,
                       "Actinopterygii"="Finfish",
                       "Bivalvia"="Bivalves",      
-                      "Cephalopoda"="Octopus",
-                      "Gastropoda"="Abalone",
+                      "Cephalopoda"="Cephalopods",
+                      "Gastropoda"="Gastropods",
                       "Malacostraca"="Crustaceans",
                       "Maxillopoda"="Zooplankton"))
 
