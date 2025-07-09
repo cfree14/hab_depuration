@@ -46,10 +46,64 @@ ntissues <- data_orig %>%
 stats_exp <- data_orig %>% 
   # Remove none
   filter(exp_type!="none") %>% 
+  # Recode experiments
+  mutate(exp_type=recode(exp_type,
+                         # Temperature
+                         "temp"="Temperature (°C)",
+                         "temp_exposure"="Temperature+Exposure",
+                         "temp_diet_type"="Temperature+Diet type",
+                         "temp_fed_starved"="Temperature+Fed/starved",
+                         "temp_salinity_size_fed"="Temperature+Salinity+Body size+Fed/starved",
+                         # Location/years
+                         "years"="Years",
+                         "sites"="Locations",
+                         "sites (ponds)"="Locations",
+                         "sites (population)"="Locations",
+                         "sites/years"="Locations+Years",
+                         # Other
+                         "size"="Body size (mm)",
+                         "lab_field"="Lab vs. field",
+                         "water_column"="Surface vs. seafloor",
+                         "catalysts"="Depuration enhancers",
+                         "instrument"="Toxicity instrument",
+                         "body_condition"="Body condition",
+                         # Food
+                         "food_type"="Diet type",
+                         "fed_starved"="Fed vs. starved",
+                         "food_amount"="Food amount (mg/day)",
+                         # Exposure
+                         "exposure"="Exposure (mg/L toxin)",
+                         "size_exposure"="Exposure+Body size",
+                         "bloom_nutrient_cond"="Nutrient conditions during bloom")) %>% 
   # Count by experiment type
   group_by(exp_type) %>% 
   summarize(n=n_distinct(id)) %>% 
-  ungroup()
+  ungroup() %>% 
+  # Add experiment type
+  mutate(exp_catg=case_when(exp_type %in% c("Locations", 
+                                            "Years", 
+                                            "Locations+Years") ~ "Locations/\nyears",
+                            exp_type %in% c("Fed vs. starved", 
+                                            "Diet type", 
+                                            "Food amount (mg/day)") ~ "Diet\nfactors",
+                            exp_type %in% c("Exposure (mg/L toxin)", 
+                                            "Exposure+Body size", 
+                                            "Nutrient conditions during bloom") ~ "Exposure\nlevels",
+                            exp_type %in% c("Temperature (°C)", 
+                                            "Temperature+Fed/starved", 
+                                            "Temperature+Diet type", 
+                                            "Temperature+Salinity+Body size+Fed/starved", 
+                                            "Temperature+Exposure") ~ "Temperature +",
+                            T ~ "Other")) 
+ 
+
+ggplot(stats_exp, aes(y=reorder(exp_type, desc(n)), x=n)) +
+  facet_grid(exp_catg~., space="free_y", scale="free_y") +
+  geom_bar(stat="identity") +
+  # Labels
+  labs(x="Number of papers", y="Experiment type", tag="E") +
+  # Theme
+  theme_bw()
 
 # Field vs. lab
 stats_type_class <- data_orig %>% 
@@ -103,6 +157,7 @@ base_theme <- theme(axis.text=element_text(size=6),
                     axis.title=element_text(size=7),
                     legend.text=element_text(size=6),
                     legend.title=element_text(size=7),
+                    strip.text = element_text(size=5),
                     plot.tag=element_text(size=8),
                     # Gridlines
                     panel.grid.major = element_blank(), 
@@ -166,6 +221,7 @@ g4
 
 # Experiment type
 g5 <- ggplot(stats_exp, aes(y=reorder(exp_type, desc(n)), x=n)) +
+  facet_grid(exp_catg~., space="free_y", scale="free_y") +
   geom_bar(stat="identity") +
   # Labels
   labs(x="Number of papers", y="Experiment type", tag="E") +
@@ -179,7 +235,7 @@ layout_matrix <- matrix(data=c(1,2,3,3,3,
 
 # Merge
 g <- gridExtra::grid.arrange(g1, g2, g3, g4, g5, 
-                             layout_matrix=layout_matrix, heights=c(0.4, 0.6))
+                             layout_matrix=layout_matrix, heights=c(0.3, 0.7))
 
 # Export
 ggsave(g, filename=file.path(plotdir, "FigSX_study_design_features.png"), 
