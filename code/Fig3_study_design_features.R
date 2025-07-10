@@ -238,7 +238,7 @@ g <- gridExtra::grid.arrange(g1, g2, g3, g4, g5,
                              layout_matrix=layout_matrix, heights=c(0.3, 0.7))
 
 # Export
-ggsave(g, filename=file.path(plotdir, "FigSX_study_design_features.png"), 
+ggsave(g, filename=file.path(plotdir, "Fig3_study_design_features.png"), 
        width=6.5, height=4.5, units="in", dpi=600)
 
 

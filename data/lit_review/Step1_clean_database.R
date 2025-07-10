@@ -84,11 +84,14 @@ data <- data_orig %>%
   # Format daily rate
   mutate(rate_d=abs(rate_d), 
          hlife_d=ifelse(is.na(hlife_d), log(2)/rate_d, hlife_d),
-         rate_d=ifelse(is.na(rate_d), hlife_d/log(2), rate_d)) %>% 
+         rate_d=ifelse(is.na(rate_d), log(2)/hlife_d, rate_d)) %>% 
   # Format hourly rate
   mutate(rate_hr=abs(rate_hr), 
          hlife_hr=ifelse(is.na(hlife_hr), log(2)/rate_hr, hlife_hr),
-         rate_hr=ifelse(is.na(rate_hr), hlife_hr/log(2), rate_hr)) %>% 
+         rate_hr=ifelse(is.na(rate_hr), log(2)/hlife_hr, rate_hr)) %>% 
+  # Fill daily rate
+  mutate(rate_d=ifelse(is.na(rate_d), rate_hr*24, rate_d),
+         hlife_d=ifelse(is.na(hlife_d), hlife_hr/24, hlife_d)) %>%
   # Format tissue
   # Digestive tract includes the hepatopancreas/digestive gland
   rename(tissue_orig=tissue) %>% 
@@ -130,6 +133,15 @@ table(data$feed_scenario)
 # Rate type
 table(data$rate_type)
 
+# Check rates
+ggplot(data, aes(x=hlife_hr, y=rate_hr)) +
+  geom_point() +
+  theme_bw()
+
+# Check rates
+ggplot(data, aes(x=hlife_d, y=rate_d)) +
+  geom_point() +
+  theme_bw()
 
 
 # Tissue key
