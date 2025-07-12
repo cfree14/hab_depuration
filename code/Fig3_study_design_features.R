@@ -14,7 +14,14 @@ outdir <- "data/lit_review/processed"
 plotdir <- "figures"
 
 # Read data
-data_orig <- readRDS(file.path(outdir, "database.Rds")) %>% 
+data_orig <- readRDS(file.path(outdir, "database.Rds"))
+
+
+# Build data
+################################################################################
+
+# Fomrat data 
+data <- data_orig %>% 
   # Recode some common name
   mutate(comm_name=ifelse(grepl("Pacific oyster", comm_name), "Pacific oyster", comm_name)) %>% 
   # Recode class
@@ -26,24 +33,64 @@ data_orig <- readRDS(file.path(outdir, "database.Rds")) %>%
                       "Malacostraca"="Crustaceans",
                       "Maxillopoda"="Zooplankton"))
 
-
-# Build data
-################################################################################
-
 # Number of species evaluated
-nspp <- data_orig %>% 
+nspp <- data %>% 
   group_by(id) %>% 
   summarize(nspp=n_distinct(comm_name)) %>% 
   ungroup()
 
 # Number of tissues evaluated
-ntissues <- data_orig %>% 
+ntissues <- data %>% 
   group_by(id) %>% 
   summarize(ntissues=n_distinct(tissue)) %>% 
   ungroup()
 
+
+# Field vs. lab
+stats_type_class <- data %>% 
+  group_by(class, study_type) %>% 
+  summarize(n=n_distinct(id)) %>% 
+  ungroup() %>% 
+  group_by(class) %>% 
+  mutate(prop=n/sum(n)) %>% 
+  ungroup()
+stats_type_tot <- data %>% 
+  group_by(study_type) %>% 
+  summarize(n=n_distinct(id)) %>% 
+  ungroup() %>% 
+  mutate(prop=n/sum(n)) %>% 
+  mutate(class="Overall")
+stats_type <- bind_rows(stats_type_class, stats_type_tot) %>% 
+  mutate(study_type=stringr::str_to_sentence(study_type),
+         study_type=factor(study_type,
+                           levels=c("Lab", "Field", "Field (non-toxic site)")))
+stats_type_order <- stats_type %>% 
+  group_by(class) %>% 
+  summarize(n=sum(n)) %>% 
+  ungroup() %>% 
+  arrange(desc(n))
+
+# Feeding
+stats_feed <- data %>% 
+  group_by(study_type, feed_scenario) %>% 
+  summarize(n=n_distinct(id)) %>% 
+  ungroup() %>% 
+  group_by(study_type) %>% 
+  mutate(prop=n/sum(n)) %>% 
+  ungroup() %>% 
+  # Reduce to lab studies
+  filter(study_type=="lab") %>% 
+  mutate(study_type=stringr::str_to_sentence(study_type)) %>% 
+  # Recode
+  mutate(feed_scenario=recode(feed_scenario, 
+                              "unsure-Chinese"="Unknown"),
+         feed_scenario=stringr::str_to_sentence(feed_scenario),
+         feed_scenario=factor(feed_scenario, 
+                              levels=c("Starved", "Fed clean", "Ambient seawater", "Unknown")))
+  
+
 # Types of experiments conducted
-stats_exp <- data_orig %>% 
+stats_exp <- data %>% 
   # Remove none
   filter(exp_type!="none") %>% 
   # Recode experiments
@@ -73,6 +120,7 @@ stats_exp <- data_orig %>%
                          "food_amount"="Food amount (mg/day)",
                          # Exposure
                          "exposure"="Exposure (mg/L toxin)",
+                         "exposure_diet"="Exposure diet",
                          "size_exposure"="Exposure+Body size",
                          "bloom_nutrient_cond"="Nutrient conditions during bloom")) %>% 
   # Count by experiment type
@@ -85,8 +133,10 @@ stats_exp <- data_orig %>%
                                             "Locations+Years") ~ "Locations/\nyears",
                             exp_type %in% c("Fed vs. starved", 
                                             "Diet type", 
+                                            "Body condition",
                                             "Food amount (mg/day)") ~ "Diet\nfactors",
                             exp_type %in% c("Exposure (mg/L toxin)", 
+                                            "Exposure diet",
                                             "Exposure+Body size", 
                                             "Nutrient conditions during bloom") ~ "Exposure\nlevels",
                             exp_type %in% c("Temperature (°C)", 
@@ -95,58 +145,24 @@ stats_exp <- data_orig %>%
                                             "Temperature+Salinity+Body size+Fed/starved", 
                                             "Temperature+Exposure") ~ "Temperature +",
                             T ~ "Other")) 
- 
 
+# Labels
+labels_exp <- stats_exp %>% 
+  group_by(exp_catg) %>% 
+  summarize(n=sum(n), 
+            y=n_distinct(exp_type)) %>% 
+  ungroup() %>% 
+  mutate(n_label=paste0("n=",n))
+
+# Quick plot
 ggplot(stats_exp, aes(y=reorder(exp_type, desc(n)), x=n)) +
   facet_grid(exp_catg~., space="free_y", scale="free_y") +
   geom_bar(stat="identity") +
+  geom_text(data=labels_exp, mapping=aes(y=y, x=max(stats_exp$n), label=n_label)) +
   # Labels
   labs(x="Number of papers", y="Experiment type", tag="E") +
   # Theme
   theme_bw()
-
-# Field vs. lab
-stats_type_class <- data_orig %>% 
-  group_by(class, study_type) %>% 
-  summarize(n=n_distinct(id)) %>% 
-  ungroup() %>% 
-  group_by(class) %>% 
-  mutate(prop=n/sum(n)) %>% 
-  ungroup()
-stats_type_tot <- data_orig %>% 
-  group_by(study_type) %>% 
-  summarize(n=n_distinct(id)) %>% 
-  ungroup() %>% 
-  mutate(prop=n/sum(n)) %>% 
-  mutate(class="Overall")
-stats_type <- bind_rows(stats_type_class, stats_type_tot) %>% 
-  mutate(study_type=stringr::str_to_sentence(study_type),
-         study_type=factor(study_type,
-                           levels=c("Lab", "Field", "Field (non-toxic site)")))
-stats_type_order <- stats_type %>% 
-  group_by(class) %>% 
-  summarize(n=sum(n)) %>% 
-  ungroup() %>% 
-  arrange(desc(n))
-
-# Feeding
-stats_feed <- data_orig %>% 
-  group_by(study_type, feed_scenario) %>% 
-  summarize(n=n_distinct(id)) %>% 
-  ungroup() %>% 
-  group_by(study_type) %>% 
-  mutate(prop=n/sum(n)) %>% 
-  ungroup() %>% 
-  # Reduce to lab studies
-  filter(study_type=="lab") %>% 
-  mutate(study_type=stringr::str_to_sentence(study_type)) %>% 
-  # Recode
-  mutate(feed_scenario=recode(feed_scenario, 
-                              "unsure-Chinese"="Unknown"),
-         feed_scenario=stringr::str_to_sentence(feed_scenario),
-         feed_scenario=factor(feed_scenario, 
-                              levels=c("Starved", "Fed clean", "Ambient seawater", "Unknown")))
-  
 
 
 # Plot data

@@ -41,7 +41,7 @@ spp_key <- data_orig %>%
                          "Cancer magister" = "Metacarcinus magister",                                                         
                          # "Mactra veneriformis" = "Mactra quadrangularis",
                          "Hiatula rostrata"="Hiatula diphos", # based on sleuthing, correct name for Solen rostratus [Lightfoot, 1786] ·
-                         "Neomysis awatschensi" = "Neomysis awatschensis",                                                     
+                         # "Neomysis awatschensi" = "Neomysis awatschensis",                                                     
                          "Ostrea rivularis" = "Magallana rivularis",   # uncertain > taxon inquirendum                                                     
                          "Patinopecten yessoensis"  = "Mizuhopecten yessoensis"))
 
