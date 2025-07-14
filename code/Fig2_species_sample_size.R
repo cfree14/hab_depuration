@@ -14,7 +14,10 @@ outdir <- "data/lit_review/processed"
 plotdir <- "figures"
 
 # Read data
-data_orig <- readRDS(file.path(outdir, "database.Rds")) %>% 
+data_orig <- readRDS(file.path(outdir, "database.Rds"))
+  
+# Format data
+data <- data_orig %>% 
   # Recode some common namae
   mutate(comm_name=ifelse(grepl("Pacific oyster", comm_name), "Pacific oyster", comm_name))
 
@@ -22,29 +25,29 @@ data_orig <- readRDS(file.path(outdir, "database.Rds")) %>%
 # Stats for paper
 ################################################################################
 
-n_distinct(data_orig$sci_name)
-n_distinct(data_orig$genus)
-n_distinct(data_orig$family)
-n_distinct(data_orig$order)
-n_distinct(data_orig$class)
+n_distinct(data$sci_name)
+n_distinct(data$genus)
+n_distinct(data$family)
+n_distinct(data$order)
+n_distinct(data$class)
 
 # Number of species by class
-npapers_tot <- n_distinct(data_orig$id)
-data_orig %>% 
+npapers_tot <- n_distinct(data$id)
+data %>% 
   group_by(class) %>% 
   summarize(npapers=n_distinct(id),
             p_papers=npapers/npapers_tot)
-n_distinct(data_orig$id[data_orig$class!="Actinopterygii"])
+n_distinct(data$id[data$class!="Actinopterygii"])
 
 # Number of papers by species
-spp_stats <- data_orig %>% 
+spp_stats <- data %>% 
   group_by(comm_name) %>% 
   summarize(npapers=n_distinct(id),
             p_papers=npapers/npapers_tot) %>% 
   arrange(desc(npapers))
 
 # Number of papers by biotoxin
-data_orig %>% 
+data %>% 
   group_by(syndrome) %>% 
   summarize(npapers=n_distinct(id),
             p_papers=npapers/npapers_tot) %>% 
@@ -54,10 +57,10 @@ data_orig %>%
 ################################################################################
 
 # Classes
-sort(unique(data_orig$class))
+sort(unique(data$class))
 
 # Summarize
-stats <- data_orig %>% 
+stats <- data %>% 
   # Simplify
   select(id, class, comm_name, syndrome) %>% 
   unique() %>% 

@@ -46,24 +46,39 @@ ntissues <- data %>%
   ungroup()
 
 
-# Field vs. lab
+# Field vs lab
 stats_type_class <- data %>% 
+  # Study types in a paper
+  group_by(class, id) %>% 
+  summarize(study_type=paste(unique(study_type), collapse=", ")) %>% 
+  ungroup() %>% 
+  # Compute totals
   group_by(class, study_type) %>% 
   summarize(n=n_distinct(id)) %>% 
   ungroup() %>% 
+  # Compute percent
   group_by(class) %>% 
   mutate(prop=n/sum(n)) %>% 
   ungroup()
 stats_type_tot <- data %>% 
+  # Study types in a paper
+  group_by(class, id) %>% 
+  summarize(study_type=paste(unique(study_type), collapse=", ")) %>% 
+  ungroup() %>% 
+  # Compute totals
   group_by(study_type) %>% 
   summarize(n=n_distinct(id)) %>% 
   ungroup() %>% 
+  # Computer percent
   mutate(prop=n/sum(n)) %>% 
   mutate(class="Overall")
 stats_type <- bind_rows(stats_type_class, stats_type_tot) %>% 
   mutate(study_type=stringr::str_to_sentence(study_type),
+         study_type=recode(study_type, 
+                           "Lab, field"="Lab/field",
+                           "Field, lab"="Lab/field"),
          study_type=factor(study_type,
-                           levels=c("Lab", "Field", "Field (non-toxic site)")))
+                           levels=c("Lab", "Field", "Field (non-toxic site)", "Lab/field")))
 stats_type_order <- stats_type %>% 
   group_by(class) %>% 
   summarize(n=sum(n)) %>% 

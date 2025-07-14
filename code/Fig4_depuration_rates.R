@@ -34,7 +34,9 @@ data <- data_orig %>%
                       "Malacostraca"="Crustaceans",
                       "Maxillopoda"="Zooplankton")) %>% 
   # Filter
-  filter(!is.na(hlife_d))
+  filter(!is.na(hlife_d)) %>% 
+  # Add percent daily loss
+  mutate(perc_loss_d=(1-exp(-rate_d)))
 
 # Stats
 stats <- data %>% 
@@ -42,6 +44,7 @@ stats <- data %>%
   summarise(hlife_d=median(hlife_d)) %>% 
   ungroup() %>% 
   arrange(desc(hlife_d))
+
 
 # Plot data
 ################################################################################
@@ -62,35 +65,47 @@ my_theme <-  theme(axis.text=element_text(size=7),
                    legend.background = element_rect(fill=alpha('blue', 0)))
 
 
-# Half life
-g1 <- ggplot(data, aes(x=hlife_d, y=factor(genus, stats$genus))) +
-  geom_boxplot() + 
-  # Labels
-  labs(x="Half life (day)", y="Genus", tag="A") +
-  scale_x_continuous(trans="log10", 
-                     breaks=c(0.1,1,10,100),
-                     labels=c("0.1", "1" , "10" , "100")) +
-  # Theme
-  theme_bw() + my_theme 
-g1
-
 # Decay rate
-g2 <- ggplot(data, aes(x=rate_d, y=factor(genus, stats$genus))) +
+g1 <- ggplot(data, aes(x=rate_d, y=factor(genus, stats$genus))) +
   geom_boxplot() + 
   # Labels
   labs(x=expression("Decay constant, k ("*day^{-1}*")"), 
-       y="Genus", tag="B") +
+       y="Genus", tag="A") +
   scale_x_continuous(trans="log10", 
                      breaks=c(0.001, 0.01, 0.1, 1, 10, 100),
                      labels=c("0.001", "0.01", "0.1", "1", "10", "100")) +
+  # Theme
+  theme_bw() + my_theme
+g1
+
+# Loss per day
+g2 <- ggplot(data, aes(x=perc_loss_d, y=factor(genus, stats$genus))) +
+  geom_boxplot() + 
+  # Labels
+  labs(x="Percent daily loss", y="Genus", tag="B") +
+  scale_x_continuous(labels=scales::percent_format()) +
   # Theme
   theme_bw() + my_theme +
   theme(axis.text.y=element_blank(),
         axis.title.y=element_blank())
 g2
 
+# Half life
+g3 <- ggplot(data, aes(x=hlife_d, y=factor(genus, stats$genus))) +
+  geom_boxplot() + 
+  # Labels
+  labs(x="Half life (day)", y="Genus", tag="C") +
+  scale_x_continuous(trans="log10", 
+                     breaks=c(0.1,1,10,100),
+                     labels=c("0.1", "1" , "10" , "100")) +
+  # Theme
+  theme_bw() + my_theme +
+  theme(axis.text.y=element_blank(),
+        axis.title.y=element_blank())
+g3
+
 # Merge
-g <- gridExtra::grid.arrange(g1, g2, nrow=1, widths=c(0.55, 0.45))
+g <- gridExtra::grid.arrange(g1, g2, g3, nrow=1, widths=c(0.4, 0.3, 0.3))
 
 # Export
 ggsave(g, filename=file.path(plotdir, "Fig4_depuration_rates.png"), 
