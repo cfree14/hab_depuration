@@ -86,23 +86,30 @@ stats_type_order <- stats_type %>%
   arrange(desc(n))
 
 # Feeding
-stats_feed <- data %>% 
-  group_by(study_type, feed_scenario) %>% 
-  summarize(n=n_distinct(id)) %>% 
-  ungroup() %>% 
-  group_by(study_type) %>% 
-  mutate(prop=n/sum(n)) %>% 
-  ungroup() %>% 
+stats_feed <- data %>%
   # Reduce to lab studies
   filter(study_type=="lab") %>% 
-  mutate(study_type=stringr::str_to_sentence(study_type)) %>% 
-  # Recode
+  # Format scenario
   mutate(feed_scenario=recode(feed_scenario, 
                               "unsure-Chinese"="Unknown"),
-         feed_scenario=stringr::str_to_sentence(feed_scenario),
-         feed_scenario=factor(feed_scenario, 
-                              levels=c("Starved", "Fed clean", "Ambient seawater", "Unknown")))
-  
+         feed_scenario=stringr::str_to_sentence(feed_scenario)) %>% 
+  # Group by paper
+  group_by(id) %>% 
+  summarize(feed_scenario=paste(sort(unique(feed_scenario)), collapse=", ")) %>% 
+  ungroup() %>% 
+  # Count
+  count(feed_scenario) %>% 
+  mutate(prop=n/sum(n)) %>% 
+  # Recode
+  mutate(feed_scenario=recode(feed_scenario,
+                              "Fed clean, Starved"="Fed clean vs. starved"),
+         feed_scenario=factor(feed_scenario,
+                              levels=c("Fed clean",
+                                       "Starved",
+                                       "Fed clean vs. starved",
+                                       "Ambient seawater")))
+
+table(stats_feed$feed_scenario)
 
 # Types of experiments conducted
 stats_exp <- data %>% 
@@ -179,6 +186,15 @@ ggplot(stats_exp, aes(y=reorder(exp_type, desc(n)), x=n)) +
   # Theme
   theme_bw()
 
+# Stats compartment
+stats_comp <- data %>% 
+  select(id, rate_type) %>%
+  unique() %>% 
+  count(rate_type) %>% 
+  mutate(prop=n/sum(n))
+
+
+
 
 # Plot data
 ################################################################################
@@ -239,7 +255,7 @@ g3 <- ggplot(stats_type, aes(y=factor(class, stats_type_order$class),
 g3
 
 # Feeding scenario
-g4 <- ggplot(stats_feed, aes(x=study_type, y=prop, fill=feed_scenario)) +
+g4 <- ggplot(stats_feed, aes(x="Lab", y=prop, fill=feed_scenario)) +
   geom_bar(stat="identity", position = position_stack(reverse = TRUE)) +
   # Labels
   labs(y="Percent of papers", x="Study type", tag="D") +
@@ -250,22 +266,34 @@ g4 <- ggplot(stats_feed, aes(x=study_type, y=prop, fill=feed_scenario)) +
   theme_bw() + base_theme
 g4
 
-# Experiment type
-g5 <- ggplot(stats_exp, aes(y=reorder(exp_type, desc(n)), x=n)) +
-  facet_grid(exp_catg~., space="free_y", scale="free_y") +
+# Rate type
+g5 <- ggplot(stats_comp, aes(x="", y=prop, fill=rate_type)) +
   geom_bar(stat="identity") +
   # Labels
-  labs(x="Number of papers", y="Experiment type", tag="E") +
+  labs(y="Percent of papers", x="", tag="E") +
+  scale_y_continuous(labels=scales::percent_format()) +
+  # Legend
+  scale_fill_ordinal(name="Rate type", na.value="grey70") +
   # Theme
   theme_bw() + base_theme
 g5
+
+# Experiment type
+g6 <- ggplot(stats_exp, aes(y=reorder(exp_type, desc(n)), x=n)) +
+  facet_grid(exp_catg~., space="free_y", scale="free_y") +
+  geom_bar(stat="identity") +
+  # Labels
+  labs(x="Number of papers", y="Experiment type", tag="F") +
+  # Theme
+  theme_bw() + base_theme
+g6
 
 # Merge
 layout_matrix <- matrix(data=c(1,2,3,3,3,
                                4,4,5,5,5), byrow=T, ncol=5)
 
 # Merge
-g <- gridExtra::grid.arrange(g1, g2, g3, g4, g5, 
+g <- gridExtra::grid.arrange(g1, g2, g3, g4, g6, 
                              layout_matrix=layout_matrix, heights=c(0.3, 0.7))
 
 # Export
