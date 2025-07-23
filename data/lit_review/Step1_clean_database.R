@@ -20,7 +20,6 @@ data_orig <- readxl::read_excel(file.path(indir, "20250618_depuration_biotoxin_m
 taxa_key_missing <- readxl::read_excel(file.path(indir, "taxa_key_for_species_not_in_sealifebase.xlsx"))
 
 # Things to do
-# 2. Harmonize experiment type and treatments
 # 4. Add sub-biotoxin?
 # 5. Record 1 or 2 compartement (or no model)
 
