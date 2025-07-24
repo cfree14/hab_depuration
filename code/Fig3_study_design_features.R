@@ -33,6 +33,9 @@ data <- data_orig %>%
                       "Malacostraca"="Crustaceans",
                       "Maxillopoda"="Zooplankton"))
 
+# Number of papers
+n_distinct(data$id)
+
 # Number of species evaluated
 nspp <- data %>% 
   group_by(id) %>% 
@@ -44,7 +47,6 @@ ntissues <- data %>%
   group_by(id) %>% 
   summarize(ntissues=n_distinct(tissue)) %>% 
   ungroup()
-
 
 # Field vs lab
 stats_type_class <- data %>% 
@@ -186,12 +188,25 @@ ggplot(stats_exp, aes(y=reorder(exp_type, desc(n)), x=n)) +
   # Theme
   theme_bw()
 
-# Stats compartment
+# Stats rate calculated?
 stats_comp <- data %>% 
-  select(id, rate_type) %>%
-  unique() %>% 
+  group_by(id) %>%
+  summarize(rate_type=paste(unique(rate_type), collapse = ", ")) %>% 
+  ungroup() %>% 
   count(rate_type) %>% 
   mutate(prop=n/sum(n))
+
+# Stats model
+stats_model <- data %>% 
+  group_by(id) %>%
+  summarize(ncomp=paste(unique(ncomp), collapse = ", ")) %>% 
+  ungroup() %>% 
+  count(ncomp) %>% 
+  mutate(prop=n/sum(n))
+stats_model 
+sum(stats_model$n)
+# freeR::which_duplicated(stats_model$id)
+
 
 
 

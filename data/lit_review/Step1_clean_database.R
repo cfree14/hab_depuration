@@ -21,7 +21,6 @@ taxa_key_missing <- readxl::read_excel(file.path(indir, "taxa_key_for_species_no
 
 # Things to do
 # 4. Add sub-biotoxin?
-# 5. Record 1 or 2 compartement (or no model)
 
 
 # Build species key
