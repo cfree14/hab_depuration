@@ -269,10 +269,17 @@ plot_data(datafile="Chen_etal_2002_Fig1.xlsx",
 plot_data(datafile="Qiu_etal_2018_Fig4.xlsx",
           day=5, y_title="Toxicity (umol/kg)", legend_title="Toxin", title="Qiu et al. (2018)")
 
-# Svensson et al. (2003) - the data points aren't quite right - not connected right
+# Svensson et al. (2003)
 plot_data(datafile="Svensson_etal_2003_Fig2.xlsx",
           day=2, y_title="Toxicity (ug/g)", legend_title="Food type", title="Svensson et al. (2003)")
 
+# Oliveira et al. (2020)
+plot_data(datafile="Oliveira_etal_2020_Figure3.xlsx",
+          day=0, y_title="Toxicity (ng/g)", legend_title="Toxin", title="Oliveira et al. (2020)")
 
+
+# Griffith et al. (2013)
+plot_data(datafile="Griffith_etal_2013_Figs1+2.xlsx",
+          day=5, y_title="Toxicity (ng/g)", legend_title="Toxin", title="Griffith et al. (2013)")
 
 
