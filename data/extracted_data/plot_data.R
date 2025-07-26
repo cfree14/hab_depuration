@@ -54,7 +54,7 @@ plot_data <- function(datafile, day=NA, y_title="Toxicity", legend_title="Treatm
   day2 <- max(data$day)
   data_dep <- data %>% 
     filter(day>=day1) %>%
-    mutate(toxicity=pmax(0.000000000001, toxicity))
+    mutate(toxicity=pmax(0.0001, toxicity))
   
   # Fit models
   ##############################################################################
@@ -281,5 +281,40 @@ plot_data(datafile="Oliveira_etal_2020_Figure3.xlsx",
 # Griffith et al. (2013)
 plot_data(datafile="Griffith_etal_2013_Figs1+2.xlsx",
           day=5, y_title="Toxicity (ng/g)", legend_title="Toxin", title="Griffith et al. (2013)")
+
+# do Prado Leite et al. (2021)
+plot_data(datafile="do_Prado_Leite_etal_2021_Table2.xlsx",
+          day=0, y_title="Toxicity (ng/g)", legend_title="Toxin", title="do Prado Leite et al. (2021)")
+
+# McGuire et al. (2025)
+plot_data(datafile="McGuire_etal_2025_Table2.xlsx",
+          day=1.5, y_title="Toxicity (ng/g)", legend_title="Toxin", title="McGuire et al. (2025)")
+
+# Roder et al. (2011)
+plot_data(datafile="Roder_etal_2011_Tables1_2.xlsx",
+          day=21, y_title="Toxicity (ng/g)", legend_title="Toxin", title="Roder et al. (2011)")
+
+# Zhang_etal_2023_Fig2
+plot_data(datafile="Zhang_etal_2023_Fig2.xlsx",
+          day=5, y_title="Toxicity", legend_title="Toxin", title="Zhang_etal_2023_Fig2")
+
+# Xie_etal_2013_Fig3
+plot_data(datafile="Xie_etal_2013_Fig3.xlsx",
+          day=0, y_title="Toxicity", legend_title="Toxin", title="Xie_etal_2013_Fig3")
+
+
+# Vasconcelos_1995_Fig5
+plot_data(datafile="Vasconcelos_1995_Fig5.xlsx",
+          day=0, y_title="Toxicity", legend_title="Toxin", title="Vasconcelos_1995_Fig5")
+
+# Strogyloudi_etal_2006_Fig7
+plot_data(datafile="Strogyloudi_etal_2006_Fig7.xlsx",
+          day=0, y_title="Toxicity", legend_title="Toxin", title="Strogyloudi_etal_2006_Fig7")
+
+# Marrouchi_etal_2006_Fig6
+plot_data(datafile="Marrouchi_etal_2006_Fig6.xlsx",
+          day=0, y_title="Toxicity", legend_title="Toxin", title="Marrouchi_etal_2006_Fig6")
+
+
 
 

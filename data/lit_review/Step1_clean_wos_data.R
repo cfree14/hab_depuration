@@ -9,8 +9,8 @@ rm(list = ls())
 library(tidyverse)
 
 # Directories
-indir <- "data/raw"
-outdir <- "data/processed"
+indir <- "data/lit_review/raw"
+outdir <- "data/lit_review/processed"
 plotdir <- "figures"
 
 # Read data
@@ -62,12 +62,24 @@ data <- data_orig %>%
          source=gsub(" In ", " in ", source)) %>% 
   # Clean country
   mutate(country=countrycode::countrycode(country_orig, "country.name", "country.name"),
-         iso3=countrycode::countrycode(country, "country.name", "iso3c"))
+         iso3=countrycode::countrycode(country, "country.name", "iso3c")) %>% 
+  # Make paper id
+  mutate(nauthors=stringr::str_count(authors, ";"),
+         first_author=stringr::str_extract(authors, "^[^,]*") %>% stringr::str_to_title(),
+         paper_id=ifelse(nauthors==1, 
+                         paste0(first_author, " (", year, ")"),
+                         paste0(first_author, " et al. (", year, ")")),
+         paper_id=make.unique(paper_id, sep="-")) %>%
+  # Arrange
+  select(-c(first_author, nauthors)) %>% 
+  select(paper_id, everything())
 
 
 # Inspect data
 str(data)
 freeR::complete(data)
+
+freeR::which_duplicated(data$paper_id)
 
 # Inspect more
 table(data$language)
