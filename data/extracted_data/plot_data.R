@@ -316,5 +316,17 @@ plot_data(datafile="Marrouchi_etal_2006_Fig6.xlsx",
           day=0, y_title="Toxicity", legend_title="Toxin", title="Marrouchi_etal_2006_Fig6")
 
 
+# Donaldson_etal_2025_Fig4
+plot_data(datafile="Donaldson_etal_2025_Fig4.xlsx",
+          day=13, y_title="Toxicity", legend_title="Toxin", title="Donaldson_etal_2025_Fig4")
+
+# Fernandez_etal_2009_Fig1
+plot_data(datafile="Fernandez_etal_2009_Fig1.xlsx",
+          day=4, y_title="Toxicity", legend_title="Toxin", title="Fernandez_etal_2009_Fig1_Fig4")
+
+# Song_etal_2015_Fig2
+plot_data(datafile="Song_etal_2015_Fig2.xlsx",
+          day=0, y_title="Toxicity", legend_title="Toxin", title="Song_etal_2015_Fig2")
+
 
 
