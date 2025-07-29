@@ -166,7 +166,7 @@ plot_data <- function(datafile, day=NA, y_title="Toxicity", legend_title="Treatm
     scale_x_continuous(lim=c(0,NA)) +
     scale_y_continuous(lim=c(0,NA)) +
     # Legend
-    scale_color_ordinal(name=legend_title) +
+    scale_color_discrete(name=legend_title) +
     # Labels
     labs(x="Day", y=y_title, title=title) +
     # Theme
@@ -199,7 +199,6 @@ plot_data <- function(datafile, day=NA, y_title="Toxicity", legend_title="Treatm
   outname <- gsub(".xlsx", "_US.png", datafile)
   ggsave(g, filename=file.path(plotdir, outname),
          width=width, height=2.5, units="in", dpi=600)
-  
   
 }
 
@@ -315,7 +314,6 @@ plot_data(datafile="Strogyloudi_etal_2006_Fig7.xlsx",
 plot_data(datafile="Marrouchi_etal_2006_Fig6.xlsx",
           day=0, y_title="Toxicity", legend_title="Toxin", title="Marrouchi_etal_2006_Fig6")
 
-
 # Donaldson_etal_2025_Fig4
 plot_data(datafile="Donaldson_etal_2025_Fig4.xlsx",
           day=13, y_title="Toxicity", legend_title="Toxin", title="Donaldson_etal_2025_Fig4")
@@ -327,6 +325,14 @@ plot_data(datafile="Fernandez_etal_2009_Fig1.xlsx",
 # Song_etal_2015_Fig2
 plot_data(datafile="Song_etal_2015_Fig2.xlsx",
           day=0, y_title="Toxicity", legend_title="Toxin", title="Song_etal_2015_Fig2")
+
+# Camacho-Munoz_etal_2021_Fig3
+plot_data(datafile="Camacho-Munoz_etal_2021_Fig3.xlsx",
+          day=8, y_title="Toxicity", legend_title="Toxin", title="Camacho-Munoz_etal_2021_Fig3")
+
+# Botelho_etal_2020_supp_data
+plot_data(datafile="Botelho_etal_2020_supp_data.xlsx",
+          day=0, y_title="Toxicity", legend_title="Toxin", title="Botelho_etal_2020_supp_data")
 
 
 

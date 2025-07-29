@@ -1,0 +1,313 @@
+toxin,species,date,toxicity,toxicity_sd,day
+GTX6,Mussel,1/9/25,7.56,0.8,0
+GTX6,Cockle,1/9/25,11.9,0.62,0
+GTX6,Razor shell,1/9/25,1.67,0.1,0
+C1+2,Mussel,1/9/25,7.063,0.62,0
+C1+2,Cockle,1/9/25,13.3,1.5,0
+C1+2,Razor shell,1/9/25,1.05,0.15,0
+GTX5,Mussel,1/9/25,3.06,0.063,0
+GTX5,Cockle,1/9/25,3.55,0.55,0
+GTX5,Razor shell,1/9/25,1.18,0.085,0
+C3+4,Mussel,1/9/25,4.13,0.3,0
+C3+4,Cockle,1/9/25,4.87,0.00091,0
+C3+4,Razor shell,1/9/25,0.768,0.04,0
+dcSTX,Mussel,1/9/25,0.957,0.092,0
+dcSTX,Cockle,1/9/25,0.721,0.039,0
+dcSTX,Razor shell,1/9/25,0.306,0.0094,0
+dcGTX2+3,Mussel,1/9/25,0.44,0.024,0
+dcGTX2+3,Cockle,1/9/25,1.33,0.034,0
+dcGTX2+3,Razor shell,1/9/25,0.408,0,0
+dcNEO,Mussel,1/9/25,0.73,0.03,0
+dcNEO,Cockle,1/9/25,0.861,0.026,0
+dcNEO,Razor shell,1/9/25,NA,NA,0
+GTX6,Mussel,1/16/25,5.88,0.14,7
+GTX6,Cockle,1/16/25,2.24,0.24,7
+GTX6,Razor shell,1/16/25,1.15,0.074,7
+C1+2,Mussel,1/16/25,5.52,0.041,7
+C1+2,Cockle,1/16/25,5.57,0.68,7
+C1+2,Razor shell,1/16/25,1.8,0.029,7
+GTX5,Mussel,1/16/25,1.76,0.25,7
+GTX5,Cockle,1/16/25,1.78,0.24,7
+GTX5,Razor shell,1/16/25,1.11,0.051,7
+C3+4,Mussel,1/16/25,2.66,0.43,7
+C3+4,Cockle,1/16/25,0.814,0.15,7
+C3+4,Razor shell,1/16/25,0.713,0.01,7
+dcSTX,Mussel,1/16/25,0.309,0.017,7
+dcSTX,Cockle,1/16/25,0.249,0.018,7
+dcSTX,Razor shell,1/16/25,0.237,0.033,7
+dcGTX2+3,Mussel,1/16/25,0.0977,0,7
+dcGTX2+3,Cockle,1/16/25,0.0769,0.034,7
+dcGTX2+3,Razor shell,1/16/25,0.39,0.078,7
+dcNEO,Mussel,1/16/25,0.101,0.023,7
+dcNEO,Cockle,1/16/25,NA,NA,7
+dcNEO,Razor shell,1/16/25,NA,NA,7
+GTX6,Mussel,1/23/25,6.7,0.21,14
+GTX6,Cockle,1/23/25,0.678,0.092,14
+GTX6,Razor shell,1/23/25,0.198,0.064,14
+C1+2,Mussel,1/23/25,6.13,0.88,14
+C1+2,Cockle,1/23/25,6.89,0.64,14
+C1+2,Razor shell,1/23/25,2.13,0.36,14
+GTX5,Mussel,1/23/25,1.48,0.093,14
+GTX5,Cockle,1/23/25,1.7,0.071,14
+GTX5,Razor shell,1/23/25,1.31,0.021,14
+C3+4,Mussel,1/23/25,4.14,0.52,14
+C3+4,Cockle,1/23/25,NA,NA,14
+C3+4,Razor shell,1/23/25,NA,NA,14
+dcSTX,Mussel,1/23/25,0.316,0.054,14
+dcSTX,Cockle,1/23/25,0.205,0.01,14
+dcSTX,Razor shell,1/23/25,0.275,0.0031,14
+dcGTX2+3,Mussel,1/23/25,0.0676,0,14
+dcGTX2+3,Cockle,1/23/25,0.0676,0,14
+dcGTX2+3,Razor shell,1/23/25,0.0256,0.0044,14
+dcNEO,Mussel,1/23/25,0.0902,0.0052,14
+dcNEO,Cockle,1/23/25,NA,NA,14
+dcNEO,Razor shell,1/23/25,NA,NA,14
+GTX6,Mussel,1/30/25,2.95,0.7,21
+GTX6,Cockle,1/30/25,0.369,0.016,21
+GTX6,Razor shell,1/30/25,0.588,0.068,21
+C1+2,Mussel,1/30/25,2.02,0.17,21
+C1+2,Cockle,1/30/25,0.854,0.073,21
+C1+2,Razor shell,1/30/25,1.26,0.11,21
+GTX5,Mussel,1/30/25,1.56,0.29,21
+GTX5,Cockle,1/30/25,0.336,0.026,21
+GTX5,Razor shell,1/30/25,0.622,0.09,21
+C3+4,Mussel,1/30/25,1.47,0.51,21
+C3+4,Cockle,1/30/25,NA,NA,21
+C3+4,Razor shell,1/30/25,NA,NA,21
+dcSTX,Mussel,1/30/25,0.216,0.032,21
+dcSTX,Cockle,1/30/25,0.0247,0,21
+dcSTX,Razor shell,1/30/25,0.049,0.0093,21
+dcGTX2+3,Mussel,1/30/25,0.0676,0,21
+dcGTX2+3,Cockle,1/30/25,0.0676,0,21
+dcGTX2+3,Razor shell,1/30/25,0.329,0.022,21
+dcNEO,Mussel,1/30/25,NA,NA,21
+dcNEO,Cockle,1/30/25,NA,NA,21
+dcNEO,Razor shell,1/30/25,NA,NA,21
+GTX6,Mussel,2/6/25,0.352,NA,28
+GTX6,Cockle,2/6/25,0.244,0.056,28
+GTX6,Razor shell,2/6/25,0.246,0.058,28
+C1+2,Mussel,2/6/25,0.717,NA,28
+C1+2,Cockle,2/6/25,0.917,0.058,28
+C1+2,Razor shell,2/6/25,0.44,0.016,28
+GTX5,Mussel,2/6/25,0.745,NA,28
+GTX5,Cockle,2/6/25,0.261,0.033,28
+GTX5,Razor shell,2/6/25,0.313,0.078,28
+C3+4,Mussel,2/6/25,NA,NA,28
+C3+4,Cockle,2/6/25,NA,NA,28
+C3+4,Razor shell,2/6/25,NA,NA,28
+dcSTX,Mussel,2/6/25,0.109,NA,28
+dcSTX,Cockle,2/6/25,0.0805,0.014,28
+dcSTX,Razor shell,2/6/25,0.0394,0.01,28
+dcGTX2+3,Mussel,2/6/25,0.065,NA,28
+dcGTX2+3,Cockle,2/6/25,NA,NA,28
+dcGTX2+3,Razor shell,2/6/25,0.174,0.046,28
+dcNEO,Mussel,2/6/25,NA,NA,28
+dcNEO,Cockle,2/6/25,NA,NA,28
+dcNEO,Razor shell,2/6/25,NA,NA,28
+GTX6,Mussel,2/13/25,1.65,0.35,35
+GTX6,Cockle,2/13/25,0.0959,0.007,35
+GTX6,Razor shell,2/13/25,0.11,0.04,35
+C1+2,Mussel,2/13/25,1.6,0.26,35
+C1+2,Cockle,2/13/25,0.709,0.041,35
+C1+2,Razor shell,2/13/25,0.119,0.032,35
+GTX5,Mussel,2/13/25,1.31,0.24,35
+GTX5,Cockle,2/13/25,0.103,0.013,35
+GTX5,Razor shell,2/13/25,0.269,0.09,35
+C3+4,Mussel,2/13/25,1.11,0.24,35
+C3+4,Cockle,2/13/25,NA,NA,35
+C3+4,Razor shell,2/13/25,0.857,0.02,35
+dcSTX,Mussel,2/13/25,0.248,0.018,35
+dcSTX,Cockle,2/13/25,0.0293,0.0016,35
+dcSTX,Razor shell,2/13/25,0.0557,0.02,35
+dcGTX2+3,Mussel,2/13/25,0.0451,0,35
+dcGTX2+3,Cockle,2/13/25,NA,NA,35
+dcGTX2+3,Razor shell,2/13/25,0.124,0.034,35
+dcNEO,Mussel,2/13/25,NA,NA,35
+dcNEO,Cockle,2/13/25,NA,NA,35
+dcNEO,Razor shell,2/13/25,NA,NA,35
+GTX6,Mussel,2/20/25,0.979,0.1,42
+GTX6,Cockle,2/20/25,0.38,0.014,42
+GTX6,Razor shell,2/20/25,0.96,0.026,42
+C1+2,Mussel,2/20/25,1.59,0.14,42
+C1+2,Cockle,2/20/25,0.826,0.048,42
+C1+2,Razor shell,2/20/25,0.755,0.033,42
+GTX5,Mussel,2/20/25,1.34,0.12,42
+GTX5,Cockle,2/20/25,0.53,0.013,42
+GTX5,Razor shell,2/20/25,0.266,0.01,42
+C3+4,Mussel,2/20/25,NA,NA,42
+C3+4,Cockle,2/20/25,NA,NA,42
+C3+4,Razor shell,2/20/25,NA,NA,42
+dcSTX,Mussel,2/20/25,0.337,0.036,42
+dcSTX,Cockle,2/20/25,0.0838,0.017,42
+dcSTX,Razor shell,2/20/25,0.0165,0.00026,42
+dcGTX2+3,Mussel,2/20/25,0.0946,0.012,42
+dcGTX2+3,Cockle,2/20/25,NA,NA,42
+dcGTX2+3,Razor shell,2/20/25,0.252,0.011,42
+dcNEO,Mussel,2/20/25,NA,NA,42
+dcNEO,Cockle,2/20/25,NA,NA,42
+dcNEO,Razor shell,2/20/25,NA,NA,42
+GTX6,Mussel,3/1/25,0.177,0.018,51
+GTX6,Cockle,3/1/25,NA,NA,51
+GTX6,Razor shell,3/1/25,NA,NA,51
+C1+2,Mussel,3/1/25,0.42,0.086,51
+C1+2,Cockle,3/1/25,0.44,NA,51
+C1+2,Razor shell,3/1/25,0.13,NA,51
+GTX5,Mussel,3/1/25,0.309,0.0092,51
+GTX5,Cockle,3/1/25,0.13,0.017,51
+GTX5,Razor shell,3/1/25,0.0819,0.017,51
+C3+4,Mussel,3/1/25,NA,NA,51
+C3+4,Cockle,3/1/25,NA,NA,51
+C3+4,Razor shell,3/1/25,NA,NA,51
+dcSTX,Mussel,3/1/25,0.105,0.021,51
+dcSTX,Cockle,3/1/25,0.0586,0.0084,51
+dcSTX,Razor shell,3/1/25,0.026,NA,51
+dcGTX2+3,Mussel,3/1/25,0.0296,0.01,51
+dcGTX2+3,Cockle,3/1/25,NA,NA,51
+dcGTX2+3,Razor shell,3/1/25,0.373,0.039,51
+dcNEO,Mussel,3/1/25,NA,NA,51
+dcNEO,Cockle,3/1/25,NA,NA,51
+dcNEO,Razor shell,3/1/25,NA,NA,51
+GTX6,Mussel,3/6/25,0.179,0.051,56
+GTX6,Cockle,3/6/25,0.0667,0.023,56
+GTX6,Razor shell,3/6/25,0.0669,0.018,56
+C1+2,Mussel,3/6/25,0.507,0.073,56
+C1+2,Cockle,3/6/25,NA,NA,56
+C1+2,Razor shell,3/6/25,0.213,NA,56
+GTX5,Mussel,3/6/25,0.371,0.019,56
+GTX5,Cockle,3/6/25,0.162,0.022,56
+GTX5,Razor shell,3/6/25,0.0946,0.029,56
+C3+4,Mussel,3/6/25,NA,NA,56
+C3+4,Cockle,3/6/25,NA,NA,56
+C3+4,Razor shell,3/6/25,NA,NA,56
+dcSTX,Mussel,3/6/25,0.0201,0.0028,56
+dcSTX,Cockle,3/6/25,NA,NA,56
+dcSTX,Razor shell,3/6/25,NA,NA,56
+dcGTX2+3,Mussel,3/6/25,NA,NA,56
+dcGTX2+3,Cockle,3/6/25,NA,NA,56
+dcGTX2+3,Razor shell,3/6/25,0.273,0.023,56
+dcNEO,Mussel,3/6/25,NA,NA,56
+dcNEO,Cockle,3/6/25,NA,NA,56
+dcNEO,Razor shell,3/6/25,NA,NA,56
+GTX6,Mussel,3/13/25,0.133,0.034,63
+GTX6,Cockle,3/13/25,0.125,0.022,63
+GTX6,Razor shell,3/13/25,0.086,0.0045,63
+C1+2,Mussel,3/13/25,0.556,0.076,63
+C1+2,Cockle,3/13/25,0.0866,NA,63
+C1+2,Razor shell,3/13/25,0.151,0.0082,63
+GTX5,Mussel,3/13/25,0.363,NA,63
+GTX5,Cockle,3/13/25,0.175,0.013,63
+GTX5,Razor shell,3/13/25,0.0721,0.025,63
+C3+4,Mussel,3/13/25,NA,NA,63
+C3+4,Cockle,3/13/25,NA,NA,63
+C3+4,Razor shell,3/13/25,NA,NA,63
+dcSTX,Mussel,3/13/25,0.0445,0.0055,63
+dcSTX,Cockle,3/13/25,0.0259,0.0023,63
+dcSTX,Razor shell,3/13/25,0.0172,0.0039,63
+dcGTX2+3,Mussel,3/13/25,NA,NA,63
+dcGTX2+3,Cockle,3/13/25,NA,NA,63
+dcGTX2+3,Razor shell,3/13/25,NA,NA,63
+dcNEO,Mussel,3/13/25,NA,NA,63
+dcNEO,Cockle,3/13/25,NA,NA,63
+dcNEO,Razor shell,3/13/25,NA,NA,63
+GTX6,Mussel,3/20/25,0.0634,0.022,70
+GTX6,Cockle,3/20/25,NA,NA,70
+GTX6,Razor shell,3/20/25,NA,NA,70
+C1+2,Mussel,3/20/25,0.529,0.13,70
+C1+2,Cockle,3/20/25,NA,NA,70
+C1+2,Razor shell,3/20/25,0.0982,NA,70
+GTX5,Mussel,3/20/25,0.336,0.097,70
+GTX5,Cockle,3/20/25,NA,NA,70
+GTX5,Razor shell,3/20/25,0.291,0.11,70
+C3+4,Mussel,3/20/25,NA,NA,70
+C3+4,Cockle,3/20/25,NA,NA,70
+C3+4,Razor shell,3/20/25,NA,NA,70
+dcSTX,Mussel,3/20/25,0.0934,0.0055,70
+dcSTX,Cockle,3/20/25,NA,NA,70
+dcSTX,Razor shell,3/20/25,0.0194,0.0036,70
+dcGTX2+3,Mussel,3/20/25,NA,NA,70
+dcGTX2+3,Cockle,3/20/25,0.023,0,70
+dcGTX2+3,Razor shell,3/20/25,NA,NA,70
+dcNEO,Mussel,3/20/25,NA,NA,70
+dcNEO,Cockle,3/20/25,NA,NA,70
+dcNEO,Razor shell,3/20/25,NA,NA,70
+GTX6,Mussel,3/27/25,0.065,0.025,77
+GTX6,Cockle,3/27/25,NA,NA,77
+GTX6,Razor shell,3/27/25,NA,NA,77
+C1+2,Mussel,3/27/25,0.314,0.041,77
+C1+2,Cockle,3/27/25,0.0157,0.00085,77
+C1+2,Razor shell,3/27/25,NA,NA,77
+GTX5,Mussel,3/27/25,0.136,0.042,77
+GTX5,Cockle,3/27/25,0.148,0.031,77
+GTX5,Razor shell,3/27/25,0.0881,NA,77
+C3+4,Mussel,3/27/25,NA,NA,77
+C3+4,Cockle,3/27/25,NA,NA,77
+C3+4,Razor shell,3/27/25,NA,NA,77
+dcSTX,Mussel,3/27/25,0.0338,0.00064,77
+dcSTX,Cockle,3/27/25,0.0146,0.00064,77
+dcSTX,Razor shell,3/27/25,NA,NA,77
+dcGTX2+3,Mussel,3/27/25,0.023,0,77
+dcGTX2+3,Cockle,3/27/25,0.023,0,77
+dcGTX2+3,Razor shell,3/27/25,0.023,0,77
+dcNEO,Mussel,3/27/25,NA,NA,77
+dcNEO,Cockle,3/27/25,NA,NA,77
+dcNEO,Razor shell,3/27/25,NA,NA,77
+GTX6,Mussel,4/3/25,0.077,0.017,84
+GTX6,Cockle,4/3/25,0.155,0.014,84
+GTX6,Razor shell,4/3/25,NA,NA,84
+C1+2,Mussel,4/3/25,NA,NA,84
+C1+2,Cockle,4/3/25,0.133,0.049,84
+C1+2,Razor shell,4/3/25,0.671,0.0055,84
+GTX5,Mussel,4/3/25,0.0668,0.03,84
+GTX5,Cockle,4/3/25,0.192,0.054,84
+GTX5,Razor shell,4/3/25,0.327,0.0029,84
+C3+4,Mussel,4/3/25,NA,NA,84
+C3+4,Cockle,4/3/25,NA,NA,84
+C3+4,Razor shell,4/3/25,NA,NA,84
+dcSTX,Mussel,4/3/25,0.0327,0.0028,84
+dcSTX,Cockle,4/3/25,0.0217,0.0017,84
+dcSTX,Razor shell,4/3/25,0.02,0.00015,84
+dcGTX2+3,Mussel,4/3/25,0.023,0,84
+dcGTX2+3,Cockle,4/3/25,0.023,0,84
+dcGTX2+3,Razor shell,4/3/25,0.113,0.0057,84
+dcNEO,Mussel,4/3/25,NA,NA,84
+dcNEO,Cockle,4/3/25,NA,NA,84
+dcNEO,Razor shell,4/3/25,NA,NA,84
+Total,Cockle,1/9/25,36.532,NA,0
+Total,Cockle,1/16/25,10.7299,NA,7
+Total,Cockle,1/23/25,9.5406,NA,14
+Total,Cockle,1/30/25,1.6513,NA,21
+Total,Cockle,2/6/25,1.5025,NA,28
+Total,Cockle,2/13/25,0.9372,NA,35
+Total,Cockle,2/20/25,1.8198,NA,42
+Total,Cockle,3/1/25,0.6286,NA,51
+Total,Cockle,3/6/25,0.2287,NA,56
+Total,Cockle,3/13/25,0.4125,NA,63
+Total,Cockle,3/20/25,0.023,NA,70
+Total,Cockle,3/27/25,0.2013,NA,77
+Total,Cockle,4/3/25,0.5247,NA,84
+Total,Mussel,1/9/25,23.94,NA,0
+Total,Mussel,1/16/25,16.3277,NA,7
+Total,Mussel,1/23/25,18.9238,NA,14
+Total,Mussel,1/30/25,8.2836,NA,21
+Total,Mussel,2/6/25,1.988,NA,28
+Total,Mussel,2/13/25,5.9631,NA,35
+Total,Mussel,2/20/25,4.3406,NA,42
+Total,Mussel,3/1/25,1.0406,NA,51
+Total,Mussel,3/6/25,1.0771,NA,56
+Total,Mussel,3/13/25,1.0965,NA,63
+Total,Mussel,3/20/25,1.0218,NA,70
+Total,Mussel,3/27/25,0.5718,NA,77
+Total,Mussel,4/3/25,0.1995,NA,84
+Total,Razor shell,1/9/25,5.382,NA,0
+Total,Razor shell,1/16/25,5.4,NA,7
+Total,Razor shell,1/23/25,3.9386,NA,14
+Total,Razor shell,1/30/25,2.848,NA,21
+Total,Razor shell,2/6/25,1.2124,NA,28
+Total,Razor shell,2/13/25,1.5347,NA,35
+Total,Razor shell,2/20/25,2.2495,NA,42
+Total,Razor shell,3/1/25,0.6109,NA,51
+Total,Razor shell,3/6/25,0.6475,NA,56
+Total,Razor shell,3/13/25,0.3263,NA,63
+Total,Razor shell,3/20/25,0.4086,NA,70
+Total,Razor shell,3/27/25,0.1111,NA,77
+Total,Razor shell,4/3/25,1.131,NA,84
