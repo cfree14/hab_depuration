@@ -2,3 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
+
+# DS_Store
+# git rm --cached -r .DS_Store
+.DS_Store
