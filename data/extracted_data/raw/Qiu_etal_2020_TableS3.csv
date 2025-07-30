@@ -1,0 +1,46 @@
+"species","treatment","day","toxicity"
+"Digestive gland","DTX1",1,1.8
+"Digestive gland","DTX1",3,174.3
+"Digestive gland","DTX1",5,165.3
+"Digestive gland","DTX1",7,118.9
+"Digestive gland","DTX1",10,75.7
+"Digestive gland","DTX1",11,108.4
+"Digestive gland","DTX1",13,204.6
+"Digestive gland","DTX1",15,124.2
+"Digestive gland","DTX1",20,83.4
+"Digestive gland","OA",1,0
+"Digestive gland","OA",3,31.6
+"Digestive gland","OA",5,35.9
+"Digestive gland","OA",7,21.2
+"Digestive gland","OA",10,21.48
+"Digestive gland","OA",11,40.7
+"Digestive gland","OA",13,49
+"Digestive gland","OA",15,25.5
+"Digestive gland","OA",20,16.8
+"Muscle","DTX1",1,0
+"Muscle","DTX1",3,0
+"Muscle","DTX1",5,3.04
+"Muscle","DTX1",7,4
+"Muscle","DTX1",10,2.7
+"Muscle","DTX1",11,4.1
+"Muscle","DTX1",13,5.13
+"Muscle","DTX1",15,8.29
+"Muscle","DTX1",20,2.7
+"Digestive gland","Total",1,1.8
+"Digestive gland","Total",3,205.9
+"Digestive gland","Total",5,201.2
+"Digestive gland","Total",7,140.1
+"Digestive gland","Total",10,97.18
+"Digestive gland","Total",11,149.1
+"Digestive gland","Total",13,253.6
+"Digestive gland","Total",15,149.7
+"Digestive gland","Total",20,100.2
+"Muscle","Total",1,0
+"Muscle","Total",3,0
+"Muscle","Total",5,3.04
+"Muscle","Total",7,4
+"Muscle","Total",10,2.7
+"Muscle","Total",11,4.1
+"Muscle","Total",13,5.13
+"Muscle","Total",15,8.29
+"Muscle","Total",20,2.7

@@ -156,10 +156,10 @@ plot_data <- function(datafile, day=NA, y_title="Toxicity", legend_title="Treatm
     # Plot reference line
     geom_vline(xintercept=day, linetype="dashed", color="grey50") +
     # Plot data
-    geom_line(size=0.1) +
+    geom_line(linewidth=0.1) +
     geom_point(size=1.2) +
     # Plot fits
-    geom_line(data=fits, size=1) +
+    geom_line(data=fits, linewidth=1) +
     geom_text(data=coefs, mapping=aes(label=paste0("k = ", round(k, 5)), x=day2, y=y), 
               hjust=1, size=1.8, show.legend=F) +
     # Axes
@@ -276,7 +276,6 @@ plot_data(datafile="Svensson_etal_2003_Fig2.xlsx",
 plot_data(datafile="Oliveira_etal_2020_Figure3.xlsx",
           day=0, y_title="Toxicity (ng/g)", legend_title="Toxin", title="Oliveira et al. (2020)")
 
-
 # Griffith et al. (2013)
 plot_data(datafile="Griffith_etal_2013_Figs1+2.xlsx",
           day=5, y_title="Toxicity (ng/g)", legend_title="Toxin", title="Griffith et al. (2013)")
@@ -300,7 +299,6 @@ plot_data(datafile="Zhang_etal_2023_Fig2.xlsx",
 # Xie_etal_2013_Fig3
 plot_data(datafile="Xie_etal_2013_Fig3.xlsx",
           day=0, y_title="Toxicity", legend_title="Toxin", title="Xie_etal_2013_Fig3")
-
 
 # Vasconcelos_1995_Fig5
 plot_data(datafile="Vasconcelos_1995_Fig5.xlsx",
@@ -334,5 +332,19 @@ plot_data(datafile="Camacho-Munoz_etal_2021_Fig3.xlsx",
 plot_data(datafile="Botelho_etal_2020_supp_data.xlsx",
           day=0, y_title="Toxicity", legend_title="Toxin", title="Botelho_etal_2020_supp_data")
 
+# Blanco_etal_1999_Fig8
+plot_data(datafile="Blanco_etal_1999_Fig8.xlsx",
+          day=0, y_title="Toxicity", legend_title="Toxin", title="Blanco_etal_1999_Fig8")
 
+# Leite_etal_2021_Table2
+plot_data(datafile="Leite_etal_2021_Table2.xlsx",
+          day=0, y_title="Toxicity", legend_title="Toxin", title="Leite_etal_2021_Table2")
+
+# Liu_etal_2008_Fig2
+plot_data(datafile="Liu_etal_2008_Fig2.xlsx",
+          day=41, y_title="Toxicity", legend_title="Toxin", title="Liu_etal_2008_Fig2")
+
+# Turnbull_etal_2020_Fig2
+plot_data(datafile="Turnbull_etal_2020_Fig2.xlsx",
+          day=27, y_title="Toxicity", legend_title="Toxin", title="Turnbull_etal_2020_Fig2")
 
