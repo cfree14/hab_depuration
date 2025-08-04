@@ -348,3 +348,7 @@ plot_data(datafile="Liu_etal_2008_Fig2.xlsx",
 plot_data(datafile="Turnbull_etal_2020_Fig2.xlsx",
           day=27, y_title="Toxicity", legend_title="Toxin", title="Turnbull_etal_2020_Fig2")
 
+# Hardardottir_etal_2019_Fig2
+plot_data(datafile="Hardardottir_etal_2019_Fig2.xlsx",
+          day=0, y_title="Toxicity", legend_title="Toxin", title="Hardardottir_etal_2019_Fig2")
+
