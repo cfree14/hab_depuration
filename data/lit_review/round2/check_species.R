@@ -63,7 +63,7 @@ spp <- spp_orig %>%
                           "Pseudopleuronectes platessoides" = "Hippoglossoides platessoides", 
                           "Saccostrea forskali"      = "Saccostrea cuccullata",      
                           "Scapharca broughtonii"    = "Anadara broughtonii",       
-                          "Scapharca subcrenata"     = "Anadara kagoshimensis",       
+                          "Scapharca subcrenata"     = "Anadara kagoshimensis",  
                           "Seriola dumerlii"         = "Seriola dumerili",       
                           "Sinanodonta arcaeformis"  = "Anemina arcaeformis",       
                           # "Sinanodonta woodiana"     = "",      
