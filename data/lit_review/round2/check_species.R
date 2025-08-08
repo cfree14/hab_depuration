@@ -84,3 +84,6 @@ freeR::which_duplicated(spp$sci_name)
 freeR::check_names(spp$sci_name)
 
 
+syn <- data_orig %>% 
+  count(syndrome, biotoxin)
+

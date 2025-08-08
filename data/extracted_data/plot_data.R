@@ -352,3 +352,23 @@ plot_data(datafile="Turnbull_etal_2020_Fig2.xlsx",
 plot_data(datafile="Hardardottir_etal_2019_Fig2.xlsx",
           day=0, y_title="Toxicity", legend_title="Toxin", title="Hardardottir_etal_2019_Fig2")
 
+# Hinton_Ramsdell_2008_Fig356
+plot_data(datafile="Hinton_Ramsdell_2008_Fig356.xlsx",
+          day=0, y_title="Toxicity", legend_title="Toxin", title="Hinton_Ramsdell_2008_Fig356")
+
+# Kankaanpaa_etal_2007_Fig1
+plot_data(datafile="Kankaanpaa_etal_2007_Fig1.xlsx",
+          day=1, y_title="Toxicity", legend_title="Toxin", title="Kankaanpaa_etal_2007_Fig1")
+
+# Jones_etal_1995_Fig14
+plot_data(datafile="Jones_etal_1995_Fig14.xlsx",
+          day=1, y_title="Toxicity", legend_title="Toxin", title="Jones_etal_1995_Fig14")
+
+# Lefebvre_etal_2007_Fig4
+plot_data(datafile="Lefebvre_etal_2007_Fig4.xlsx",
+          day=2, y_title="Toxicity", legend_title="Toxin", title="Lefebvre_etal_2007_Fig4")
+
+# Houle_etal_2023_Fig8
+plot_data(datafile="Houle_etal_2023_Fig8.xlsx",
+          day=2, y_title="Toxicity", legend_title="Toxin", title="Houle_etal_2023_Fig8")
+
