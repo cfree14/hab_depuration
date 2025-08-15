@@ -9,8 +9,8 @@ rm(list = ls())
 library(tidyverse)
 
 # Directories
-indir <- "data/lit_review/raw"
-outdir <- "data/lit_review/processed"
+indir <- "data/lit_review/round1/raw"
+outdir <- "data/lit_review/round1/processed"
 plotdir <- "figures"
 
 # Read data
@@ -41,7 +41,8 @@ spp_key <- data_orig %>%
                          "Hiatula rostrata"="Hiatula diphos", # based on sleuthing, correct name for Solen rostratus [Lightfoot, 1786] ·
                          # "Neomysis awatschensi" = "Neomysis awatschensis",                                                     
                          "Ostrea rivularis" = "Magallana rivularis",   # uncertain > taxon inquirendum                                                     
-                         "Patinopecten yessoensis"  = "Mizuhopecten yessoensis"))
+                         "Patinopecten yessoensis"  = "Mizuhopecten yessoensis",
+                         "Crassostrea gigas"="Magallana gigas"))
 
 # Check names
 freeR::check_names(spp_key$sci_name)

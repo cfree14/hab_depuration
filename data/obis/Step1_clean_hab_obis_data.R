@@ -91,11 +91,9 @@ ggplot(data, aes(x=long_dd, y=lat_dd, color=syndrome)) +
   facet_wrap(~syndrome, ncol=4) +
   geom_point()
 
+
 # Add EEZ
 ################################################################################
-
-
-
 
 # Convert data to sf POINT object
 data_sf <- sf::st_as_sf(data, coords = c("long_dd", "lat_dd"), crs = sf::st_crs(eez))
