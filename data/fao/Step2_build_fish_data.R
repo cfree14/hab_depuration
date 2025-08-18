@@ -17,53 +17,58 @@ plotdir <- "figures"
 indir <- "/Users/cfree/Dropbox/Chris/UCSB/data/fao/global_production/processed"
 outdir <- "data/fao/processed"
 
-# Read data
+# Read production data
 data_orig <- readRDS(file=file.path(indir, "1950_2023_fao_global_production.Rds"))
 
-# Read depuration data
-dep_orig <- readRDS("data/lit_review/round1/processed/database.Rds") %>% 
-  mutate(syndrome=recode(syndrome, "Brevetoxin"="Neurotoxic"))
-unique(dep_orig$syndrome)
-dep_spp_key <- dep_orig %>% 
-  select(comm_name, sci_name) %>% unique()
-
-# Read data (add ISO3 in other)
+# Read OBIS data (add ISO3 where this gets formatted!)
 obis_orig <- readRDS("data/obis/processed/HAB_OBIS_data.Rds") 
+
+# Things to do
+# 1. Fill missing taxa info
+# 2. Filter out known low-trophic
+# 3. Add Lmax to output
+
+# Format OBIS data
+################################################################################
+
+# Format OBIS data
 obis <- obis_orig %>% 
+  # Add I3O3
   mutate(iso3=countrycode::countrycode(sovereign, "country.name", "iso3c")) %>% 
+  # Reduce to countries with ciguarera
   filter(syndrome=="Ciguatera")
+
+# Inspect
 freeR::complete(obis)
 unique(obis$syndrome)
 
+# Vulnerable ISOs
+vulnerable_isos <- obis %>% pull(iso3) %>% unique()
 
-# Format depuration data
+
+# Identify vulnerable finfish species
 ################################################################################
 
-# Species-toxin key
-dep <- dep_orig %>% 
-  select(sci_name, comm_name, syndrome) %>% 
-  unique() %>% 
-  filter(syndrome=="Ciguatera")
-
-# Build species key
-################################################################################
-
-# Build data
+# Years to look over
 yrs <- 2014:2023
 nyrs <- length(yrs)
+
+# Freshwater ISSCAAPs
+freshwater_isscaaps <- c("Miscellaneous diadromous fishes", 
+                         "Miscellaneous freshwater fishes", 
+                         "Salmons, trouts, smelts", 
+                         "Shads")
+
+# Identify recent marine capture finfish from countries of interest
 spp_key <- data_orig  %>% 
   # Reduce
   filter(year %in% yrs) %>% 
-  # Marine finfish
-  filter(area_type=="Marine" & prod_type=="Capture" & taxa_group=="Pisces" & 
-           !isscaap %in% c("Miscellaneous diadromous fishes", 
-                           "Miscellaneous freshwater fishes", 
-                           "Salmons, trouts, smelts", 
-                           "Shads")) %>% 
+  # Marine finfish (exclude frewshwater ISSCAAPs)
+  filter(area_type=="Marine" & prod_type=="Capture" & taxa_group=="Pisces" & !isscaap %in% freshwater_isscaaps) %>% 
   # Species specific
   filter(level=="species") %>% 
   # In countries of interest
-  filter(iso3 %in% obis$iso3) %>% 
+  filter(iso3 %in% vulnerable_isos) %>% 
   # Species
   count(isscaap, comm_name, sci_name)
  
@@ -79,8 +84,14 @@ freeR:::which_duplicated(spp_fb_use$species)
 
 # Add and filter
 spp_key2 <- spp_key %>% 
-  left_join(spp_fb_use %>% select(species, habitat, lmax_cm), by=c("sci_name"="species")) %>% 
+  # Add size and habitat
+  left_join(spp_fb_use %>% select(species, habitat, lmax_cm), by=c("sci_name"="species")) %>%
+  # Reduce to large reef-associated fish
   filter(habitat=="reef-associated" & lmax_cm>=25)
+
+# Get taxa
+taxa <- freeR::taxa(spp_key2$sci_name) %>% 
+  select(class:genus, sciname)
 
 
 # Build data
@@ -98,70 +109,25 @@ data <- data_orig %>%
   # Arrange
   arrange(desc(landings_mt)) %>% 
   # Add rank
-  mutate(rank=1:n())
-
-# Any with depuration rates?
-data_dep <- data %>% 
-  filter(sci_name %in% dep$sci_name)
-
-# Same but calculate on your own
-data_dep2 <- data_orig %>% 
-  filter(iso3 %in% obis$iso3 & sci_name %in% dep$sci_name & year %in% yrs) %>% 
-  # Summarize
-  group_by(isscaap, comm_name, sci_name) %>% 
-  summarize(landings_mt=sum(value)/nyrs) %>% 
+  mutate(rank=1:n()) %>% 
+  # Add taxa info
+  left_join(taxa, by=c("sci_name"="sciname")) %>% 
+  # Fill missing taxa info
+  mutate(genus=ifelse(is.na(genus), stringr::word(sci_name, 1, 1), genus)) %>% 
+  group_by(genus) %>% 
+  fill(class:family, .direction = "updown") %>% 
   ungroup() %>% 
+  # Add Lmax
+  left_join(spp_key2 %>% select(sci_name, lmax_cm), by=c("sci_name")) %>% 
   # Arrange
+  select(isscaap, class, order, family, genus, sci_name, comm_name, lmax_cm, rank, landings_mt, everything()) %>% 
   arrange(desc(landings_mt))
 
-# Top 50
-data50 <- data %>% 
-  slice(1:50)
+freeR::complete(data)
 
-# Rank of ones with depuration rates
-dep_rank <- data %>% 
-  filter()
-
-
-# Stats for manuscript
-################################################################################
-
-# 
-
-# Plot data
-################################################################################
-
-# Base theme
-base_theme <-  theme(axis.text=element_text(size=8),
-                     axis.title=element_text(size=9),
-                     axis.title.y=element_blank(),
-                     legend.text=element_text(size=8),
-                     legend.title=element_blank(),
-                     strip.text=element_text(size=9),
-                     plot.title=element_text(size=9),
-                     # Gridlines
-                     panel.grid.major = element_blank(), 
-                     panel.grid.minor = element_blank(),
-                     panel.background = element_blank(), 
-                     axis.line = element_line(colour = "black"),
-                     # Legend
-                     legend.key = element_rect(fill = NA, color=NA),
-                     legend.background = element_rect(fill=alpha('blue', 0)))
-
-# Plot data
-g <- ggplot(data50, aes(x=landings_mt/1e3, 
-                 y=reorder(comm_name, desc(landings_mt)))) +
-  geom_bar(stat="identity") +
-  # Labels
-  labs(x="Annual landings (1000s mt)", y="", title="Ciguatera") +
-  # Theme
-  theme_bw() + base_theme
-g
 
 # Export
-ggsave(g, filename=file.path(plotdir, "FigSX_finfish_priority_species.png"), 
-       width=4.5, height=6.5, units="in", dpi=600)
+################################################################################
 
-
-
-
+# Export data
+saveRDS(data, file=file.path(outdir, "FAO_vulnerable_finfish_species.Rds"))
