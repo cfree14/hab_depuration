@@ -1,0 +1,51 @@
+"syndrome","type","taxa_group","species","prod_mt_000","nharvested","nspecies"
+"Amnesic","Order","Arcoida","Blood cockle (Tegillarca granosa)",375.0635607,8,360
+"Amnesic","Family","Veneridae","Japanese carpet shell (Ruditapes philippinarum), Striped venus (Chamelea gallina), Northern quahog (Mercenaria mercenaria)",3885.343623,22,428
+"Amnesic","Family","Solecurtidae","Constricted tagelus (Sinonovacula constricta)",1191.289,2,26
+"Amnesic","Family","Mactridae","Atlantic surfclam (Spisula solidissima), Stimpson's surf clam (Mactromeris polynyma)",106.149442,10,116
+"Amnesic","Family","Arcticidae","Ocean quahog (Arctica islandica)",42.7973673,1,1
+"Amnesic","Genus","Perna","Greenshell mussel (Perna canaliculus), Green-lipped mussel (Perna viridis)",118.8519511,3,5
+"Amnesic","Genus","Zygochlamys","Patagonian scallop (Zygochlamys patagonica)",35.4640621,2,1
+"Azaspiracid","Order","Veneroida","Japanese carpet shell (Ruditapes philippinarum), Constricted tagelus (Sinonovacula constricta), Striped venus (Chamelea gallina), Common cockle (Cerastoderma edule), Grooved carpet shell (Ruditapes decussatus), Triangular tivela (Tivela mactroides), Smooth callista (Callista chione)",5015.8381775,58,2549
+"Azaspiracid","Order","Arcoida","Blood cockle (Tegillarca granosa)",356.8082,8,360
+"Azaspiracid","Order","Ostreoida","Peruvian calico scallop (Argopecten purpuratus), Patagonian scallop (Zygochlamys patagonica), King scallop (Pecten maximus), Commercial scallop (Pecten fumatus), European flat oyster (Ostrea edulis)",107.4853992,26,548
+"Azaspiracid","Order","Ostreida","Pacific oyster (Magallana gigas)",16.2818477,5,88
+"Azaspiracid","Genus","Perna","Greenshell mussel (Perna canaliculus), Brown mussel (Perna perna)",107.2194885,3,5
+"Azaspiracid","Genus","Aulacomya","Ribbed mussel (Aulacomya atra)",2.5038735,1,3
+"Cyanotoxin","Family","Pectinidae","Atlantic sea scallop (Placopecten magellanicus), Patagonian scallop (Zygochlamys patagonica), King scallop (Pecten maximus)",286.2785109,20,297
+"Cyanotoxin","Family","Veneridae","Striped venus (Chamelea gallina), Northern quahog (Mercenaria mercenaria), Japanese carpet shell (Ruditapes philippinarum), Taca clam (Leukoma thaca)",122.0229835,22,428
+"Cyanotoxin","Family","Mactridae","Atlantic surfclam (Spisula solidissima), Stimpson's surf clam (Mactromeris polynyma)",106.149442,10,116
+"Cyanotoxin","Family","Arcticidae","Ocean quahog (Arctica islandica)",42.7824,1,1
+"Cyanotoxin","Genus","Perna","Greenshell mussel (Perna canaliculus), Green-lipped mussel (Perna viridis), Brown mussel (Perna perna)",126.5047284,3,5
+"Cyanotoxin","Genus","Ostrea","European flat oyster (Ostrea edulis)",10.6055388,3,20
+"Diarrhetic","Order","Ostreida","Pacific oyster (Magallana gigas), Slipper cupped oyster (Magallana bilineata)",657.5046566,5,88
+"Diarrhetic","Order","Arcoida","Blood cockle (Tegillarca granosa)",375.6557404,8,360
+"Diarrhetic","Family","Solecurtidae","Constricted tagelus (Sinonovacula constricta)",1191.289,2,26
+"Diarrhetic","Family","Mactridae","Atlantic surfclam (Spisula solidissima), Stimpson's surf clam (Mactromeris polynyma)",106.149442,10,116
+"Diarrhetic","Family","Arcticidae","Ocean quahog (Arctica islandica)",42.7973673,1,1
+"Diarrhetic","Genus","Ruditapes","Japanese carpet shell (Ruditapes philippinarum)",3848.4354591,2,4
+"Diarrhetic","Genus","Mizuhopecten","Japanese scallop (Mizuhopecten yessoensis)",505.7652914,1,1
+"Diarrhetic","Genus","Placopecten","Atlantic sea scallop (Placopecten magellanicus)",217.4920524,1,1
+"Diarrhetic","Genus","Perna","Greenshell mussel (Perna canaliculus)",93.5056421,3,5
+"Diarrhetic","Genus","Pecten","King scallop (Pecten maximus)",62.2034803,4,18
+"Diarrhetic","Genus","Chamelea","Striped venus (Chamelea gallina)",46.1118277,1,3
+"Diarrhetic","Genus","Zygochlamys","Patagonian scallop (Zygochlamys patagonica)",35.4640621,2,1
+"Neurotoxic","Order","Arcoida","Blood cockle (Tegillarca granosa)",357.0768,8,360
+"Neurotoxic","Order","Ostreida","Pacific oyster (Magallana gigas)",293.1040471,5,88
+"Neurotoxic","Family","Solecurtidae","Constricted tagelus (Sinonovacula constricta)",1191.289,2,26
+"Neurotoxic","Family","Pectinidae","Japanese scallop (Mizuhopecten yessoensis), Atlantic sea scallop (Placopecten magellanicus), King scallop (Pecten maximus), Queen scallop (Aequipecten opercularis)",734.117912,20,297
+"Neurotoxic","Family","Mactridae","Atlantic surfclam (Spisula solidissima)",71.8123,10,116
+"Neurotoxic","Family","Arcticidae","Ocean quahog (Arctica islandica)",42.7824,1,1
+"Neurotoxic","Family","Cardiidae","Common cockle (Cerastoderma edule)",14.3475625,13,222
+"Neurotoxic","Genus","Ruditapes","Japanese carpet shell (Ruditapes philippinarum)",3813.6300045,2,4
+"Neurotoxic","Genus","Mytilus","Chilean mussel (Mytilus chilensis), Blue mussel (Mytilus edulis), Mediterranean mussel (Mytilus galloprovincialis)",503.4667299,7,12
+"Neurotoxic","Genus","Chamelea","Striped venus (Chamelea gallina)",45.7362018,1,3
+"Neurotoxic","Genus","Leukoma","Taca clam (Leukoma thaca)",11.8996,2,3
+"Neurotoxic","Genus","Ostrea","European flat oyster (Ostrea edulis)",11.0130634,3,20
+"Paralytic","Order","Arcoida","Blood cockle (Tegillarca granosa)",453.6026003,8,360
+"Paralytic","Family","Solecurtidae","Constricted tagelus (Sinonovacula constricta)",1191.289,2,26
+"Paralytic","Family","Arcticidae","Ocean quahog (Arctica islandica)",42.7973673,1,1
+"Paralytic","Genus","Argopecten","Peruvian calico scallop (Argopecten purpuratus)",70.2318531,3,9
+"Paralytic","Genus","Pecten","King scallop (Pecten maximus)",62.2034803,4,18
+"Paralytic","Genus","Chamelea","Striped venus (Chamelea gallina)",46.1118277,1,3
+"Paralytic","Genus","Zygochlamys","Patagonian scallop (Zygochlamys patagonica)",35.4640621,2,1

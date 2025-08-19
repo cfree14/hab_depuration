@@ -14,6 +14,7 @@ library(tidyverse)
 
 # Directories
 plotdir <- "figures"
+tabledir <- "tables"
 outdir <- "data/fao/processed"
 
 # Read data
@@ -150,7 +151,11 @@ id_new_taxa_levels <- function(data1){
     mutate(label=case_when(order_new=="yes" ~ paste0("***", order),
                            family_new=="yes" ~ paste0("**", family),
                            genus_new=="yes" ~ paste0("*", genus),
-                           T ~ ""))
+                           T ~ ""),
+           label_simple=case_when(order_new=="yes" ~ "***",
+                                  family_new=="yes" ~ "**",
+                                  genus_new=="yes" ~ "*",
+                                  T ~ ""))
     
   # Return
   return(spp_no_rates)
@@ -202,6 +207,26 @@ brev_new <- id_new_taxa_levels(brev)
 diar_new <- id_new_taxa_levels(diar)
 azas_new <- id_new_taxa_levels(azas)
 
+# Merge for easy manuscript stats
+merge_new <- bind_rows(para_new, amne_new, cyan_new, brev_new, diar_new, azas_new) %>% 
+  # Simplify
+  select(syndrome, sci_name, comm_name, prod_mt, label) %>% 
+  # Remove ones that aren't new
+  filter(label!="") %>% 
+  # Add type
+  mutate(type=case_when(str_starts(label, "\\*\\*\\*") ~ "Order",
+                        str_starts(label, "\\*\\*")    ~ "Family",
+                        str_starts(label, "\\*")       ~ "Genus",
+                        T ~ "") %>% factor(., levels=c("Order", "Family", "Genus"))) %>% 
+  mutate(label=gsub("\\*", "", label)) %>% 
+  # Arrange
+  arrange(syndrome, type, desc(prod_mt)) %>% 
+  select(syndrome, type, label, comm_name, sci_name, prod_mt, everything())
+
+# Export
+write.csv(merge_new, file=file.path(tabledir, "TableSX_priority_species_new_taxa_raw.csv"), row.names = F)
+
+
 # Plot data
 ################################################################################
 
@@ -228,9 +253,9 @@ g1 <- ggplot(para, aes(y=comm_name, x=prod_mt/1e6, alpha=prod_type, fill=rate_yn
   geom_bar(stat="identity") +
   # Mark species that would contribute no dep rate info
   geom_text(data=para_new, 
-            mapping=aes(y=comm_name, x=prod_mt/1e6+0.1, label=label), 
+            mapping=aes(y=comm_name, x=prod_mt/1e6+0.1, label=label_simple), 
             inherit.aes = F,
-            color="red", hjust=0, size=1.80) +
+            color="red", hjust=0, size=2.4) +
   # Add label
   geom_text(data=count_key %>% filter(syndrome=="Paralytic"), 
             aes(x=prod_mt_max/1e6, y=comm_name, label=label), 
@@ -251,9 +276,9 @@ g2 <- ggplot(amne, aes(y=comm_name, x=prod_mt/1e6, alpha=prod_type, fill=rate_yn
   geom_bar(stat="identity") +
   # Mark species that would contribute no dep rate info
   geom_text(data=amne_new, 
-            mapping=aes(y=comm_name, x=prod_mt/1e6+0.1, label=label), 
+            mapping=aes(y=comm_name, x=prod_mt/1e6+0.1, label=label_simple), 
             inherit.aes = F,
-            color="red", hjust=0, size=1.80) +
+            color="red", hjust=0, size=2.4) +
   # Add label
   geom_text(data=count_key %>% filter(syndrome=="Amnesic"), 
             aes(x=prod_mt_max/1e6, y=comm_name, label=label), 
@@ -273,9 +298,9 @@ g3 <- ggplot(diar, aes(y=comm_name, x=prod_mt/1e6, alpha=prod_type, fill=rate_yn
   geom_bar(stat="identity") +
   # Mark species that would contribute no dep rate info
   geom_text(data=diar_new, 
-            mapping=aes(y=comm_name, x=prod_mt/1e6+0.1, label=label), 
+            mapping=aes(y=comm_name, x=prod_mt/1e6+0.1, label=label_simple), 
             inherit.aes = F,
-            color="red", hjust=0, size=1.80) +
+            color="red", hjust=0, size=2.4) +
   # Add label
   geom_text(data=count_key %>% filter(syndrome=="Diarrhetic"), 
             aes(x=prod_mt_max/1e6, y=comm_name, label=label), 
@@ -295,9 +320,9 @@ g4 <- ggplot(cyan, aes(y=comm_name, x=prod_mt/1e6, alpha=prod_type, fill=rate_yn
   geom_bar(stat="identity") +
   # Mark species that would contribute no dep rate info
   geom_text(data=cyan_new, 
-            mapping=aes(y=comm_name, x=prod_mt/1e6+0.01, label=label), 
+            mapping=aes(y=comm_name, x=prod_mt/1e6+0.01, label=label_simple), 
             inherit.aes = F,
-            color="red", hjust=0, size=1.80) +
+            color="red", hjust=0, size=2.4) +
   # Add label
   geom_text(data=count_key %>% filter(syndrome=="Cyanotoxin"), 
             aes(x=prod_mt_max/1e6, y=comm_name, label=label), 
@@ -317,9 +342,9 @@ g5 <- ggplot(brev, aes(y=comm_name, x=prod_mt/1e6, alpha=prod_type, fill=rate_yn
   geom_bar(stat="identity") +
   # Mark species that would contribute no dep rate info
   geom_text(data=brev_new, 
-            mapping=aes(y=comm_name, x=prod_mt/1e6+0.1, label=label), 
+            mapping=aes(y=comm_name, x=prod_mt/1e6+0.1, label=label_simple), 
             inherit.aes = F,
-            color="red", hjust=0, size=1.80) +
+            color="red", hjust=0, size=2.4) +
   # Add label
   geom_text(data=count_key %>% filter(syndrome=="Neurotoxic"), 
             aes(x=prod_mt_max/1e6, y=comm_name, label=label), 
@@ -339,9 +364,9 @@ g6 <- ggplot(azas, aes(y=comm_name, x=prod_mt/1e6, alpha=prod_type, fill=rate_yn
   geom_bar(stat="identity") +
   # Mark species that would contribute no dep rate info
   geom_text(data=azas_new, 
-            mapping=aes(y=comm_name, x=prod_mt/1e6+0.1, label=label), 
+            mapping=aes(y=comm_name, x=prod_mt/1e6+0.1, label=label_simple), 
             inherit.aes = F,
-            color="red", hjust=0, size=1.80) +
+            color="red", hjust=0, size=2.4) +
   # Add label
   geom_text(data=count_key %>% filter(syndrome=="Azaspiracid"), 
             aes(x=prod_mt_max/1e6, y=comm_name, label=label), 

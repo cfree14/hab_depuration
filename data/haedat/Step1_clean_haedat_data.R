@@ -34,6 +34,7 @@ eez_stats <- eez_df %>%
   summarize(neez=n_distinct(eez))
 
 # TO-DO LIST
+# 1. I think some more syndromes can be filled
 # 1. This is going to be really tricky to assign to EEZs
 
 

@@ -38,7 +38,7 @@ data <- data_orig  %>%
   # Reduce
   filter(year %in% yrs) %>% 
   # Marine bivalves
-  filter(area_type=="Marine" & taxa_group=="Mollusca" & !isscaap %in% c("Squids, cuttlefishes, octopuses", "Freshwater molluscs")) %>% 
+  filter(area_type=="Marine" & taxa_group=="Mollusca" & !isscaap %in% c("Squids, cuttlefishes, octopuses", "Abalones, winkles, conchs", "Freshwater molluscs")) %>% 
   # Species specific
   filter(level=="species") %>% 
   # Format a few common names

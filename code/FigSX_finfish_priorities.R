@@ -59,7 +59,7 @@ base_theme <-  theme(axis.text=element_text(size=8),
                      legend.background = element_rect(fill=alpha('blue', 0)))
 
 # Plot data
-g <- ggplot(data %>% slice(1:50), 
+g <- ggplot(data %>% slice(1:20), 
             aes(x=landings_mt/1e3, 
                 y=reorder(comm_name, desc(landings_mt)),
                 fill=rate_yn)) +
@@ -75,7 +75,7 @@ g
 
 # Export
 ggsave(g, filename=file.path(plotdir, "FigSX_finfish_priority_species.png"), 
-       width=4.5, height=6.5, units="in", dpi=600)
+       width=4.5, height=4.0, units="in", dpi=600)
 
 
 
