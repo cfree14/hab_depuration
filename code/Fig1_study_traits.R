@@ -9,8 +9,8 @@ rm(list = ls())
 library(tidyverse)
 
 # Directories
-indir <- "data/raw"
-outdir <- "data/processed"
+indir <- "data/lit_review/round1/raw"
+outdir <- "data/lit_review/round1/processed"
 plotdir <- "figures"
 
 # Read data
@@ -18,6 +18,9 @@ data <- read.csv(file=file.path(outdir, "2025_06_18_WOS_search.csv"), as.is=T)
 
 # Get world
 world_orig <- rnaturalearth::ne_countries(scale="small", returnclass = "sf")
+
+# Read field sites
+sites <- readxl::read_excel("data/lit_review/round1/raw/field_site_coordinates.xlsx")
 
 
 # Build data
@@ -91,8 +94,10 @@ g2
 # Plot
 g3 <- ggplot() +
   geom_sf(data=world, mapping=aes(fill=n), lwd=0.1) +
+  # Plot field sites
+  geom_point(data=sites, mapping=aes(x=long_dd, y=lat_dd), size=0.6) +
   # Labels
-  labs(tag="C") +
+  labs(tag="C", x="", y="") +
   # Legend
   scale_fill_gradientn(name="Number\nof papers", na.value = "white",
                        colors=RColorBrewer::brewer.pal(9, "Spectral") %>% rev()) +
