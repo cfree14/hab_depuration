@@ -24,6 +24,9 @@ world <- rnaturalearth::ne_countries(scale="small", returnclass="sf")
 eezs <- readRDS("/Users/cfree/Dropbox/Chris/UCSB/data/eezs/processed/EEZ_v12_polygons.Rds")
 eezs_df <- eezs %>% sf::st_drop_geometry()
 
+# Number of total territories
+n_distinct(eezs_df$territory)
+
 
 # Build data
 ################################################################################

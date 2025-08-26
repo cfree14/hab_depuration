@@ -9,8 +9,8 @@ rm(list = ls())
 library(tidyverse)
 
 # Directories
-indir <- "data/lit_review/raw"
-outdir <- "data/lit_review/processed"
+indir <- "data/lit_review/round1/raw"
+outdir <- "data/lit_review/round1/processed"
 plotdir <- "figures"
 
 # Read data
@@ -31,7 +31,7 @@ data <- data_orig %>%
                       "Cephalopoda"="Cephalopods",
                       "Gastropoda"="Gastropods",
                       "Malacostraca"="Crustaceans",
-                      "Maxillopoda"="Zooplankton"))
+                      "Maxillopoda"="Zooplankton")) 
 
 # Number of papers
 n_distinct(data$id)
@@ -54,6 +54,11 @@ stats_type_class <- data %>%
   group_by(class, id) %>% 
   summarize(study_type=paste(unique(study_type), collapse=", ")) %>% 
   ungroup() %>% 
+  # Format study type
+  mutate(study_type=stringr::str_to_sentence(study_type),
+         study_type=recode(study_type, 
+                           "Lab, field"="Lab/field",
+                           "Field, lab"="Lab/field")) %>% 
   # Compute totals
   group_by(class, study_type) %>% 
   summarize(n=n_distinct(id)) %>% 
@@ -67,6 +72,11 @@ stats_type_tot <- data %>%
   group_by(class, id) %>% 
   summarize(study_type=paste(unique(study_type), collapse=", ")) %>% 
   ungroup() %>% 
+  # Format study type
+  mutate(study_type=stringr::str_to_sentence(study_type),
+         study_type=recode(study_type, 
+                           "Lab, field"="Lab/field",
+                           "Field, lab"="Lab/field")) %>% 
   # Compute totals
   group_by(study_type) %>% 
   summarize(n=n_distinct(id)) %>% 
@@ -75,11 +85,7 @@ stats_type_tot <- data %>%
   mutate(prop=n/sum(n)) %>% 
   mutate(class="Overall")
 stats_type <- bind_rows(stats_type_class, stats_type_tot) %>% 
-  mutate(study_type=stringr::str_to_sentence(study_type),
-         study_type=recode(study_type, 
-                           "Lab, field"="Lab/field",
-                           "Field, lab"="Lab/field"),
-         study_type=factor(study_type,
+  mutate(study_type=factor(study_type,
                            levels=c("Lab", "Field", "Field (non-toxic site)", "Lab/field")))
 stats_type_order <- stats_type %>% 
   group_by(class) %>% 

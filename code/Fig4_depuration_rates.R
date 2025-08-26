@@ -9,8 +9,8 @@ rm(list = ls())
 library(tidyverse)
 
 # Directories
-indir <- "data/lit_review/raw"
-outdir <- "data/lit_review/processed"
+indir <- "data/lit_review/round1/raw"
+outdir <- "data/lit_review/round1/processed"
 plotdir <- "figures"
 
 # Read data
