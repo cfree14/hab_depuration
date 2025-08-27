@@ -146,7 +146,7 @@ g1 <- ggplot(data, aes(x=day, y=toxicity)) +
   # Labels
   labs(x="Day of testing", y="Toxicity (ppm)", tag="A", title="After peak toxicity") +
   # Legend
-  scale_fill_ordinal(name="Monitoring program") +
+  scale_fill_manual(name="Monitoring program", values=c("forestgreen", "darkorange")) +
   # Theme
   theme_bw() + my_theme +
   theme(legend.position = c(0.6, 0.8))
@@ -167,16 +167,16 @@ g2 <- ggplot(data2, aes(x=day, y=toxicity)) +
   # Data
   geom_line() +
   # Projections
-  geom_line(data=proj1, color="orange") +
-  geom_line(data=proj2, color="orange") +
+  geom_line(data=proj1, color="forestgreen") +
+  geom_line(data=proj2, color="forestgreen") +
   # Sampling points
   geom_point(data=samp2,  mapping=aes(fill=program), pch=21, size=3) +
-  geom_point(data=proj1_pts,  color="orange", pch=21, size=3) +
-  geom_point(data=proj2_pts,  color="orange", pch=21, size=3) +
+  geom_point(data=proj1_pts,  color="forestgreen", pch=21, size=3) +
+  geom_point(data=proj2_pts,  color="forestgreen", pch=21, size=3) +
   # Labels
   labs(x="Day of testing", y="Toxicity (ppm)", tag="B", title="Before peak toxicity") +
   # Legend
-  scale_fill_ordinal(name="Monitoring program", drop=F) +
+  scale_fill_manual(name="Monitoring program", values=c("darkorange", "forestgreen")) +
   # Theme
   theme_bw() + my_theme +
   theme(axis.title.y=element_blank(),
