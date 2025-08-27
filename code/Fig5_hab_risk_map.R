@@ -131,7 +131,7 @@ g <- ggplot() +
 #g
 
 # Export
-ggsave(g, filename=file.path(plotdir, "Fig7_hab_risk_map.png"), 
+ggsave(g, filename=file.path(plotdir, "Fig5_hab_risk_map.png"), 
        width=6.5, height=6.8, units="in", dpi=600)
 
 

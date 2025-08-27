@@ -74,7 +74,7 @@ g <- ggplot(data %>% slice(1:20),
 g
 
 # Export
-ggsave(g, filename=file.path(plotdir, "FigSX_finfish_priority_species.png"), 
+ggsave(g, filename=file.path(plotdir, "FigS7_finfish_priority_species.png"), 
        width=4.5, height=4.0, units="in", dpi=600)
 
 

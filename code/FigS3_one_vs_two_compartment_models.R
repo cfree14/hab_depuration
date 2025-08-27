@@ -168,7 +168,7 @@ preds <- dat %>%
 # 5) Plot: data + both model fits, faceted by dataset
 # -----------------------
 
-ggplot(dat, aes(x = t, y = y)) +
+g <- ggplot(dat, aes(x = t, y = y)) +
   geom_point(size = 2, alpha = 0.8) +
   geom_line(data = preds, aes(y = fit, color = model), linewidth = 1) +
   facet_wrap(~ dataset, scales = "free_y") +
@@ -179,3 +179,8 @@ ggplot(dat, aes(x = t, y = y)) +
        subtitle = "Each dataset is fit by both models; AICc selects the more parsimonious model") +
   theme_minimal(base_size = 13) +
   theme(legend.position = "bottom")
+
+# Export
+ggsave(g, filename=file.path(plotdir, "FigS3_one_vs_two_compartments.png"), 
+       width=6.5, height=4.0, units="in", dpi=600)
+

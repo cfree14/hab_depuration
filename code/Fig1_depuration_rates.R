@@ -187,6 +187,6 @@ g2
 g <- gridExtra::grid.arrange(g1, g2, nrow=1, widths=c(0.4, 0.6))
 
 # Export
-ggsave(g, filename=file.path(plotdir, "FigX_dep_traj_example.png"), 
+ggsave(g, filename=file.path(plotdir, "Fig1_dep_traj_example.png"), 
        width=6.5, height=3, units="in", dpi=600)
  

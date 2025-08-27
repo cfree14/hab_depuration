@@ -9,8 +9,8 @@ rm(list = ls())
 library(tidyverse)
 
 # Directories
-indir <- "data/lit_review/raw"
-outdir <- "data/lit_review/processed"
+indir <- "data/lit_review/round1/raw"
+outdir <- "data/lit_review/round1/processed"
 plotdir <- "figures"
 
 # Read data
@@ -118,6 +118,6 @@ g2
 g <- gridExtra::grid.arrange(g1, g2, ncol=1, heights=c(0.8, 0.2))
 
 # Export
-ggsave(g, filename=file.path(plotdir, "FigSX_tissues_sampled.png"), 
+ggsave(g, filename=file.path(plotdir, "FigS4_tissues_sampled.png"), 
        width=6.5, height=6.5, units="in", dpi=600)
 
