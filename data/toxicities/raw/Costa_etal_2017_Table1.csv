@@ -1,0 +1,9 @@
+feeding_type,phylum,class,species,syndrome,toxicity,tissue,region,reference
+Suspension-feeder,Echinoderms,Echinoidea,Dendraster excentricus,ASP,15 mg DA/kg,Whole body,"California CA, USA","Kvitek et al., 2008"
+Carnivorous,Echinoderms,Asteroidea,Asterins amurensis,PSP,1440 mg STX eq./kg,Whole body,"Hiroshima, Japan","Asakawa et al., 1997"
+Carnivorous,Echinoderms,Asteroidea,Asterina pectinifera,PSP,2250 mg STX eq./kg,Whole body,"Hiroshima, Japan","Ito et al., 2003"
+Carnivorous,Echinoderms,Asteroidea,Astropecten scoparius,PSP,N/A,N/A,"Pingtung, Taiwan","Lin et al., 1998"
+Suspension-feeder,Tunicates,Ascideacea,Pyura chilensis,ASP,16 mg DA/kg,Edible part,South of Chile,"Lo""pez-Rivera et al., 2009"
+Suspension-feeder,Tunicates,Ascideacea,Microcosmus vulgaris,PSP,807 mg STX eq./kg,Whole body,"Adriatic sea, Croatia","Roje-Busatto & Ujevi""c, 2014"
+Suspension-feeder,Tunicates,Ascideacea,Halocynthia roretzi,PSP,3420 mg STX eq./kg,Mantle,"Iwate, Japan","Nagashima et al., 1984"
+Suspension-feeder,Tunicates,Ascideacea,Halocynthia roretzi,PSP,252000 mg STX eq./kg,Digestive Gland,"Iwate, Japan","Nagashima et al., 1984"

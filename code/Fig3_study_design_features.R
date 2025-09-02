@@ -204,9 +204,18 @@ stats_comp <- data %>%
 
 # Stats model
 stats_model <- data %>% 
+  # Handle papers with multiple approaches
   group_by(id) %>%
   summarize(ncomp=paste(unique(ncomp), collapse = ", ")) %>% 
   ungroup() %>% 
+  # Harmonize
+  mutate(ncomp=recode(ncomp,
+                      "no model, one"="One",
+                      "two"="Two",
+                      "one vs. two"="One vs. two",
+                      "one"="One",
+                      "no model"="None")) %>% 
+  # Count
   count(ncomp) %>% 
   mutate(prop=n/sum(n))
 stats_model 
@@ -276,25 +285,33 @@ g3 <- ggplot(stats_type, aes(y=factor(class, stats_type_order$class),
 g3
 
 # Feeding scenario
-g4 <- ggplot(stats_feed, aes(x="Lab", y=prop, fill=feed_scenario)) +
-  geom_bar(stat="identity", position = position_stack(reverse = TRUE)) +
+g4 <- ggplot(stats_feed, aes(y=feed_scenario, x=prop)) +
+  geom_bar(stat="identity") +
   # Labels
-  labs(y="Percent of papers", x="Study type", tag="D") +
-  scale_y_continuous(labels=scales::percent_format()) +
-  # Legend
-  scale_fill_ordinal(name="Feeding scenario") +
+  labs(x="Percent of papers", y="", tag="D") +
+  scale_x_continuous(labels=scales::percent_format()) +
   # Theme
   theme_bw() + base_theme
 g4
 
-# Rate type
-g5 <- ggplot(stats_comp, aes(x="", y=prop, fill=rate_type)) +
+# Old plot
+# g4 <- ggplot(stats_feed, aes(x="Lab", y=prop, fill=feed_scenario)) +
+#   geom_bar(stat="identity", position = position_stack(reverse = TRUE)) +
+#   # Labels
+#   labs(y="Percent of papers", x="Study type", tag="D") +
+#   scale_y_continuous(labels=scales::percent_format()) +
+#   # Legend
+#   scale_fill_ordinal(name="Feeding scenario") +
+#   # Theme
+#   theme_bw() + base_theme
+# g4
+
+# Model type
+g5 <- ggplot(stats_model, aes(x=prop, y=reorder(ncomp, desc(prop)))) +
   geom_bar(stat="identity") +
   # Labels
-  labs(y="Percent of papers", x="", tag="E") +
-  scale_y_continuous(labels=scales::percent_format()) +
-  # Legend
-  scale_fill_ordinal(name="Rate type", na.value="grey70") +
+  labs(x="Percent of papers", y="", tag="E") +
+  scale_x_continuous(labels=scales::percent_format()) +
   # Theme
   theme_bw() + base_theme
 g5
@@ -311,11 +328,12 @@ g6
 
 # Merge
 layout_matrix <- matrix(data=c(1,2,3,3,3,
-                               4,4,5,5,5), byrow=T, ncol=5)
+                               4,4,6,6,6,
+                               5,5,6,6,6), byrow=T, ncol=5)
 
 # Merge
-g <- gridExtra::grid.arrange(g1, g2, g3, g4, g6, 
-                             layout_matrix=layout_matrix, heights=c(0.3, 0.7))
+g <- gridExtra::grid.arrange(g1, g2, g3, g4, g5, g6, 
+                             layout_matrix=layout_matrix, heights=c(0.3, 0.35, 0.35))
 
 # Export
 ggsave(g, filename=file.path(plotdir, "Fig3_study_design_features.png"), 

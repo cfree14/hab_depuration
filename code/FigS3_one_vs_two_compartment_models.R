@@ -7,24 +7,17 @@ rm(list = ls())
 
 # Packages
 library(tidyverse)
+library(minpack.lm)   # for nlsLM (more robust than nls)
 
 # Directories
 plotdir <- "figures"
 
-# ------------------------------------------------------------
-# Biotoxin depuration: simulate, fit 1- vs 2-compartment models,
-# compare with AICc, and plot fits by dataset.
-# ------------------------------------------------------------
 
-# Packages
-library(tidyverse)
-library(minpack.lm)   # for nlsLM (more robust than nls)
-
-set.seed(123)
-
-# -----------------------
 # 1) Simulate data
-# -----------------------
+################################################################################
+
+# Set seed
+set.seed(123)
 
 # Time grid (days)
 t <- 0:30
@@ -43,7 +36,7 @@ y2_true <- A_true * exp(-k_fast * t) + B_true * exp(-k_slow * t)
 
 # Add multiplicative log-normal noise (keeps values positive)
 # (~ 15% CV)
-noise_sd <- 0.15
+noise_sd <- 0.2
 y1_obs <- y1_true * exp(rnorm(length(t), mean = 0, sd = noise_sd))
 y2_obs <- y2_true * exp(rnorm(length(t), mean = 0, sd = noise_sd))
 
@@ -52,9 +45,9 @@ dat <- bind_rows(
   tibble(dataset = "Two-compartment data", t = t, y = y2_obs)
 )
 
-# -----------------------
-# 2) Model fitting helpers
-# -----------------------
+
+# 2) Model fitting helper functions
+################################################################################
 
 # One-compartment model: y = C0 * exp(-k * t)
 fit_one_comp <- function(df) {
@@ -100,9 +93,9 @@ safe_fit <- function(f, df) {
   tryCatch(f(df), error = function(e) NULL)
 }
 
-# -----------------------
+
 # 3) Fit both models to each dataset & compare by AICc
-# -----------------------
+################################################################################
 
 fits <- dat %>%
   dplyr::group_by(dataset) %>%
@@ -132,9 +125,9 @@ fits <- dat %>%
 
 print(dplyr::arrange(fits, dataset, AICc))
 
-# -----------------------
+
 # 4) Predictions for plotting
-# -----------------------
+################################################################################
 
 # Refit (to keep the objects for predict()), then create a tidy grid
 pred_grid <- tibble(t = seq(min(t), max(t), length.out = 300))
@@ -164,21 +157,42 @@ preds <- dat %>%
   }) %>%
   ungroup()
 
-# -----------------------
-# 5) Plot: data + both model fits, faceted by dataset
-# -----------------------
 
+# 5) Plot: data + both model fits, faceted by dataset
+################################################################################
+
+# Theme
+base_theme <- theme(axis.text=element_text(size=7),
+                    axis.title=element_text(size=8),
+                    legend.text=element_text(size=7),
+                    legend.title=element_text(size=8),
+                    strip.text = element_text(size=8),
+                    plot.tag=element_text(size=9),
+                    # Gridlines
+                    panel.grid.major = element_blank(), 
+                    panel.grid.minor = element_blank(),
+                    panel.background = element_blank(), 
+                    axis.line = element_line(colour = "black"),
+                    # Legend
+                    legend.key = element_rect(fill = NA, color=NA),
+                    legend.background = element_rect(fill=alpha('blue', 0)))
+
+# Plot data
 g <- ggplot(dat, aes(x = t, y = y)) +
-  geom_point(size = 2, alpha = 0.8) +
-  geom_line(data = preds, aes(y = fit, color = model), linewidth = 1) +
+  # Facet
   facet_wrap(~ dataset, scales = "free_y") +
+  # Data
+  geom_point(size = 2, alpha = 0.8) +
+  # Fit
+  geom_line(data = preds, aes(y = fit, color = model), linewidth = 1) +
+  # Labels
   labs(x = "Days",
-       y = "Toxin concentration (arbitrary units)",
-       color = "Fitted model",
-       title = "One- vs Two-compartment depuration: data and model fits",
-       subtitle = "Each dataset is fit by both models; AICc selects the more parsimonious model") +
-  theme_minimal(base_size = 13) +
+       y = "Toxicity",
+       color = "") +
+  # Theme
+  theme_bw() + base_theme +
   theme(legend.position = "bottom")
+g
 
 # Export
 ggsave(g, filename=file.path(plotdir, "FigS3_one_vs_two_compartments.png"), 

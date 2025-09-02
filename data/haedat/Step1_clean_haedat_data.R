@@ -73,11 +73,11 @@ data <- data_orig %>%
                          "Cyanobacterial toxins effects"="Cyanotoxins",
                          "Aerosolized toxins effects"="Aerosols")) %>% 
   # Fill some missing syndromes based on toxins
-  mutate(syndrome=case_when(is.na(syndrome) & toxin=="Domoic acid" ~ "Amnesic",
+  mutate(syndrome=case_when(is.na(syndrome) & (toxin=="Domoic acid" | grepl("Pseudo-nitzschia|Nitzschia", causative_spp0)) ~ "Amnesic",
                             is.na(syndrome) & toxin=="Microcystins" ~ "Cyanotoxins",
                             is.na(syndrome) & toxin=="Nodularins" ~ "Cyanotoxins",
-                            is.na(syndrome) & toxin=="Saxitoxins" ~ "Paralytic",
-                            is.na(syndrome) & toxin=="Okadaic acid" ~ "Diarrhetic",
+                            is.na(syndrome) & (toxin=="Saxitoxins" | grepl("Alexandrium|Gymnodinium", causative_spp0)) ~ "Paralytic",
+                            is.na(syndrome) & (toxin=="Okadaic acid" | grepl("Dinophysis|Prorocentrum", causative_spp0)) ~ "Diarrhetic",
                             T ~ syndrome)) %>% 
   # Format toxin
   mutate(toxin=stringr::str_to_sentence(toxin)) %>% 
@@ -87,12 +87,13 @@ data <- data_orig %>%
          iso3=countrycode::countrycode(country, "country.name", "iso3c")) %>% 
   # Make event id unique (a single event can cause multiple syndromes?)
   mutate(event_id=make.unique(event_id, sep="_")) %>% 
+  # Format causative agent
+  mutate(causative_spp0=stringr::word(causative_spp0, 1, 2)) %>% 
   # Simplify
   select(event_id, 
          year, date, date_beg, date_end, 
          country, iso3, region, location, lat_dd, long_dd, syndrome, toxin, 
          causative_spp0, causative_spp1, causative_spp2, causative_spp3)
-  
 
 # Inspect
 str(data)
@@ -113,6 +114,11 @@ toxin_key <- data %>%
 # Region key
 region_key <- data %>% 
   count(country, region)
+
+# Check algae names
+species <- sort(unique(data$causative_spp0))
+species2check <- species[!grepl("spp.|sp.", species)]
+freeR::check_names(species2check)
 
 
 # Add EEZ
