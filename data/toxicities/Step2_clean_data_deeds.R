@@ -19,21 +19,67 @@ data_orig <- readxl::read_excel(file.path(indir, "Deeds_etal_2008_Table245.xlsx"
 # Format data
 ################################################################################
 
+# Convert to mgkg
+value <- 1000
+units <- "μg/100g"
+conv2mgkg <- function(value, units){
+  
+  if(units %in% c("MU", "MU/100g", "MU/g") | is.na(units) | is.na(value)){
+    out <- NA
+  }
+  
+  if(units=="μg/100g" & !is.na(value)){
+    out <- value * 0.01
+  }
+  
+  return(out)
+  
+}
+
+# Convert to MU/100g
+value <- 1000
+units <- "μg/100g"
+conv2mu100g <- function(value, units){
+  
+  if(units %in% c("MU", "μg/100g") | is.na(units) | is.na(value)){
+    out <- NA
+  }
+  
+  if(units=="MU/100g" & !is.na(value)){
+    out <- value
+  }
+  
+  if(units=="MU/g" & !is.na(value)){
+    out <- value * 100
+  }
+  
+  return(out)
+  
+}
+
+# Convert MU/100g to mg/kg
+mu100g_to_mgkg <- function(value){
+  out <- value / 100 * 0.18 
+}
+
+
+
 # Format data
 data <- data_orig %>% 
   # Rename
-  rename(toxicity_long=toxicity_max) %>% 
+  rename(region=location,
+         toxicity_long=toxicity_max) %>% 
   # Format data
   mutate(species=recode(species,
                         "Adelomedon brasiliana"  = "Pachycymbiola brasiliana",                        
-                        "Arothron manillensis" = "rothron manilensis",                              
+                        "Arothron manillensis" = "Arothron manilensis",                              
                         "Cancer magister"  = "Metacarcinus magister",                                 
                         "Demania reynaudi"= "Demania reynaudii",                                   
                         "Euzanthus exsculptus" = "Euxanthus exsculptus",                             
                         # "Lophozozymus octodentatus"  = "",                        
                         "Lunatia heros (=Euspira heros, Polinices heros)"= "Euspira heros",   
                         "Lunatia heros (as Polinicies heros)"  = "Euspira heros",              
-                        "Nassarius siguijorensis"= "Nassarius siquijorensis",                           
+                        "Nassarius siguijorensis"= "Nassarius siquijorensis",                         
                         # "Nassarius succinctus"  = "",                             
                         # "Neptunea decemcostata" = "",                            
                         "Niotha clathrata" = "Nassarius conoidalis",                                 
@@ -52,7 +98,7 @@ data <- data_orig %>%
                         "Thais lima" = "Nucella lima",                                       
                         "Turbo argyrostoma" = "Turbo argyrostomus",                                 
                         "Turbo marmorata" = "Turbo marmoratus",                                  
-                        "Xanthias lividus" = "Juxtaxanthias lividus",                                  
+                        "Xanthias lividus" = "Juxtaxanthias lividus",                                 
                         "Zidona angulata*" = "Zidona dufresnii")) %>% 
   # Fix some common names
   mutate(comm_name=case_when(species=="Busycon spp." ~ "Busycon whelk",
@@ -105,10 +151,18 @@ data <- data_orig %>%
                          "TOXIC"="",
                          "TRACE"="",
                          "POSITIVE"="") %>% as.numeric()) %>% 
+  # Convert toxicity
+  rowwise() %>% 
+  mutate(toxicity_mgkg=conv2mgkg(toxicity, toxicity_units),
+         toxicity_mu100g=conv2mu100g(toxicity, toxicity_units),
+         toxicity_mgkg_conv=mu100g_to_mgkg(toxicity_mu100g)) %>% 
+  ungroup() %>% 
+  # Add syndrome 
+  mutate(syndrome="Paralytic") %>% 
   # Arrange
-  select(table, algae, comm_name, species, tissue, 
-         toxicity_long, toxicity, toxicity_units,
-         location, reference, incident, everything())
+  select(table, syndrome, algae, comm_name, species, tissue, 
+         toxicity_long, toxicity, toxicity_units, toxicity_mgkg, toxicity_mu100g, toxicity_mgkg_conv,
+         region, reference, incident, everything())
 
 # Inspect
 str(data)
@@ -128,6 +182,33 @@ spp_key <- data %>%
   count(comm_name, species)
 freeR::which_duplicated(spp_key$comm_name)
 freeR::which_duplicated(spp_key$species)
+taxa_key <- freeR::taxa(spp_key$species)
+
+# If key
+if(F){
+  spp_key1 <- spp_key %>% 
+    left_join(taxa_key %>% select(-species), by=c("species"="sciname")) %>% 
+    # Add genus
+    mutate(genus=ifelse(is.na(genus), stringr::word(species, 1, 1), genus)) %>% 
+    # Fill
+    group_by(genus) %>% 
+    fill(type:family, .direction="updown")
+  write.csv(spp_key1, file=file.path(indir, "deeds_species_temp.csv"), row.names = F)
+}else{
+  spp_key2 <- readxl::read_excel(file.path(indir, "deeds_species.xlsx"))
+}
+
+data_out <- data %>% 
+  # Add species info
+  left_join(spp_key2) %>% 
+  # Fix whole
+  mutate(class=ifelse(comm_name %in% c("Crab", 'Mangrove crabs'), "Malacostraca", class))
 
 
+
+
+# Export data
+################################################################################
+
+saveRDS(data_out, file=file.path(outdir, "deeds_etal_2018_max_toxicities_psp.Rds"))
 

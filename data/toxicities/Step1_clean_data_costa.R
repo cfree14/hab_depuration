@@ -83,14 +83,37 @@ table(costa$toxicity_units)
 # Check names
 freeR::check_names(costa$species)
 
-# Species
-spp_key <- costa %>% count(species) %>% select(-n)
-taxa_key <- freeR::taxa(spp_key$species)
-name_key <- freeR::fb_comm_name(spp_key$species)
-spp_key1 <- spp_key %>% 
-  left_join(name_key %>% select(species, comm_name), by="species") %>% 
-  left_join(taxa_key %>% select(type:genus, sciname), by=c("species"="sciname"))
+# If building key
+if(F){
+  
+  # Species
+  spp_key <- costa %>% count(species) %>% select(-n)
+  taxa_key <- freeR::taxa(spp_key$species)
+  name_key <- freeR::fb_comm_name(spp_key$species)
+  spp_key1 <- spp_key %>% 
+    left_join(name_key %>% select(species, comm_name), by="species") %>% 
+    left_join(taxa_key %>% select(type:genus, sciname), by=c("species"="sciname"))
+  write.csv(spp_key1, file=file.path(indir, "costa_species_key_temp.csv"), row.names=F)
+ 
+}else{
+  
+  spp_key2 <- readxl::read_excel(file.path(indir, "costa_species_key.xlsx"))
+  
+}
 
+# Add species info
+costa_out <- costa %>% 
+  left_join(spp_key2)
+
+
+# Export data
+################################################################################
+
+saveRDS(costa_out, file=file.path(outdir, "costa_etal_2017_max_toxicities_psp.Rds"))
+
+
+# Plot data
+################################################################################
 
 # Build data
 data <- costa %>% 
@@ -103,11 +126,6 @@ data <- costa %>%
   # Build species tissue label
   mutate(tissue=tolower(tissue),
          label=paste0(species, " (", tissue, ")"))
-  
-
-
-# Plot data
-################################################################################
 
 # Mg/kg = ug/g = ppm
 thresh <- tibble(syndrome=c("Amnesic",
