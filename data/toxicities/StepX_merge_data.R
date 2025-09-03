@@ -16,13 +16,17 @@ plotdir <- "figures"
 # Read data
 costa_orig <- readRDS(file=file.path(outdir, "costa_etal_2017_max_toxicities_psp.Rds"))
 deeds_orig <- readRDS(file=file.path(outdir, "deeds_etal_2018_max_toxicities_psp.Rds"))
+lefe_orig <- readRDS(file=file.path(outdir, "Lefebvre_Robertson_2010_toxicities.Rds"))
+jester_orig <- readxl::read_excel(file.path(indir, "Jester_etal_2009.xlsx"))
 
 
-# Setup
+# Prep data
 ################################################################################
 
 colnames(costa_orig)
 colnames(deeds_orig)
+colnames(lefe_orig)
+colnames(jester_orig)
 
 # Prep Costa
 costa <- costa_orig %>% 
@@ -43,8 +47,36 @@ deeds <- deeds_orig %>%
   select(dataset, class, comm_name, species, syndrome, tissue, region, reference, 
          toxicity_long, toxicity_mgkg, toxicity_mu100g, toxicity_mgkg_conv)
 
+# Prep Lefebvre_Robertson_2010
+lefe <- lefe_orig %>% 
+  # Reduce
+  filter(class=="Actinopterygii") %>% 
+  # Add 
+  mutate(dataset="Lefebvre & Robertson (2010)",
+         syndrome="Amnesic") %>% 
+  # Rename
+  rename(toxicity_mgkg=toxicity_ug_g) %>% 
+  # Simplify
+  select(dataset, class, comm_name, species, syndrome, tissue, region, reference, toxicity_mgkg)
+
+# Prep Jester
+jester <- jester_orig %>%   
+  # Add 
+  mutate(dataset="Jester et al. (2009)",
+         reference="Jester et al. (2009)",
+         class=ifelse(grepl("crab", comm_name), "Malacostraca", "Actinopterygii")) %>% 
+  # Rename
+  rename(region=location) %>% 
+  # Convert
+  mutate(toxicity_mgkg=toxicity_ug100g*0.01) %>% 
+  # Simplify: class, 
+  select(dataset, class, comm_name, species, syndrome, tissue, region, reference, toxicity_mgkg)
+
 # Merge data
-data <- bind_rows(costa, deeds) %>% 
+################################################################################
+
+# Merge data
+data <- bind_rows(costa, deeds, lefe, jester) %>% 
   # Format ref
   mutate(reference=stringr::str_squish(reference)) %>% 
   # Format tissue

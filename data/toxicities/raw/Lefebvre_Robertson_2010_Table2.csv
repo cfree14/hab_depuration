@@ -1,0 +1,36 @@
+group,comm_name,species,region,reference
+Birds,Brown pelican,Pelicanus occidentalis,"California, USA",Work et al. (1993)
+Birds,Brown pelican,Pelicanus occidentalis,"Cabo San Lucas, Mexico",Sierra-Beltran et al. (1997)
+Birds,Brandt's cormorant,Phalacrocorax penicillatus,Central California,Work et al. (1993)
+Marine mammals,Blue whale,Balaenoptera musculus,"California, USA",Lefebvre et al. (2002a)
+Marine mammals,Humpback whale,Megaptera novaengliae,"California, USA",Lefebvre et al. (2002a)
+Marine mammals,Dwarf sperm whale,Kogia sima,"Southeastern & mid-Atlantic Coast, USA",Fire et al. (2009)
+Marine mammals,Pygmy sperm whale,Kogia breviceps,"Southeastern & mid-Atlantic Coast, USA",Fire et al. (2009)
+Marine mammals,Bottlenose dolphin,Delphinus capensis,"Sonora, Mexico",Sierra-Beltran et al. (2004)
+Marine mammals,Minke whale,Balaenoptera acutorostrata,"Sonora, Mexico",Cordaro and Berman (unpublished data from the NMFS National Marine Mammal Health and Stranding Program)
+Marine mammals,Common dolphin,Delphinus,"California, USA",Cordaro and Berman (unpublished data from the NMFS National Marine Mammal Health and Stranding Program)
+Marine mammals,Harbor porpoise,Phocoena phocoena,"California, USA",Gulland (unpublished data)
+Marine mammals,California sea lion,Zalophus californianus,"California, USA","Lefebvre et al. (1999), Scholin et al. (2000)"
+Marine mammals,Northern fur seal,Callorhinus ursinus,"California, USA",Gulland and Lefebvre (unpublished data)
+Marine mammals,Sea otter,Enhydra lutris,"California, USA",Lefebvre (unpublished data)
+Fish,Albacore,Thunnus alalunga,"California, USA",Lefebvre et al. (2002a)
+Fish,Anchovy,Engraulis mordax,"California, USA",Lefebvre et al. (2002b)
+Fish,Chub mackerel,Scomber japonicus,"California, USA","Sierra-Beltran et al. (1997), Lefebvre et al."
+Fish,Chub mackerel,Scomber japonicus,"Cabo San Lucas, Mexico","(2002a), Busse et al. (2006)"
+Fish,Curlfin turbot,Pleuronectes decurrens,"California, USA",Vigilant and Silver (2007)
+Fish,Dover sole,Microstomus pacificus,"California, USA",Vigilant and Silver (2007)
+Fish,English sole,Pleuronectes vetulus,"California, USA",Vigilant and Silver (2007)
+Fish,European sardine,Sardina pilchardus,Portugal,"Vale and Sampayo (2001), Costa and Garrido (2004)"
+Fish,Jack mackerel,Trachurus symmetricus,"California, USA",Busse et al. (2006)
+Fish,Jack smelt,Atherinopsis californiensis,"California, USA",Lefebvre et al. (2002a)
+Fish,Lonespine combfish,Zaniolepis latipinnis,"California, USA",Busse et al. (2006)
+Fish,Pacific halibut,Hippoglossus stenolepis,"California, USA",Vigilant and Silver (2007)
+Fish,Pacific sanddab,Citharichthys sordidus,"California, USA","Lefebvre et al. (2002a), Busse et al. (2006),"
+Fish,Pacific sanddab,Citharichthys sordidus,"California, USA",Vigilant and Silver (2007)
+Fish,Pacific sardine,Sardinops sagax,"California, USA",Lefebvre et al. (2002b)
+Fish,Petrale sole,Eopsetta jordani,"California, USA",Vigilant and Silver (2007)
+Fish,Rex sole,Errex zachirus,"California, USA",Vigilant and Silver (2007)
+Fish,Sand sole,Psettichthys melanostictus,"California, USA",Vigilant and Silver (2007)
+Fish,Staghorn sculpin,Leptocottus armatus,"California, USA",Fire and Silver (2005)
+Fish,Slender sole,Eopsetta exillis,"California, USA",Vigilant and Silver (2007)
+Fish,White croaker,Genyonemus lineatus,"California, USA",Fire and Silver (2005)
