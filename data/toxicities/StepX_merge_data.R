@@ -22,6 +22,7 @@ rey_orig <- readRDS(file=file.path(outdir, "Rey_etal_2025_toxicities.Rds"))
 silva_orig <- readRDS(file=file.path(outdir, "Silva_etal_2018_toxicities.Rds"))
 ben_orig <- readRDS(file=file.path(outdir, "Ben-Figirey_etal_2020_toxicities.Rds"))
 abra_orig <- readxl::read_excel(file.path(indir, "Abraham_etal_2021_Table1.xlsx"))
+shumway_orig <- readRDS(file=file.path(outdir, "Shumway_etal_1995_toxicities.Rds"))
 
 # FINALIZE CLASSES IN REY
 
@@ -36,7 +37,7 @@ colnames(jester_orig)
 colnames(rey_orig)
 colnames(silva_orig)
 colnames(ben_orig)
-
+colnames(shumway_orig)
 
 # Prep Costa
 costa <- costa_orig %>% 
@@ -47,7 +48,8 @@ costa <- costa_orig %>%
   rename(toxicity_long=toxicity_long_orig,
          toxicity_mgkg=toxicity_orig) %>% 
   # Simplify
-  select(dataset, class, comm_name, species, syndrome, tissue, region, reference, toxicity_long, toxicity_mgkg)
+  select(dataset, class, comm_name, species, syndrome, tissue, region, reference, 
+         toxicity_long, toxicity_mgkg)
 
 # Prep Deeds
 deeds <- deeds_orig %>% 
@@ -67,7 +69,8 @@ lefe <- lefe_orig %>%
   # Rename
   rename(toxicity_mgkg=toxicity_ug_g) %>% 
   # Simplify
-  select(dataset, class, comm_name, species, syndrome, tissue, region, reference, toxicity_mgkg)
+  select(dataset, class, comm_name, species, syndrome, tissue, region, reference, 
+         toxicity_mgkg)
 
 # Prep Jester
 jester <- jester_orig %>%   
@@ -80,14 +83,16 @@ jester <- jester_orig %>%
   # Convert
   mutate(toxicity_mgkg=toxicity_ug100g*0.01) %>% 
   # Simplify
-  select(dataset, class, comm_name, species, syndrome, tissue, region, reference, toxicity_mgkg)
+  select(dataset, class, comm_name, species, syndrome, tissue, region, reference, 
+         toxicity_mgkg)
 
 # Prep Rey
 rey <- rey_orig %>% 
   # Rename
   rename(toxicity_mgkg = toxicity_mg_kg) %>% 
   # Simplify
-  select(dataset, class, comm_name, species, syndrome, tissue, region, reference, toxicity_mgkg)
+  select(dataset, class, comm_name, species, syndrome, tissue, region, reference, 
+         toxicity_mgkg)
 
 # Prep Silva
 silva <- silva_orig %>% 
@@ -98,7 +103,8 @@ silva <- silva_orig %>%
          reference=dataset,
          tissue="whole") %>% 
   # Simplify
-  select(dataset, class, comm_name, species, syndrome, tissue, region, reference, toxicity_mgkg)
+  select(dataset, class, comm_name, species, syndrome, tissue, region, reference, 
+         toxicity_mgkg)
 
 # Prep Bens
 ben <- ben_orig %>% 
@@ -110,7 +116,8 @@ ben <- ben_orig %>%
          syndrome="Paralytic",
          reference=dataset) %>%
   # Simplify
-  select(dataset, class, comm_name, species, syndrome, tissue, region, reference, toxicity_mgkg)
+  select(dataset, class, comm_name, species, syndrome, tissue, region, reference, 
+         toxicity_mgkg)
 
 # Prep Abra
 abra <- abra_orig %>% 
@@ -126,14 +133,32 @@ abra <- abra_orig %>%
   #                       "Fulguropsis spirata"  = "",    
   #                       "Sinistrofulgur sinistrum" = "")) %>%
   # Simplify
-  select(dataset, class, comm_name, species, syndrome, tissue, region, reference, toxicity_mgkg)
+  select(dataset, class, comm_name, species, syndrome, tissue, region, reference, 
+         toxicity_mgkg)
 freeR::check_names(abra$species)
+
+# Prep Shumway
+shumway <- shumway_orig %>% 
+  # Add
+  mutate(dataset="Shumway et al. (1995)",
+         syndrome=recode(toxin,
+                         "Domoic acid"="Amnesic",
+                         "PST"="Paralytic")) %>% 
+  # Fix species (all correct)
+  # mutate(species=recode(species,
+  #                       "Cinctura hunteria" = "",       
+  #                       "Fulguropsis spirata"  = "",    
+  #                       "Sinistrofulgur sinistrum" = "")) %>%
+  # Simplify
+  select(dataset, class, comm_name, species, syndrome, tissue, region, reference, 
+         toxicity_long, toxicity_mgkg, toxicity_mu100g, toxicity_mgkg_conv) 
+
 
 # Merge data
 ################################################################################
 
 # Merge data
-data <- bind_rows(costa, deeds, lefe, jester, rey, silva, ben, abra) %>% 
+data <- bind_rows(costa, deeds, lefe, jester, rey, silva, ben, abra, shumway) %>% 
   # Format ref
   mutate(reference=stringr::str_squish(reference)) %>% 
   # Format tissue
@@ -149,7 +174,9 @@ data <- bind_rows(costa, deeds, lefe, jester, rey, silva, ben, abra) %>%
                         "Nassarius sp."="Nassarius spp.",
                         "Pleuronectes vetulus"="Parophrys vetulus")) %>% 
   # Format some common names
-  mutate(comm_name=case_when(species=="Charonia lampas" ~ "Trumpet shell",
+  mutate(comm_name=case_when(species=="Buccinum undatum" ~ "Common whelk",
+                             species=="Percnon planissimum" ~ "Flat rock crab",
+                             species=="Charonia lampas" ~ "Trumpet shell",
                              species=="Carcinus maenas" ~ "European green crab",
                              species=="Engraulis mordax" ~ "Northern anchovy",
                              species=="Cancer antennarius" ~ "Brown rock crab",
@@ -223,7 +250,6 @@ freeR::which_duplicated(spp_key$comm_name)
 
 # Export
 saveRDS(data, file=file.path(outdir, "toxicity_data.Rds"))
-
 
 
 # Plot data

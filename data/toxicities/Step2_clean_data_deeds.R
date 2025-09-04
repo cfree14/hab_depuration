@@ -62,8 +62,6 @@ mu100g_to_mgkg <- function(value){
   out <- value / 100 * 0.18 
 }
 
-
-
 # Format data
 data <- data_orig %>% 
   # Rename
@@ -157,6 +155,9 @@ data <- data_orig %>%
          toxicity_mu100g=conv2mu100g(toxicity, toxicity_units),
          toxicity_mgkg_conv=mu100g_to_mgkg(toxicity_mu100g)) %>% 
   ungroup() %>% 
+  # Add toxicity to use
+  mutate(toxicity_mgkg_use=ifelse(!is.na(toxicity_mgkg), toxicity_mgkg, toxicity_mgkg_conv),
+         toxicity_mgkg_use_type=ifelse(!is.na(toxicity_mgkg), "Reported", "Converted")) %>% 
   # Add syndrome 
   mutate(syndrome="Paralytic") %>% 
   # Arrange
