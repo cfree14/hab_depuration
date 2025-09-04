@@ -18,15 +18,25 @@ costa_orig <- readRDS(file=file.path(outdir, "costa_etal_2017_max_toxicities_psp
 deeds_orig <- readRDS(file=file.path(outdir, "deeds_etal_2018_max_toxicities_psp.Rds"))
 lefe_orig <- readRDS(file=file.path(outdir, "Lefebvre_Robertson_2010_toxicities.Rds"))
 jester_orig <- readxl::read_excel(file.path(indir, "Jester_etal_2009.xlsx"))
+rey_orig <- readRDS(file=file.path(outdir, "Rey_etal_2025_toxicities.Rds"))
+silva_orig <- readRDS(file=file.path(outdir, "Silva_etal_2018_toxicities.Rds"))
+ben_orig <- readRDS(file=file.path(outdir, "Ben-Figirey_etal_2020_toxicities.Rds"))
+abra_orig <- readxl::read_excel(file.path(indir, "Abraham_etal_2021_Table1.xlsx"))
 
+# FINALIZE CLASSES IN REY
 
 # Prep data
 ################################################################################
 
+# Columns
 colnames(costa_orig)
 colnames(deeds_orig)
 colnames(lefe_orig)
 colnames(jester_orig)
+colnames(rey_orig)
+colnames(silva_orig)
+colnames(ben_orig)
+
 
 # Prep Costa
 costa <- costa_orig %>% 
@@ -69,14 +79,61 @@ jester <- jester_orig %>%
   rename(region=location) %>% 
   # Convert
   mutate(toxicity_mgkg=toxicity_ug100g*0.01) %>% 
-  # Simplify: class, 
+  # Simplify
   select(dataset, class, comm_name, species, syndrome, tissue, region, reference, toxicity_mgkg)
+
+# Prep Rey
+rey <- rey_orig %>% 
+  # Rename
+  rename(toxicity_mgkg = toxicity_mg_kg) %>% 
+  # Simplify
+  select(dataset, class, comm_name, species, syndrome, tissue, region, reference, toxicity_mgkg)
+
+# Prep Silva
+silva <- silva_orig %>% 
+  # Rename
+  rename(toxicity_mgkg = toxicity_mg_kg) %>% 
+  # Add 
+  mutate(dataset="Silva et al. (2018)",
+         reference=dataset,
+         tissue="whole") %>% 
+  # Simplify
+  select(dataset, class, comm_name, species, syndrome, tissue, region, reference, toxicity_mgkg)
+
+# Prep Bens
+ben <- ben_orig %>% 
+  # Rename
+  rename(toxicity_mgkg = toxicity_mg_kg,
+         region=location) %>% 
+  # Add 
+  mutate(dataset="Ben-Figirey et al. (2020)",
+         syndrome="Paralytic",
+         reference=dataset) %>%
+  # Simplify
+  select(dataset, class, comm_name, species, syndrome, tissue, region, reference, toxicity_mgkg)
+
+# Prep Abra
+abra <- abra_orig %>% 
+  # Add
+  mutate(dataset="Abraham et al. (2021)",
+         reference=dataset,
+         syndrome="Neurotoxic",
+         region="Jewfish Key, Sarasota Bay, FL",
+         toxicity_mgkg=elisa_ug_g) %>% 
+  # Fix species (all correct)
+  # mutate(species=recode(species,
+  #                       "Cinctura hunteria" = "",       
+  #                       "Fulguropsis spirata"  = "",    
+  #                       "Sinistrofulgur sinistrum" = "")) %>%
+  # Simplify
+  select(dataset, class, comm_name, species, syndrome, tissue, region, reference, toxicity_mgkg)
+freeR::check_names(abra$species)
 
 # Merge data
 ################################################################################
 
 # Merge data
-data <- bind_rows(costa, deeds, lefe, jester) %>% 
+data <- bind_rows(costa, deeds, lefe, jester, rey, silva, ben, abra) %>% 
   # Format ref
   mutate(reference=stringr::str_squish(reference)) %>% 
   # Format tissue
@@ -89,9 +146,14 @@ data <- bind_rows(costa, deeds, lefe, jester) %>%
                         "Thais lamellosa"="Nucella lamellosa",
                         "Polinices heros"="Euspira heros",
                         "Busycon spp"="Busycon spp.",
-                        "Nassarius sp."="Nassarius spp.")) %>% 
+                        "Nassarius sp."="Nassarius spp.",
+                        "Pleuronectes vetulus"="Parophrys vetulus")) %>% 
   # Format some common names
-  mutate(comm_name=case_when(species=="Atergatis floridus" ~ "Green egg crab",
+  mutate(comm_name=case_when(species=="Charonia lampas" ~ "Trumpet shell",
+                             species=="Carcinus maenas" ~ "European green crab",
+                             species=="Engraulis mordax" ~ "Northern anchovy",
+                             species=="Cancer antennarius" ~ "Brown rock crab",
+                             species=="Atergatis floridus" ~ "Green egg crab",
                              species=="Atergatopsis germaini" ~ "Taiwanese crab",
                              species=="Balanus spp." ~ "Balanus barnacle",
                              species=="Carcinoscorpius rotundicauda" ~ "Mangrove horseshoe crab",
@@ -151,7 +213,6 @@ freeR::complete(data)
 table(data$syndrome)
 table(data$tissue)
 
-
 # Species key
 spp_key <- data %>% 
   count(comm_name, species)
@@ -171,27 +232,17 @@ saveRDS(data, file=file.path(outdir, "toxicity_data.Rds"))
 # Mg/kg = ug/g = ppm
 thresh <- tibble(syndrome=c("Amnesic",
                             "Diarrhetic",
-                            "Paralytic"),
+                            "Paralytic",
+                            "Neurotoxic"),
                  action_level_mg_kg=c(20,
                                       0.16,
+                                      0.8, 
                                       0.8))
 
 # Build stats
 stats <- data %>% 
   # Filter
-  filter(!is.na(toxicity_mgkg_use) & !is.na(tissue)) %>% 
-  # Species tissue label
-  mutate(species_tissue=paste0(comm_name, " (", tissue, ")")) %>% 
-  # Identify maximum
-  arrange(syndrome, species_tissue, desc(toxicity_mgkg_use)) %>% 
-  group_by(syndrome, species_tissue) %>% 
-  slice(1) %>% 
-  ungroup()
-
-# Build stats
-stats <- data %>% 
-  # Filter
-  filter(!is.na(toxicity_mgkg_use)) %>% 
+  filter(!is.na(toxicity_mgkg_use) & class!="Bivalvia") %>% 
   # Identify maximum
   arrange(syndrome, comm_name, desc(toxicity_mgkg_use)) %>% 
   group_by(syndrome, comm_name) %>% 
@@ -257,14 +308,9 @@ g <- ggplot(stats, aes(x=tidytext::reorder_within(comm_name, desc(toxicity_mgkg_
   theme(legend.position=c(0.9, 0.7))
 g
 
-# Export 
+# Export
 ggsave(g, filename=file.path(plotdir, "FigS8_toxicities_for_non_bivalves.png"), 
        width=6.5, height=4.5, units="in", dpi=600)
-
-
-
-
-
 
 
 
