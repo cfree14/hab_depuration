@@ -212,7 +212,7 @@ stats_model <- data %>%
   mutate(ncomp=recode(ncomp,
                       "no model, one"="One",
                       "two"="Two",
-                      "one vs. two"="One vs. two",
+                      "one vs. two"="      One vs. two", # pad for plotting
                       "one"="One",
                       "no model"="None")) %>% 
   # Count
