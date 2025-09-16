@@ -17,7 +17,6 @@ plotdir <- "figures"
 data_orig <- readxl::read_excel(file.path(indir, "Dean_etal_2020_AppendixA.xlsx"), na="nt")
 
 
-
 # Format data
 ################################################################################
 
@@ -38,6 +37,8 @@ data <- data_orig %>%
   rowwise() %>% 
   mutate(pst_ugkg=pmax(pst_ugkg_fld, pst_ugkg_ms, na.rm=T)) %>% 
   ungroup() %>% 
+  # Convert
+  mutate(pst_mgkg=pst_ugkg/1000) %>% 
   # Format sample id
   mutate(sample_id=sub(".*?CEND", "CEND", sample_id, perl = TRUE),
          sample_id=gsub("CEND ", "CEND", sample_id)) %>% 
@@ -57,14 +58,11 @@ taxa <- freeR::taxa(data$species)
 # Add taxa
 data_out <- data %>% 
   # Add class
-  left_join(taxa %>% select(sciname, class), by=c("species"="sciname")) %>% 
-  # Add syndrome
-  mutate(syndrome="Paralytic")
-
+  left_join(taxa %>% select(sciname, class), by=c("species"="sciname")) 
 
 # Export data
 ################################################################################
 
 # Export
-saveRDS(data, file=file.path(outdir, "Dean_etal_2020_toxicities.Rds"))
+saveRDS(data_out, file=file.path(outdir, "Dean_etal_2020_toxicities.Rds"))
 

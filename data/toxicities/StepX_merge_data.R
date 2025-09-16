@@ -23,8 +23,10 @@ silva_orig <- readRDS(file=file.path(outdir, "Silva_etal_2018_toxicities.Rds"))
 ben_orig <- readRDS(file=file.path(outdir, "Ben-Figirey_etal_2020_toxicities.Rds"))
 abra_orig <- readxl::read_excel(file.path(indir, "Abraham_etal_2021_Table1.xlsx"))
 shumway_orig <- readRDS(file=file.path(outdir, "Shumway_etal_1995_toxicities.Rds"))
+dean_orig <- readRDS(file=file.path(outdir, "Dean_etal_2020_toxicities.Rds"))
 
 # FINALIZE CLASSES IN REY
+# FINISH DEAN CLASSES
 
 # Prep data
 ################################################################################
@@ -38,6 +40,7 @@ colnames(rey_orig)
 colnames(silva_orig)
 colnames(ben_orig)
 colnames(shumway_orig)
+colnames(dean_orig)
 
 # Prep Costa
 costa <- costa_orig %>% 
@@ -153,12 +156,25 @@ shumway <- shumway_orig %>%
   select(dataset, class, comm_name, species, syndrome, tissue, region, reference, 
          toxicity_long, toxicity_mgkg, toxicity_mu100g, toxicity_mgkg_conv) 
 
+# Prep Dean
+dean <- dean_orig %>% 
+  # Rename
+  rename(toxicity_mgkg=pst_mgkg) %>% 
+  # Add
+  mutate(dataset="Dean et al. (2020)",
+         reference="Dean et al. (2020)",
+         syndrome="Paralytic",
+         region="Offshore North Sea") %>% 
+  # Simplify
+  select(dataset, class, comm_name, species, syndrome, tissue, region, reference, 
+         toxicity_mgkg) 
+
 
 # Merge data
 ################################################################################
 
 # Merge data
-data <- bind_rows(costa, deeds, lefe, jester, rey, silva, ben, abra, shumway) %>% 
+data <- bind_rows(costa, deeds, lefe, jester, rey, silva, ben, abra, shumway, dean) %>% 
   # Format ref
   mutate(reference=stringr::str_squish(reference)) %>% 
   # Format tissue
@@ -174,7 +190,12 @@ data <- bind_rows(costa, deeds, lefe, jester, rey, silva, ben, abra, shumway) %>
                         "Nassarius sp."="Nassarius spp.",
                         "Pleuronectes vetulus"="Parophrys vetulus")) %>% 
   # Format some common names
-  mutate(comm_name=case_when(species=="Buccinum undatum" ~ "Common whelk",
+  mutate(comm_name=case_when(species=="Liocarcinus holsatus & Liocarcinus depurator" ~ "Flying crab and sandy swimming crab",
+                             species=="Henricia sp." ~ "Henricia star sp.",
+                             species=="Porania pulvillus" ~ "Red cushion star", 
+                             species=="Hippasteria phrygiana" ~ "Trojan star",
+                             species=="Pagurus sp." ~ "Pagurus hermit crab sp.", 
+                             species=="Buccinum undatum" ~ "Common whelk",
                              species=="Percnon planissimum" ~ "Flat rock crab",
                              species=="Charonia lampas" ~ "Trumpet shell",
                              species=="Carcinus maenas" ~ "European green crab",
