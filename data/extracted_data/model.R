@@ -4,7 +4,7 @@ library(minpack.lm)  # for robust nls fitting
 library(broom)
 
 # Read data
-data <- read_csv("/Users/cfree/Dropbox/Chris/UCSB/projects/hab_depuration/data/lit_review/extracted_data/raw/Kim_etal_2018_Fig1.csv")
+data <- readxl::read_excel("/Users/cfree/Dropbox/Chris/UCSB/projects/hab_depuration/data/extracted_data/raw/Kim_etal_2018_Fig1.xlsx")
 
 # Filter to depuration phase
 depuration <- data %>%
