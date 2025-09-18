@@ -10,6 +10,7 @@ library(tidyverse)
 
 # Directories
 indir <- "data/extracted_data/raw/timeseries"
+outdir <- "data/extracted_data/processed"
 plotdir <- "data/extracted_data/raw/images"
 
 # Source helper functions
@@ -83,12 +84,14 @@ results <- purrr::map_df(files2eval, function(x){
 results1 <- results %>% 
   # Add reference and figure
   mutate(reference=gsub(".xlsx", "", file) %>% gsub("_etal_", " et al. ", .)) %>% 
+  # Fill in blank treatments
+  mutate(treatment=ifelse(treatment=="", reference, treatment)) %>% 
   # Arrange
   select(file, reference, everything())
   
 
 # Export
-
+xlsx::write.xlsx(x=results1, file=file.path(outdir, "fitted_model_results.xlsx"))
 
 
 

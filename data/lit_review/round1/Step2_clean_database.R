@@ -19,8 +19,18 @@ data_orig <- readxl::read_excel(file.path(indir, "20250618_depuration_biotoxin_m
 # Read taxa key for those not in SeaLifeBase
 taxa_key_missing <- readxl::read_excel(file.path(indir, "taxa_key_for_species_not_in_sealifebase.xlsx"))
 
+# Read derived rates
+rates_orig <- readxl::read_excel("data/extracted_data/processed/fitted_model_results.xlsx")
+
 # Things to do
 # 4. Add sub-biotoxin?
+# Make sure rates are entered with negative or positive correct
+
+# Rate things
+# 1. Link derived rates
+# 2. Add id for all papers with derived (some have no id)
+# 3. Add rows to database for papers you've extracted data for but don't have rows
+# 4. Extract missing data
 
 
 # Build species key
@@ -71,26 +81,20 @@ spp_key1 <- spp_key %>%
   rename(invert_yn=type)
 
 
-# Format data
+# Formatting steps
+# 1) Basic formatting
+# 2) Add derived rates
+# 3) Expand rate derivation
+
+# 1) Basic formatting
 ################################################################################
 
-# Add taxa info
-data <- data_orig %>% 
+# Format data
+data1 <- data_orig %>% 
   # Rename
   rename(sci_name_orig=sci_name) %>% 
   # Add taxa info
   left_join(spp_key1 %>% select(-comm_name) %>% unique(), by="sci_name_orig") %>% 
-  # Format daily rate
-  mutate(rate_d=abs(rate_d), 
-         hlife_d=ifelse(is.na(hlife_d), log(2)/rate_d, hlife_d),
-         rate_d=ifelse(is.na(rate_d), log(2)/hlife_d, rate_d)) %>% 
-  # Format hourly rate
-  mutate(rate_hr=abs(rate_hr), 
-         hlife_hr=ifelse(is.na(hlife_hr), log(2)/rate_hr, hlife_hr),
-         rate_hr=ifelse(is.na(rate_hr), log(2)/hlife_hr, rate_hr)) %>% 
-  # Fill daily rate
-  mutate(rate_d=ifelse(is.na(rate_d), rate_hr*24, rate_d),
-         hlife_d=ifelse(is.na(hlife_d), hlife_hr/24, hlife_d)) %>%
   # Format tissue
   # Digestive tract includes the hepatopancreas/digestive gland
   rename(tissue_orig=tissue) %>% 
@@ -103,51 +107,44 @@ data <- data_orig %>%
                             T ~ tissue_orig)) %>% 
   # Order
   select(-include_YN) %>% 
-  select(id, article_title, 
+  select(id, paper_id, article_title, 
          comm_name, sci_name_orig, sci_name, genus, family, order, class, invert_yn,
-         syndrome, hab_species, biotoxin,
+         syndrome, hab_species, biotoxin, subtoxin,
          study_type, exp_type, treatment, feed_scenario,
-         tissue, tissue_orig,
+         tissue_orig, tissue, 
+         rate_type, source, datafile, datafile_id, 
+         ncomp, rate_hr, hlife_hr, rate_d, hlife_d, notes,
          everything())
 
 # Inspect
-freeR::complete(data)
-str(data)
+freeR::complete(data1) # HAB species can be missing; ultimately rates will get filled
+str(data1)
 
 # HAB things
-table(data$syndrome)
-table(data$hab_species)
-table(data$biotoxin)
+table(data1$syndrome)
+table(data1$hab_species)
+table(data1$biotoxin)
+table(data1$subtoxin)
 
 # Study type
-table(data$study_type)
+table(data1$study_type)
 
 # Experiment type
-table(data$exp_type)
-table(data$treatment)
+table(data1$exp_type)
+table(data1$treatment)
 
 # Feeding
-table(data$feed_scenario)
+table(data1$feed_scenario)
 
 # Rate type
-table(data$rate_type)
-
-# Check rates
-ggplot(data, aes(x=hlife_hr, y=rate_hr)) +
-  geom_point() +
-  theme_bw()
-
-# Check rates
-ggplot(data, aes(x=hlife_d, y=rate_d)) +
-  geom_point() +
-  theme_bw()
+table(data1$rate_type)
 
 
-# Tissue key
+# Inspect tissues
 ################################################################################
 
 # Tissue stats
-tissues <- data %>% 
+tissues <- data1 %>% 
   group_by(class, tissue) %>% 
   summarize(n=n_distinct(id))
 
@@ -162,11 +159,70 @@ ggplot(tissues, aes(x=n, y=reorder(tissue, n))) +
   theme(strip.text.y = element_text(angle = 0))
 
 
+# 2) Add derived rates
+################################################################################
+
+# Format derived rates
+rates <- rates_orig %>% 
+  select(file, treatment, k) %>% 
+  rename(datafile=file, 
+         datafile_id=treatment,
+         rate_d_derived=k)
+
+# Add to data
+data2 <- data1 %>% 
+  # Add to data
+  left_join(rates, by=c("datafile", "datafile_id")) %>% 
+  # Use derived data when data is not reported
+  mutate(rate_d=ifelse(is.na(rate_d), rate_d_derived, rate_d))
+
+
+# 3) Compute more rates
+################################################################################
+
+# Compute more rates
+data3 <- data2 %>% 
+  # Format daily rate
+  mutate(rate_d=rate_d, 
+         hlife_d=ifelse(is.na(hlife_d), log(2)/abs(rate_d), hlife_d),
+         rate_d=ifelse(is.na(rate_d), log(2)/hlife_d*-1, rate_d)) %>% 
+  # Format hourly rate
+  mutate(rate_hr=rate_hr, 
+         hlife_hr=ifelse(is.na(hlife_hr), log(2)/abs(rate_hr), hlife_hr),
+         rate_hr=ifelse(is.na(rate_hr), log(2)/hlife_hr*-1, rate_hr)) %>% 
+  # Fill daily rate
+  mutate(rate_d=ifelse(is.na(rate_d), rate_hr*24, rate_d),
+         hlife_d=ifelse(is.na(hlife_d), hlife_hr/24, hlife_d)) %>% 
+  # Fill hour rate
+  mutate(rate_hr=ifelse(is.na(rate_hr), rate_d/24, rate_hr),
+         hlife_hr=ifelse(is.na(hlife_hr), hlife_d*24, hlife_hr))
+
+# Inspect
+# Should have the same number of missing rates/half-lives
+freeR::complete(data3)
+
+# Check rates
+ggplot(data3, aes(x=hlife_hr, y=abs(rate_hr))) +
+  geom_point() +
+  scale_x_continuous(trans="log10") +
+  scale_y_continuous(trans="log10") +
+  theme_bw()
+
+# Check rates
+ggplot(data3, aes(x=hlife_d, y=abs(rate_d))) +
+  geom_point() +
+  scale_x_continuous(trans="log10") +
+  scale_y_continuous(trans="log10") +
+  theme_bw()
+
+# Looks like there is a rate that is wrong!
+
+
 # Export
 ################################################################################
 
 # Save
-saveRDS(data, file=file.path(outdir, "database.Rds"))
+saveRDS(data3, file=file.path(outdir, "database.Rds"))
 
 
 
