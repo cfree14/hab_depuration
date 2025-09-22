@@ -2,6 +2,9 @@
 # Clear workspace
 rm(list = ls())
 
+# Turn off scientific notation
+options(scipen=999)
+
 # Setup
 ################################################################################
 
@@ -23,8 +26,11 @@ taxa_key_missing <- readxl::read_excel(file.path(indir, "taxa_key_for_species_no
 rates_orig <- readxl::read_excel("data/extracted_data/processed/fitted_model_results.xlsx")
 
 # Things to do
-# 4. Add sub-biotoxin?
-# Make sure rates are entered with negative or positive correct
+# 1. Format toxin/subtoxin
+# 2. Check derived vs. digitized
+# 3. Confirm positive vs. negative k values (mark true positives)
+# X. Confirm that all derived k's have been added
+# X. Confirm agreemene between k and half-life
 
 # Rate things
 # 1. Link derived rates
@@ -195,21 +201,25 @@ data3 <- data2 %>%
          hlife_d=ifelse(is.na(hlife_d), hlife_hr/24, hlife_d)) %>% 
   # Fill hour rate
   mutate(rate_hr=ifelse(is.na(rate_hr), rate_d/24, rate_hr),
-         hlife_hr=ifelse(is.na(hlife_hr), hlife_d*24, hlife_hr))
+         hlife_hr=ifelse(is.na(hlife_hr), hlife_d*24, hlife_hr)) %>% 
+  # Check half life
+  mutate(hlife_d_check=log(2)/abs(rate_d),
+         hlife_d_pdiff=abs(hlife_d-hlife_d_check)/hlife_d_check,
+         hlife_d_prob=abs(hlife_d_pdiff)>0.01)
 
 # Inspect
 # Should have the same number of missing rates/half-lives
 freeR::complete(data3)
 
 # Check rates
-ggplot(data3, aes(x=hlife_hr, y=abs(rate_hr))) +
+ggplot(data3, aes(x=hlife_hr, y=abs(rate_hr), color=hlife_d_prob)) +
   geom_point() +
   scale_x_continuous(trans="log10") +
   scale_y_continuous(trans="log10") +
   theme_bw()
 
 # Check rates
-ggplot(data3, aes(x=hlife_d, y=abs(rate_d))) +
+ggplot(data3, aes(x=hlife_d, y=abs(rate_d), color=hlife_d_prob)) +
   geom_point() +
   scale_x_continuous(trans="log10") +
   scale_y_continuous(trans="log10") +
