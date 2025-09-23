@@ -30,6 +30,8 @@ rates_orig <- readxl::read_excel("data/extracted_data/processed/fitted_model_res
 # 2. Check derived vs. digitized
 # 3. Confirm positive vs. negative k values (mark true positives)
 # X. Confirm that all derived k's have been added
+
+# DONE
 # X. Confirm agreemene between k and half-life
 
 # Rate things
@@ -169,16 +171,22 @@ ggplot(tissues, aes(x=n, y=reorder(tissue, n))) +
 ################################################################################
 
 # Format derived rates
-rates <- rates_orig %>% 
+rates <- rates_orig %>%
+  # Simplify
   select(file, treatment, k) %>% 
+  # Rename
   rename(datafile=file, 
          datafile_id=treatment,
-         rate_d_derived=k)
+         rate_d_derived=k) %>% 
+  # Confirm that this rate is in database
+  # If id is NA, then the dep rate is missing from the database and present in extracted data
+  left_join(data1 %>% select(id, datafile, datafile_id), by=c("datafile", "datafile_id"))
+freeR::complete(rates)
 
 # Add to data
 data2 <- data1 %>% 
   # Add to data
-  left_join(rates, by=c("datafile", "datafile_id")) %>% 
+  left_join(rates %>% select(-id), by=c("datafile", "datafile_id")) %>% 
   # Use derived data when data is not reported
   mutate(rate_d=ifelse(is.na(rate_d), rate_d_derived, rate_d))
 
@@ -212,7 +220,7 @@ data3 <- data2 %>%
 freeR::complete(data3)
 
 # Check rates
-ggplot(data3, aes(x=hlife_hr, y=abs(rate_hr), color=hlife_d_prob)) +
+ggplot(data3 %>% filter(rate_hr<0), aes(x=hlife_hr, y=abs(rate_hr), color=hlife_d_prob)) +
   geom_point() +
   scale_x_continuous(trans="log10") +
   scale_y_continuous(trans="log10") +
@@ -225,14 +233,16 @@ ggplot(data3, aes(x=hlife_d, y=abs(rate_d), color=hlife_d_prob)) +
   scale_y_continuous(trans="log10") +
   theme_bw()
 
-# Looks like there is a rate that is wrong!
+# Remove useless
+data_out <- data3 %>% 
+  select(-hlife_d_check, hlife_d_pdiff, hlife_d_prob)
 
 
 # Export
 ################################################################################
 
 # Save
-saveRDS(data3, file=file.path(outdir, "database.Rds"))
+saveRDS(data_out, file=file.path(outdir, "database.Rds"))
 
 
 

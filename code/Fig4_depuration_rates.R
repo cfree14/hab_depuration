@@ -17,7 +17,6 @@ plotdir <- "figures"
 data_orig <- readRDS(file.path(outdir, "database.Rds")) 
   
 
-
 # Build data
 ################################################################################
 
@@ -34,9 +33,10 @@ data <- data_orig %>%
                       "Malacostraca"="Crustaceans",
                       "Maxillopoda"="Zooplankton")) %>% 
   # Filter
-  filter(!is.na(hlife_d)) %>% 
+  # remove one crazy outlier that should really be an increase
+  filter(!is.na(hlife_d) & rate_d<0 & rate_d < -0.00001) %>% 
   # Add percent daily loss
-  mutate(perc_loss_d=(1-exp(-rate_d)))
+  mutate(perc_loss_d=(1-exp(rate_d)))
 
 # Stats
 stats <- data %>% 
@@ -67,7 +67,7 @@ my_theme <-  theme(axis.text=element_text(size=7),
 
 
 # Decay rate
-g1 <- ggplot(data, aes(x=rate_d, y=factor(genus, stats$genus))) +
+g1 <- ggplot(data, aes(x=abs(rate_d), y=factor(genus, stats$genus))) +
   geom_boxplot() + 
   # Labels
   labs(x=expression("Decay constant, k ("*day^{-1}*")"), 
