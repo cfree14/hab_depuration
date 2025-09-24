@@ -115,76 +115,76 @@ ggsave(g, filename=file.path(plotdir, "Fig4_depuration_rates.png"),
 
 
 
-# Plot data
-################################################################################
-
-# Setup theme
-my_theme <-  theme(axis.text=element_text(size=7),
-                   axis.title=element_text(size=8),
-                   axis.title.y=element_text(),
-                   legend.text=element_text(size=7),
-                   legend.title=element_text(size=8),
-                   plot.tag=element_text(size=9),
-                   # Gridlines
-                   panel.grid.major.x = element_blank(), 
-                   panel.grid.minor.x = element_blank(),
-                   panel.background = element_blank(), 
-                   axis.line = element_line(colour = "black"),
-                   # Legend
-                   legend.key = element_rect(fill = NA, color=NA),
-                   legend.background = element_rect(fill=alpha('blue', 0)))
-
-
-# Decay rate
-g1 <- ggplot(data, aes(x=rate_d, y=factor(genus, stats$genus))) +
-  geom_boxplot() + 
-  geom_point(mapping=aes(fill=syndrome), pch=21) +
-  # Labels
-  labs(x=expression("Decay constant, k ("*day^{-1}*")"), 
-       y="Genus", tag="A") +
-  scale_x_continuous(trans="log10", 
-                     breaks=c(0.001, 0.01, 0.1, 1, 10, 100),
-                     labels=c("0.001", "0.01", "0.1", "1", "10", "100")) +
-  # Theme
-  theme_bw() + my_theme +
-  theme(legend.position="none")
-g1
-
-# Loss per day
-g2 <- ggplot(data, aes(x=perc_loss_d, y=factor(genus, stats$genus))) +
-  geom_boxplot() + 
-  geom_point(mapping=aes(fill=syndrome), pch=21) +
-  # Labels
-  labs(x="Daily loss (%)", y="Genus", tag="B") +
-  scale_x_continuous(labels=scales::percent_format()) +
-  # Theme
-  theme_bw() + my_theme +
-  theme(legend.position="none",
-        axis.text.y=element_blank(),
-        axis.title.y=element_blank())
-g2
-
-# Half life
-g3 <- ggplot(data, aes(x=hlife_d, y=factor(genus, stats$genus))) +
-  geom_boxplot() + 
-  geom_point(mapping=aes(fill=syndrome), pch=21) +
-  # Labels
-  labs(x="Half life (day)", y="Genus", tag="C") +
-  scale_x_continuous(trans="log10", 
-                     breaks=c(0.1,1,10,100),
-                     labels=c("0.1", "1" , "10" , "100")) +
-  # Legend
-  scale_fill_discrete(name="Syndrome") +
-  # Theme
-  theme_bw() + my_theme +
-  theme(axis.text.y=element_blank(),
-        axis.title.y=element_blank())
-g3
-
-# Merge
-g <- gridExtra::grid.arrange(g1, g2, g3, nrow=1, widths=c(0.35, 0.25, 0.4))
-
-# Export
-ggsave(g, filename=file.path(plotdir, "Fig4_depuration_rates_points.png"), 
-       width=6.5, height=4.0, units="in", dpi=600)
-
+# # Plot data
+# ################################################################################
+# 
+# # Setup theme
+# my_theme <-  theme(axis.text=element_text(size=7),
+#                    axis.title=element_text(size=8),
+#                    axis.title.y=element_text(),
+#                    legend.text=element_text(size=7),
+#                    legend.title=element_text(size=8),
+#                    plot.tag=element_text(size=9),
+#                    # Gridlines
+#                    panel.grid.major.x = element_blank(), 
+#                    panel.grid.minor.x = element_blank(),
+#                    panel.background = element_blank(), 
+#                    axis.line = element_line(colour = "black"),
+#                    # Legend
+#                    legend.key = element_rect(fill = NA, color=NA),
+#                    legend.background = element_rect(fill=alpha('blue', 0)))
+# 
+# 
+# # Decay rate
+# g1 <- ggplot(data, aes(x=rate_d, y=factor(genus, stats$genus))) +
+#   geom_boxplot() + 
+#   geom_point(mapping=aes(fill=syndrome), pch=21) +
+#   # Labels
+#   labs(x=expression("Decay constant, k ("*day^{-1}*")"), 
+#        y="Genus", tag="A") +
+#   scale_x_continuous(trans="log10", 
+#                      breaks=c(0.001, 0.01, 0.1, 1, 10, 100),
+#                      labels=c("0.001", "0.01", "0.1", "1", "10", "100")) +
+#   # Theme
+#   theme_bw() + my_theme +
+#   theme(legend.position="none")
+# g1
+# 
+# # Loss per day
+# g2 <- ggplot(data, aes(x=perc_loss_d, y=factor(genus, stats$genus))) +
+#   geom_boxplot() + 
+#   geom_point(mapping=aes(fill=syndrome), pch=21) +
+#   # Labels
+#   labs(x="Daily loss (%)", y="Genus", tag="B") +
+#   scale_x_continuous(labels=scales::percent_format()) +
+#   # Theme
+#   theme_bw() + my_theme +
+#   theme(legend.position="none",
+#         axis.text.y=element_blank(),
+#         axis.title.y=element_blank())
+# g2
+# 
+# # Half life
+# g3 <- ggplot(data, aes(x=hlife_d, y=factor(genus, stats$genus))) +
+#   geom_boxplot() + 
+#   geom_point(mapping=aes(fill=syndrome), pch=21) +
+#   # Labels
+#   labs(x="Half life (day)", y="Genus", tag="C") +
+#   scale_x_continuous(trans="log10", 
+#                      breaks=c(0.1,1,10,100),
+#                      labels=c("0.1", "1" , "10" , "100")) +
+#   # Legend
+#   scale_fill_discrete(name="Syndrome") +
+#   # Theme
+#   theme_bw() + my_theme +
+#   theme(axis.text.y=element_blank(),
+#         axis.title.y=element_blank())
+# g3
+# 
+# # Merge
+# g <- gridExtra::grid.arrange(g1, g2, g3, nrow=1, widths=c(0.35, 0.25, 0.4))
+# 
+# # Export
+# ggsave(g, filename=file.path(plotdir, "Fig4_depuration_rates_points.png"), 
+#        width=6.5, height=4.0, units="in", dpi=600)
+# 
