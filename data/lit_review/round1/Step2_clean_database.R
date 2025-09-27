@@ -26,19 +26,15 @@ taxa_key_missing <- readxl::read_excel(file.path(indir, "taxa_key_for_species_no
 rates_orig <- readxl::read_excel("data/extracted_data/processed/fitted_model_results.xlsx")
 
 # Things to do
-# 1. Format toxin/subtoxin
+# 1. Format toxin/subtoxin - progress
 # 2. Check derived vs. digitized
-# 3. Confirm positive vs. negative k values (mark true positives)
-# X. Confirm that all derived k's have been added
+# 3. Confirm positive vs. negative k values (mark true positives) - progress
+# X. Confirm that all derived k's have been added - progress
 
 # DONE
-# X. Confirm agreemene between k and half-life
+# X. Confirm agreement between k and half-life
 
-# Rate things
-# 1. Link derived rates
-# 2. Add id for all papers with derived (some have no id)
-# 3. Add rows to database for papers you've extracted data for but don't have rows
-# 4. Extract missing data
+
 
 
 # Build species key
@@ -147,6 +143,18 @@ table(data1$feed_scenario)
 # Rate type
 table(data1$rate_type)
 
+# Check syndrome and toxin
+toxin_key <- data1 %>% 
+  count(syndrome, biotoxin)
+
+# Check if totals are present 
+check_tot <- data1 %>% 
+  group_by(paper_id) %>% 
+  summarize(subtoxins=paste(sort(unique(subtoxin)), collapse=", ")) %>% 
+  ungroup() %>% 
+  mutate(type=case_when(grepl("Total", subtoxins) ~ "Total present",
+                        T ~ "Other"))
+
 
 # Inspect tissues
 ################################################################################
@@ -157,11 +165,30 @@ tissues <- data1 %>%
   summarize(n=n_distinct(id))
 
 # Plot tissue stats
-ggplot(tissues, aes(x=n, y=reorder(tissue, n))) +
+ggplot(tissues, aes(x=n, 
+                    y=tidytext::reorder_within(tissue, desc(n), class))) +
   facet_grid(class~., space="free_y", scales="free_y") +
   geom_bar(stat="identity") +
   # Labels
   labs(x="Number of papers", y="") +
+  tidytext::scale_y_reordered() +
+  # Theme
+  theme_bw() +
+  theme(strip.text.y = element_text(angle = 0))
+
+# Tissue stats
+tissues_spp <- data1 %>% 
+  group_by(class, tissue) %>% 
+  summarize(n=n_distinct(sci_name))
+
+# Plot tissue stats
+ggplot(tissues_spp, aes(x=n, 
+                    y=tidytext::reorder_within(tissue, desc(n), class))) +
+  facet_grid(class~., space="free_y", scales="free_y") +
+  geom_bar(stat="identity") +
+  # Labels
+  labs(x="Number of species", y="") +
+  tidytext::scale_y_reordered() +
   # Theme
   theme_bw() +
   theme(strip.text.y = element_text(angle = 0))
@@ -213,7 +240,10 @@ data3 <- data2 %>%
   # Check half life
   mutate(hlife_d_check=log(2)/abs(rate_d),
          hlife_d_pdiff=abs(hlife_d-hlife_d_check)/hlife_d_check,
-         hlife_d_prob=abs(hlife_d_pdiff)>0.01)
+         hlife_d_prob=abs(hlife_d_pdiff)>0.01) %>% 
+  # Mark useable rates
+  mutate(rate_use=ifelse(subtoxin=="Total" & study_type=="lab" , "yes", "no")) %>% 
+  relocate(rate_use, .after=ncomp)
 
 # Inspect
 # Should have the same number of missing rates/half-lives
@@ -235,7 +265,10 @@ ggplot(data3, aes(x=hlife_d, y=abs(rate_d), color=hlife_d_prob)) +
 
 # Remove useless
 data_out <- data3 %>% 
-  select(-hlife_d_check, hlife_d_pdiff, hlife_d_prob)
+  select(-c(hlife_d_check, hlife_d_pdiff, hlife_d_prob, rate_d_derived))
+
+# Ultimately, everything but notes should be full, except maybe somre rare cases
+freeR::complete(data_out)
 
 
 # Export
