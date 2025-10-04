@@ -23,7 +23,9 @@ data_orig <- readRDS(file.path(outdir, "database.Rds"))
 # Build data
 data <- data_orig %>% 
   # Reduce to obs with rates
-  filter(!is.na(rate_d)) %>% 
+  filter(!is.na(rate_d) & rate_d<0) %>% 
+  # Abs rate
+  mutate(rate_d=abs(rate_d)) %>% 
   # Summarize
   group_by(syndrome, comm_name, sci_name, study_type, tissue) %>% 
   summarize(n=n(),
@@ -68,7 +70,7 @@ g <- ggplot(data, aes(y=label, x=rate_d, shape=study_type, color=study_type, gro
   geom_point(size=2) + 
   # Labels
   labs(x="Depuration rate (day-1)", y="") +
-  scale_x_continuous(trans="log10", breaks=c(0.01, 0.05, 0.1, 0.5, 1, 5, 10)) +
+  scale_x_continuous(trans="log10", breaks=c(0.001, 0.01, 0.1, 1, 10)) +
   # Legend
   scale_color_discrete(name="") +
   scale_shape_discrete(name="") +
