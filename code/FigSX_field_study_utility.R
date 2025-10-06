@@ -143,4 +143,5 @@ g
 # Export plot
 ggsave(g, filename=file.path(plotdir, "FigSX_field_study_utility.png"), 
        width=6.5, height=4.5, units="in", dpi=600)
-
+# ggsave(g, filename=file.path(plotdir, "FigSX_field_study_utility_no_fits.png"), 
+#        width=6.5, height=4.5, units="in", dpi=600)

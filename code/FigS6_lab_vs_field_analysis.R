@@ -80,4 +80,4 @@ g
 
 # Export
 ggsave(g, filename=file.path(plotdir, "FigS6_lab_vs_field_analysis.png"), 
-       width=6.5, height=2.5, units="in", dpi=600)
+       width=6.5, height=4.5, units="in", dpi=600)

@@ -189,4 +189,33 @@ g <- gridExtra::grid.arrange(g1, g2, nrow=1, widths=c(0.4, 0.6))
 # Export
 ggsave(g, filename=file.path(plotdir, "Fig1_dep_traj_example.png"), 
        width=6.5, height=3, units="in", dpi=600)
- 
+
+
+
+# Uptake and depuration schematic
+################################################################################
+
+# Plot
+g <- ggplot(data2, aes(x=day, y=toxicity)) +
+  # Phase line
+  geom_vline(xintercept=40, color="grey40", linetype="dotted") +
+  annotate(geom="text", x=0, y=115, label="Accumulation\nphase", 
+           color="grey40", hjust=0, vjust=0.5, size=2.4) +
+  annotate(geom="text", x=50, y=115, label="Depuration\nphase", 
+           color="grey40", hjust=0, vjust=0.5, size=2.4) +
+  # Reference line
+  geom_hline(yintercept=30, linetype="dashed", color="grey40") +
+  annotate(geom="text", x=160, y=30, label="Action threshold", 
+           color="grey40", hjust=1, vjust=-1, size=2.4) +
+  # Data
+  geom_line() +
+  # Labels
+  labs(x="Day of testing", y="Toxicity (ppm)") +
+  # Theme
+  theme_bw() + my_theme
+g
+
+
+# Export
+ggsave(g, filename=file.path(plotdir, "FigSX_dep_traj_simple.png"), 
+       width=4.5, height=3, units="in", dpi=600)
