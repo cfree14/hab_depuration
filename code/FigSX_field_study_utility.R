@@ -89,16 +89,30 @@ fits <- purrr::map_df(event_key$event_id, function(x){
   
 })
 
+# Compute stats for label positions
+k_lab_ypos <- data_fit %>% 
+  group_by(species) %>% 
+  summarize(toxicity=max(toxicity)*0.95) %>% 
+  ungroup()
+
+k_lab_xpos <- data_fit %>% 
+  group_by(event) %>% 
+  summarize(date_min=min(date),
+            date_max=max(date)) %>% 
+  ungroup() %>% 
+  mutate(date=date_min + (date_max - date_min) / 2)
+
 # K labels
 k_labs <- fits %>% 
-  group_by(species, event, event_id, k) %>% 
-  summarize(date=mean(date),
-            toxicity=max(toxicity)) %>% 
-  ungroup() %>% 
+  # Simplify
+  select(species, event, event_id, k) %>% 
+  unique() %>% 
+  # Add label
   mutate(k_label=paste0("k=", round(k, 3))) %>% 
-  group_by(species) %>% 
-  mutate(toxicity=max(toxicity)) %>% 
-  ungroup()
+  # Add yposition
+  left_join(k_lab_ypos, by="species") %>% 
+  # Add xposition
+  left_join(k_lab_xpos, by="event")
   
 
 
@@ -135,13 +149,15 @@ g <- ggplot(data, aes(x=date, y=toxicity)) + # color=phase
   geom_text(data=k_labs, aes(x=date, y=toxicity, label=k_label), hjust=0.5, size=2.2) +
   # Labels
   labs(x="Date", y="Toxicity (mg STX eq./kg)") +
+  # Axis
+  scale_x_date(date_breaks = "3 months", date_labels = "%b\n%Y", expand = c(0.01, 0.01)) +
   # Theme
   theme_bw() + my_theme +
   theme(legend.position = "none")
-g  
+g
 
 # Export plot
-ggsave(g, filename=file.path(plotdir, "FigSX_field_study_utility.png"), 
+ggsave(g, filename=file.path(plotdir, "FigSX_field_study_utility.png"),
        width=6.5, height=4.5, units="in", dpi=600)
-# ggsave(g, filename=file.path(plotdir, "FigSX_field_study_utility_no_fits.png"), 
+# ggsave(g, filename=file.path(plotdir, "FigSX_field_study_utility_no_fits.png"),
 #        width=6.5, height=4.5, units="in", dpi=600)

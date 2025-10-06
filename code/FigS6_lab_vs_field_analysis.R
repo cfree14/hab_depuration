@@ -69,7 +69,8 @@ g <- ggplot(data, aes(y=label, x=rate_d, shape=study_type, color=study_type, gro
   geom_line(color="grey30") + 
   geom_point(size=2) + 
   # Labels
-  labs(x="Depuration rate (day-1)", y="") +
+  labs(x=expression("Decay constant, k (day"^-1*")"), #"Depuration rate (day-1)", 
+       y="") +
   scale_x_continuous(trans="log10", breaks=c(0.001, 0.01, 0.1, 1, 10)) +
   # Legend
   scale_color_discrete(name="") +
