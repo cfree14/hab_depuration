@@ -9,12 +9,11 @@ rm(list = ls())
 library(tidyverse)
 
 # Directories
-indir <- "data/lit_review/round1/raw"
-outdir <- "data/lit_review/round1/processed"
+datadir <- "data/lit_review/processed/"
 plotdir <- "figures"
 
 # Read data
-data <- read.csv(file=file.path(outdir, "2025_06_18_WOS_search.csv"), as.is=T)
+data <- readRDS(file=file.path(datadir, "database_paper_metadata.Rds"))
 
 # Get world
 world_orig <- rnaturalearth::ne_countries(scale="small", returnclass = "sf")
@@ -32,13 +31,21 @@ ystats <- data %>%
 
 # Journal stats
 jstats <- data %>% 
-  count(source) %>% 
+  # Count journals
+  count(journal) %>% 
   arrange(desc(n)) %>% 
   filter(n>1) %>% 
-  mutate(source=recode(source,
-                       "Journal of Toxicology and Environmental Health-Part A-Current Issues" = "Journal of Toxicology and Environmental Health",
-                       "Journal of Venomous Animals and Toxins Including Tropical Diseases" =" Journal of Venomous Animals and Toxins",
-                       "Food Additives and Contaminants Part A-Chemistry Analysis Control Exposure and Risk Assessment" = "Food Additives and Contaminants Part A"))
+  # Format journals
+  mutate(journal=stringr::str_to_title(journal),
+         journal=gsub("And", "&", journal),
+         journal=gsub("In", "in", journal),
+         journal=gsub("The", "the", journal),
+         journal=gsub("Of", "of", journal)) #%>% 
+  # # Format
+  # mutate(journal=recode(journal,
+  #                      "Journal of Toxicology and Environmental Health-Part A-Current Issues" = "Journal of Toxicology and Environmental Health",
+  #                      "Journal of Venomous Animals and Toxins Including Tropical Diseases" =" Journal of Venomous Animals and Toxins",
+  #                      "Food Additives and Contaminants Part A-Chemistry Analysis Control Exposure and Risk Assessment" = "Food Additives and Contaminants Part A"))
 
 # Country stats
 cstats <- data %>% 
@@ -75,15 +82,18 @@ my_theme <-  theme(axis.text=element_text(size=6),
 # Year
 g1 <- ggplot(ystats, aes(x=year, y=n)) +
   geom_bar(stat="identity") +
+  # Annotate
+  annotate(geom="text", x=min(ystats$year), y=max(ystats$n), label="155 papers", 
+           color="grey30", size=2.2, hjust=0, vjust=0.5) +
   # Labels
   labs(x="Year of publication", y="Number of papers", tag="A") +
-  # scale_x_continuous(breaks=seq(1995, 2025, 5)) +
+  scale_x_continuous(breaks=seq(1980, 2025, 5)) +
   # Theme
   theme_bw() + my_theme
 g1
 
 # Journal
-g2 <- ggplot(jstats, aes(y=reorder(source, desc(n)), x=n)) +
+g2 <- ggplot(jstats, aes(y=reorder(journal, desc(n)), x=n)) +
   geom_bar(stat="identity") +
   # Labels
   labs(x="Number of papers", y="", tag="B") +

@@ -36,7 +36,6 @@ rates_orig <- readxl::read_excel("data/extracted_data/processed/fitted_model_res
 
 
 
-
 # Build species key
 ################################################################################
 
@@ -129,6 +128,10 @@ table(data1$syndrome)
 table(data1$hab_species)
 table(data1$biotoxin)
 table(data1$subtoxin)
+
+# Check HAB species
+# Correct: Azadinium spinosum, Alexandrium pacificum, Protoceratium reticulatum
+freeR::check_names(data1$hab_species)
 
 # Study type
 table(data1$study_type)
@@ -267,7 +270,7 @@ ggplot(data3, aes(x=hlife_d, y=abs(rate_d), color=hlife_d_prob)) +
 data_out <- data3 %>% 
   select(-c(hlife_d_check, hlife_d_pdiff, hlife_d_prob, rate_d_derived))
 
-# Ultimately, everything but notes should be full, except maybe somre rare cases
+# Ultimately, everything but notes should be full, except maybe some rare cases
 freeR::complete(data_out)
 
 
@@ -275,7 +278,7 @@ freeR::complete(data_out)
 ################################################################################
 
 # Save
-saveRDS(data_out, file=file.path(outdir, "database.Rds"))
+saveRDS(data_out, file=file.path(outdir, "database_round1.Rds"))
 
 
 
