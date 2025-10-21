@@ -1,0 +1,38 @@
+species,treatment,group,1,3,5,7,10,11,13,15,20
+Digestive gland,DTX1,C15:0,nd,3.1,2.4,<LOD,3.2,3,2.7,<LOD,2.7
+Digestive gland,DTX1,C16:0,1.8,48,50,20,25,27,40,33,21
+Digestive gland,DTX1,C16:1,nd,15,8.4,4.2,9.1,18,21,15,4
+Digestive gland,DTX1,C17:0,nd,17,12,9.3,4.4,7.8,24,13,6.9
+Digestive gland,DTX1,C17:1,nd,2.8,2,1.9,2.7,2.5,4.4,3,2.2
+Digestive gland,DTX1,C17:2,nd,nd,0,nd,nd,<LOD,<LOD,nd,nd
+Digestive gland,DTX1,C18:0,nd,34,31,24,6,11,30,14,15
+Digestive gland,DTX1,C18:1,nd,24,18,7,8.4,13,30,19,14
+Digestive gland,DTX1,C18:2,nd,<LOD,1.9,1.5,1.7,3.6,2.1,2.3,nd
+Digestive gland,DTX1,C18:4,nd,nd,nd,nd,nd,<LOD,<LOD,1.7,nd
+Digestive gland,DTX1,C19:1,nd,<LOD,<LOD,nd,nd,nd,2.4,<LOD,nd
+Digestive gland,DTX1,C19:2,nd,nd,nd,nd,nd,nd,nd,nd,nd
+Digestive gland,DTX1,C20:0,nd,nd,nd,nd,nd,nd,nd,nd,nd
+Digestive gland,DTX1,C20:1,nd,6.4,8.4,9.3,1.6,6.4,12,7.6,4.4
+Digestive gland,DTX1,C20:2,nd,21,24,26,5.9,7.8,30,12,11
+Digestive gland,DTX1,C20:3,nd,<LOD,1.2,9.7,<LOD,<LOD,<LOD,<LOD,nd
+Digestive gland,DTX1,C20:4,nd,<LOD,<LOD,<LOD,<LOD,2.3,<LOD,nd,nd
+Digestive gland,DTX1,C20:5,nd,1.8,3.6,4.3,5.1,4,4.5,2.1,2.2
+Digestive gland,DTX1,C22:6,nd,1.2,2.4,1.7,2.6,2,1.5,1.5,nd
+Digestive gland,OA,C12:1,<LOD,<LOD,2.2,2.3,1.3,4.3,2.8,nd,nd
+Digestive gland,OA,C15:0,nd,nd,nd,nd,0.98,<LOD,<LOD,nd,nd
+Digestive gland,OA,C16:0,nd,15,10,3.4,7.3,11,13,8.4,3.9
+Digestive gland,OA,C16:1,nd,3.6,3.6,2.8,2.7,5.2,6.4,3.9,1.9
+Digestive gland,OA,C17:0,nd,<LOD,<LOD,1.3,1.8,2.7,4.4,<LOD,<LOD
+Digestive gland,OA,C17:1,nd,nd,nd,nd,nd,nd,<LOD,<LOD,nd
+Digestive gland,OA,C18:0,nd,5.3,6.2,3.5,<LOD,3.3,3.6,4,4.2
+Digestive gland,OA,C18:1,nd,4.4,7.1,1.9,4.1,8.3,9.2,6.1,2.7
+Digestive gland,OA,C20:1,nd,<LOD,2,2.5,<LOD,2.4,3.6,1.6,1.9
+Digestive gland,OA,C20:2,nd,3.3,4.8,3.5,3.3,3.5,6,1.5,2.2
+Muscle,DTX1,C16:0,nd,nd,2.3,4,2.7,2.5,<LOD,2.8,2.7
+Muscle,DTX1,C17:0,nd,nd,<LOD,<LOD,<LOD,1.6,1.4,1.5,nd
+Muscle,DTX1,C18:0,nd,nd,<LOD,<LOD,<LOD,<LOD,2.05,<LOD,<LOD
+Muscle,DTX1,C18:1,nd,nd,nd,nd,<LOD,<LOD,0.93,0.75,nd
+Muscle,DTX1,C20:1,nd,nd,nd,nd,nd,<LOD,0.75,1.7,nd
+Muscle,DTX1,C20:2,nd,nd,0.74,nd,<LOD,<LOD,<LOD,0.89,nd
+Muscle,DTX1,C20:5,nd,nd,nd,<LOD,nd,nd,nd,0.65,<LOD
+Muscle,DTX1,C22:6,nd,nd,nd,nd,nd,nd,nd,nd,nd

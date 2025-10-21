@@ -9,8 +9,7 @@ rm(list = ls())
 library(tidyverse)
 
 # Directories
-indir <- "data/lit_review/round1/raw"
-outdir <- "data/lit_review/round1/processed"
+outdir <- "data/lit_review/processed"
 plotdir <- "figures"
 
 # Read data
@@ -20,6 +19,9 @@ data_orig <- readRDS(file.path(outdir, "database.Rds"))
 # Build data
 ################################################################################
 
+# Classes
+unique(data_orig$class) %>% sort()
+
 # Fomrat data 
 data <- data_orig %>% 
   # Recode some common name
@@ -27,31 +29,34 @@ data <- data_orig %>%
   # Recode class
   mutate(class=recode(class,
                       "Actinopterygii"="Finfish",
+                      "Ascidiacea" = "Sea squirts",
                       "Bivalvia"="Bivalves",      
                       "Cephalopoda"="Cephalopods",
+                      "Dinophyceae" = "Phytoplankton",
                       "Gastropoda"="Gastropods",
                       "Malacostraca"="Crustaceans",
+                      "Mammalia" = "Mammals",
                       "Maxillopoda"="Zooplankton")) 
 
 # Number of papers
-n_distinct(data$id)
+n_distinct(data$paper_id)
 
 # Number of species evaluated
 nspp <- data %>% 
-  group_by(id) %>% 
+  group_by(paper_id) %>% 
   summarize(nspp=n_distinct(comm_name)) %>% 
   ungroup()
 
 # Number of tissues evaluated
 ntissues <- data %>% 
-  group_by(id) %>% 
+  group_by(paper_id) %>% 
   summarize(ntissues=n_distinct(tissue)) %>% 
   ungroup()
 
 # Field vs lab
 stats_type_class <- data %>% 
   # Study types in a paper
-  group_by(class, id) %>% 
+  group_by(class, paper_id) %>% 
   summarize(study_type=paste(unique(study_type), collapse=", ")) %>% 
   ungroup() %>% 
   # Format study type
@@ -61,7 +66,7 @@ stats_type_class <- data %>%
                            "Field, lab"="Lab/field")) %>% 
   # Compute totals
   group_by(class, study_type) %>% 
-  summarize(n=n_distinct(id)) %>% 
+  summarize(n=n_distinct(paper_id)) %>% 
   ungroup() %>% 
   # Compute percent
   group_by(class) %>% 
@@ -69,7 +74,7 @@ stats_type_class <- data %>%
   ungroup()
 stats_type_tot <- data %>% 
   # Study types in a paper
-  group_by(class, id) %>% 
+  group_by(class, paper_id) %>% 
   summarize(study_type=paste(unique(study_type), collapse=", ")) %>% 
   ungroup() %>% 
   # Format study type
@@ -79,7 +84,7 @@ stats_type_tot <- data %>%
                            "Field, lab"="Lab/field")) %>% 
   # Compute totals
   group_by(study_type) %>% 
-  summarize(n=n_distinct(id)) %>% 
+  summarize(n=n_distinct(paper_id)) %>% 
   ungroup() %>% 
   # Computer percent
   mutate(prop=n/sum(n)) %>% 
@@ -102,7 +107,7 @@ stats_feed <- data %>%
                               "unsure-Chinese"="Unknown"),
          feed_scenario=stringr::str_to_sentence(feed_scenario)) %>% 
   # Group by paper
-  group_by(id) %>% 
+  group_by(paper_id) %>% 
   summarize(feed_scenario=paste(sort(unique(feed_scenario)), collapse=", ")) %>% 
   ungroup() %>% 
   # Count
@@ -110,12 +115,14 @@ stats_feed <- data %>%
   mutate(prop=n/sum(n)) %>% 
   # Recode
   mutate(feed_scenario=recode(feed_scenario,
-                              "Fed clean, Starved"="Fed clean vs. starved"),
+                              "Fed non-toxic, Starved"="Fed non-toxic vs. starved",
+                              "Starved, Unknown"="Starved"),
          feed_scenario=factor(feed_scenario,
-                              levels=c("Fed clean",
+                              levels=c("Fed non-toxic",
                                        "Starved",
-                                       "Fed clean vs. starved",
-                                       "Ambient seawater")))
+                                       "Fed non-toxic vs. starved",
+                                       "Ambient seawater",
+                                       "Unknown")))
 
 table(stats_feed$feed_scenario)
 
@@ -196,7 +203,7 @@ ggplot(stats_exp, aes(y=reorder(exp_type, desc(n)), x=n)) +
 
 # Stats rate calculated?
 stats_comp <- data %>% 
-  group_by(id) %>%
+  group_by(paper_id) %>%
   summarize(rate_type=paste(unique(rate_type), collapse = ", ")) %>% 
   ungroup() %>% 
   count(rate_type) %>% 
@@ -205,7 +212,7 @@ stats_comp <- data %>%
 # Stats model
 stats_model <- data %>% 
   # Handle papers with multiple approaches
-  group_by(id) %>%
+  group_by(paper_id) %>%
   summarize(ncomp=paste(unique(ncomp), collapse = ", ")) %>% 
   ungroup() %>% 
   # Harmonize

@@ -9,8 +9,7 @@ rm(list = ls())
 library(tidyverse)
 
 # Directories
-indir <- "data/lit_review/round1/raw"
-outdir <- "data/lit_review/round1/processed"
+outdir <- "data/lit_review/processed"
 plotdir <- "figures"
 
 # Read data
@@ -32,24 +31,24 @@ n_distinct(data$order)
 n_distinct(data$class)
 
 # Number of species by class
-npapers_tot <- n_distinct(data$id)
+npapers_tot <- n_distinct(data$paper_id)
 data %>% 
   group_by(class) %>% 
-  summarize(npapers=n_distinct(id),
+  summarize(npapers=n_distinct(paper_id),
             p_papers=npapers/npapers_tot)
 n_distinct(data$id[data$class!="Actinopterygii"])
 
 # Number of papers by species
 spp_stats <- data %>% 
   group_by(comm_name) %>% 
-  summarize(npapers=n_distinct(id),
+  summarize(npapers=n_distinct(paper_id),
             p_papers=npapers/npapers_tot) %>% 
   arrange(desc(npapers))
 
 # Number of papers by biotoxin
 data %>% 
   group_by(syndrome) %>% 
-  summarize(npapers=n_distinct(id),
+  summarize(npapers=n_distinct(paper_id),
             p_papers=npapers/npapers_tot) %>% 
   arrange(desc(npapers))
 
@@ -62,7 +61,7 @@ sort(unique(data$class))
 # Summarize
 stats <- data %>% 
   # Simplify
-  select(id, class, comm_name, syndrome) %>% 
+  select(paper_id, class, comm_name, syndrome) %>% 
   unique() %>% 
   # Summarize number of species
   group_by(class, comm_name, syndrome) %>% 
