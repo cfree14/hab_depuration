@@ -214,3 +214,12 @@ plot_data(datafile="Wu_etal_2024_Fig1.xlsx",
 # Braga_2021_Fig_2.xlsx
 plot_data(datafile = "Braga_2021_Fig_2.xlsx", day=5, y_title="Toxicity", legend_title="Toxin", title="Braga_2021_Fig_2.xlsx")
 
+# Bricelj_1991_Fig_5.xlsx
+plot_data(datafile = "Bricelj_1991_Fig_5.xlsx", day=17, y_title="Toxicity", legend_title="Toxin", title="Bricelj_1991_Fig_5.xlsx")
+
+# Diaz_2024_Fig_7.xlsx
+#plot_data(datafile = "Diaz_2024_Fig_7.xlsx", day=, y_title="Toxicity", legend_title="Toxin", title="Diaz_2024_Fig_7.xlsx")
+
+
+
+
