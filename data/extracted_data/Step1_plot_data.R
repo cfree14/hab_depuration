@@ -9,7 +9,7 @@ rm(list = ls())
 library(tidyverse)
 
 # Directories
-indir <- "data/extracted_data/raw/timeseries"
+indir <- "data/extracted_data/timeseries"
 plotdir <- "data/extracted_data/raw/images"
 
 # Data must be XLSX and have columns:

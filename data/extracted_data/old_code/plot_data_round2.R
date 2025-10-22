@@ -26,7 +26,8 @@ plotdir <- "data/extracted_data/raw_round2/images"
 
 # Testing
 # datafile="Kim_etal_2017_Fig1.xlsx"; day=7; y_title="Toxicity (ug/g)"; legend_title="Exposure (ug/L)"; title="Kim et al. (2017)"
-#datafile="Houle_etal_2023_Fig8.xlsx"; day=0; y_title="Toxicity (ug /100g)"; legend_title="Tissue"; title="Houle et al. (2023)"
+# datafile="Houle_etal_2023_Fig8.xlsx"; day=0; y_title="Toxicity (ug /100g)"; legend_title="Tissue"; title="Houle et al. (2023)"
+
 
 # Plot data
 plot_data <- function(datafile, day=NA, y_title="Toxicity", legend_title="Treatment", title=NA){
@@ -154,7 +155,7 @@ plot_data <- function(datafile, day=NA, y_title="Toxicity", legend_title="Treatm
                    y=toxicity,
                    color=as.character(treatment))) +
     # Plot reference line
-    geom_vline(xintercept=day, linetype="dashed", color="grey50") +
+    geom_vline(xintercept=9, linetype="dashed", color="grey50") +
     # Plot data
     geom_line(linewidth=0.1) +
     geom_point(size=1.2) +
@@ -209,4 +210,7 @@ plot_data <- function(datafile, day=NA, y_title="Toxicity", legend_title="Treatm
 # Wu_etal_2024_Fig1.xlsx
 plot_data(datafile="Wu_etal_2024_Fig1.xlsx",
           day=9, y_title="Toxicity", legend_title="Toxin", title="Wu_etal_2024_Fig1.xlsx")
+
+# Braga_2021_Fig_2.xlsx
+plot_data(datafile = "Braga_2021_Fig_2.xlsx", day=5, y_title="Toxicity", legend_title="Toxin", title="Braga_2021_Fig_2.xlsx")
 
