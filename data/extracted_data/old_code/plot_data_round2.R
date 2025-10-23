@@ -262,7 +262,23 @@ plot_data(datafile = "Li_2019_Fig_5.xlsx", day=3, y_title="Toxicity", legend_tit
 # Lin_2024_Fig_2.xlsx
 plot_data(datafile = "Lin_2024_Fig_2.xlsx", day=1, y_title="Toxicity", legend_title="Toxin", title="Lin_2024_Fig_2.xlsx")
 
+# Mafra_2019_Fig_4.xlsx
+#plot_data(datafile = "Mafra_2019_Fig_4.xlsx", day=0, y_title="Toxicity", legend_title="Toxin", title="Mafra_2019_Fig_4.xlsx")
 
+# Marsden_2016_Fig_5.xlsx
+plot_data(datafile = "Marsden_2016_Fig_5.xlsx", day=10, y_title="Toxicity", legend_title="Toxin", title="Marsden_2016_Fig_5.xlsx")
+
+# Navarro_2011_Fig_2.xlsx
+plot_data(datafile = "Navarro_2011_Fig_2.xlsx", day=9, y_title="Toxicity", legend_title="Toxin", title="Navarro_2011_Fig_2.xlsx")
+
+# Navarro_2022_Fig_3.xlsx
+plot_data(datafile = "Navarro_2022_Fig_3.xlsx", day=30, y_title="Toxicity", legend_title="Toxin", title="Navarro_2022_Fig_3.xlsx")
+
+# Oh_2024_Fig_4.xlsx
+plot_data(datafile = "Oh_2024_Fig_4.xlsx", day=1, y_title="Toxicity", legend_title="Toxin", title="Oh_2024_Fig_4.xlsx")
+
+# Pang_2024_Fig_5.xlsx
+plot_data(datafile = "Pang_2024_Fig_5.xlsx", day=2, y_title="Toxicity", legend_title="Toxin", title="Pang_2024_Fig_5.xlsx")
 
 
 
