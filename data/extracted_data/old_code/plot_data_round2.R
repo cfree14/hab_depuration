@@ -280,5 +280,40 @@ plot_data(datafile = "Oh_2024_Fig_4.xlsx", day=1, y_title="Toxicity", legend_tit
 # Pang_2024_Fig_5.xlsx
 plot_data(datafile = "Pang_2024_Fig_5.xlsx", day=2, y_title="Toxicity", legend_title="Toxin", title="Pang_2024_Fig_5.xlsx")
 
+# Plakas_2008_Fig_3.xlsx
+#plot_data(datafile = "Plakas_2008_Fig_3.xlsx", day=0, y_title="Toxicity", legend_title="Toxin", title="Plakas_2008_Fig_3.xlsx")
+
+# Scarratt_1991_Fig_1.xlsx
+plot_data(datafile = "Scarratt_1991_Fig_1.xlsx", day=44, y_title="Toxicity", legend_title="Toxin", title="Scarratt_1991_Fig_1.xlsx")
+
+# Scarratt_1991_Fig_2.xlsx
+plot_data(datafile = "Scarratt_1991_Fig_2.xlsx", day=24, y_title="Toxicity", legend_title="Toxin", title="Scarratt_1991_Fig_1.xlsx")
+
+# Scarratt_1991_Fig_3.xlsx
+plot_data(datafile = "Scarratt_1991_Fig_3.xlsx", day=0, y_title="Toxicity", legend_title="Toxin", title="Scarratt_1991_Fig_3.xlsx")
+
+# Scarratt_1991_Fig_4.xlsx
+plot_data(datafile = "Scarratt_1991_Fig_4.xlsx", day=0, y_title="Toxicity", legend_title="Toxin", title="Scarratt_1991_Fig_4.xlsx")
+
+# Schultz_2013_Fig_1.xlsx
+plot_data(datafile = "Schultz_2013_Fig_1.xlsx", day=1, y_title="Toxicity", legend_title="Toxin", title="Schultz_2013_Fig_1.xlsx")
+
+# Stewart_1998_Fig_3.xlsx
+plot_data(datafile = "Stewart_1998_Fig_3.xlsx", day=0, y_title="Toxicity", legend_title="Toxin", title="Stewart_1998_Fig_3.xlsx")
+
+# Taleb_2001_Fig_2b.xlsx
+#plot_data(datafile = "Taleb_2001_Fig_2b.xlsx", day=0, y_title="Toxicity", legend_title="Toxin", title="Taleb_2001_Fig_2b.xlsx")
+
+# Taleb_2001_Fig_3.xlsx
+#plot_data(datafile = "Taleb_2001_Fig_3.xlsx", day=0, y_title="Toxicity", legend_title="Toxin", title="Taleb_2001_Fig_3.xlsx")
+
+# Velasquez_2014_Fig_2.xlsx
+plot_data(datafile = "Velasquez_2014_Fig_2.xlsx", day=5, y_title="Toxicity", legend_title="Toxin", title="Velasquez_2014_Fig_2.xlsx")
+
+# Wu_2022_Fig_1.xlsx
+#plot_data(datafile = "Wu_2022_Fig_1.xlsx", day=0, y_title="Toxicity", legend_title="Toxin", title=" Wu_2022_Fig_1.xlsx")
+
+
+
 
 
