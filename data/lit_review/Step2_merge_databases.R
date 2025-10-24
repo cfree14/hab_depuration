@@ -89,6 +89,9 @@ table(data1$rate_type)
 # Number of compartments
 table(data1$ncomp)
 
+# Experiments
+table(data1$exp_type)
+
 
 # Check species
 ################################################################################
@@ -115,6 +118,11 @@ data2 <- data1 %>%
   # Add taxa info
   left_join(taxa_full, by=c("sci_name"="sciname")) %>% 
   rename(invert_yn=type) %>% 
+  # Fix some info
+  mutate(class=case_when(sci_name=="Austromegabalanus psittacus" ~ "Thecostraca",
+                         T ~ class)) %>% 
+  mutate(order=case_when(sci_name=="Austromegabalanus psittacus" ~ "Balanomorpha",
+                         T ~ order)) %>% 
   # Arrange
   select(round:sci_name, invert_yn, class, order, family, genus, everything())
 

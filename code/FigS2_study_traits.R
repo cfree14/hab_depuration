@@ -83,7 +83,7 @@ my_theme <-  theme(axis.text=element_text(size=6),
 g1 <- ggplot(ystats, aes(x=year, y=n)) +
   geom_bar(stat="identity") +
   # Annotate
-  annotate(geom="text", x=min(ystats$year), y=max(ystats$n), label="155 papers", 
+  annotate(geom="text", x=min(ystats$year), y=max(ystats$n), label=paste(nrow(data), "papers"), 
            color="grey30", size=2.2, hjust=0, vjust=0.5) +
   # Labels
   labs(x="Year of publication", y="Number of papers", tag="A") +
