@@ -247,7 +247,7 @@ plot_data(datafile="Rourke_etal_2021_SuppData6.xlsx", y_title="Toxicity", legend
 # Yutian check data round 2
 
 # Blogoslawski_1987_Table_1.xlsx
-plot_data(datafile="Blogoslawski_1978_Table_1.xlsx", y_title="Toxicity", legend_title="Toxin", title="Blogoslawski_1978_Table_1.xlsx")
+plot_data(datafile="Blogoslawski_1978_Table_1.xlsx", y_title="Toxicity", legend_title="Toxin", title="")
 
 # Wu_etal_2024_Fig1.xlsx
 plot_data(datafile="Wu_2024_Fig_1.xlsx", y_title="Toxicity", legend_title="Toxin", title="Wu_2024_Fig_1.xlsx")
