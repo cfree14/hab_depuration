@@ -127,6 +127,7 @@ stats_feed <- data %>%
 table(stats_feed$feed_scenario)
 
 # Types of experiments conducted
+table(data$exp_type)
 stats_exp <- data %>% 
   # Remove none
   filter(exp_type!="none") %>% 
@@ -134,6 +135,7 @@ stats_exp <- data %>%
   mutate(exp_type=recode(exp_type,
                          # Temperature
                          "temp"="Temperature (°C)",
+                         "temp_ph"="Temperature+pH",
                          "temp_exposure"="Temperature+Exposure",
                          "temp_diet_type"="Temperature+Diet type",
                          "temp_fed_starved"="Temperature+Fed/starved",
@@ -151,18 +153,21 @@ stats_exp <- data %>%
                          "catalysts"="Depuration enhancers",
                          "instrument"="Toxicity instrument",
                          "body_condition"="Body condition",
+                         "PCO2"="pCO2 level",
+                         "unclear"="Uncertain",
                          # Food
                          "food_type"="Diet type",
                          "fed_starved"="Fed vs. starved",
                          "food_amount"="Food amount (mg/day)",
                          # Exposure
-                         "exposure"="Exposure (mg/L toxin)",
+                         "exposure"="Exposure dosage",
+                         "exposure_length"="Exposure duration",
                          "exposure_diet"="Exposure diet",
                          "size_exposure"="Exposure+Body size",
                          "bloom_nutrient_cond"="Nutrient conditions during bloom")) %>% 
   # Count by experiment type
   group_by(exp_type) %>% 
-  summarize(n=n_distinct(id)) %>% 
+  summarize(n=n_distinct(paper_id)) %>% 
   ungroup() %>% 
   # Add experiment type
   mutate(exp_catg=case_when(exp_type %in% c("Locations", 
@@ -177,6 +182,7 @@ stats_exp <- data %>%
                                             "Exposure+Body size", 
                                             "Nutrient conditions during bloom") ~ "Exposure\nlevels",
                             exp_type %in% c("Temperature (°C)", 
+                                            "Temperature+pH",
                                             "Temperature+Fed/starved", 
                                             "Temperature+Diet type", 
                                             "Temperature+Salinity+Body size+Fed/starved", 
@@ -219,9 +225,12 @@ stats_model <- data %>%
   mutate(ncomp=recode(ncomp,
                       "no model, one"="One",
                       "two"="Two",
-                      "one vs. two"="      One vs. two", # pad for plotting
+                      "one vs. two"="One vs. two", 
                       "one"="One",
-                      "no model"="None")) %>% 
+                      "no model"="None",
+                      "zero"="Zero",
+                      "no model, two, one"="Mixture",
+                      "one vs. two vs. three"="     One vs. two vs. three")) %>% # pad for plotting
   # Count
   count(ncomp) %>% 
   mutate(prop=n/sum(n))
@@ -340,11 +349,11 @@ layout_matrix <- matrix(data=c(1,2,3,3,3,
 
 # Merge
 g <- gridExtra::grid.arrange(g1, g2, g3, g4, g5, g6, 
-                             layout_matrix=layout_matrix, heights=c(0.3, 0.35, 0.35))
+                             layout_matrix=layout_matrix) # 4.5 inches,  heights =c(0.3, 0.35, 0.35)
 
 # Export
 ggsave(g, filename=file.path(plotdir, "Fig3_study_design_features.png"), 
-       width=6.5, height=4.5, units="in", dpi=600)
+       width=6.5, height=5, units="in", dpi=600)
 
 
 
