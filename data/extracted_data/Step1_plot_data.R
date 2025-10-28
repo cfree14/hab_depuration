@@ -277,34 +277,31 @@ plot_data(datafile = "Farcy_2013_Fig_3.xlsx", y_title="Toxicity", legend_title="
 #plot_data(datafile = "Fire_2020_Fig_2.xlsx", day=13, y_title="Toxicity", legend_title="Toxin", title="Fire_2020_Fig_2.xlsx")
 
 # Gaillard_2024_Fig_1.xlsx
-plot_data(datafile = "Gaillard_2024_Fig_1.xlsx", day=120, y_title="Toxicity", legend_title="Toxin", title="Gaillard_2024_Fig_1.xlsx")
+plot_data(datafile = "Gaillard_2024_Fig_1.xlsx", y_title="Toxicity", legend_title="Toxin", title="Gaillard_2024_Fig_1.xlsx")
 
 # Holmes_1999_Fig_12.xlsx
-plot_data(datafile = "Holmes_1999_Fig_12.xlsx", day=0, y_title="Toxicity", legend_title="Toxin", title="Holmes_1999_Fig_12.xlsx")
+plot_data(datafile = "Holmes_1999_Fig_12.xlsx", y_title="Toxicity", legend_title="Toxin", title="Holmes_1999_Fig_12.xlsx")
 
 # Horner_1993_Table_1.xlsx
-plot_data(datafile = "Horner_1993_Table_1.xlsx", day=0, y_title="Toxicity", legend_title="Toxin", title="Horner_1993_Table_1.xlsx")
+plot_data(datafile = "Horner_1993_Table_1.xlsx", y_title="Toxicity", legend_title="Toxin", title="Horner_1993_Table_1.xlsx")
 
 # Kankaanpaa_2005_Fig_7.xlsx
-plot_data(datafile = "Kankaanpaa_2005_Fig_7.xlsx", day=0, y_title="Toxicity", legend_title="Toxin", title="Kankaanpaa_2005_Fig_7.xlsx")
+plot_data(datafile = "Kankaanpaa_2005_Fig_7.xlsx", y_title="Toxicity", legend_title="Toxin", title="Kankaanpaa_2005_Fig_7.xlsx")
 
 # Kvrgic_2022_Fig_2.xlsx
-#plot_data(datafile = "Kvrgic_2022_Fig_2.xlsx", day=0, y_title="Toxicity", legend_title="Toxin", title="Kvrgic_2022_Fig_2.xlsx")
+plot_data(datafile = "Kvrgic_2022_Fig_2.xlsx", y_title="Toxicity", legend_title="Toxin", title="Kvrgic_2022_Fig_2.xlsx")
 
 # Ledreux_2014_Fig_5.xlsx
-plot_data(datafile = "Ledreux_2014_Fig_5.xlsx", day=3, y_title="Toxicity", legend_title="Toxin", title="Ledreux_2014_Fig_5.xlsx")
-
-# Ledreux_2014_FigS1.xlsx
-plot_data(datafile = "Ledreux_2014_FigS1.xlsx", day=3, y_title="Toxicity", legend_title="Toxin", title="Ledreux_2014_FigS1.xlsx")
+plot_data(datafile = "Ledreux_2014_Fig_5+S1.xlsx", y_title="Toxicity", legend_title="Toxin", title="Ledreux_2014_Fig_5+S1.xlsx")
 
 # Li_2019_Fig_5.xlsx
-plot_data(datafile = "Li_2019_Fig_5.xlsx", day=3, y_title="Toxicity", legend_title="Toxin", title="Li_2019_Fig_5.xlsx")
+plot_data(datafile = "Li_2019_Fig_5.xlsx", y_title="Toxicity", legend_title="Toxin", title="Li_2019_Fig_5.xlsx")
 
 # Lin_2024_Fig_2.xlsx
-plot_data(datafile = "Lin_2024_Fig_2.xlsx", day=1, y_title="Toxicity", legend_title="Toxin", title="Lin_2024_Fig_2.xlsx")
+plot_data(datafile = "Lin_2024_Fig_2.xlsx", y_title="Toxicity", legend_title="Toxin", title="Lin_2024_Fig_2.xlsx")
 
 # Mafra_2019_Fig_4.xlsx
-#plot_data(datafile = "Mafra_2019_Fig_4.xlsx", day=0, y_title="Toxicity", legend_title="Toxin", title="Mafra_2019_Fig_4.xlsx")
+plot_data(datafile = "Mafra_2019_Fig_4.xlsx", y_title="Toxicity", legend_title="Toxin", title="Mafra_2019_Fig_4.xlsx")
 
 # Marsden_2016_Fig_5.xlsx
 plot_data(datafile = "Marsden_2016_Fig_5.xlsx", day=10, y_title="Toxicity", legend_title="Toxin", title="Marsden_2016_Fig_5.xlsx")
