@@ -9,9 +9,11 @@ rm(list = ls())
 library(tidyverse)
 
 # Directories
-indir <- "data/extracted_data/raw/timeseries"
+#indir <- "data/extracted_data/raw/timeseries"
+indir <- "data/extracted_data/raw_round2/data"
 outdir <- "data/extracted_data/processed"
-plotdir <- "data/extracted_data/raw/images"
+#plotdir <- "data/extracted_data/raw/images"
+plotdir <- "data/extracted_data/raw_round2/images"
 
 # Source helper functions
 source(file.path("data/extracted_data/helper_functions.R"))
