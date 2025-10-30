@@ -9,8 +9,8 @@ rm(list = ls())
 library(tidyverse)
 
 # Directories
-indir <- "data/extracted_data/timeseries"
-plotdir <- "data/extracted_data/raw/images"
+indir <- "data/extracted_data/raw_round2/data"
+plotdir <- "data/extracted_data/raw_round2/images"
 
 # Data must be XLSX and have columns:
 # species, treatment, day, toxicity
@@ -53,9 +53,10 @@ plot_data <- function(datafile, y_title="Toxicity", legend_title="Treatment", ti
   data_dep <- data %>% 
     filter(phase=="Depuration") %>%
     mutate(toxicity=pmax(0.0001, toxicity))
+  
   day1 <- min(data_dep$day)
   day2 <- max(data_dep$day)
-  
+    
   # Fit models
   ##############################################################################
   
@@ -242,5 +243,19 @@ plot_data(datafile="Rourke_etal_2021_SuppData1.xlsx", y_title="Toxicity", legend
 plot_data(datafile="Rourke_etal_2021_SuppData2.xlsx", y_title="Toxicity", legend_title="Treatment", title="Rourke_etal_2021_SuppData2.xlsx")
 plot_data(datafile="Rourke_etal_2021_SuppData5.xlsx", y_title="Toxicity", legend_title="Treatment", title="Rourke_etal_2021_SuppData5.xlsx")
 plot_data(datafile="Rourke_etal_2021_SuppData6.xlsx", y_title="Toxicity", legend_title="Treatment", title="Rourke_etal_2021_SuppData6.xlsx")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
