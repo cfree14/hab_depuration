@@ -36,7 +36,7 @@ results <- purrr::map_df(files2eval, function(x){
   # Format data
   sdata <- sdata_orig %>% 
     # Remove columns that should not contribute to id
-    select(., -any_of(c("date", "figure", "toxicity_sd", "hour", "time", "week", "day_orig", "type"))) %>%  
+    select(., -any_of(c("date", "figure", "note"))) %>%  
     # Add id
     mutate(id = apply(select(., -day, -toxicity, -phase), 1, paste, collapse = "-")) %>% 
     # Arrange
@@ -95,7 +95,8 @@ results1 <- results %>%
 # Export
 xlsx::write.xlsx(x=results1, file=file.path(outdir, "fitted_model_results.xlsx"))
 
-
+# round 2
+write.xlsx(x=results1, file=file.path(outdir, "fitted_model_results_round2.xlsx"))
 
 
 
