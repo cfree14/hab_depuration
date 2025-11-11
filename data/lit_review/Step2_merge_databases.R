@@ -211,8 +211,19 @@ freeR::complete(paper_key2)
 head(paper_key2)
 
 
+# Final species key
+################################################################################
+
+spp_key_out <- data2 %>% 
+  select(comm_name, sci_name:genus) %>% 
+  unique() %>% 
+  arrange(comm_name)
+
 # Export data
 ################################################################################
+
+# Export species key
+writexl::write_xlsx(spp_key_out, path=file.path(outdir, "species_key.xlsx"))
 
 # Export paper meta-data
 saveRDS(paper_key2, file=file.path(outdir, "database_paper_metadata.Rds"))
