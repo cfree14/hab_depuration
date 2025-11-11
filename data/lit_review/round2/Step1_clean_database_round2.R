@@ -16,8 +16,11 @@ plotdir <- "figures"
 # Read data
 data_orig <- readxl::read_excel(file.path(indir, "Biotoxin depuration database - round 2.xlsx"), sheet="Final")
 
+# Read derived rates
+rates_orig <- readxl::read_excel("data/extracted_data/processed/fitted_model_results_round2.xlsx")
 
-# Format data
+
+# 1) Format data
 ################################################################################
 
 # Format data
@@ -78,7 +81,9 @@ data <- data_orig %>%
   mutate(hlife_hr=recode(hlife_hr,
                          "ND"="") %>% as.numeric(.),
          hlife_d=recode(hlife_d,
-                        "n.a."="") %>% as.numeric(.))
+                        "n.a."="") %>% as.numeric(.)) %>% 
+  # Remove useless
+  select(-c("checked?", "type", "keywords_authors", "keywords_plus", "abstract", "include_YN"))
 
 
 # Inspect
@@ -129,12 +134,32 @@ freeR::which_duplicated(spp_key$comm_name) # must be zero
 freeR::which_duplicated(spp_key$sci_name) # must be zero
 
 
+# 2) Add derived rates
+################################################################################
+
+# Format derived rates
+rates <- rates_orig %>%
+  # Simplify
+  select(file, treatment, k) %>% 
+  # Rename
+  rename(datafile=file, 
+         datafile_id=treatment,
+         rate_d_derived=k) 
+
+
+# Add to data
+data1 <- data %>% 
+  # Add to data
+  left_join(rates, by=c("datafile", "datafile_id")) %>% 
+  # Use derived data when data is not reported
+  mutate(rate_d=ifelse(is.na(rate_d), rate_d_derived, rate_d))
+
 
 # 3) Compute more rates
 ################################################################################
 
 # Compute all rates
-data1 <- data %>% 
+data2 <- data1 %>% 
   # Format daily rate
   mutate(rate_d=rate_d, 
          hlife_d=ifelse(is.na(hlife_d), log(2)/abs(rate_d), hlife_d),
@@ -159,29 +184,44 @@ data1 <- data %>%
 
 # Inspect
 # Should have the same number of missing rates/half-lives
-freeR::complete(data1)
+freeR::complete(data2)
 
 # Check rates
-ggplot(data1 %>% filter(rate_hr<0), aes(x=hlife_hr, y=abs(rate_hr), color=hlife_d_prob)) +
+# Confirmed that the 1 incorrect one is the fault of the study authors 
+# (using values reported by the authors; no way to know which is wrong/right)
+ggplot(data2 %>% filter(rate_hr<0), aes(x=hlife_hr, y=abs(rate_hr), color=hlife_d_prob)) +
   geom_point() +
   scale_x_continuous(trans="log10") +
   scale_y_continuous(trans="log10") +
   theme_bw()
 
 # Check rates
-ggplot(data1, aes(x=hlife_d, y=abs(rate_d), color=hlife_d_prob)) +
+ggplot(data2, aes(x=hlife_d, y=abs(rate_d), color=hlife_d_prob)) +
   geom_point() +
   scale_x_continuous(trans="log10") +
   scale_y_continuous(trans="log10") +
   theme_bw()
 
 # Remove useless
-data_out <- data1 %>% 
-  select(-c(type, keywords_authors, keywords_plus, abstract, include_YN, 
-            hlife_d_check, hlife_d_pdiff, hlife_d_prob))  # rate_d_derived
+data_out <- data2 %>% 
+  select(-c(hlife_d_check, hlife_d_pdiff, hlife_d_prob, rate_d_derived))
 
-# Ultimately, everything but notes should be full, except maybe somre rare cases
+# Ultimately, everything but notes and HAB species should be full, except maybe some rare cases
+# Its okay for HAB species to be missing
+# I confirmed that the 8 missing rates should indeed be missing; 
 freeR::complete(data_out)
+
+
+# Are any papers with subtoxin dep rates missing TOTAL dep rates? 
+################################################################################
+
+key <- data_out %>% 
+  group_by(paper_id, comm_name, syndrome, tissue, exp_type, treatment) %>% 
+  summarize(subtoxins=paste(subtoxin, collapse = ", ")) %>% 
+  ungroup() %>% 
+  mutate(total_yn=ifelse(grepl("Total", subtoxins), "yes", "no")) %>% 
+  filter(total_yn=="no") %>% 
+  unique()
 
 
 # Export

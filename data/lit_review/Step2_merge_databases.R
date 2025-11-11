@@ -104,7 +104,7 @@ freeR::which_duplicated(spp_key$sci_name)
 
 # Get species info
 taxa <- freeR::taxa(spp_key$sci_name)
-spp_key$sci_name[!spp_key$sci_name %in% taxa$sciname] %>% unique()
+spp_key$sci_name[!spp_key$sci_name %in% taxa$sciname] %>% unique() # species missing taxa info
 
 # Read key for missing taxa
 taxa_missing <- readxl::read_excel("data/lit_review/processed/taxa_key_for_species_not_in_sealifebase.xlsx")

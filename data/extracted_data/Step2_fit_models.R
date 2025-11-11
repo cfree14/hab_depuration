@@ -93,10 +93,10 @@ results1 <- results %>%
   
 
 # Export
-xlsx::write.xlsx(x=results1, file=file.path(outdir, "fitted_model_results.xlsx"))
+# xlsx::write.xlsx(x=results1, file=file.path(outdir, "fitted_model_results.xlsx"))
 
 # round 2
-write.xlsx(x=results1, file=file.path(outdir, "fitted_model_results_round2.xlsx"))
+xlsx::write.xlsx(x=results1, file=file.path(outdir, "fitted_model_results_round2.xlsx"))
 
 
 
