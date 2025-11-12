@@ -23,7 +23,7 @@ data_orig <- readxl::read_excel(file.path(indir, "20250618_depuration_biotoxin_m
 taxa_key_missing <- readxl::read_excel(file.path(indir, "taxa_key_for_species_not_in_sealifebase.xlsx"))
 
 # Read derived rates
-rates_orig <- readxl::read_excel("data/extracted_data/processed/fitted_model_results.xlsx")
+rates_orig <- readxl::read_excel("data/extracted_data/processed/fitted_model_results_round1.xlsx")
 
 # Things to do
 # 1. Format toxin/subtoxin - progress
@@ -33,7 +33,6 @@ rates_orig <- readxl::read_excel("data/extracted_data/processed/fitted_model_res
 
 # DONE
 # X. Confirm agreement between k and half-life
-
 
 
 # Build species key
