@@ -242,10 +242,7 @@ data3 <- data2 %>%
   # Check half life
   mutate(hlife_d_check=log(2)/abs(rate_d),
          hlife_d_pdiff=abs(hlife_d-hlife_d_check)/hlife_d_check,
-         hlife_d_prob=abs(hlife_d_pdiff)>0.01) %>% 
-  # Mark useable rates
-  mutate(rate_use=ifelse(subtoxin=="Total" & study_type=="lab" , "yes", "no")) %>% 
-  relocate(rate_use, .after=ncomp)
+         hlife_d_prob=abs(hlife_d_pdiff)>0.01)
 
 # Inspect
 # Should have the same number of missing rates/half-lives
