@@ -27,12 +27,7 @@ rates_orig <- readxl::read_excel("data/extracted_data/processed/fitted_model_res
 
 # Things to do
 # 1. Format toxin/subtoxin - progress
-# 2. Check derived vs. digitized
-# 3. Confirm positive vs. negative k values (mark true positives) - progress
 # X. Confirm that all derived k's have been added - progress
-
-# DONE
-# X. Confirm agreement between k and half-life
 
 
 # Build species key
@@ -155,7 +150,8 @@ check_tot <- data1 %>%
   summarize(subtoxins=paste(sort(unique(subtoxin)), collapse=", ")) %>% 
   ungroup() %>% 
   mutate(type=case_when(grepl("Total", subtoxins) ~ "Total present",
-                        T ~ "Other"))
+                        T ~ "Other")) %>% 
+  filter(type=="Other")
 
 
 # Inspect tissues
@@ -267,6 +263,7 @@ data_out <- data3 %>%
   select(-c(hlife_d_check, hlife_d_pdiff, hlife_d_prob, rate_d_derived))
 
 # Ultimately, everything but notes should be full, except maybe some rare cases
+# 7 depuration rates are empty because they are not possible
 freeR::complete(data_out)
 
 
