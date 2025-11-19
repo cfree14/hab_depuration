@@ -27,7 +27,6 @@ rates_orig <- readxl::read_excel("data/extracted_data/processed/fitted_model_res
 
 # Things to do
 # 1. Format toxin/subtoxin - progress
-# X. Confirm that all derived k's have been added - progress
 
 
 # Build species key
@@ -143,6 +142,10 @@ table(data1$rate_type)
 # Check syndrome and toxin
 toxin_key <- data1 %>% 
   count(syndrome, biotoxin)
+
+# Subtoxin key
+subtoxin_key <-  data1 %>% 
+  count(syndrome, biotoxin, subtoxin)
 
 # Check if totals are present 
 check_tot <- data1 %>% 

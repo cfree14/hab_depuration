@@ -35,6 +35,7 @@ data <- data_orig %>%
                       "Dinophyceae" = "Phytoplankton",
                       "Gastropoda"="Gastropods",
                       "Malacostraca"="Crustaceans",
+                      "Thecostraca"="Crustaceans",
                       "Mammalia" = "Mammals",
                       "Maxillopoda"="Zooplankton")) 
 
@@ -142,6 +143,7 @@ stats_exp <- data %>%
                          "temp_salinity_size_fed"="Temperature+Salinity+Body size+Fed/starved",
                          # Location/years
                          "years"="Years",
+                         "site"="Locations",
                          "sites"="Locations",
                          "sites (ponds)"="Locations",
                          "sites (population)"="Locations",
@@ -162,6 +164,7 @@ stats_exp <- data %>%
                          # Exposure
                          "exposure"="Exposure dosage",
                          "exposure_length"="Exposure duration",
+                         "exposure_method"="Exposure method",
                          "exposure_diet"="Exposure diet",
                          "size_exposure"="Exposure+Body size",
                          "bloom_nutrient_cond"="Nutrient conditions during bloom")) %>% 
@@ -172,13 +175,18 @@ stats_exp <- data %>%
   # Add experiment type
   mutate(exp_catg=case_when(exp_type %in% c("Locations", 
                                             "Years", 
-                                            "Locations+Years") ~ "Locations/\nyears",
+                                            "Locations+Years",
+                                            "Surface vs. seafloor",
+                                            "Lab vs. field") ~ "Locations/\nyears",
                             exp_type %in% c("Fed vs. starved", 
                                             "Diet type", 
                                             "Body condition",
                                             "Food amount (mg/day)") ~ "Diet\nfactors",
                             exp_type %in% c("Exposure (mg/L toxin)", 
                                             "Exposure diet",
+                                            "Exposure dosage",
+                                            "Exposure duration",
+                                            "Exposure method",
                                             "Exposure+Body size", 
                                             "Nutrient conditions during bloom") ~ "Exposure\nlevels",
                             exp_type %in% c("Temperature (°C)", 
@@ -237,8 +245,6 @@ stats_model <- data %>%
 stats_model 
 sum(stats_model$n)
 # freeR::which_duplicated(stats_model$id)
-
-
 
 
 

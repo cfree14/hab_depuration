@@ -70,7 +70,7 @@ my_theme <-  theme(axis.text=element_text(size=7),
 g1 <- ggplot(data, aes(x=abs(rate_d), y=factor(genus, stats$genus))) +
   geom_boxplot() + 
   # Labels
-  labs(x=expression("Decay constant, k ("*day^{-1}*")"), 
+  labs(x="Decay constant, k (1/day)", # x=expression("Decay constant, k ("*day^{-1}*")"), 
        y="Genus", tag="A") +
   scale_x_continuous(trans="log10", 
                      breaks=c(0.001, 0.01, 0.1, 1, 10, 100),

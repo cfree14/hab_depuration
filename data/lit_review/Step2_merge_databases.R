@@ -37,9 +37,15 @@ data1 <- data_orig1 %>%
 
 # Format data 2 for merge
 data2 <- data_orig2 %>% 
+  # Remove useless
+  select(-sort) %>% 
   # Add round
   mutate(round="Round 2") %>% 
-  select(round, everything())
+  select(round, everything()) %>% 
+  # Add tissue (and format down below)
+  mutate(tissue_orig=tissue) %>%
+  relocate(tissue_orig, .before=tissue)
+  
 
 # Merge data
 data <- bind_rows(data1, data2)
@@ -52,9 +58,7 @@ freeR::complete(data)
 ################################################################################
 
 # Format data
-data1 <- data %>% 
-  # Format syndrome
-  mutate(syndrome=recode(syndrome, "Brevetoxin"="Neurotoxic")) %>% 
+data3 <- data %>% 
   # Fix some sci names
   mutate(sci_name=recode(sci_name,
                          "Chlamys farreri"="Scaeochlamys farreri",
@@ -75,29 +79,29 @@ data1 <- data %>%
 ################################################################################
 
 # Syndrome
-table(data1$syndrome)
+table(data3$syndrome)
 
 # Study type
-table(data1$study_type)
+table(data3$study_type)
 
 # Feeding scenario
-table(data1$feed_scenario)
+table(data3$feed_scenario)
 
 # Rate type
-table(data1$rate_type)
+table(data3$rate_type)
 
 # Number of compartments
-table(data1$ncomp)
+table(data3$ncomp)
 
 # Experiments
-table(data1$exp_type)
+table(data3$exp_type)
 
 
 # Check species
 ################################################################################
 
 # Species key
-spp_key <- data1 %>% 
+spp_key <- data3 %>% 
   count(comm_name, sci_name)
 freeR::which_duplicated(spp_key$comm_name)
 freeR::which_duplicated(spp_key$sci_name)
@@ -114,7 +118,7 @@ taxa_full <- bind_rows(taxa, taxa_missing) %>%
   select(-species)
 
 # Add taxa to data
-data2 <- data1 %>% 
+data4 <- data3 %>% 
   # Add taxa info
   left_join(taxa_full, by=c("sci_name"="sciname")) %>% 
   rename(invert_yn=type) %>% 
@@ -124,10 +128,55 @@ data2 <- data1 %>%
   mutate(order=case_when(sci_name=="Austromegabalanus psittacus" ~ "Balanomorpha",
                          T ~ order)) %>% 
   # Arrange
-  select(round:sci_name, invert_yn, class, order, family, genus, everything())
+  select(round:sci_name, invert_yn, class, order, family, genus, everything()) %>% 
+  # Format tissues
+  mutate(tissue=recode(tissue, 
+                       "kidneys"="kidney",
+                       "intestinal tract"="gastrointestinal tract",
+                       "whole fish"="whole",
+                       "edible portion"="edible tissue",
+                       "digestive tissue"="gastrointestinal tissues",
+                       "adductor muscles"="adductor muscle",
+                       "remaining tissue (not gills or digestive gland)"="soft tissue",
+                       "edible tissue (foot, mantle, siphon, adductor muscles)"="edible tissue",
+                       "non-edible tissue (gill, digistive gland, gonad)"="gills+hepatopancreas+gonads")) %>% 
+  # Format tissues
+  mutate(tissue=case_when(class=="Bivalvia" & tissue %in% c("whole", "edible tissue", "flesh", "remaining tissues", "non-viscera") ~ "soft tissue",
+                          class=="Bivalvia" & tissue %in% c("digestive gland") ~ "hepatopancreas",
+                          T ~ tissue))
 
 # Inspect
-freeR::complete(data2) # all taxa info should be complete
+freeR::complete(data4) # all taxa info should be complete
+
+
+# Check toxins
+################################################################################
+
+# Check toxins
+toxin_key <- data4 %>% 
+  count(syndrome, biotoxin)
+
+# Check subtoxins
+subtoxin_key <- data4 %>% 
+  count(syndrome, biotoxin, subtoxin)
+
+# Check tissues
+################################################################################
+
+# 
+tissue_stats1 <- data4 %>% 
+  count(class, tissue)
+
+ggplot(tissue_stats1, aes(y=tidytext::reorder_within(tissue, desc(n), class),
+                          x=n)) +
+  facet_grid(class~., space="free_y", scales="free_y") +
+  geom_bar(stat="identity") +
+  # Labels
+  labs(y="", x="Count") +
+  tidytext::scale_y_reordered() +
+  # Theme
+  theme_bw() +
+  theme(strip.text.y = element_text(angle = 0))
 
 
 # Build paper key
@@ -170,7 +219,7 @@ paper_metadata <- paper_metadata_orig %>%
 freeR::which_duplicated(paper_metadata$article_title)
 
 # Build paper stats
-paper_key <- data2 %>% 
+paper_key <- data4 %>% 
   # Reduce to unique papers
   group_by(round, paper_id, title) %>% 
   summarize(nspp=n_distinct(sci_name)) %>% 
@@ -214,7 +263,7 @@ head(paper_key2)
 # Final species key
 ################################################################################
 
-spp_key_out <- data2 %>% 
+spp_key_out <- data4 %>% 
   select(comm_name, sci_name:genus) %>% 
   unique() %>% 
   arrange(comm_name)
@@ -229,8 +278,8 @@ writexl::write_xlsx(spp_key_out, path=file.path(outdir, "species_key.xlsx"))
 saveRDS(paper_key2, file=file.path(outdir, "database_paper_metadata.Rds"))
 
 # Export database
-saveRDS(data2, file=file.path(outdir, "database.Rds"))
-writexl::write_xlsx(data2, path=file.path(outdir, "database.xlsx"))
+saveRDS(data4, file=file.path(outdir, "database.Rds"))
+writexl::write_xlsx(data4, path=file.path(outdir, "database.xlsx"))
 
 
 

@@ -17,6 +17,8 @@ data_orig <- readRDS(file.path(outdir, "database.Rds"))
   
 # Format data
 data <- data_orig %>% 
+  # Remove NA and pos rates
+  filter(rate_d<0 & !is.na(rate_d)) %>% 
   # Recode some common namae
   mutate(comm_name=ifelse(grepl("Pacific oyster", comm_name), "Pacific oyster", comm_name))
 

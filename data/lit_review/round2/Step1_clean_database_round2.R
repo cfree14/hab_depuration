@@ -62,17 +62,17 @@ data <- data_orig %>%
                       "none"="no model")) %>% 
   # Format tissues
   mutate(tissue=recode(tissue,
-                       "edible part (foot, mantle, siphon and addnctor muscles)" = "edible tissue",                                
+                       "edible part (foot, mantle, siphon and adductor muscles)" = "edible tissue (foot, mantle, siphon, adductor muscles)",
                        "edible tissues" = "edible tissue",
                        "gall bladder" = "gallbladder",
                        "gill" = "gills",
                        "heptopancreas" = "hepatopancreas",
                        "soft whole-body" = "whole", 
                        "summed tissue burden (muscle, intestine, gills, stomach, gall bladder, liver and spleen)" = "whole",
-                       "total flesh" = "whole",
+                       "non edible part (gill, digistive gland and gonad)"="non-edible tissue (gill, digistive gland, gonad)",
+                       "total flesh" = "whole flesh",
                        "visceral mass" = "viscera",
-                       "whole flesh" = "whole", 
-                       "whole tissue" = "whole")) %>% 
+                       "whole tissue" = "whole tissue")) %>% 
   # Format feeding scenario
   mutate(feed_scenario=recode(feed_scenario,
                               "fed clean"="fed non-toxic",
@@ -132,6 +132,7 @@ spp_key <- data %>%
   count(comm_name, sci_name)
 freeR::which_duplicated(spp_key$comm_name) # must be zero
 freeR::which_duplicated(spp_key$sci_name) # must be zero
+
 
 
 # 2) Add derived rates
