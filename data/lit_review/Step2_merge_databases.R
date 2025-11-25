@@ -62,7 +62,9 @@ data3 <- data %>%
   # Fix some sci names
   mutate(sci_name=recode(sci_name,
                          "Chlamys farreri"="Scaeochlamys farreri",
-                         "Crassostrea gigas"="Magallana gigas")) %>% 
+                         "Crassostrea gigas"="Magallana gigas",
+                         "Chlamys nobilis"="Mimachlamys crassicostata",
+                         "Crassostrea gasar"="Crassostrea tulipa")) %>% 
   # Fix some common names
   mutate(comm_name=recode(comm_name,
                           "Sea scallops"="Atlantic sea scallop",
@@ -73,6 +75,8 @@ data3 <- data %>%
   # Format feeding scenario
   mutate(feed_scenario=recode(feed_scenario, 
                               "fed clean"="fed non-toxic"))
+
+freeR::check_names(data3$sci_name)
 
 
 # Check data
@@ -108,14 +112,16 @@ freeR::which_duplicated(spp_key$sci_name)
 
 # Get species info
 taxa <- freeR::taxa(spp_key$sci_name)
-spp_key$sci_name[!spp_key$sci_name %in% taxa$sciname] %>% unique() # species missing taxa info
+spp_key$sci_name[!spp_key$sci_name %in% taxa$sciname] %>% unique() %>% sort() # species missing taxa info
 
 # Read key for missing taxa
-taxa_missing <- readxl::read_excel("data/lit_review/processed/taxa_key_for_species_not_in_sealifebase.xlsx")
+taxa_missing <- readxl::read_excel("data/lit_review/processed/taxa_key_for_species_not_in_sealifebase.xlsx") %>% 
+  filter(!sciname %in% taxa$sciname)
 
 # Merge taxa keys
 taxa_full <- bind_rows(taxa, taxa_missing) %>% 
   select(-species)
+freeR::which_duplicated(taxa_full$sciname)
 
 # Add taxa to data
 data4 <- data3 %>% 
@@ -141,7 +147,9 @@ data4 <- data3 %>%
                        "edible tissue (foot, mantle, siphon, adductor muscles)"="edible tissue",
                        "non-edible tissue (gill, digistive gland, gonad)"="gills+hepatopancreas+gonads")) %>% 
   # Format tissues
-  mutate(tissue=case_when(class=="Bivalvia" & tissue %in% c("whole", "edible tissue", "flesh", "remaining tissues", "non-viscera") ~ "soft tissue",
+  mutate(tissue=case_when(class=="Bivalvia" & tissue %in% c("whole", "edible tissue", "flesh", 
+                                                            "remaining tissues", "non-viscera", "total tissue", 
+                                                            "whole flesh", "whole tissue") ~ "soft tissue",
                           class=="Bivalvia" & tissue %in% c("digestive gland") ~ "hepatopancreas",
                           T ~ tissue))
 
@@ -163,11 +171,24 @@ subtoxin_key <- data4 %>%
 # Check tissues
 ################################################################################
 
-# 
+# Tissue stats
 tissue_stats1 <- data4 %>% 
   count(class, tissue)
 
+# All
 ggplot(tissue_stats1, aes(y=tidytext::reorder_within(tissue, desc(n), class),
+                          x=n)) +
+  facet_grid(class~., space="free_y", scales="free_y") +
+  geom_bar(stat="identity") +
+  # Labels
+  labs(y="", x="Count") +
+  tidytext::scale_y_reordered() +
+  # Theme
+  theme_bw() +
+  theme(strip.text.y = element_text(angle = 0))
+
+# Just bivalves
+ggplot(tissue_stats1 %>% filter(class=="Bivalvia"), aes(y=tidytext::reorder_within(tissue, desc(n), class),
                           x=n)) +
   facet_grid(class~., space="free_y", scales="free_y") +
   geom_bar(stat="identity") +
