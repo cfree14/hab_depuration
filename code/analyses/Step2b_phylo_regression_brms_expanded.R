@@ -41,6 +41,10 @@ tree <- ape::drop.tip(tree_orig, setdiff(tree_orig$tip.label, all_tip_labels)) #
 length(tree$tip.label)
 tree_levels <- tree$tip.label
 
+# Inspect categorical levels
+sort(unique(data_orig$study_type))
+tissues <- sort(unique(data_orig$tissue))
+
 # Subset data to species in tree
 data <- data_orig %>% 
   # Reduce to species in tree
@@ -48,7 +52,10 @@ data <- data_orig %>%
   # Log the depuration rate
   mutate(rate_d_log=abs(rate_d) %>% log(.)) %>% 
   # Create species column that matches tree (same names and order)
-  mutate(species=factor(tip.label, levels=tree_levels))
+  mutate(species=factor(tip.label, levels=tree_levels)) %>% 
+  # Set study type factor
+  mutate(study_type=factor(study_type, levels=c("lab", "field (non-toxic site)", "field")),
+         tissue=factor(tissue, levels=c("soft tissue", tissues[tissues!="soft tissue"])))
 
 # Subset prediction data to species in tree
 pred_data <- pred_data_orig %>% 
@@ -205,7 +212,6 @@ model_stats
 write.csv(model_stats, file=file.path(tabledir, "TableSX_phylo_model_comparison.csv"), row.names=F)
 
 
-
 # Diagnostics on best model
 ################################################################################
 
@@ -213,7 +219,7 @@ write.csv(model_stats, file=file.path(tabledir, "TableSX_phylo_model_comparison.
 fit <- fit3
 
 # Checking observed data vs. simulated draws
-bayesplot::pp_check(fit2) # overall distribution
+bayesplot::pp_check(fit) # overall distribution
 bayesplot::pp_check(fit, type = "scatter") # y vs. y_rep
 bayesplot::pp_check(fit, type = "dens_overlay", group = "species")
 
@@ -321,7 +327,10 @@ data_high_k <- data[bad, ]   # inspect influential studies/species
 
 # Build data to predict to
 pdata_lab <- data %>%
-  select(order, family, genus, sci_name, species, lmax_cm, temp_c, k) %>%
+  # Format PO
+  mutate(comm_name=ifelse(grepl("Pacific oyster", comm_name), "Pacific oyster", comm_name)) %>% 
+  # Identify unique species
+  select(order, family, genus, sci_name, species, comm_name, lmax_cm, temp_c, k) %>%
   distinct() %>%
   mutate(study_type = "lab",
          tissue     = "soft tissue")
@@ -418,7 +427,7 @@ lambda
 
 # Build data to predict to
 pdata_all_lab <- pred_data %>%
-  select(order, family, genus, sci_name, tip.label, lmax_cm, temp_c, k) %>%
+  select(order, family, genus, sci_name, comm_name, tip.label, lmax_cm, temp_c, k) %>%
   distinct() %>%
   mutate(species=tip.label, 
          study_type = "lab",

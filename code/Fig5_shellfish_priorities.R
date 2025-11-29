@@ -386,6 +386,6 @@ g <- gridExtra::grid.arrange(g1, g2, g3,
                              g4, g5, g6, ncol=3)
 
 # Export
-ggsave(g, filename=file.path(plotdir, "Fig6_bivalve_priority_species.png"), 
+ggsave(g, filename=file.path(plotdir, "Fig5_bivalve_priority_species.png"), 
        width=6.5, height=6, units="in", dpi=600)
 

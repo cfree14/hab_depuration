@@ -34,7 +34,7 @@ data <- data_orig %>%
                       "Maxillopoda"="Zooplankton")) %>% 
   # Filter
   # remove one crazy outlier that should really be an increase
-  filter(!is.na(hlife_d) & rate_d<0 & rate_d < -0.00001) %>% 
+  filter(!is.na(hlife_d) & rate_d<0 & rate_d < -0.0001) %>% 
   # Add percent daily loss
   mutate(perc_loss_d=(1-exp(rate_d)))
 
@@ -97,8 +97,8 @@ g3 <- ggplot(data, aes(x=hlife_d, y=factor(genus, stats$genus))) +
   # Labels
   labs(x="Half life (day)", y="Genus", tag="C") +
   scale_x_continuous(trans="log10", 
-                     breaks=c(0.1,1,10,100),
-                     labels=c("0.1", "1" , "10" , "100")) +
+                     breaks=c(0.1, 1, 10, 100, 1000),
+                     labels=c("0.1", "1" , "10" , "100", "1000")) +
   # Theme
   theme_bw() + my_theme +
   theme(axis.text.y=element_blank(),

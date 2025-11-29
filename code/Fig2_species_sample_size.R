@@ -174,7 +174,7 @@ g2
 g <- gridExtra::grid.arrange(g1, g2, nrow=1, widths=c(0.45, 0.55))
 
 # Export
-ggsave(g, filename=file.path(plotdir, "Fig2_species_sample_size.png"), 
+ggsave(g, filename=file.path(plotdir, "Fig2_species_sample_size_long.png"), 
        width=6.5, height=7.5, units="in", dpi=600)
 
 
