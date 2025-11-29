@@ -41,7 +41,7 @@ data <- data_orig %>%
   select(-c(r2, r2_se, r2_lo, r2_hi, looic, looic_loo_sd, p_loo, p_loo_sd))
 
 # Export
-writexl::write_xlsx(data, path=file.path(tabledir, "TableSX_phylo_model_comparison.xlsx"))
+writexl::write_xlsx(data, path=file.path(tabledir, "TableS4_phylo_model_comparison.xlsx"))
 
 
 
