@@ -66,7 +66,7 @@ g1 <- ggplot(resid_df, aes(x=.residual)) +
   geom_histogram(fill="grey80") + 
   geom_vline(xintercept=0) +
   # Label
-  labs(x="Residual", y="Number of draws", tag="C") +
+  labs(x="Residual", y="Number of draws", tag="A") +
   # Theme
   theme_bw() + my_theme
 g1

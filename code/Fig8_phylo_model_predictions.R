@@ -44,13 +44,20 @@ orders1 <- c(order_hyper_p$order[1:2], "Arcida")
 orders2 <- c(order_hyper_p$order[3:7], "Limida")
 
 # Reduce to just lab
-data <- preds_all_full %>% 
+data_all <- preds_all_full %>% 
   # Just lab
-  filter(study_type=="lab") %>% 
+  filter(study_type=="field") %>% 
   # Mark if data available
-  mutate(data_yn=ifelse(sci_name %in% data_orig$sci_name, "yes", "no")) %>% 
+  mutate(data_yn=ifelse(sci_name %in% data_orig$sci_name, "yes", "no")) 
+data <- data_all %>% 
   # Suppress Tridacna gigas (Lmax) and Crassostrea rhizophorae (K) b/c rates are ridiculous
   filter(!sci_name %in% c("Tridacna gigas", "Crassostrea rhizophorae")) 
+
+# Count species without predictions
+data %>% 
+  filter(data_yn=="no") %>% 
+  pull(sci_name) %>% 
+  n_distinct()
 
 # Prep data
 data1 <- data %>% 
@@ -110,10 +117,10 @@ g1 <- ggplot(data1, aes(x=rate_d,
   tidytext::scale_y_reordered() +
   scale_x_continuous(trans="log10", 
                      lim=c(xmin, xmax),
-                     breaks=c(0.001, 0.01, 0.1, 1, 10),
-                     labels=c("0.001", "0.01", "0.1", "1", "10")) +
+                     breaks=c(0.0001, 0.001, 0.01, 0.1, 1, 10),
+                     labels=c("0.0001", "0.001", "0.01", "0.1", "1", "10")) +
   # Legend
-  scale_color_manual(name="Rate type", values=c("red", "blue")) +
+  scale_color_manual(name="Rate type", values=c("forestgreen", "darkorange")) +
   # Theme
   theme_bw() + my_theme
 g1
@@ -137,10 +144,10 @@ g2 <- ggplot(data2, aes(x=rate_d,
   tidytext::scale_y_reordered() +
   scale_x_continuous(trans="log10", 
                      lim=c(xmin, xmax),
-                     breaks=c(0.001, 0.01, 0.1, 1, 10),
-                     labels=c("0.001", "0.01", "0.1", "1", "10")) +
+                     breaks=c(0.0001, 0.001, 0.01, 0.1, 1, 10),
+                     labels=c("0.0001", "0.001", "0.01", "0.1", "1", "10")) +
   # Legend
-  scale_color_manual(name="Rate type", values=c("red", "blue")) +
+  scale_color_manual(name="Rate type", values=c("forestgreen", "darkorange")) +
   # Theme
   theme_bw() + my_theme
 g2

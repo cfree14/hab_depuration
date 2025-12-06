@@ -52,7 +52,8 @@ tip_order
 
 # Format preds
 preds <- preds_full %>% 
-  mutate(species_label=paste0(sci_name, " (", comm_name, ")"))
+  mutate(species_label=paste0(sci_name, " (", comm_name, ")"),
+         study_type=stringr::str_to_sentence(study_type))
 
 
 
@@ -71,7 +72,7 @@ g1 <- ggtree(tree, lwd=0.3) +
 g1
 
 # Plot rates
-g2 <- ggplot(preds_full, aes(x=rate_d, 
+g2 <- ggplot(preds, aes(x=rate_d, 
                        y=factor(sci_name, tip_order), # preds_spp_order$sci_name
                        color=study_type)) +
   # Facet
@@ -86,7 +87,7 @@ g2 <- ggplot(preds_full, aes(x=rate_d,
   scale_y_discrete(sec.axis = dup_axis()) +
   # tidytext::scale_y_reordered() +
   # Legend
-  scale_color_discrete(name="Rate type") +
+  scale_color_manual(name="Rate type", values=c( "#35B779", "#440154")) +
   # Theme
   theme_bw() +
   theme(legend.position = "top",

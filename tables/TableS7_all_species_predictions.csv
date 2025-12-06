@@ -1,4 +1,4 @@
-order,family,genus,sci_name,comm_name,lmax_cm,k,temp_c,field,lab
+Order,Family,Genus,Scientific name,Common name,Length (cm),K (1/yr),Temp (¡C),Field (95% CI),Lab (95% CI)
 Adapedonta,Hiatellidae,Cyrtodaria,Cyrtodaria siliqua,Northern propellerclam,11,0.07,8,0.09 (0.001-0.56),0.268 (0.002-1.619)
 Adapedonta,Pharidae,Ensis,Ensis ensis,Pod razor shell,16.5,0.4625,11,0.104 (0.006-0.462),0.321 (0.016-1.443)
 Adapedonta,Pharidae,Ensis,Ensis leei,Atl.jackknife(=Atl.razor clam),20,0.4625,11,0.101 (0.006-0.436),0.307 (0.016-1.393)

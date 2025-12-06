@@ -230,6 +230,10 @@ write.csv(merge_new, file=file.path(tabledir, "TableSX_priority_species_new_taxa
 # Plot data
 ################################################################################
 
+# Colors
+rate_color <- "darkorange"
+norate_color <- "forestgreen"
+
 # Base theme
 base_theme <-  theme(axis.text=element_text(size=6),
                    axis.title=element_text(size=7),
@@ -255,16 +259,16 @@ g1 <- ggplot(para, aes(y=comm_name, x=prod_mt/1e6, alpha=prod_type, fill=rate_yn
   geom_text(data=para_new, 
             mapping=aes(y=comm_name, x=prod_mt/1e6+0.1, label=label_simple), 
             inherit.aes = F,
-            color="red", hjust=0, size=2.4) +
+            color=norate_color, hjust=0, size=2.4) +
   # Add label
   geom_text(data=count_key %>% filter(syndrome=="Paralytic"), 
             aes(x=prod_mt_max/1e6, y=comm_name, label=label), 
-            inherit.aes=F, hjust=1, color="blue", size=2.2) +
+            inherit.aes=F, hjust=1, color=rate_color, size=2.2) +
   # Labels
   labs(x="Annual production\n(millions mt)", y="", title="Paralytic") +
   # Legend
   scale_alpha_manual(name="", values=c(0.5, 1)) +
-  scale_fill_manual(name="", values=c("blue", "red")) +
+  scale_fill_manual(name="", values=c(rate_color, norate_color)) +
   # Theme
   theme_bw() + base_theme + 
   theme(legend.key.size=unit(0.3, "cm"),
@@ -278,16 +282,16 @@ g2 <- ggplot(amne, aes(y=comm_name, x=prod_mt/1e6, alpha=prod_type, fill=rate_yn
   geom_text(data=amne_new, 
             mapping=aes(y=comm_name, x=prod_mt/1e6+0.1, label=label_simple), 
             inherit.aes = F,
-            color="red", hjust=0, size=2.4) +
+            color=norate_color, hjust=0, size=2.4) +
   # Add label
   geom_text(data=count_key %>% filter(syndrome=="Amnesic"), 
             aes(x=prod_mt_max/1e6, y=comm_name, label=label), 
-            inherit.aes=F, hjust=1, color="blue", size=2.2) +
+            inherit.aes=F, hjust=1, color=rate_color, size=2.2) +
   # Labels
   labs(x="Annual production\n(millions mt)", y="", title="Amnesic") +
   # Legend
   scale_alpha_manual(name="", values=c(0.5, 1)) +
-  scale_fill_manual(name="", values=c("blue", "red")) +
+  scale_fill_manual(name="", values=c(rate_color, norate_color)) +
   # Theme
   theme_bw() + base_theme + 
   theme(legend.position = "none")
@@ -300,16 +304,16 @@ g3 <- ggplot(diar, aes(y=comm_name, x=prod_mt/1e6, alpha=prod_type, fill=rate_yn
   geom_text(data=diar_new, 
             mapping=aes(y=comm_name, x=prod_mt/1e6+0.1, label=label_simple), 
             inherit.aes = F,
-            color="red", hjust=0, size=2.4) +
+            color=norate_color, hjust=0, size=2.4) +
   # Add label
   geom_text(data=count_key %>% filter(syndrome=="Diarrhetic"), 
             aes(x=prod_mt_max/1e6, y=comm_name, label=label), 
-            inherit.aes=F, hjust=1, color="blue", size=2.2) +
+            inherit.aes=F, hjust=1, color=rate_color, size=2.2) +
   # Labels
   labs(x="Annual production\n(millions mt)", y="", title="Diarrhetic") +
   # Legend
   scale_alpha_manual(name="", values=c(0.5, 1)) +
-  scale_fill_manual(name="", values=c("blue", "red")) +
+  scale_fill_manual(name="", values=c(rate_color, norate_color)) +
   # Theme
   theme_bw() + base_theme + 
   theme(legend.position = "none")
@@ -322,16 +326,16 @@ g4 <- ggplot(cyan, aes(y=comm_name, x=prod_mt/1e6, alpha=prod_type, fill=rate_yn
   geom_text(data=cyan_new, 
             mapping=aes(y=comm_name, x=prod_mt/1e6+0.01, label=label_simple), 
             inherit.aes = F,
-            color="red", hjust=0, size=2.4) +
+            color=norate_color, hjust=0, size=2.4) +
   # Add label
   geom_text(data=count_key %>% filter(syndrome=="Cyanotoxin"), 
             aes(x=prod_mt_max/1e6, y=comm_name, label=label), 
-            inherit.aes=F, hjust=1, color="blue", size=2.2) +
+            inherit.aes=F, hjust=1, color=rate_color, size=2.2) +
   # Labels
   labs(x="Annual production\n(millions mt)", y="", title="Cyanotoxins") +
   # Legend
   scale_alpha_manual(name="", values=c(0.5, 1)) +
-  scale_fill_manual(name="", values=c("blue", "red")) +
+  scale_fill_manual(name="", values=c(rate_color, norate_color)) +
   # Theme
   theme_bw() + base_theme + 
   theme(legend.position = "none")
@@ -344,16 +348,16 @@ g5 <- ggplot(brev, aes(y=comm_name, x=prod_mt/1e6, alpha=prod_type, fill=rate_yn
   geom_text(data=brev_new, 
             mapping=aes(y=comm_name, x=prod_mt/1e6+0.1, label=label_simple), 
             inherit.aes = F,
-            color="red", hjust=0, size=2.4) +
+            color=norate_color, hjust=0, size=2.4) +
   # Add label
   geom_text(data=count_key %>% filter(syndrome=="Neurotoxic"), 
             aes(x=prod_mt_max/1e6, y=comm_name, label=label), 
-            inherit.aes=F, hjust=1, color="blue", size=2.2) +
+            inherit.aes=F, hjust=1, color=rate_color, size=2.2) +
   # Labels
   labs(x="Annual production\n(millions mt)", y="", title="Neurotoxic") +
   # Legend
   scale_alpha_manual(name="", values=c(0.5, 1)) +
-  scale_fill_manual(name="", values=c("blue", "red")) +
+  scale_fill_manual(name="", values=c(rate_color, norate_color)) +
   # Theme
   theme_bw() + base_theme + 
   theme(legend.position = "none")
@@ -366,16 +370,16 @@ g6 <- ggplot(azas, aes(y=comm_name, x=prod_mt/1e6, alpha=prod_type, fill=rate_yn
   geom_text(data=azas_new, 
             mapping=aes(y=comm_name, x=prod_mt/1e6+0.1, label=label_simple), 
             inherit.aes = F,
-            color="red", hjust=0, size=2.4) +
+            color=norate_color, hjust=0, size=2.4) +
   # Add label
   geom_text(data=count_key %>% filter(syndrome=="Azaspiracid"), 
             aes(x=prod_mt_max/1e6, y=comm_name, label=label), 
-            inherit.aes=F, hjust=1, color="blue", size=2.2) +
+            inherit.aes=F, hjust=1, color=rate_color, size=2.2) +
   # Labels
   labs(x="Annual production\n(millions mt)", y="", title="Azaspiracid") +
   # Legend
   scale_alpha_manual(name="", values=c(0.5, 1)) +
-  scale_fill_manual(name="", values=c("blue", "red")) +
+  scale_fill_manual(name="", values=c(rate_color, norate_color)) +
   # Theme
   theme_bw() + base_theme + 
   theme(legend.position = "none")

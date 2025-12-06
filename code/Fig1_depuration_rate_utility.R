@@ -171,8 +171,8 @@ g2 <- ggplot(data2, aes(x=day, y=toxicity)) +
   geom_line(data=proj2, color="forestgreen") +
   # Sampling points
   geom_point(data=samp2,  mapping=aes(fill=program), pch=21, size=3) +
-  geom_point(data=proj1_pts,  color="forestgreen", pch=21, size=3) +
-  geom_point(data=proj2_pts,  color="forestgreen", pch=21, size=3) +
+  geom_point(data=proj1_pts,  color="forestgreen", fill="white", pch=21, size=3) +
+  geom_point(data=proj2_pts,  color="forestgreen", fill="white", pch=21, size=3) +
   # Labels
   labs(x="Day of testing", y="Toxicity (ppm)", tag="B", title="Before peak toxicity") +
   # Legend

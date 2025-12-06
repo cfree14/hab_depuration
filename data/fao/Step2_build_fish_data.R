@@ -73,24 +73,45 @@ spp_key <- data_orig  %>%
   count(isscaap, comm_name, sci_name)
  
   
-# Loop up species
+# Look up species
 # spp_fb2 <- freeR::fishbase(dataset="ecosystem", species=spp_key$sci_name[1:10], cleaned = F)
-# spp_fb3 <- freeR::fishbase(dataset="ecology", species=spp_key$sci_name[1:10], cleaned = T)
-spp_fb <- freeR::fishbase(dataset="species", species=spp_key$sci_name, cleaned = T)
-spp_fb_use <- spp_fb %>% 
-  filter(database=="FishBase") %>% 
-  unique()
-freeR:::which_duplicated(spp_fb_use$species)
 
-# Add and filter
+# Look up diet info
+spp_diet <- freeR::fishbase(dataset="ecology", species=spp_key$sci_name, cleaned = T)
+freeR:::which_duplicated(spp_diet$species)
+spp_diet1 <- spp_diet %>% 
+  # Calculate mean trohic level b/c get repeates
+  group_by(species, prey_type) %>% 
+  summarize(troph_diet=mean(troph_diet, na.rm=T),
+            troph_food=mean(troph_food, na.rm=T)) %>% 
+  ungroup() %>% 
+  unique() %>% 
+  # Add more prey type
+  mutate(prey_type=ifelse(!is.na(prey_type) & (troph_diet <= 2.2 | troph_food <= 2.2), "mainly plants/detritus (troph. 2-2.19)", prey_type)) %>% 
+  mutate(prey_type=ifelse(!is.na(prey_type), "unknown", prey_type))
+freeR:::which_duplicated(spp_diet1$species)
+
+# Look up habitat, Lmax, citguarta records
+spp_traits <- freeR::fishbase(dataset="species", species=spp_key$sci_name, cleaned = T)
+freeR:::which_duplicated(spp_traits$species)
+spp_traits1 <- spp_traits %>% 
+  select(species, habitat, lmax_cm, dangerous) %>% 
+  mutate(ciguatera_yn=ifelse(grepl("ciguatera", dangerous), "yes", "no"))
+
+# Expand
 spp_key2 <- spp_key %>% 
   # Add size and habitat
-  left_join(spp_fb_use %>% select(species, habitat, lmax_cm), by=c("sci_name"="species")) %>%
+  left_join(spp_traits1, by=c("sci_name"="species")) %>%
+  # Add prey type
+  left_join(spp_diet1 %>% select(species, prey_type), by=c("sci_name"="species"))
+
+# Filter
+spp_key3 <- spp_key2 %>% 
   # Reduce to large reef-associated fish
-  filter(habitat=="reef-associated" & lmax_cm>=25)
+  filter(ciguatera_yn=="yes" | (habitat=="reef-associated" & lmax_cm>=25 & prey_type!="mainly plants/detritus (troph. 2-2.19)"))
 
 # Get taxa
-taxa <- freeR::taxa(spp_key2$sci_name) %>% 
+taxa <- freeR::taxa(spp_key3$sci_name) %>% 
   select(class:genus, sciname)
 
 
@@ -100,7 +121,7 @@ taxa <- freeR::taxa(spp_key2$sci_name) %>%
 # Build data
 data <- data_orig %>% 
   # Reduce to data of interest
-  filter(prod_type=="Capture" & year %in% yrs & iso3 %in% obis$iso3 & sci_name %in% spp_key2$sci_name & measure=="Live weight, mt") %>% 
+  filter(prod_type=="Capture" & year %in% yrs & iso3 %in% obis$iso3 & sci_name %in% spp_key3$sci_name & measure=="Live weight, mt") %>% 
   filter(isscaap!="Herrings, sardines, anchovies") %>% 
   # Summarize
   group_by(isscaap, comm_name, sci_name) %>% 
@@ -118,9 +139,10 @@ data <- data_orig %>%
   fill(class:family, .direction = "updown") %>% 
   ungroup() %>% 
   # Add Lmax
-  left_join(spp_key2 %>% select(sci_name, lmax_cm), by=c("sci_name")) %>% 
+  left_join(spp_key3 %>% select(sci_name, lmax_cm, habitat, prey_type, ciguatera_yn), by=c("sci_name")) %>% 
   # Arrange
-  select(isscaap, class, order, family, genus, sci_name, comm_name, lmax_cm, rank, landings_mt, everything()) %>% 
+  select(isscaap, class, order, family, genus, sci_name, comm_name, 
+         habitat, prey_type, lmax_cm, ciguatera_yn, rank, landings_mt, everything()) %>% 
   arrange(desc(landings_mt))
 
 freeR::complete(data)

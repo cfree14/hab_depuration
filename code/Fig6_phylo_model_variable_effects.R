@@ -114,6 +114,17 @@ ggplot(coefs_fe, aes(x=pct_med,
   # Theme
   theme_bw()
 
+
+# Lab vs field
+################################################################################
+
+lab_v_field <- preds_full %>% 
+  # Simplify
+  select(sci_name, study_type, rate_d) %>% 
+  spread(key="study_type", value="rate_d") %>% 
+  mutate(ratio=field/lab, 
+         ratio1=lab/field)
+
 # Conditional effects of fixed effects
 ################################################################################
 

@@ -35,20 +35,24 @@ dep <- dep_orig %>%
 # Build data
 data <- data_orig %>% 
   # Label ones with dep rates
-  mutate(rate_yn=ifelse(sci_name %in% dep$sci_name, "Rate", "No rate")) 
+  mutate(rate_yn=ifelse(sci_name %in% dep$sci_name, "Rate", "No rate")) %>% 
+  #Format common name
+  mutate(comm_name=recode(comm_name, 
+                          "Little tunny(=Atl.black skipj)"="Little tunny"),
+         species_label=paste0(comm_name, " (", sci_name, ")"))
 
 
 # Plot data
 ################################################################################
 
 # Base theme
-base_theme <-  theme(axis.text=element_text(size=8),
-                     axis.title=element_text(size=9),
+base_theme <-  theme(axis.text=element_text(size=6),
+                     axis.title=element_text(size=7),
                      axis.title.y=element_blank(),
-                     legend.text=element_text(size=8),
-                     legend.title=element_blank(),
-                     strip.text=element_text(size=9),
-                     plot.title=element_text(size=9),
+                     legend.text=element_text(size=6),
+                     legend.title=element_text(size=7),
+                     strip.text=element_text(size=7),
+                     plot.title=element_text(size=7),
                      # Gridlines
                      panel.grid.major = element_blank(), 
                      panel.grid.minor = element_blank(),
@@ -59,15 +63,16 @@ base_theme <-  theme(axis.text=element_text(size=8),
                      legend.background = element_rect(fill=alpha('blue', 0)))
 
 # Plot data
-g <- ggplot(data %>% slice(1:20), 
+g <- ggplot(data %>% slice(1:50), 
             aes(x=landings_mt/1e3, 
-                y=reorder(comm_name, desc(landings_mt)),
-                fill=rate_yn)) +
+                y=reorder(species_label, desc(landings_mt)),
+                fill=ciguatera_yn)) +
   geom_bar(stat="identity") +
   # Labels
-  labs(x="Annual landings (1000s mt)", y="", title="Ciguatera") +
+  labs(x="Annual landings (1000s mt)", y="") +
+  scale_x_continuous(trans="log10") +
   # Legend
-  scale_fill_ordinal(name="") +
+  scale_fill_discrete(name="Ciguatera observed?") +
   # Theme
   theme_bw() + base_theme +
   theme(legend.position = c(0.8, 0.8))
@@ -75,8 +80,8 @@ g
 
 # Export
 ggsave(g, filename=file.path(plotdir, "FigS9_finfish_priority_species.png"), 
-       width=4.5, height=4.0, units="in", dpi=600)
-
+       width=6.5, height=5.5, units="in", dpi=600)
+ 
 
 
 
