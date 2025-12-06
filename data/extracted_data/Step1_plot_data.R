@@ -244,6 +244,8 @@ plot_data(datafile="Rourke_etal_2021_SuppData2.xlsx", y_title="Toxicity", legend
 plot_data(datafile="Rourke_etal_2021_SuppData5.xlsx", y_title="Toxicity", legend_title="Treatment", title="Rourke_etal_2021_SuppData5.xlsx")
 plot_data(datafile="Rourke_etal_2021_SuppData6.xlsx", y_title="Toxicity", legend_title="Treatment", title="Rourke_etal_2021_SuppData6.xlsx")
 
+plot_data(datafile = "Jiao_2010_chinese_Fig_3.xlsx", y_title = "Toxicity", legend_title = "Treatment", title = "Jiao_2010_chinese_Fig_3.xlsx")
+
 
 
 
