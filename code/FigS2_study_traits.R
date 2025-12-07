@@ -88,6 +88,7 @@ g1 <- ggplot(ystats, aes(x=year, y=n)) +
   # Labels
   labs(x="Year of publication", y="Number of papers", tag="A") +
   scale_x_continuous(breaks=seq(1980, 2025, 5)) +
+  scale_y_continuous(breaks=seq(0,16,2)) +
   # Theme
   theme_bw() + my_theme
 g1

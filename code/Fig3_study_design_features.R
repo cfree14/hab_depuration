@@ -29,6 +29,7 @@ data <- data_orig %>%
   # Recode class
   mutate(class=recode(class,
                       "Actinopterygii"="Finfish",
+                      "Teleostei"="Finfish",
                       "Ascidiacea" = "Sea squirts",
                       "Bivalvia"="Bivalves",      
                       "Cephalopoda"="Cephalopods",
@@ -37,6 +38,7 @@ data <- data_orig %>%
                       "Malacostraca"="Crustaceans",
                       "Thecostraca"="Crustaceans",
                       "Mammalia" = "Mammals",
+                      "Copepoda"="Copepods",
                       "Maxillopoda"="Zooplankton")) 
 
 # Number of papers
@@ -344,6 +346,7 @@ g6 <- ggplot(stats_exp, aes(y=reorder(exp_type, desc(n)), x=n)) +
   geom_bar(stat="identity") +
   # Labels
   labs(x="Number of papers", y="Experiment type", tag="F") +
+  scale_x_continuous(breaks=seq(0,16,2)) +
   # Theme
   theme_bw() + base_theme
 g6

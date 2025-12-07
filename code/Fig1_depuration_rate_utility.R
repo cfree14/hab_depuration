@@ -112,6 +112,17 @@ samp2 <- bind_rows(samp2_std, samp2_opt) %>%
                                "Standard"="Standard (15 tests)", 
                                "Optimized"="Optimized (9 tests)"))
 
+# Merge lines for panel B
+lines_df <- bind_rows(data2 %>% mutate(type="Actual", type1="Actual"),
+                      proj1 %>% mutate(type="Projection", type1="Projection 1"),
+                      proj2 %>% mutate(type="Projection", type1="Projection 2"))
+
+# Projection points
+proj_pts <- bind_rows(proj1 %>% slice(1), 
+                      proj2 %>% slice(1), 
+                      samp2 %>% filter(day==70 & grepl("Optimized", program))) %>% 
+  mutate(num=1:3)
+
 
 # Plot data
 ################################################################################
@@ -153,7 +164,7 @@ g1 <- ggplot(data, aes(x=day, y=toxicity)) +
 g1
 
 # Plot
-g2 <- ggplot(data2, aes(x=day, y=toxicity)) +
+g2 <- ggplot() +
   # Phase line
   geom_vline(xintercept=40, color="grey40") +
   annotate(geom="text", x=0, y=115, label="Accumulation\nphase", 
@@ -165,22 +176,24 @@ g2 <- ggplot(data2, aes(x=day, y=toxicity)) +
   annotate(geom="text", x=160, y=30, label="Action threshold", 
            color="grey40", hjust=1, vjust=-1, size=2.4) +
   # Data
-  geom_line() +
-  # Projections
-  geom_line(data=proj1, color="forestgreen") +
-  geom_line(data=proj2, color="forestgreen") +
+  geom_line(data=lines_df, mapping=aes(x=day, y=toxicity, group=type1, color=type)) +
   # Sampling points
-  geom_point(data=samp2,  mapping=aes(fill=program), pch=21, size=3) +
-  geom_point(data=proj1_pts,  color="forestgreen", fill="white", pch=21, size=3) +
-  geom_point(data=proj2_pts,  color="forestgreen", fill="white", pch=21, size=3) +
+  geom_point(data=samp2,  mapping=aes(x=day, y=toxicity, fill=program), pch=21, size=3) +
+  geom_point(data=proj1_pts, mapping=aes(x=day, y=toxicity), color="darkorange", fill="white", pch=21, size=3) +
+  geom_point(data=proj2_pts,  mapping=aes(x=day, y=toxicity), color="darkorange", fill="white", pch=21, size=3) +
+  # Projection labels
+  geom_text(data=proj_pts, mapping=aes(x=day, y=toxicity, label=num), 
+            color="black", fontface="bold", hjust=0.5, vjust=0.5, size=2.4) +
   # Labels
   labs(x="Day of testing", y="Toxicity (ppm)", tag="B", title="Before peak toxicity") +
   # Legend
-  scale_fill_manual(name="Monitoring program", values=c("darkorange", "forestgreen")) +
+  scale_color_manual(name="Biotoxin trajectory", values=c("black", "darkorange")) +
+  scale_fill_manual(name="Monitoring program", values=c( "forestgreen", "darkorange")) +
   # Theme
   theme_bw() + my_theme +
   theme(axis.title.y=element_blank(),
-        legend.position = c(0.8, 0.8))
+        legend.position = c(0.8, 0.68), 
+        legend.spacing.y = unit(-0.2, "cm"))
 g2
 
 # Merge
@@ -191,6 +204,40 @@ ggsave(g, filename=file.path(plotdir, "Fig1_depuration_rate_utility.png"),
        width=6.5, height=3, units="in", dpi=600)
 
 
+
+# Version with accumulation and projection curves seperated
+################################################################################
+
+# # Plot
+# g2 <- ggplot(data2, aes(x=day, y=toxicity)) +
+#   # Phase line
+#   geom_vline(xintercept=40, color="grey40") +
+#   annotate(geom="text", x=0, y=115, label="Accumulation\nphase", 
+#            color="grey40", hjust=0, vjust=0.5, size=2.4) +
+#   annotate(geom="text", x=50, y=115, label="Depuration\nphase", 
+#            color="grey40", hjust=0, vjust=0.5, size=2.4) +
+#   # Reference line
+#   geom_hline(yintercept=30, linetype="dashed", color="grey40") +
+#   annotate(geom="text", x=160, y=30, label="Action threshold", 
+#            color="grey40", hjust=1, vjust=-1, size=2.4) +
+#   # Data
+#   geom_line() +
+#   # Projections
+#   geom_line(data=proj1, color="forestgreen") +
+#   geom_line(data=proj2, color="forestgreen") +
+#   # Sampling points
+#   geom_point(data=samp2,  mapping=aes(fill=program), pch=21, size=3) +
+#   geom_point(data=proj1_pts,  color="forestgreen", fill="white", pch=21, size=3) +
+#   geom_point(data=proj2_pts,  color="forestgreen", fill="white", pch=21, size=3) +
+#   # Labels
+#   labs(x="Day of testing", y="Toxicity (ppm)", tag="B", title="Before peak toxicity") +
+#   # Legend
+#   scale_fill_manual(name="Monitoring program", values=c("darkorange", "forestgreen")) +
+#   # Theme
+#   theme_bw() + my_theme +
+#   theme(axis.title.y=element_blank(),
+#         legend.position = c(0.8, 0.8))
+# g2
 
 # Uptake and depuration schematic
 ################################################################################

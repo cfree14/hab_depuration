@@ -9,8 +9,7 @@ rm(list = ls())
 library(tidyverse)
 
 # Directories
-indir <- "data/lit_review/round1/raw"
-outdir <- "data/lit_review/round1/processed"
+outdir <- "data/lit_review/processed"
 plotdir <- "figures"
 
 # Read data
@@ -23,10 +22,16 @@ data <- data_orig %>%
   # Recode class
   mutate(class=recode(class,
                       "Actinopterygii"="Finfish",
+                      "Teleostei"="Finfish",
+                      "Ascidiacea" = "Sea squirts",
                       "Bivalvia"="Bivalves",      
                       "Cephalopoda"="Cephalopods",
+                      "Dinophyceae" = "Phytoplankton",
                       "Gastropoda"="Gastropods",
                       "Malacostraca"="Crustaceans",
+                      "Thecostraca"="Crustaceans",
+                      "Mammalia" = "Mammals",
+                      "Copepoda"="Copepods",
                       "Maxillopoda"="Zooplankton"))
 
 # Plot data
@@ -35,14 +40,14 @@ data <- data_orig %>%
 # Number of papers by class
 class_n <- data %>% 
   group_by(class) %>% 
-  summarize(n_class=n_distinct(id)) %>% 
+  summarize(n_class=n_distinct(paper_id)) %>% 
   ungroup()
 
 # Tissue stats
 tissues <- data %>% 
   # Summarize
   group_by(class, tissue) %>% 
-  summarize(n=n_distinct(id)) %>% 
+  summarize(n=n_distinct(paper_id)) %>% 
   ungroup() %>% 
   # Add number in class
   left_join(class_n) %>% 
@@ -53,7 +58,7 @@ tissues <- data %>%
 # Stats for papers reporting 1 tissue
 tissue1_stats <- data %>% 
   # Count tissues
-  group_by(id) %>% 
+  group_by(paper_id) %>% 
   mutate(ntissues=n_distinct(tissue)) %>% 
   ungroup() %>% 
   # Reduce to paper with 1 tissue
@@ -110,7 +115,8 @@ g2 <- ggplot(tissue1_stats, aes(y=class, x=prop, fill=tissue)) +
   scale_fill_ordinal(name="Tissue") +
   # Theme
   theme_bw() + my_theme +
-  theme(legend.position="left", 
+  theme(legend.title=element_blank(),
+        legend.position="left", 
         legend.key.size = unit(0.2, "cm"))
 g2
 
@@ -119,5 +125,5 @@ g <- gridExtra::grid.arrange(g1, g2, ncol=1, heights=c(0.8, 0.2))
 
 # Export
 ggsave(g, filename=file.path(plotdir, "FigS6_tissues_sampled.png"), 
-       width=6.5, height=6.5, units="in", dpi=600)
+       width=6.5, height=7, units="in", dpi=600)
 

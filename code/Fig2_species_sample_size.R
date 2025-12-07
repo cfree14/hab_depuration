@@ -72,6 +72,7 @@ stats <- data %>%
   # Recode class
   mutate(class=recode(class,
                       "Actinopterygii"="Finfish",
+                      "Teleostei"="Finfish",
                       "Ascidiacea"="Other",
                       "Bivalvia"="Bivalves",      
                       "Cephalopoda"="Other",
@@ -80,6 +81,7 @@ stats <- data %>%
                       "Malacostraca"="Crustaceans",
                       "Mammalia"="Other",
                       "Maxillopoda"="Zooplankton",
+                      "Copepoda"="Copepods",
                       "Thecostraca"="Crustaceans"))
 
 # Class order
@@ -160,7 +162,8 @@ g2 <- ggplot(stats_ordered, aes(x=syndrome,
   labs(x="Toxin syndrome", y="") +
   # Legend
   scale_fill_gradientn(name="Number of papers", 
-                       colors=RColorBrewer::brewer.pal(9, "Spectral") %>% rev()) +
+                       colors=RColorBrewer::brewer.pal(9, "Spectral") %>% rev(),
+                       breaks=seq(0,12, 2)) +
   guides(fill = guide_colorbar(ticks.colour = "black", frame.colour = "black", frame.linewidth = 0.2)) +
   # Theme
   theme_bw() + base_theme +

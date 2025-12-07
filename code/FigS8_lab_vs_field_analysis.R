@@ -9,8 +9,7 @@ rm(list = ls())
 library(tidyverse)
 
 # Directories
-indir <- "data/lit_review/round1/raw"
-outdir <- "data/lit_review/round1/processed"
+outdir <- "data/lit_review/processed"
 plotdir <- "figures"
 
 # Read data
@@ -81,4 +80,4 @@ g
 
 # Export
 ggsave(g, filename=file.path(plotdir, "FigS8_lab_vs_field_analysis.png"), 
-       width=6.5, height=4.5, units="in", dpi=600)
+       width=6.5, height=5.5, units="in", dpi=600)

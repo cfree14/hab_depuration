@@ -40,6 +40,7 @@ noise_sd <- 0.2
 y1_obs <- y1_true * exp(rnorm(length(t), mean = 0, sd = noise_sd))
 y2_obs <- y2_true * exp(rnorm(length(t), mean = 0, sd = noise_sd))
 
+# Merge data
 dat <- bind_rows(
   tibble(dataset = "One-compartment data", t = t, y = y1_obs),
   tibble(dataset = "Two-compartment data", t = t, y = y2_obs)
@@ -125,6 +126,8 @@ fits <- dat %>%
 
 print(dplyr::arrange(fits, dataset, AICc))
 
+# Build labels
+
 
 # 4) Predictions for plotting
 ################################################################################
@@ -157,6 +160,12 @@ preds <- dat %>%
   }) %>%
   ungroup()
 
+fits
+aic_labels <- tibble(dataset=c("One-compartment data", 
+                               "Two-compartment data"),
+                     label=c("ΔAICc\n1-compartment: 0\n2-compartment: 5.5", 
+                             "ΔAICc\n2-compartment: 0\n1-compartment: 35.0"))
+
 
 # 5) Plot: data + both model fits, faceted by dataset
 ################################################################################
@@ -185,6 +194,8 @@ g <- ggplot(dat, aes(x = t, y = y)) +
   geom_point(size = 2, alpha = 0.8) +
   # Fit
   geom_line(data = preds, aes(y = fit, color = model), linewidth = 1) +
+  # Text
+  geom_text(aic_labels, mapping=aes(label=label), x=30, y=100, hjust=1, vjust=1, size=2.4) +
   # Labels
   labs(x = "Days",
        y = "Toxicity",
