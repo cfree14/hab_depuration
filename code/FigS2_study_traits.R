@@ -19,7 +19,7 @@ data <- readRDS(file=file.path(datadir, "database_paper_metadata.Rds"))
 world_orig <- rnaturalearth::ne_countries(scale="small", returnclass = "sf")
 
 # Read field sites
-sites <- readxl::read_excel("data/lit_review/round1/raw/field_site_coordinates.xlsx")
+sites <- readxl::read_excel(file.path(datadir, "/field_site_coordinates.xlsx"))
 
 
 # Build data

@@ -56,6 +56,12 @@ ntissues <- data %>%
   summarize(ntissues=n_distinct(tissue)) %>% 
   ungroup()
 
+# Field studies
+field <- data %>% 
+  filter(grepl("field", study_type)) %>% 
+  select(paper_id, title) %>% 
+  unique()
+
 # Field vs lab
 stats_type_class <- data %>% 
   # Study types in a paper
