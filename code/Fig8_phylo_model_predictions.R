@@ -76,6 +76,33 @@ data2 <- data %>%
 xmin <- min(data$rate_d_lo) # /5 if plotting label
 xmax <- max(data$rate_d_hi)
 
+
+# Count orders, families, genera without PST estimates
+################################################################################
+
+data_all %>% 
+  group_by(order) %>% 
+  summarize(n=sum(data_yn=="yes")) %>% 
+  ungroup() %>% 
+  arrange(n) %>% 
+  filter(n==0) %>% nrow()
+
+data_all %>% 
+  group_by(family) %>% 
+  summarize(n=sum(data_yn=="yes")) %>% 
+  ungroup() %>% 
+  arrange(n) %>% 
+  filter(n==0) %>% nrow()
+
+data_all %>% 
+  group_by(genus) %>% 
+  summarize(n=sum(data_yn=="yes")) %>% 
+  ungroup() %>% 
+  arrange(n) %>% 
+  filter(n==0) %>% nrow()
+
+sum(data_all$data_yn=="no")
+
 # Plot data
 ################################################################################
 

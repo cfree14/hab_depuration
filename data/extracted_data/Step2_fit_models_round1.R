@@ -64,6 +64,7 @@ results <- purrr::map_df(files2eval, function(x){
     # Fit 2-compartment model
     
     # Compare models
+    # model2 <- fit_2comp(time=tdata$day_use, toxicity=tdata$toxicity)
     
     # Record results
     out <- model1 %>% 

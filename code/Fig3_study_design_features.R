@@ -15,6 +15,9 @@ plotdir <- "figures"
 # Read data
 data_orig <- readRDS(file.path(outdir, "database.Rds"))
 
+# Read one vs two method data
+comp_methods_orig <- readxl::read_excel(file.path(outdir, "one_vs_two_comp_methods.xlsx"))
+
 
 # Build data
 ################################################################################
@@ -53,7 +56,8 @@ nspp <- data %>%
 # Number of tissues evaluated
 ntissues <- data %>% 
   group_by(paper_id) %>% 
-  summarize(ntissues=n_distinct(tissue)) %>% 
+  summarize(ntissues=n_distinct(tissue),
+            tissues=paste(sort(unique(tissue)), collapse=", ")) %>% 
   ungroup()
 
 # Field studies
@@ -254,7 +258,45 @@ stats_model
 sum(stats_model$n)
 # freeR::which_duplicated(stats_model$id)
 
+# Comparison papers
+papers_comp <- data %>% 
+  # Handle papers with multiple approaches
+  group_by(paper_id, title) %>%
+  summarize(ncomp=paste(unique(ncomp), collapse = ", ")) %>% 
+  ungroup() %>% 
+  filter(grepl("vs", ncomp))
 
+comp_methods <- comp_methods_orig %>% 
+  count(method) %>% 
+  mutate(perc=n/sum(n)) %>% 
+  mutate(method=recode(method,
+                       "Expert judgement"="           Expert judgement"))
+
+
+# Random stats for manuscript
+################################################################################
+
+# Do any species have their only source come from field studies?
+spp_source <- data %>% 
+  group_by(comm_name, sci_name, syndrome) %>% 
+  summarize(types=paste(sort(unique(study_type)), collapse=", "), 
+            paper_ids=paste(sort(unique(paper_id)), collapse=", ")) %>% 
+  ungroup() %>% 
+  filter(types=="field")
+
+# Number of field studies with derived/digitized rates
+field_der <- data %>% 
+  group_by(paper_id) %>% 
+  summarize(study_type=paste(sort(unique(study_type)), collapse=", "),
+            rate_type=paste(sort(unique(rate_type)), collapse=", ")) %>% 
+  ungroup() %>% 
+  filter(study_type!="lab" & rate_type!="provided")
+
+# Count the number of species toxin combinations provided by those studies
+field_der_val <- data %>% 
+  filter(paper_id %in% field_der$paper_id & study_type!="lab" & rate_type!="provided") %>% 
+  select(comm_name, sci_name, syndrome) %>% 
+  unique()
 
 # Plot data
 ################################################################################
@@ -318,7 +360,7 @@ g3
 g4 <- ggplot(stats_feed, aes(y=feed_scenario, x=prop)) +
   geom_bar(stat="identity") +
   # Labels
-  labs(x="Percent of papers", y="", tag="D") +
+  labs(x="Percent of papers", y="Feeding\ntreatment", tag="D") +
   scale_x_continuous(labels=scales::percent_format()) +
   # Theme
   theme_bw() + base_theme
@@ -340,31 +382,45 @@ g4
 g5 <- ggplot(stats_model, aes(x=prop, y=reorder(ncomp, desc(prop)))) +
   geom_bar(stat="identity") +
   # Labels
-  labs(x="Percent of papers", y="", tag="E") +
+  labs(x="Percent of papers", y="Modelling\nmethod", tag="E") +
   scale_x_continuous(labels=scales::percent_format()) +
   # Theme
   theme_bw() + base_theme
 g5
 
-# Experiment type
-g6 <- ggplot(stats_exp, aes(y=reorder(exp_type, desc(n)), x=n)) +
-  facet_grid(exp_catg~., space="free_y", scale="free_y") +
-  geom_bar(stat="identity") +
+# One vs. two comparison method
+g6 <- ggplot(comp_methods, aes(y=method, x=perc)) +
+  geom_bar(stat="identity") +   
   # Labels
-  labs(x="Number of papers", y="Experiment type", tag="F") +
-  scale_x_continuous(breaks=seq(0,16,2)) +
+  labs(x="Percent of papers", y="Comparison\nmethod", tag="F") +
+  scale_x_continuous(labels=scales::percent_format()) +
   # Theme
   theme_bw() + base_theme
 g6
 
-# Merge
-layout_matrix <- matrix(data=c(1,2,3,3,3,
-                               4,4,6,6,6,
-                               5,5,6,6,6), byrow=T, ncol=5)
+# Experiment type
+g7 <- ggplot(stats_exp, aes(y=reorder(exp_type, desc(n)), x=n)) +
+  facet_grid(exp_catg~., space="free_y", scale="free_y") +
+  geom_bar(stat="identity") +
+  # Labels
+  labs(x="Number of papers", y="Experiment type", tag="G") +
+  scale_x_continuous(breaks=seq(0,16,2)) +
+  # Theme
+  theme_bw() + base_theme
+g7
 
 # Merge
-g <- gridExtra::grid.arrange(g1, g2, g3, g4, g5, g6, 
-                             layout_matrix=layout_matrix) # 4.5 inches,  heights =c(0.3, 0.35, 0.35)
+layout_matrix <- matrix(data=c(1,2,3,3,3,
+                               4,4,7,7,7,
+                               5,5,7,7,7,
+                               6,6,7,7,7), byrow=T, ncol=5)
+
+# Merge
+bot_h <- 0.17
+mid_h <- (1-0.33-bot_h)/2
+g <- gridExtra::grid.arrange(g1, g2, g3, g4, g5, g6, g7, 
+                             layout_matrix=layout_matrix, 
+                             heights=c(0.33, mid_h, mid_h, bot_h)) # 4.5 inches,  heights =c(0.3, 0.35, 0.35)
 
 # Export
 ggsave(g, filename=file.path(plotdir, "Fig3_study_design_features.png"), 
