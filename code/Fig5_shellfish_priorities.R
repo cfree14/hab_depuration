@@ -243,6 +243,8 @@ base_theme <-  theme(axis.text=element_text(size=6),
                    legend.margin = margin(t=-2, b=-2, r=0, l=0),
                    strip.text=element_text(size=7),
                    plot.title=element_text(size=7),
+                   # plot.tag=element_text(size=7, face="bold"),
+                   plot.tag=element_blank(),
                    # Gridlines
                    panel.grid.major = element_blank(), 
                    panel.grid.minor = element_blank(),
@@ -265,7 +267,7 @@ g1 <- ggplot(para, aes(y=comm_name, x=prod_mt/1e6, alpha=prod_type, fill=rate_yn
             aes(x=prod_mt_max/1e6, y=comm_name, label=label), 
             inherit.aes=F, hjust=1, color=rate_color, size=2.2) +
   # Labels
-  labs(x="Annual production\n(millions mt)", y="", title="Paralytic") +
+  labs(x="Annual production\n(millions mt)", y="", title="A. Paralytic", tag="A") +
   # Legend
   scale_alpha_manual(name="", values=c(0.5, 1)) +
   scale_fill_manual(name="", values=c(rate_color, norate_color)) +
@@ -288,7 +290,7 @@ g2 <- ggplot(amne, aes(y=comm_name, x=prod_mt/1e6, alpha=prod_type, fill=rate_yn
             aes(x=prod_mt_max/1e6, y=comm_name, label=label), 
             inherit.aes=F, hjust=1, color=rate_color, size=2.2) +
   # Labels
-  labs(x="Annual production\n(millions mt)", y="", title="Amnesic") +
+  labs(x="Annual production\n(millions mt)", y="", title="B. Amnesic", tag="B") +
   # Legend
   scale_alpha_manual(name="", values=c(0.5, 1)) +
   scale_fill_manual(name="", values=c(rate_color, norate_color)) +
@@ -310,7 +312,7 @@ g3 <- ggplot(diar, aes(y=comm_name, x=prod_mt/1e6, alpha=prod_type, fill=rate_yn
             aes(x=prod_mt_max/1e6, y=comm_name, label=label), 
             inherit.aes=F, hjust=1, color=rate_color, size=2.2) +
   # Labels
-  labs(x="Annual production\n(millions mt)", y="", title="Diarrhetic") +
+  labs(x="Annual production\n(millions mt)", y="", title="C. Diarrhetic", tag="C") +
   # Legend
   scale_alpha_manual(name="", values=c(0.5, 1)) +
   scale_fill_manual(name="", values=c(rate_color, norate_color)) +
@@ -332,7 +334,7 @@ g4 <- ggplot(cyan, aes(y=comm_name, x=prod_mt/1e6, alpha=prod_type, fill=rate_yn
             aes(x=prod_mt_max/1e6, y=comm_name, label=label), 
             inherit.aes=F, hjust=1, color=rate_color, size=2.2) +
   # Labels
-  labs(x="Annual production\n(millions mt)", y="", title="Cyanotoxins") +
+  labs(x="Annual production\n(millions mt)", y="", title="D. Cyanotoxins", tag="D") +
   # Legend
   scale_alpha_manual(name="", values=c(0.5, 1)) +
   scale_fill_manual(name="", values=c(rate_color, norate_color)) +
@@ -354,7 +356,7 @@ g5 <- ggplot(brev, aes(y=comm_name, x=prod_mt/1e6, alpha=prod_type, fill=rate_yn
             aes(x=prod_mt_max/1e6, y=comm_name, label=label), 
             inherit.aes=F, hjust=1, color=rate_color, size=2.2) +
   # Labels
-  labs(x="Annual production\n(millions mt)", y="", title="Neurotoxic") +
+  labs(x="Annual production\n(millions mt)", y="", title="E. Neurotoxic", tag="E") +
   # Legend
   scale_alpha_manual(name="", values=c(0.5, 1)) +
   scale_fill_manual(name="", values=c(rate_color, norate_color)) +
@@ -376,7 +378,7 @@ g6 <- ggplot(azas, aes(y=comm_name, x=prod_mt/1e6, alpha=prod_type, fill=rate_yn
             aes(x=prod_mt_max/1e6, y=comm_name, label=label), 
             inherit.aes=F, hjust=1, color=rate_color, size=2.2) +
   # Labels
-  labs(x="Annual production\n(millions mt)", y="", title="Azaspiracid") +
+  labs(x="Annual production\n(millions mt)", y="", title="F. Azaspiracid", tag="F") +
   # Legend
   scale_alpha_manual(name="", values=c(0.5, 1)) +
   scale_fill_manual(name="", values=c(rate_color, norate_color)) +

@@ -112,7 +112,7 @@ g2 <- ggplot(tissue1_stats, aes(y=class, x=prop, fill=tissue)) +
   labs(x="Percent of papers", y="", tag="B") +
   scale_x_continuous(labels=scales::percent_format()) +
   # Legend
-  scale_fill_ordinal(name="Tissue") +
+  scale_fill_manual(name="Tissue", values=RColorBrewer::brewer.pal(n_distinct(tissue1_stats$tissue), "Set3")) +
   # Theme
   theme_bw() + my_theme +
   theme(legend.title=element_blank(),
