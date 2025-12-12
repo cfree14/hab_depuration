@@ -117,7 +117,7 @@ g <- ggplot(stats, aes(x=tidytext::reorder_within(comm_name, desc(toxicity_mgkg_
 g
 
 # Export
-ggsave(g, filename=file.path(plotdir, "FigS12_toxicities_for_non_bivalves.png"), 
+ggsave(g, filename=file.path(plotdir, "FigS10_toxicities_for_non_bivalves.png"), 
        width=6.5, height=4.5, units="in", dpi=600)
 
 
@@ -213,7 +213,7 @@ g2
 # Merge
 g <- gridExtra::grid.arrange(g1, g2, ncol=2)
 
-ggsave(g, filename=file.path(plotdir, "FigS12_toxicities_for_non_bivalves_2col.png"), 
+ggsave(g, filename=file.path(plotdir, "FigS10_toxicities_for_non_bivalves_2col.png"), 
        width=5.5, height=6.5, units="in", dpi=600)
 
 
@@ -295,6 +295,6 @@ g2
 # Merge
 g <- gridExtra::grid.arrange(g1, g2, ncol=1)
 
-ggsave(g, filename=file.path(plotdir, "FigS12_toxicities_for_non_bivalves_2row.png"), 
+ggsave(g, filename=file.path(plotdir, "FigS10_toxicities_for_non_bivalves_2row.png"), 
        width=6.5, height=5, units="in", dpi=600)
 

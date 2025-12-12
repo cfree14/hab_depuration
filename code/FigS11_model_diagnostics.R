@@ -99,7 +99,7 @@ layout_matrix <- matrix(data=c(1,2,
 g <- gridExtra::grid.arrange(g1, g2, g3, layout_matrix=layout_matrix)
 
 # Export
-ggsave(g, filename=file.path(plotdir, "FigS10_model_diagnostics.png"), 
+ggsave(g, filename=file.path(plotdir, "FigS11_model_diagnostics.png"), 
        width=6.5, height=6, units="in", dpi=600)
 
 

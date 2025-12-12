@@ -152,7 +152,7 @@ layout_matrix <- matrix(data=c(1,3,
 g <- gridExtra::grid.arrange(g1, g2, g3, g4, g5, layout_matrix=layout_matrix)
 
 # Export
-ggsave(g, filename=file.path(plotdir, "FigS11_conditional_effects.png"), 
+ggsave(g, filename=file.path(plotdir, "FigS12_conditional_effects.png"), 
        width=6.5, height=6, units="in", dpi=600)
 
 
