@@ -25,20 +25,20 @@ taxa_key_missing <- readxl::read_excel(file.path(indir, "taxa_key_for_species_no
 # Read derived rates
 rates_orig <- readxl::read_excel("data/extracted_data/processed/fitted_model_results_round1.xlsx")
 
-# Things to do
-# 1. Format toxin/subtoxin - progress
+# Formatting steps
+# 1) Basic formatting
+# 2) Add derived rates
+# 3) Expand rate derivation
 
 
-# Build species key
+# 1) Basic formatting
 ################################################################################
 
-# Build species key
-spp_key <- data_orig %>% 
-  select(comm_name, sci_name) %>% 
-  unique() %>% 
+# Format data
+data1 <- data_orig %>% 
   # Rename
   rename(sci_name_orig=sci_name) %>% 
-  # Update sci names
+  # Fix some species names
   mutate(sci_name=recode(sci_name_orig, 
                          "Acanthopagrus schlegeli"="Acanthopagrus schlegelii",
                          "Bellamya aeruginosa" = "Sinotaia quadrata", # freshwater, I used to think Sinotaia aeruginosa
@@ -48,66 +48,17 @@ spp_key <- data_orig %>%
                          # "Neomysis awatschensi" = "Neomysis awatschensis",                                                     
                          "Ostrea rivularis" = "Magallana rivularis",   # uncertain > taxon inquirendum                                                     
                          "Patinopecten yessoensis"  = "Mizuhopecten yessoensis",
-                         "Crassostrea gigas"="Magallana gigas"))
-
-# Check names
-freeR::check_names(spp_key$sci_name)
-
-# Check for duplicates
-freeR::which_duplicated(spp_key$comm_name)
-freeR::which_duplicated(spp_key$sci_name)
-
-# Taxa
-taxa <- freeR::taxa(species=spp_key$sci_name) 
-taxa_full <- bind_rows(taxa, taxa_key_missing)
-
-# Add taxa to data
-spp_key1 <- spp_key %>%
-  # Add taxa info
-  left_join(taxa_full, by=c("sci_name"="sciname")) %>% 
-  # Fill missing genus
-  mutate(genus=stringr::word(sci_name, 1)) %>% 
-  # Fill missing based on genus
-  # group_by(genus) %>% 
-  # fill(type:family, .direction = "updown") %>% 
-  # ungroup() %>% 
-  # Remove species
-  select(-species) %>% 
-  # Rename
-  rename(invert_yn=type)
-
-
-# Formatting steps
-# 1) Basic formatting
-# 2) Add derived rates
-# 3) Expand rate derivation
-
-# 1) Basic formatting
-################################################################################
-
-# Format data
-data1 <- data_orig %>% 
-  # Rename
-  rename(sci_name_orig=sci_name) %>% 
-  # Add taxa info
-  left_join(spp_key1 %>% select(-comm_name) %>% unique(), by="sci_name_orig") %>% 
-  # Format tissue
-  # Digestive tract includes the hepatopancreas/digestive gland
-  rename(tissue_orig=tissue) %>% 
-  mutate(tissue=case_when(class=="Malacostraca" & tissue_orig %in% c("hepatopancreas", "digestive gland") ~ "hepatopancreas",
-                           class=="Malacostraca" & tissue_orig %in% c("whole", "soft tissue") ~ "soft tissue",
-                           class=="Gastropoda" & tissue_orig %in% c("muscle", "foot") ~ "foot",
-                           class=="Gastropoda" & tissue_orig %in% c("digestive gland", "hepatopancreas") ~ "hepatopancreas",
-                           class=="Bivalvia" & tissue_orig %in% c("digestive gland", "hepatopancreas") ~ "hepatopancreas",
-                           class=="Bivalvia" & tissue_orig %in% c("whole", "soft tissue", "tissue", "edible portion", "whole flesh", "meat") ~ "soft tissue",
-                            T ~ tissue_orig)) %>% 
+                         "Crassostrea gigas"="Magallana gigas",
+                         "Chlamys farreri"="Scaeochlamys farreri",
+                         "Chlamys nobilis"="Mimachlamys crassicostata")) %>% 
   # Order
   select(-include_YN) %>% 
   select(id, paper_id, article_title, 
-         comm_name, sci_name_orig, sci_name, genus, family, order, class, invert_yn,
+         comm_name, sci_name_orig, sci_name, #genus, family, order, class, invert_yn,
          syndrome, hab_species, biotoxin, subtoxin,
          study_type, exp_type, treatment, feed_scenario,
-         tissue_orig, tissue, 
+         #tissue_orig,
+         tissue, 
          rate_type, source, datafile, datafile_id, 
          ncomp, rate_hr, hlife_hr, rate_d, hlife_d, notes,
          everything())
@@ -123,7 +74,7 @@ table(data1$biotoxin)
 table(data1$subtoxin)
 
 # Check HAB species
-# Correct: Azadinium spinosum, Alexandrium pacificum, Protoceratium reticulatum
+# Correct: Alexandrium minutum, Azadinium spinosum, Alexandrium pacificum, Protoceratium reticulatum
 freeR::check_names(data1$hab_species)
 
 # Study type
@@ -157,55 +108,17 @@ check_tot <- data1 %>%
   filter(type=="Other")
 
 
-# Inspect tissues
-################################################################################
-
-# Tissue stats
-tissues <- data1 %>% 
-  group_by(class, tissue) %>% 
-  summarize(n=n_distinct(id))
-
-# Plot tissue stats
-ggplot(tissues, aes(x=n, 
-                    y=tidytext::reorder_within(tissue, desc(n), class))) +
-  facet_grid(class~., space="free_y", scales="free_y") +
-  geom_bar(stat="identity") +
-  # Labels
-  labs(x="Number of papers", y="") +
-  tidytext::scale_y_reordered() +
-  # Theme
-  theme_bw() +
-  theme(strip.text.y = element_text(angle = 0))
-
-# Tissue stats
-tissues_spp <- data1 %>% 
-  group_by(class, tissue) %>% 
-  summarize(n=n_distinct(sci_name))
-
-# Plot tissue stats
-ggplot(tissues_spp, aes(x=n, 
-                    y=tidytext::reorder_within(tissue, desc(n), class))) +
-  facet_grid(class~., space="free_y", scales="free_y") +
-  geom_bar(stat="identity") +
-  # Labels
-  labs(x="Number of species", y="") +
-  tidytext::scale_y_reordered() +
-  # Theme
-  theme_bw() +
-  theme(strip.text.y = element_text(angle = 0))
-
-
 # 2) Add derived rates
 ################################################################################
 
 # Format derived rates
 rates <- rates_orig %>%
   # Simplify
-  select(file, treatment, k) %>% 
+  select(file, treatment, k_use) %>%
   # Rename
   rename(datafile=file, 
          datafile_id=treatment,
-         rate_d_derived=k) %>% 
+         rate_d_derived=k_use) %>% 
   # Confirm that this rate is in database
   # If id is NA, then the dep rate is missing from the database and present in extracted data
   left_join(data1 %>% select(id, datafile, datafile_id), by=c("datafile", "datafile_id"))

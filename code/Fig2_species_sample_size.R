@@ -26,6 +26,7 @@ data <- data_orig %>%
 # Stats for paper
 ################################################################################
 
+# Taxa stats
 n_distinct(data$sci_name)
 n_distinct(data$genus)
 n_distinct(data$family)
@@ -38,7 +39,10 @@ data %>%
   group_by(class) %>% 
   summarize(npapers=n_distinct(paper_id),
             p_papers=npapers/npapers_tot)
-n_distinct(data$paper_id[data$class!="Actinopterygii"])
+
+# Number of non-finfish papers
+n_distinct(data$paper_id[data$class!="Teleostei"])
+n_distinct(data$paper_id[data$class!="Teleostei"]) / npapers_tot
 
 # Number of papers by species
 spp_stats <- data %>% 

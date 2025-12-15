@@ -71,7 +71,7 @@ pred_data_all1 <- pred_data_all %>%
 
 # Build dataset of interest
 data <- data_orig %>% 
-  # Bivalve PST depurarion rates
+  # Bivalve PST depuration rates
   filter(class=="Bivalvia" & syndrome=="Paralytic" & subtoxin=="Total" ) %>% 
   # Remove records that aren't species specific
   filter(!grepl("spp.", sci_name)) %>% 
@@ -88,7 +88,7 @@ freeR::complete(data)
 # Species
 data_spp <- sort(unique(data$sci_name))
 
-# Use traits assessmbled for predictions
+# Use traits assembled for predictions
 traits1 <- pred_data_all %>% 
   # Reduce to species with data
   filter(sci_name %in% data_spp) %>% 

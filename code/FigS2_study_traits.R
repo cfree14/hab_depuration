@@ -19,7 +19,7 @@ data <- readRDS(file=file.path(datadir, "database_paper_metadata.Rds"))
 world_orig <- rnaturalearth::ne_countries(scale="small", returnclass = "sf")
 
 # Read field sites
-sites <- readxl::read_excel(file.path(datadir, "/field_site_coordinates.xlsx"))
+sites <- readxl::read_excel(file.path(datadir, "field_site_coordinates.xlsx"))
 
 
 # Build data
@@ -34,18 +34,20 @@ jstats <- data %>%
   # Count journals
   count(journal) %>% 
   arrange(desc(n)) %>% 
-  filter(n>1) %>% 
+  # filter(n>1) %>% 
   # Format journals
   mutate(journal=stringr::str_to_title(journal),
          journal=gsub("And", "&", journal),
          journal=gsub("In", "in", journal),
          journal=gsub("The", "the", journal),
-         journal=gsub("Of", "of", journal)) #%>% 
-  # # Format
-  # mutate(journal=recode(journal,
-  #                      "Journal of Toxicology and Environmental Health-Part A-Current Issues" = "Journal of Toxicology and Environmental Health",
-  #                      "Journal of Venomous Animals and Toxins Including Tropical Diseases" =" Journal of Venomous Animals and Toxins",
-  #                      "Food Additives and Contaminants Part A-Chemistry Analysis Control Exposure and Risk Assessment" = "Food Additives and Contaminants Part A"))
+         journal=gsub("Of", "of", journal)) %>% 
+  # Format
+  mutate(journal=recode(journal,
+                        "Deep-Sea Research Part Ii-Topical Studies in Oceanography"= "Deep-Sea Research Part II",
+                        "Journal of Experimental Zoology Part A-Ecological & integrative Physiology" = "Journal of Experimental Zoology Part A",
+                       "Journal of Toxicology and Environmental Health-Part A-Current Issues" = "Journal of Toxicology and Environmental Health",
+                       "Journal of Venomous Animals and Toxins Including Tropical Diseases" =" Journal of Venomous Animals and Toxins",
+                       "Food Additives and Contaminants Part A-Chemistry Analysis Control Exposure and Risk Assessment" = "Food Additives and Contaminants Part A"))
 
 # Country stats
 cstats <- data %>% 

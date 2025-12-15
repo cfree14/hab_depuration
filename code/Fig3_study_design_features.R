@@ -87,7 +87,7 @@ stats_type_class <- data %>%
   ungroup()
 stats_type_tot <- data %>% 
   # Study types in a paper
-  group_by(class, paper_id) %>% 
+  group_by(paper_id) %>% 
   summarize(study_type=paste(unique(study_type), collapse=", ")) %>% 
   ungroup() %>% 
   # Format study type
@@ -193,14 +193,14 @@ stats_exp <- data %>%
                             exp_type %in% c("Fed vs. starved", 
                                             "Diet type", 
                                             "Body condition",
-                                            "Food amount (mg/day)") ~ "Diet\nfactors",
+                                            "Food amount (mg/day)") ~ "Dietary\nfactors",
                             exp_type %in% c("Exposure (mg/L toxin)", 
                                             "Exposure diet",
                                             "Exposure dosage",
                                             "Exposure duration",
                                             "Exposure method",
                                             "Exposure+Body size", 
-                                            "Nutrient conditions during bloom") ~ "Exposure\nlevels",
+                                            "Nutrient conditions during bloom") ~ "Exposure\ncharacteristics",
                             exp_type %in% c("Temperature (°C)", 
                                             "Temperature+pH",
                                             "Temperature+Fed/starved", 

@@ -156,6 +156,7 @@ models <- tibble(model=c("M0-fixed", "M1-non-phylo RE", "M2-both RE", "M3-phylo 
   arrange(aic)
 models
 
+
 # Step 3. Inspect model
 ################################################################################
 

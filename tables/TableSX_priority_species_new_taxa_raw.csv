@@ -1,81 +1,87 @@
 "syndrome","type","label","comm_name","sci_name","prod_mt"
+"Amnesic","Order","Veneroida","Japanese carpet shell","Ruditapes philippinarum",3805691.4338
+"Amnesic","Order","Veneroida","Constricted tagelus","Sinonovacula constricta",1191289
 "Amnesic","Order","Arcoida","Blood cockle","Tegillarca granosa",375063.5607
-"Amnesic","Family","Veneridae","Japanese carpet shell","Ruditapes philippinarum",3805691.4338
-"Amnesic","Family","Solecurtidae","Constricted tagelus","Sinonovacula constricta",1191289
-"Amnesic","Family","Mactridae","Atlantic surfclam","Spisula solidissima",72362.4296
-"Amnesic","Family","Veneridae","Striped venus","Chamelea gallina",46111.8277
-"Amnesic","Family","Arcticidae","Ocean quahog","Arctica islandica",42797.3673
-"Amnesic","Family","Mactridae","Stimpson's surf clam","Mactromeris polynyma",33787.0124
-"Amnesic","Family","Veneridae","Northern quahog","Mercenaria mercenaria",33540.3615
-"Amnesic","Genus","Perna","Greenshell mussel","Perna canaliculus",93505.6421
-"Amnesic","Genus","Zygochlamys","Patagonian scallop","Zygochlamys patagonica",35464.0621
-"Amnesic","Genus","Perna","Green-lipped mussel","Perna viridis",25346.309
+"Amnesic","Order","Mytiloida","Chilean mussel","Mytilus chilensis",348454.816
+"Amnesic","Order","Mytiloida","Mediterranean mussel","Mytilus galloprovincialis",96033.7507
+"Amnesic","Order","Mytiloida","Greenshell mussel","Perna canaliculus",93505.6421
+"Amnesic","Order","Veneroida","Atlantic surfclam","Spisula solidissima",72362.4296
+"Amnesic","Order","Veneroida","Striped venus","Chamelea gallina",46111.8277
+"Amnesic","Order","Veneroida","Ocean quahog","Arctica islandica",42797.3673
+"Amnesic","Order","Ostreoida","Patagonian scallop","Zygochlamys patagonica",35464.0621
+"Amnesic","Order","Veneroida","Stimpson's surf clam","Mactromeris polynyma",33787.0124
+"Amnesic","Order","Veneroida","Northern quahog","Mercenaria mercenaria",33540.3615
+"Amnesic","Order","Mytiloida","Green-lipped mussel","Perna viridis",25346.309
 "Azaspiracid","Order","Veneroida","Japanese carpet shell","Ruditapes philippinarum",3800150.2006
 "Azaspiracid","Order","Veneroida","Constricted tagelus","Sinonovacula constricta",1191289
 "Azaspiracid","Order","Arcoida","Blood cockle","Tegillarca granosa",356808.2
+"Azaspiracid","Order","Mytiloida","Greenshell mussel","Perna canaliculus",93505.6421
+"Azaspiracid","Order","Mytiloida","Mediterranean mussel","Mytilus galloprovincialis",78438.6617
 "Azaspiracid","Order","Ostreoida","Peruvian calico scallop","Argopecten purpuratus",65100.9621
 "Azaspiracid","Order","Ostreoida","Patagonian scallop","Zygochlamys patagonica",35464.0621
 "Azaspiracid","Order","Veneroida","Striped venus","Chamelea gallina",18140.2218
 "Azaspiracid","Order","Ostreida","Pacific oyster","Magallana gigas",16281.8477
+"Azaspiracid","Order","Mytiloida","Brown mussel","Perna perna",13713.8464
 "Azaspiracid","Order","Ostreoida","King scallop","Pecten maximus",3251.3176
+"Azaspiracid","Order","Mytiloida","Australian mussel","Mytilus planulatus",3001.2306
 "Azaspiracid","Order","Ostreoida","Commercial scallop","Pecten fumatus",2655.2735
+"Azaspiracid","Order","Mytiloida","Ribbed mussel","Aulacomya atra",2503.8735
 "Azaspiracid","Order","Veneroida","Common cockle","Cerastoderma edule",2035.2077
 "Azaspiracid","Order","Veneroida","Grooved carpet shell","Ruditapes decussatus",1523.5695
 "Azaspiracid","Order","Veneroida","Triangular tivela","Tivela mactroides",1370.4
 "Azaspiracid","Order","Veneroida","Smooth callista","Callista chione",1329.5779
 "Azaspiracid","Order","Ostreoida","European flat oyster","Ostrea edulis",1013.7839
-"Azaspiracid","Genus","Perna","Greenshell mussel","Perna canaliculus",93505.6421
-"Azaspiracid","Genus","Perna","Brown mussel","Perna perna",13713.8464
-"Azaspiracid","Genus","Aulacomya","Ribbed mussel","Aulacomya atra",2503.8735
-"Cyanotoxin","Family","Pectinidae","Atlantic sea scallop","Placopecten magellanicus",217492.0524
-"Cyanotoxin","Family","Mactridae","Atlantic surfclam","Spisula solidissima",72362.4296
-"Cyanotoxin","Family","Veneridae","Striped venus","Chamelea gallina",43874.5854
-"Cyanotoxin","Family","Arcticidae","Ocean quahog","Arctica islandica",42782.4
-"Cyanotoxin","Family","Pectinidae","Patagonian scallop","Zygochlamys patagonica",35464.0621
-"Cyanotoxin","Family","Mactridae","Stimpson's surf clam","Mactromeris polynyma",33787.0124
-"Cyanotoxin","Family","Veneridae","Northern quahog","Mercenaria mercenaria",33518.9844
-"Cyanotoxin","Family","Pectinidae","King scallop","Pecten maximus",33322.3964
-"Cyanotoxin","Family","Veneridae","Japanese carpet shell","Ruditapes philippinarum",32729.8137
-"Cyanotoxin","Family","Veneridae","Taca clam","Leukoma thaca",11899.6
-"Cyanotoxin","Genus","Perna","Greenshell mussel","Perna canaliculus",93505.6421
-"Cyanotoxin","Genus","Perna","Green-lipped mussel","Perna viridis",19285.2399
-"Cyanotoxin","Genus","Perna","Brown mussel","Perna perna",13713.8464
-"Cyanotoxin","Genus","Ostrea","European flat oyster","Ostrea edulis",10605.5388
-"Diarrhetic","Order","Ostreida","Pacific oyster","Magallana gigas",621506.9409
+"Cyanotoxin","Order","Mytiloida","Chilean mussel","Mytilus chilensis",348454.816
+"Cyanotoxin","Order","Ostreoida","Atlantic sea scallop","Placopecten magellanicus",217492.0524
+"Cyanotoxin","Order","Mytiloida","Greenshell mussel","Perna canaliculus",93505.6421
+"Cyanotoxin","Order","Veneroida","Atlantic surfclam","Spisula solidissima",72362.4296
+"Cyanotoxin","Order","Veneroida","Striped venus","Chamelea gallina",43874.5854
+"Cyanotoxin","Order","Veneroida","Ocean quahog","Arctica islandica",42782.4
+"Cyanotoxin","Order","Ostreoida","Patagonian scallop","Zygochlamys patagonica",35464.0621
+"Cyanotoxin","Order","Veneroida","Stimpson's surf clam","Mactromeris polynyma",33787.0124
+"Cyanotoxin","Order","Veneroida","Northern quahog","Mercenaria mercenaria",33518.9844
+"Cyanotoxin","Order","Ostreoida","King scallop","Pecten maximus",33322.3964
+"Cyanotoxin","Order","Mytiloida","Green-lipped mussel","Perna viridis",19285.2399
+"Cyanotoxin","Order","Mytiloida","Brown mussel","Perna perna",13713.8464
+"Cyanotoxin","Order","Veneroida","Taca clam","Leukoma thaca",11899.6
+"Cyanotoxin","Order","Ostreoida","European flat oyster","Ostrea edulis",10605.5388
+"Diarrhetic","Order","Veneroida","Constricted tagelus","Sinonovacula constricta",1191289
+"Diarrhetic","Order","Ostreoida","Japanese scallop","Mizuhopecten yessoensis",505765.2914
 "Diarrhetic","Order","Arcoida","Blood cockle","Tegillarca granosa",375655.7404
-"Diarrhetic","Order","Ostreida","Slipper cupped oyster","Magallana bilineata",35997.7157
-"Diarrhetic","Family","Solecurtidae","Constricted tagelus","Sinonovacula constricta",1191289
-"Diarrhetic","Family","Mactridae","Atlantic surfclam","Spisula solidissima",72362.4296
-"Diarrhetic","Family","Arcticidae","Ocean quahog","Arctica islandica",42797.3673
-"Diarrhetic","Family","Mactridae","Stimpson's surf clam","Mactromeris polynyma",33787.0124
-"Diarrhetic","Genus","Ruditapes","Japanese carpet shell","Ruditapes philippinarum",3848435.4591
-"Diarrhetic","Genus","Mizuhopecten","Japanese scallop","Mizuhopecten yessoensis",505765.2914
-"Diarrhetic","Genus","Placopecten","Atlantic sea scallop","Placopecten magellanicus",217492.0524
-"Diarrhetic","Genus","Perna","Greenshell mussel","Perna canaliculus",93505.6421
-"Diarrhetic","Genus","Pecten","King scallop","Pecten maximus",62203.4803
-"Diarrhetic","Genus","Chamelea","Striped venus","Chamelea gallina",46111.8277
-"Diarrhetic","Genus","Zygochlamys","Patagonian scallop","Zygochlamys patagonica",35464.0621
+"Diarrhetic","Order","Mytiloida","Chilean mussel","Mytilus chilensis",348454.816
+"Diarrhetic","Order","Ostreoida","Atlantic sea scallop","Placopecten magellanicus",217492.0524
+"Diarrhetic","Order","Mytiloida","Greenshell mussel","Perna canaliculus",93505.6421
+"Diarrhetic","Order","Veneroida","Atlantic surfclam","Spisula solidissima",72362.4296
+"Diarrhetic","Order","Ostreoida","Peruvian calico scallop","Argopecten purpuratus",70231.8531
+"Diarrhetic","Order","Ostreoida","King scallop","Pecten maximus",62203.4803
+"Diarrhetic","Order","Mytiloida","Korean mussel","Mytilus coruscus",57949.9295
+"Diarrhetic","Order","Veneroida","Striped venus","Chamelea gallina",46111.8277
+"Diarrhetic","Order","Veneroida","Ocean quahog","Arctica islandica",42797.3673
+"Diarrhetic","Order","Ostreoida","Patagonian scallop","Zygochlamys patagonica",35464.0621
+"Diarrhetic","Order","Veneroida","Stimpson's surf clam","Mactromeris polynyma",33787.0124
+"Diarrhetic","Genus","Magallana","Pacific oyster","Magallana gigas",621506.9409
+"Diarrhetic","Genus","Magallana","Slipper cupped oyster","Magallana bilineata",35997.7157
+"Neurotoxic","Order","Veneroida","Japanese carpet shell","Ruditapes philippinarum",3813630.0045
+"Neurotoxic","Order","Veneroida","Constricted tagelus","Sinonovacula constricta",1191289
+"Neurotoxic","Order","Ostreoida","Japanese scallop","Mizuhopecten yessoensis",500731.9
 "Neurotoxic","Order","Arcoida","Blood cockle","Tegillarca granosa",357076.8
-"Neurotoxic","Order","Ostreida","Pacific oyster","Magallana gigas",293104.0471
-"Neurotoxic","Family","Solecurtidae","Constricted tagelus","Sinonovacula constricta",1191289
-"Neurotoxic","Family","Pectinidae","Japanese scallop","Mizuhopecten yessoensis",500731.9
-"Neurotoxic","Family","Pectinidae","Atlantic sea scallop","Placopecten magellanicus",163348.31
-"Neurotoxic","Family","Mactridae","Atlantic surfclam","Spisula solidissima",71812.3
-"Neurotoxic","Family","Pectinidae","King scallop","Pecten maximus",61049.5359
-"Neurotoxic","Family","Arcticidae","Ocean quahog","Arctica islandica",42782.4
-"Neurotoxic","Family","Cardiidae","Common cockle","Cerastoderma edule",14347.5625
-"Neurotoxic","Family","Pectinidae","Queen scallop","Aequipecten opercularis",8988.1661
-"Neurotoxic","Genus","Ruditapes","Japanese carpet shell","Ruditapes philippinarum",3813630.0045
-"Neurotoxic","Genus","Mytilus","Chilean mussel","Mytilus chilensis",348454.816
-"Neurotoxic","Genus","Mytilus","Blue mussel","Mytilus edulis",81473.479
-"Neurotoxic","Genus","Mytilus","Mediterranean mussel","Mytilus galloprovincialis",73538.4349
-"Neurotoxic","Genus","Chamelea","Striped venus","Chamelea gallina",45736.2018
-"Neurotoxic","Genus","Leukoma","Taca clam","Leukoma thaca",11899.6
-"Neurotoxic","Genus","Ostrea","European flat oyster","Ostrea edulis",11013.0634
+"Neurotoxic","Order","Mytiloida","Chilean mussel","Mytilus chilensis",348454.816
+"Neurotoxic","Order","Ostreoida","Atlantic sea scallop","Placopecten magellanicus",163348.31
+"Neurotoxic","Order","Mytiloida","Greenshell mussel","Perna canaliculus",93505.6421
+"Neurotoxic","Order","Mytiloida","Blue mussel","Mytilus edulis",81473.479
+"Neurotoxic","Order","Mytiloida","Mediterranean mussel","Mytilus galloprovincialis",73538.4349
+"Neurotoxic","Order","Veneroida","Atlantic surfclam","Spisula solidissima",71812.3
+"Neurotoxic","Order","Ostreoida","King scallop","Pecten maximus",61049.5359
+"Neurotoxic","Order","Veneroida","Striped venus","Chamelea gallina",45736.2018
+"Neurotoxic","Order","Veneroida","Ocean quahog","Arctica islandica",42782.4
+"Neurotoxic","Order","Veneroida","Common cockle","Cerastoderma edule",14347.5625
+"Neurotoxic","Order","Veneroida","Taca clam","Leukoma thaca",11899.6
+"Neurotoxic","Order","Ostreoida","European flat oyster","Ostrea edulis",11013.0634
+"Neurotoxic","Order","Ostreoida","Queen scallop","Aequipecten opercularis",8988.1661
+"Neurotoxic","Genus","Magallana","Pacific oyster","Magallana gigas",293104.0471
+"Paralytic","Order","Veneroida","Constricted tagelus","Sinonovacula constricta",1191289
 "Paralytic","Order","Arcoida","Blood cockle","Tegillarca granosa",453602.6003
-"Paralytic","Family","Solecurtidae","Constricted tagelus","Sinonovacula constricta",1191289
-"Paralytic","Family","Arcticidae","Ocean quahog","Arctica islandica",42797.3673
-"Paralytic","Genus","Argopecten","Peruvian calico scallop","Argopecten purpuratus",70231.8531
-"Paralytic","Genus","Pecten","King scallop","Pecten maximus",62203.4803
-"Paralytic","Genus","Chamelea","Striped venus","Chamelea gallina",46111.8277
-"Paralytic","Genus","Zygochlamys","Patagonian scallop","Zygochlamys patagonica",35464.0621
+"Paralytic","Order","Ostreoida","Peruvian calico scallop","Argopecten purpuratus",70231.8531
+"Paralytic","Order","Ostreoida","King scallop","Pecten maximus",62203.4803
+"Paralytic","Order","Veneroida","Ocean quahog","Arctica islandica",42797.3673
+"Paralytic","Order","Ostreoida","Patagonian scallop","Zygochlamys patagonica",35464.0621

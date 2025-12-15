@@ -21,7 +21,7 @@ outdir <- "data/fao/processed"
 prod_orig <- readRDS(file=file.path(outdir, "FAO_vulnerable_bivalve_catch_data.Rds"))
 
 # Read depuration data
-dep_orig <- readRDS("data/lit_review/round1/processed/database.Rds") 
+dep_orig <- readRDS("data/lit_review/processed/database.Rds") 
 
 # Read data (add ISO3 in other)
 obis_orig <- readRDS("data/obis/processed/HAB_OBIS_data.Rds") 

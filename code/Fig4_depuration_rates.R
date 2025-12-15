@@ -9,8 +9,7 @@ rm(list = ls())
 library(tidyverse)
 
 # Directories
-indir <- "data/lit_review/round1/raw"
-outdir <- "data/lit_review/round1/processed"
+outdir <- "data/lit_review/processed"
 plotdir <- "figures"
 
 # Read data
@@ -110,7 +109,7 @@ g <- gridExtra::grid.arrange(g1, g2, g3, nrow=1, widths=c(0.4, 0.3, 0.3))
 
 # Export
 ggsave(g, filename=file.path(plotdir, "Fig4_depuration_rates.png"), 
-       width=6.5, height=4.0, units="in", dpi=600)
+       width=6.5, height=5.5, units="in", dpi=600)
 
 
 

@@ -16,6 +16,8 @@ data_orig1 <- readRDS("data/lit_review/round1/processed/database_round1.Rds")
 data_orig2 <- readRDS("data/lit_review/round2/processed/database_round2.Rds")
 
 
+
+
 # Merge data
 ################################################################################
 
@@ -30,15 +32,14 @@ data1 <- data_orig1 %>%
   select(round, everything()) %>% 
   # Remove useless
   select(-id) %>% 
-  # Remove taxa (going to add again)
-  select(-c(genus, family, order, class, invert_yn)) %>% 
   # Rename
-  rename(title=article_title)
+  rename(title=article_title) %>% 
+  # Add tissue (and format down below)
+  mutate(tissue_orig=tissue) %>%
+  relocate(tissue_orig, .before=tissue)
 
 # Format data 2 for merge
 data2 <- data_orig2 %>% 
-  # Remove useless
-  select(-sort) %>% 
   # Add round
   mutate(round="Round 2") %>% 
   select(round, everything()) %>% 
@@ -76,6 +77,8 @@ data3 <- data %>%
   mutate(feed_scenario=recode(feed_scenario, 
                               "fed clean"="fed non-toxic"))
 
+# Check name
+# Correct: Hiatula diphos, Mytella guyanensis, Mytilus coruscus, Scaeochlamys farreri, Sinotaia quadrata
 freeR::check_names(data3$sci_name)
 
 
@@ -147,10 +150,19 @@ data4 <- data3 %>%
                        "edible tissue (foot, mantle, siphon, adductor muscles)"="edible tissue",
                        "non-edible tissue (gill, digistive gland, gonad)"="gills+hepatopancreas+gonads")) %>% 
   # Format tissues
-  mutate(tissue=case_when(class=="Bivalvia" & tissue %in% c("whole", "edible tissue", "flesh", 
+  mutate(tissue=case_when(# Crabs
+                          class=="Malacostraca" & tissue_orig %in% c("hepatopancreas", "digestive gland") ~ "hepatopancreas",
+                          class=="Malacostraca" & tissue_orig %in% c("whole", "soft tissue") ~ "soft tissue",
+                          # Gastropods
+                          class=="Gastropoda" & tissue_orig %in% c("muscle", "foot") ~ "foot",
+                          class=="Gastropoda" & tissue_orig %in% c("digestive gland", "hepatopancreas") ~ "hepatopancreas",
+                          # Bivalves
+                          class=="Bivalvia" & tissue %in% c("whole", "edible tissue", "flesh", 
                                                             "remaining tissues", "non-viscera", "total tissue", 
-                                                            "whole flesh", "whole tissue") ~ "soft tissue",
-                          class=="Bivalvia" & tissue %in% c("digestive gland") ~ "hepatopancreas",
+                                                            "whole flesh", "whole tissue", "soft tissue", "tissue",
+                                                            "edible portion", "meat") ~ "soft tissue",
+                          class=="Bivalvia" & tissue %in% c("digestive gland", "hepatopancreas") ~ "hepatopancreas",
+                          # Remainder (correct)
                           T ~ tissue))
 
 # Inspect
@@ -224,6 +236,9 @@ paper_metadata_orig2 <- readxl::read_excel("data/lit_review/round2/raw/savedrecs
   janitor::clean_names("snake") %>% 
   mutate(country_orig=sapply(addresses, get_first_author_country))
 
+# Chinese lit
+paper_metadata_orig3 <- readxl::read_excel("data/lit_review/round2/raw/chinese_literature_metadata.xlsx") 
+
 # Merge full paper attributes
 paper_metadata_orig <- bind_rows(paper_metadata_orig2, paper_metadata_orig1) 
 colnames(paper_metadata_orig)
@@ -236,7 +251,9 @@ paper_metadata <- paper_metadata_orig %>%
   rename(year=publication_year,
          journal=source_title) %>% 
   # Make unique
-  unique()
+  unique() %>% 
+  # Add Chinese
+  bind_rows()
 freeR::which_duplicated(paper_metadata$article_title)
 
 # Build paper stats
@@ -244,7 +261,9 @@ paper_key <- data4 %>%
   # Reduce to unique papers
   group_by(round, paper_id, title) %>% 
   summarize(nspp=n_distinct(sci_name)) %>% 
-  ungroup()
+  ungroup() %>% 
+  # Remove Chinese (added manually)
+  filter(!paper_id %in% paper_metadata_orig3$paper_id)
 
 # Confirm unique
 freeR::which_duplicated(paper_key$paper_id)
@@ -274,7 +293,9 @@ paper_key2 <- paper_key %>%
   mutate(country=countrycode::countrycode(country_orig, "country.name", "country.name"),
          iso3=countrycode::countrycode(country, "country.name", "iso3c")) %>% 
   # Format year
-  mutate(year=as.numeric(year))
+  mutate(year=as.numeric(year)) %>% 
+  # Add Chinese data
+  bind_rows(., paper_metadata_orig3)
 
 # Inspect
 freeR::complete(paper_key2)

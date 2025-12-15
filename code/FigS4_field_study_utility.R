@@ -14,7 +14,7 @@ outdir <- "data/toxicities/processed"
 plotdir <- "figures"
 
 # Read data
-data_orig <- readxl::read_excel("/Users/cfree/Dropbox/Chris/UCSB/projects/hab_depuration/data/extracted_data/raw/timeseries/Rourke_etal_2021_SuppData1.xlsx")
+data_orig <- readxl::read_excel("/Users/cfree/Dropbox/Chris/UCSB/projects/hab_depuration/data/extracted_data/raw_round1/timeseries/Rourke_etal_2021_SuppData1.xlsx")
 
 # Center k values, max out y position
 

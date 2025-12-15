@@ -47,6 +47,7 @@ tissues <- sort(unique(data_orig$tissue))
 
 # Subset data to species in tree
 data <- data_orig %>% 
+  mutate(row_id=1:nrow(.)) %>% 
   # Reduce to species in tree
   filter(tip.label %in% tree_levels) %>% 
   # Log the depuration rate
@@ -55,7 +56,12 @@ data <- data_orig %>%
   mutate(species=factor(tip.label, levels=tree_levels)) %>% 
   # Set study type factor
   mutate(study_type=factor(study_type, levels=c("lab", "field (non-toxic site)", "field")),
-         tissue=factor(tissue, levels=c("soft tissue", tissues[tissues!="soft tissue"])))
+         tissue=factor(tissue, levels=c("soft tissue", tissues[tissues!="soft tissue"]))) # %>% 
+  # # Eliminate ones with pareto k > 0.7
+  # filter(!row_id %in% c(39, 103, 105, 165, 
+  #                       37, 44, 104, #  identified after removal above
+  #                       4)) # identified after removal above
+
 
 # Subset prediction data to species in tree
 pred_data <- pred_data_orig %>% 
@@ -100,7 +106,7 @@ if(fit){
     chains = 4,
     cores  = 4,
     iter   = 4000,
-    control = list(adapt_delta = 0.95)
+    control = list(adapt_delta = 0.97)
   )
   summary(fit0)
   
@@ -115,7 +121,7 @@ if(fit){
     chains = 4,
     cores  = 4,
     iter   = 4000,
-    control = list(adapt_delta = 0.95)
+    control = list(adapt_delta = 0.97)
   )
   summary(fit1)
   
@@ -127,11 +133,11 @@ if(fit){
     family = gaussian(),
     prior  = priors_re,
     chains = 4, cores = 4, iter = 4000,
-    control = list(adapt_delta = 0.95)
+    control = list(adapt_delta = 0.97)
   )
   summary(fit2)
   
-  # Fit model
+  # Taxanomically nested model
   fit3 <- brms::brm(
     formula =  rate_d_log ~ study_type + tissue + temp_c + lmax_cm + k + (1 | order/family/genus/species),
     data    = data,
@@ -140,7 +146,7 @@ if(fit){
     chains  = 4,
     cores   = 4,
     iter    = 4000,
-    control = list(adapt_delta = 0.95)
+    control = list(adapt_delta = 0.97)
   )
   summary(fit3)
   
@@ -205,7 +211,9 @@ model_stats <- model_stats_orig %>%
                       "Model 0"="Fixed effects only",
                       "Model 1"="Phylogenetic random effects",
                       "Model 2"="Non-phylogenetic random effects",
-                      "Model 3"="Taxanomically nested random effects"))
+                      "Model 3"="Taxanomically nested random effects")) %>% 
+  # Arrange
+  arrange(desc(elpd_loo))
 model_stats
 
 # Export

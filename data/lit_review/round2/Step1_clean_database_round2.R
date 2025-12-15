@@ -13,8 +13,12 @@ indir <- "data/lit_review/round2/raw"
 outdir <- "data/lit_review/round2/processed"
 plotdir <- "figures"
 
-# Read data
-data_orig <- readxl::read_excel(file.path(indir, "Biotoxin depuration database - round 2.xlsx"), sheet="Final")
+# Read Round 2 data
+data_orig1 <- readxl::read_excel(file.path(indir, "Biotoxin depuration database - round 2.xlsx"), sheet="Final")
+
+# Read Chinese lit data
+data_orig2 <- readxl::read_excel(file.path(indir, "Biotoxin depuration database - round 2.xlsx"), sheet="Data_Chinese_literature") %>% 
+  rename(title=title_chinese) 
 
 # Read derived rates
 rates_orig <- readxl::read_excel("data/extracted_data/processed/fitted_model_results_round2.xlsx")
@@ -22,6 +26,9 @@ rates_orig <- readxl::read_excel("data/extracted_data/processed/fitted_model_res
 
 # 1) Format data
 ################################################################################
+
+# Merge
+data_orig <- bind_rows(data_orig1, data_orig2)
 
 # Format data
 data <- data_orig %>% 
@@ -34,6 +41,8 @@ data <- data_orig %>%
                          "Patinopecten yessoensis" = "Mizuhopecten yessoensis",
                          "Tapes semidecussatus" = "Ruditapes philippinarum",
                          "Chlamys farreri" = "Scaeochlamys farreri",
+                         "Crassostrea gasar"="Crassostrea tulipa",
+                         "Crassostrea gigas"="Magallana gigas",
                          # "Diplodus sargus"  = correct,  
                          # "Scaeochlamys farreri" = correct,
                          "Venus gallina" = "Chamelea gallina")) %>% 
@@ -83,8 +92,8 @@ data <- data_orig %>%
          hlife_d=recode(hlife_d,
                         "n.a."="") %>% as.numeric(.)) %>% 
   # Remove useless
-  select(-c("checked?", "type", "keywords_authors", "keywords_plus", "abstract", "include_YN"))
-
+  select(-c("sort", "checked?", "type", "keywords_authors", "keywords_plus", 
+            "abstract", "include_YN", "title_English"))
 
 # Inspect
 str(data)
@@ -124,7 +133,7 @@ table(data$exp_type)
 ################################################################################
 
 # Check scientific names
-# Correct: Diplodus sargus, Scaeochlamys farreri
+# Correct: Diplodus sargus, Scaeochlamys farreri, Mytella guyanensis
 freeR::check_names(data$sci_name)
 
 # Check species
