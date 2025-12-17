@@ -18,7 +18,9 @@ tabledir <- "tables"
 outdir <- "data/fao/processed"
 
 # Read data
-prod_orig <- readRDS(file=file.path(outdir, "FAO_vulnerable_bivalve_catch_data.Rds"))
+prod_orig <- readRDS(file=file.path(outdir, "FAO_vulnerable_bivalve_catch_data.Rds")) %>% 
+  # Change common name
+  mutate(comm_name=recode(comm_name, "Japanese carpet shell"="Manila clam"))
 
 # Read depuration data
 dep_orig <- readRDS("data/lit_review/processed/database.Rds") 
@@ -50,7 +52,9 @@ dep_spp_key <- dep %>%
 
 # Species with production data
 prod_spp_key <- prod_orig %>% 
-  count(class, order, family, genus, sci_name, comm_name)
+  count(class, order, family, genus, sci_name, comm_name) %>% 
+  # Change common name
+  mutate(comm_name=recode(comm_name, "Japanese carpet shell"="Manila clam"))
 
 
 # Function to build data

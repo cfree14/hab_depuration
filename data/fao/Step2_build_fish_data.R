@@ -80,6 +80,8 @@ spp_key <- data_orig  %>%
 spp_diet <- freeR::fishbase(dataset="ecology", species=spp_key$sci_name, cleaned = T)
 freeR:::which_duplicated(spp_diet$species)
 spp_diet1 <- spp_diet %>% 
+  # Remove blank SeaLifeBase 
+  filter(database!="SeaLifeBase") %>% 
   # Calculate mean trohic level b/c get repeates
   group_by(species, prey_type) %>% 
   summarize(troph_diet=mean(troph_diet, na.rm=T),
@@ -95,8 +97,12 @@ freeR:::which_duplicated(spp_diet1$species)
 spp_traits <- freeR::fishbase(dataset="species", species=spp_key$sci_name, cleaned = T)
 freeR:::which_duplicated(spp_traits$species)
 spp_traits1 <- spp_traits %>% 
+  # Remove blank SeaLifeBase 
+  filter(database!="SeaLifeBase") %>% 
   select(species, habitat, lmax_cm, dangerous) %>% 
+  unique() %>% 
   mutate(ciguatera_yn=ifelse(grepl("ciguatera", dangerous), "yes", "no"))
+freeR:::which_duplicated(spp_traits1$species)
 
 # Expand
 spp_key2 <- spp_key %>% 
@@ -106,9 +112,10 @@ spp_key2 <- spp_key %>%
   left_join(spp_diet1 %>% select(species, prey_type), by=c("sci_name"="species"))
 
 # Filter
+cig_spp <- c("Lagodon rhomboides", "Epinephelus coioides", "Pterois volitans", "Mugil cephalus")
 spp_key3 <- spp_key2 %>% 
   # Reduce to large reef-associated fish
-  filter(ciguatera_yn=="yes" | (habitat=="reef-associated" & lmax_cm>=25 & prey_type!="mainly plants/detritus (troph. 2-2.19)"))
+  filter(sci_name %in% cig_spp | ciguatera_yn=="yes" | (habitat=="reef-associated" & lmax_cm>=25 & prey_type!="mainly plants/detritus (troph. 2-2.19)"))
 
 # Get taxa
 taxa <- freeR::taxa(spp_key3$sci_name) %>% 

@@ -59,6 +59,7 @@ ntissues <- data %>%
   summarize(ntissues=n_distinct(tissue),
             tissues=paste(sort(unique(tissue)), collapse=", ")) %>% 
   ungroup()
+sum(ntissues$ntissues>1)
 
 # Field studies
 field <- data %>% 
@@ -123,9 +124,6 @@ stats_feed <- data %>%
   group_by(paper_id) %>% 
   summarize(feed_scenario=paste(sort(unique(feed_scenario)), collapse=", ")) %>% 
   ungroup() %>% 
-  # Count
-  count(feed_scenario) %>% 
-  mutate(prop=n/sum(n)) %>% 
   # Recode
   mutate(feed_scenario=recode(feed_scenario,
                               "Fed non-toxic, Starved"="Fed non-toxic vs. starved",
@@ -135,7 +133,11 @@ stats_feed <- data %>%
                                        "Starved",
                                        "Fed non-toxic vs. starved",
                                        "Ambient seawater",
-                                       "Unknown")))
+                                       "Unknown"))) %>% 
+  # Count
+  count(feed_scenario) %>% 
+  mutate(prop=n/sum(n))
+
 
 table(stats_feed$feed_scenario)
 
@@ -275,6 +277,13 @@ comp_methods <- comp_methods_orig %>%
 
 # Random stats for manuscript
 ################################################################################
+
+# Number of papers directly quantifying from field
+data %>% 
+  filter(grepl("field",  study_type) & rate_type=="provided") %>% 
+  pull(paper_id) %>% 
+  n_distinct()
+
 
 # Do any species have their only source come from field studies?
 spp_source <- data %>% 

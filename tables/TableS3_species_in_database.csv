@@ -1,86 +1,86 @@
-class,family,genus,sci_name,comm_name,Paralytic,Amnesic,Diarrhetic,Cyanotoxin,Neurotoxic,Ciguatera,Azaspiracid,Other
-Ascidiacea,Pyuridae,Pyura,Pyura chilensis,Red sea squirt,1,NA,NA,NA,NA,NA,NA,NA
-Bivalvia,Cardiidae,Acanthocardia,Acanthocardia tuberculata,Rough cockle,1,NA,NA,NA,NA,NA,NA,NA
-Bivalvia,Cardiidae,Cerastoderma,Cerastoderma edule,Common cockle,2,NA,NA,NA,NA,NA,NA,NA
-Bivalvia,Cyrenidae,Corbicula,Corbicula fluminea,Asian clam,NA,NA,NA,1,NA,NA,NA,NA
-Bivalvia,Donacidae,Donax,Donax trunculus,Abrupt wedge shell,1,NA,1,NA,NA,NA,NA,NA
-Bivalvia,Hiatellidae,Panopea,Panopea globosa,Geoduck clam,1,NA,NA,NA,NA,NA,NA,NA
-Bivalvia,Mactridae,Spisula,Spisula solida,Surf clam,1,NA,NA,NA,NA,NA,NA,NA
-Bivalvia,Mactridae,Spisula,Spisula solidissima,Atlantic surfclam,1,NA,NA,NA,NA,NA,NA,NA
-Bivalvia,Mesodesmatidae,Paphies,Paphies australis,Pipi clam,NA,NA,NA,NA,NA,NA,NA,1
-Bivalvia,Myidae,Mya,Mya arenaria,Soft-shell clam,1,1,NA,NA,NA,NA,NA,NA
-Bivalvia,Mytilidae,Aulacomya,Aulacomya atra,Chilean ribbed mussel,1,NA,NA,NA,NA,NA,NA,NA
-Bivalvia,Mytilidae,Geukensia,Geukensia demissa,Atlantic ribbed mussel,NA,NA,1,NA,NA,NA,NA,1
-Bivalvia,Mytilidae,Mytella,Mytella guyanensis,Trinidad swamp mussel,NA,NA,1,NA,NA,NA,NA,NA
-Bivalvia,Mytilidae,Mytilus,Mytilus californianus,California mussel,1,1,NA,1,NA,NA,NA,NA
-Bivalvia,Mytilidae,Mytilus,Mytilus chilensis,Chilean mussel,3,NA,NA,NA,NA,NA,NA,1
-Bivalvia,Mytilidae,Mytilus,Mytilus coruscus,Korean hard-shelled mussel,1,NA,NA,NA,NA,NA,NA,NA
-Bivalvia,Mytilidae,Mytilus,Mytilus edulis,Blue mussel,7,5,10,6,NA,NA,1,6
-Bivalvia,Mytilidae,Mytilus,Mytilus galloprovincialis,Mediterranean mussel,9,NA,5,3,NA,NA,NA,NA
-Bivalvia,Mytilidae,Mytilus,Mytilus spp.,Mussels,1,NA,NA,NA,NA,NA,1,1
-Bivalvia,Mytilidae,Perna,Perna canaliculus,Green-lipped mussel,1,NA,NA,NA,NA,NA,NA,1
-Bivalvia,Mytilidae,Perna,Perna perna,Brown mussel,NA,NA,1,NA,NA,NA,NA,NA
-Bivalvia,Mytilidae,Perna,Perna viridis,Asian green mussel,3,NA,1,NA,1,NA,NA,NA
-Bivalvia,Ostreidae,Crassostrea,Crassostrea tulipa,West Africa mangrove oyster,NA,NA,1,NA,NA,NA,NA,NA
-Bivalvia,Ostreidae,Crassostrea,Crassostrea virginica,Eastern oyster,2,1,1,1,3,NA,NA,1
-Bivalvia,Ostreidae,Magallana,Magallana gigas,Pacific oyster,6,1,NA,4,NA,NA,NA,2
-Bivalvia,Ostreidae,Magallana,Magallana rivularis,Jinjiang oyster,2,NA,NA,NA,NA,NA,NA,NA
-Bivalvia,Ostreidae,Ostrea,Ostrea chilensis,Flat oyster,1,NA,NA,NA,NA,NA,NA,NA
-Bivalvia,Ostreidae,Ostrea,Ostrea edulis,European flat oyster,NA,NA,2,NA,NA,NA,NA,2
-Bivalvia,Ostreidae,Saccostrea,Saccostrea glomerata,Sydney rock oyster,1,NA,NA,NA,NA,NA,NA,NA
-Bivalvia,Pectinidae,Aequipecten,Aequipecten opercularis,Queen scallop,NA,1,NA,NA,NA,NA,NA,1
-Bivalvia,Pectinidae,Argopecten,Argopecten irradians,Bay scallop,4,NA,1,NA,NA,NA,NA,NA
-Bivalvia,Pectinidae,Argopecten,Argopecten purpuratus,Peruvian calico scallop,NA,1,NA,NA,NA,NA,NA,NA
-Bivalvia,Pectinidae,Crassadoma,Crassadoma gigantea,Purple-hinged rock scallop,1,NA,1,NA,NA,NA,NA,NA
-Bivalvia,Pectinidae,Mimachlamys,Mimachlamys crassicostata,Noble scallop,2,NA,NA,NA,NA,NA,NA,NA
-Bivalvia,Pectinidae,Mimachlamys,Mimachlamys varia,Variegated scallop,NA,1,NA,NA,NA,NA,NA,NA
-Bivalvia,Pectinidae,Mizuhopecten,Mizuhopecten yessoensis,Japanese scallop,4,NA,NA,NA,NA,NA,NA,NA
-Bivalvia,Pectinidae,Nodipecten,Nodipecten subnodosus,Pacific giant lions-paw scallop,1,NA,NA,NA,NA,NA,NA,NA
-Bivalvia,Pectinidae,Pecten,Pecten maximus,King scallop,NA,6,NA,NA,NA,NA,NA,NA
-Bivalvia,Pectinidae,Placopecten,Placopecten magellanicus,Atlantic sea scallop,2,2,NA,NA,NA,NA,NA,NA
-Bivalvia,Pectinidae,Scaeochlamys,Scaeochlamys farreri,Farrer's scallop,2,NA,NA,NA,NA,NA,1,NA
-Bivalvia,Pharidae,Ensis,Ensis macha,Navaja clam,1,NA,NA,NA,NA,NA,NA,NA
-Bivalvia,Pharidae,Siliqua,Siliqua patula,Pacific razor clam,NA,2,NA,NA,NA,NA,NA,NA
-Bivalvia,Pharidae,Sinonovacula,Sinonovacula constricta,Constricted tagelus,NA,NA,NA,NA,NA,NA,NA,1
-Bivalvia,Psammobiidae,Hiatula,Hiatula diphos,Purple clam,1,NA,NA,NA,NA,NA,NA,NA
-Bivalvia,Solenidae,Solen,Solen marginatus,Grooved razor shell,1,NA,NA,NA,NA,NA,NA,NA
-Bivalvia,Veneridae,Anomalocardia,Anomalocardia flexuosa,Anomalocardia clam,NA,NA,1,NA,NA,NA,NA,NA
-Bivalvia,Veneridae,Callista,Callista chione,Smooth clam,1,NA,NA,NA,NA,NA,NA,NA
-Bivalvia,Veneridae,Chamelea,Chamelea gallina,Warty venus,1,NA,NA,NA,NA,NA,NA,NA
-Bivalvia,Veneridae,Mercenaria,Mercenaria campechiensis,Hard clam,NA,NA,NA,NA,1,NA,NA,NA
-Bivalvia,Veneridae,Mercenaria,Mercenaria mercenaria,Northern quahog,1,NA,NA,NA,1,NA,NA,2
-Bivalvia,Veneridae,Ruditapes,Ruditapes decussatus,Grooved carpet shell,1,NA,1,NA,NA,NA,NA,2
-Bivalvia,Veneridae,Ruditapes,Ruditapes philippinarum,Manila clam,1,NA,1,1,NA,NA,NA,NA
-Cephalopoda,Octopodidae,Octopus,Octopus vulgaris,Common octopus,1,NA,NA,NA,NA,NA,NA,NA
-Copepoda,Acartiidae,Acartia,Acartia clausi,A. clausi copepod,2,1,NA,NA,NA,NA,NA,NA
-Copepoda,Acartiidae,Acartia,Acartia hudsonica,A. hudsonica copepod,1,NA,NA,NA,NA,NA,NA,NA
-Copepoda,Calanidae,Calanus,Calanus finmarchicus,C. finmarchicus copepod,NA,2,NA,NA,NA,NA,NA,NA
-Copepoda,Calanidae,Calanus,Calanus glacialis,C. glacialis copepod,NA,1,NA,NA,NA,NA,NA,NA
-Copepoda,Temoridae,Eurytemora,Eurytemora affinis,E. affinis copepod,NA,NA,NA,1,NA,NA,NA,NA
-Dinophyceae,Noctilucaceae,Noctiluca,Noctiluca scintillans,N. scintillans dinoflagellate,1,NA,NA,NA,NA,NA,NA,NA
-Gastropoda,Haliotidae,Haliotis,Haliotis midae,South African abalone,1,NA,NA,NA,NA,NA,NA,NA
-Gastropoda,Haliotidae,Haliotis,Haliotis rubra,Australian blacklip abalone,1,NA,NA,NA,NA,NA,NA,NA
-Gastropoda,Viviparidae,Sinotaia,Sinotaia quadrata,Chinese freshwater snail,NA,NA,NA,1,NA,NA,NA,NA
-Malacostraca,Callichiridae,Callichirus,Callichirus major,Carolinian ghost shrimp,NA,NA,1,NA,NA,NA,NA,NA
-Malacostraca,Cancridae,Cancer,Cancer pagurus,Brown crab,NA,NA,2,NA,NA,NA,NA,2
-Malacostraca,Cancridae,Metacarcinus,Metacarcinus magister,Dungeness crab,NA,3,NA,NA,NA,NA,NA,NA
-Malacostraca,Hippidae,Emerita,Emerita analoga,Pacific mole crab,1,NA,NA,NA,NA,NA,NA,NA
-Malacostraca,Mysidae,Neomysis,Neomysis awatschensis,Mysid crustacean,NA,NA,NA,1,NA,NA,NA,NA
-Malacostraca,Palinuridae,Jasus,Jasus edwardsii,Southern rock lobster,3,NA,NA,NA,NA,NA,NA,NA
-Malacostraca,Palinuridae,Panulirus,Panulirus stimpsoni,Chinese spiny lobster,1,NA,NA,NA,NA,NA,NA,NA
-Malacostraca,Penaeidae,Penaeus,Penaeus monodon,Black tiger prawn,NA,NA,NA,1,NA,NA,NA,NA
-Mammalia,Delphinidae,Tursiops,Tursiops truncatus,Bottlenose dolphin,NA,NA,NA,NA,1,NA,NA,NA
-Teleostei,Alosidae,Brevoortia,Brevoortia tyrannus,Atlantic menhaden,NA,NA,NA,NA,1,NA,NA,NA
-Teleostei,Batrachoididae,Opsanus,Opsanus beta,Gulf toadfish,NA,NA,NA,NA,1,NA,NA,NA
-Teleostei,Ephippidae,Chaetodipterus,Chaetodipterus faber,Atlantic spadefish,NA,NA,1,NA,NA,NA,NA,NA
-Teleostei,Epinephelidae,Epinephelus,Epinephelus coioides,Orange-spotted grouper,NA,NA,NA,NA,NA,1,NA,NA
-Teleostei,Mugilidae,Mugil,Mugil cephalus,Striped mullet,NA,NA,NA,NA,2,1,NA,NA
-Teleostei,Mugilidae,Mugil,Mugil liza,Lebranche mullet,NA,NA,1,NA,NA,NA,NA,NA
-Teleostei,Salmonidae,Oncorhynchus,Oncorhynchus kisutch,Coho salmon,NA,1,NA,NA,NA,NA,NA,NA
-Teleostei,Scorpaenidae,Pterois,Pterois volitans,Lionfish,NA,NA,NA,NA,NA,1,NA,NA
-Teleostei,Sparidae,Acanthopagrus,Acanthopagrus schlegelii,Black sea bream,1,NA,NA,NA,NA,NA,NA,NA
-Teleostei,Sparidae,Diplodus,Diplodus sargus,White seabream,1,NA,NA,NA,NA,NA,NA,NA
-Teleostei,Sparidae,Lagodon,Lagodon rhomboides,Pinfish,NA,NA,NA,NA,NA,1,NA,NA
-Teleostei,Sparidae,Sparus,Sparus aurata,Gilthead seabream,1,NA,NA,NA,NA,NA,NA,NA
-Teleostei,Tetraodontidae,Takifugu,Takifugu obscurus,Obscure pufferfish,NA,NA,NA,NA,NA,NA,NA,1
-Thecostraca,Balanidae,Austromegabalanus,Austromegabalanus psittacus,Giant barnacle,1,NA,NA,NA,NA,NA,NA,NA
+"class","family","genus","sci_name","comm_name","Paralytic","Amnesic","Diarrhetic","Cyanotoxin","Neurotoxic","Ciguatera","Azaspiracid","Other"
+"Ascidiacea","Pyuridae","Pyura","Pyura chilensis","Red sea squirt",1,NA,NA,NA,NA,NA,NA,NA
+"Bivalvia","Cardiidae","Acanthocardia","Acanthocardia tuberculata","Rough cockle",1,NA,NA,NA,NA,NA,NA,NA
+"Bivalvia","Cardiidae","Cerastoderma","Cerastoderma edule","Common cockle",2,NA,NA,NA,NA,NA,NA,NA
+"Bivalvia","Cyrenidae","Corbicula","Corbicula fluminea","Asian clam",NA,NA,NA,1,NA,NA,NA,NA
+"Bivalvia","Donacidae","Donax","Donax trunculus","Abrupt wedge shell",1,NA,1,NA,NA,NA,NA,NA
+"Bivalvia","Hiatellidae","Panopea","Panopea globosa","Geoduck clam",1,NA,NA,NA,NA,NA,NA,NA
+"Bivalvia","Mactridae","Spisula","Spisula solida","Surf clam",1,NA,NA,NA,NA,NA,NA,NA
+"Bivalvia","Mactridae","Spisula","Spisula solidissima","Atlantic surfclam",1,NA,NA,NA,NA,NA,NA,NA
+"Bivalvia","Mesodesmatidae","Paphies","Paphies australis","Pipi clam",NA,NA,NA,NA,NA,NA,NA,1
+"Bivalvia","Myidae","Mya","Mya arenaria","Soft-shell clam",1,1,NA,NA,NA,NA,NA,NA
+"Bivalvia","Mytilidae","Aulacomya","Aulacomya atra","Chilean ribbed mussel",1,NA,NA,NA,NA,NA,NA,NA
+"Bivalvia","Mytilidae","Geukensia","Geukensia demissa","Atlantic ribbed mussel",NA,NA,1,NA,NA,NA,NA,1
+"Bivalvia","Mytilidae","Mytella","Mytella guyanensis","Trinidad swamp mussel",NA,NA,1,NA,NA,NA,NA,NA
+"Bivalvia","Mytilidae","Mytilus","Mytilus californianus","California mussel",1,1,NA,1,NA,NA,NA,NA
+"Bivalvia","Mytilidae","Mytilus","Mytilus chilensis","Chilean mussel",3,NA,NA,NA,NA,NA,NA,1
+"Bivalvia","Mytilidae","Mytilus","Mytilus coruscus","Korean hard-shelled mussel",1,NA,NA,NA,NA,NA,NA,NA
+"Bivalvia","Mytilidae","Mytilus","Mytilus edulis","Blue mussel",7,5,10,6,NA,NA,1,6
+"Bivalvia","Mytilidae","Mytilus","Mytilus galloprovincialis","Mediterranean mussel",9,NA,5,3,NA,NA,NA,NA
+"Bivalvia","Mytilidae","Mytilus","Mytilus spp.","Mussels",1,NA,NA,NA,NA,NA,1,1
+"Bivalvia","Mytilidae","Perna","Perna canaliculus","Green-lipped mussel",1,NA,NA,NA,NA,NA,NA,1
+"Bivalvia","Mytilidae","Perna","Perna perna","Brown mussel",NA,NA,1,NA,NA,NA,NA,NA
+"Bivalvia","Mytilidae","Perna","Perna viridis","Asian green mussel",3,NA,1,NA,1,NA,NA,NA
+"Bivalvia","Ostreidae","Crassostrea","Crassostrea tulipa","West Africa mangrove oyster",NA,NA,1,NA,NA,NA,NA,NA
+"Bivalvia","Ostreidae","Crassostrea","Crassostrea virginica","Eastern oyster",2,1,1,1,3,NA,NA,1
+"Bivalvia","Ostreidae","Magallana","Magallana gigas","Pacific oyster",6,1,NA,4,NA,NA,NA,2
+"Bivalvia","Ostreidae","Magallana","Magallana rivularis","Jinjiang oyster",2,NA,NA,NA,NA,NA,NA,NA
+"Bivalvia","Ostreidae","Ostrea","Ostrea chilensis","Flat oyster",1,NA,NA,NA,NA,NA,NA,NA
+"Bivalvia","Ostreidae","Ostrea","Ostrea edulis","European flat oyster",NA,NA,2,NA,NA,NA,NA,2
+"Bivalvia","Ostreidae","Saccostrea","Saccostrea glomerata","Sydney rock oyster",1,NA,NA,NA,NA,NA,NA,NA
+"Bivalvia","Pectinidae","Aequipecten","Aequipecten opercularis","Queen scallop",NA,1,NA,NA,NA,NA,NA,1
+"Bivalvia","Pectinidae","Argopecten","Argopecten irradians","Bay scallop",4,NA,1,NA,NA,NA,NA,NA
+"Bivalvia","Pectinidae","Argopecten","Argopecten purpuratus","Peruvian calico scallop",NA,1,NA,NA,NA,NA,NA,NA
+"Bivalvia","Pectinidae","Crassadoma","Crassadoma gigantea","Purple-hinged rock scallop",1,NA,1,NA,NA,NA,NA,NA
+"Bivalvia","Pectinidae","Mimachlamys","Mimachlamys crassicostata","Noble scallop",2,NA,NA,NA,NA,NA,NA,NA
+"Bivalvia","Pectinidae","Mimachlamys","Mimachlamys varia","Variegated scallop",NA,1,NA,NA,NA,NA,NA,NA
+"Bivalvia","Pectinidae","Mizuhopecten","Mizuhopecten yessoensis","Japanese scallop",4,NA,NA,NA,NA,NA,NA,NA
+"Bivalvia","Pectinidae","Nodipecten","Nodipecten subnodosus","Pacific giant lions-paw scallop",1,NA,NA,NA,NA,NA,NA,NA
+"Bivalvia","Pectinidae","Pecten","Pecten maximus","King scallop",NA,6,NA,NA,NA,NA,NA,NA
+"Bivalvia","Pectinidae","Placopecten","Placopecten magellanicus","Atlantic sea scallop",2,2,NA,NA,NA,NA,NA,NA
+"Bivalvia","Pectinidae","Scaeochlamys","Scaeochlamys farreri","Farrer's scallop",2,NA,NA,NA,NA,NA,1,NA
+"Bivalvia","Pharidae","Ensis","Ensis macha","Navaja clam",1,NA,NA,NA,NA,NA,NA,NA
+"Bivalvia","Pharidae","Siliqua","Siliqua patula","Pacific razor clam",NA,2,NA,NA,NA,NA,NA,NA
+"Bivalvia","Pharidae","Sinonovacula","Sinonovacula constricta","Constricted tagelus",NA,NA,NA,NA,NA,NA,NA,1
+"Bivalvia","Psammobiidae","Hiatula","Hiatula diphos","Purple clam",1,NA,NA,NA,NA,NA,NA,NA
+"Bivalvia","Solenidae","Solen","Solen marginatus","Grooved razor shell",1,NA,NA,NA,NA,NA,NA,NA
+"Bivalvia","Veneridae","Anomalocardia","Anomalocardia flexuosa","Anomalocardia clam",NA,NA,1,NA,NA,NA,NA,NA
+"Bivalvia","Veneridae","Callista","Callista chione","Smooth clam",1,NA,NA,NA,NA,NA,NA,NA
+"Bivalvia","Veneridae","Chamelea","Chamelea gallina","Warty venus",1,NA,NA,NA,NA,NA,NA,NA
+"Bivalvia","Veneridae","Mercenaria","Mercenaria campechiensis","Hard clam",NA,NA,NA,NA,1,NA,NA,NA
+"Bivalvia","Veneridae","Mercenaria","Mercenaria mercenaria","Northern quahog",1,NA,NA,NA,1,NA,NA,2
+"Bivalvia","Veneridae","Ruditapes","Ruditapes decussatus","Grooved carpet shell",1,NA,1,NA,NA,NA,NA,2
+"Bivalvia","Veneridae","Ruditapes","Ruditapes philippinarum","Manila clam",3,NA,1,1,NA,NA,NA,NA
+"Cephalopoda","Octopodidae","Octopus","Octopus vulgaris","Common octopus",1,NA,NA,NA,NA,NA,NA,NA
+"Copepoda","Acartiidae","Acartia","Acartia clausi","A. clausi copepod",2,1,NA,NA,NA,NA,NA,NA
+"Copepoda","Acartiidae","Acartia","Acartia hudsonica","A. hudsonica copepod",1,NA,NA,NA,NA,NA,NA,NA
+"Copepoda","Calanidae","Calanus","Calanus finmarchicus","C. finmarchicus copepod",NA,2,NA,NA,NA,NA,NA,NA
+"Copepoda","Calanidae","Calanus","Calanus glacialis","C. glacialis copepod",NA,1,NA,NA,NA,NA,NA,NA
+"Copepoda","Temoridae","Eurytemora","Eurytemora affinis","E. affinis copepod",NA,NA,NA,1,NA,NA,NA,NA
+"Dinophyceae","Noctilucaceae","Noctiluca","Noctiluca scintillans","N. scintillans dinoflagellate",1,NA,NA,NA,NA,NA,NA,NA
+"Gastropoda","Haliotidae","Haliotis","Haliotis midae","South African abalone",1,NA,NA,NA,NA,NA,NA,NA
+"Gastropoda","Haliotidae","Haliotis","Haliotis rubra","Australian blacklip abalone",1,NA,NA,NA,NA,NA,NA,NA
+"Gastropoda","Viviparidae","Sinotaia","Sinotaia quadrata","Chinese freshwater snail",NA,NA,NA,1,NA,NA,NA,NA
+"Malacostraca","Callichiridae","Callichirus","Callichirus major","Carolinian ghost shrimp",NA,NA,1,NA,NA,NA,NA,NA
+"Malacostraca","Cancridae","Cancer","Cancer pagurus","Brown crab",NA,NA,2,NA,NA,NA,NA,2
+"Malacostraca","Cancridae","Metacarcinus","Metacarcinus magister","Dungeness crab",NA,3,NA,NA,NA,NA,NA,NA
+"Malacostraca","Hippidae","Emerita","Emerita analoga","Pacific mole crab",1,NA,NA,NA,NA,NA,NA,NA
+"Malacostraca","Mysidae","Neomysis","Neomysis awatschensis","Mysid crustacean",NA,NA,NA,1,NA,NA,NA,NA
+"Malacostraca","Palinuridae","Jasus","Jasus edwardsii","Southern rock lobster",3,NA,NA,NA,NA,NA,NA,NA
+"Malacostraca","Palinuridae","Panulirus","Panulirus stimpsoni","Chinese spiny lobster",1,NA,NA,NA,NA,NA,NA,NA
+"Malacostraca","Penaeidae","Penaeus","Penaeus monodon","Black tiger prawn",NA,NA,NA,1,NA,NA,NA,NA
+"Mammalia","Delphinidae","Tursiops","Tursiops truncatus","Bottlenose dolphin",NA,NA,NA,NA,1,NA,NA,NA
+"Teleostei","Alosidae","Brevoortia","Brevoortia tyrannus","Atlantic menhaden",NA,NA,NA,NA,1,NA,NA,NA
+"Teleostei","Batrachoididae","Opsanus","Opsanus beta","Gulf toadfish",NA,NA,NA,NA,1,NA,NA,NA
+"Teleostei","Ephippidae","Chaetodipterus","Chaetodipterus faber","Atlantic spadefish",NA,NA,1,NA,NA,NA,NA,NA
+"Teleostei","Epinephelidae","Epinephelus","Epinephelus coioides","Orange-spotted grouper",NA,NA,NA,NA,NA,1,NA,NA
+"Teleostei","Mugilidae","Mugil","Mugil cephalus","Striped mullet",NA,NA,NA,NA,2,1,NA,NA
+"Teleostei","Mugilidae","Mugil","Mugil liza","Lebranche mullet",NA,NA,1,NA,NA,NA,NA,NA
+"Teleostei","Salmonidae","Oncorhynchus","Oncorhynchus kisutch","Coho salmon",NA,1,NA,NA,NA,NA,NA,NA
+"Teleostei","Scorpaenidae","Pterois","Pterois volitans","Lionfish",NA,NA,NA,NA,NA,1,NA,NA
+"Teleostei","Sparidae","Acanthopagrus","Acanthopagrus schlegelii","Black sea bream",1,NA,NA,NA,NA,NA,NA,NA
+"Teleostei","Sparidae","Diplodus","Diplodus sargus","White seabream",1,NA,NA,NA,NA,NA,NA,NA
+"Teleostei","Sparidae","Lagodon","Lagodon rhomboides","Pinfish",NA,NA,NA,NA,NA,1,NA,NA
+"Teleostei","Sparidae","Sparus","Sparus aurata","Gilthead seabream",1,NA,NA,NA,NA,NA,NA,NA
+"Teleostei","Tetraodontidae","Takifugu","Takifugu obscurus","Obscure pufferfish",NA,NA,NA,NA,NA,NA,NA,1
+"Thecostraca","Balanidae","Austromegabalanus","Austromegabalanus psittacus","Giant barnacle",1,NA,NA,NA,NA,NA,NA,NA

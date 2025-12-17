@@ -34,6 +34,25 @@ data <- data_orig %>%
                       "Copepoda"="Copepods",
                       "Maxillopoda"="Zooplankton"))
 
+# Proportion of studies using non-management relevant tissue
+################################################################################
+
+mgmt_tissue_stats <- data %>% 
+  # Tissues studied by each paper and class of organism
+  select(paper_id, class, tissue) %>% 
+  unique() %>% 
+  # Mark whether management relevant
+  mutate(mgmt_yn=ifelse(tissue %in% c("whole", "hepatopancreas", "foot", "meat", "muscle", "soft tissue"), "yes", "no")) %>% 
+  # Mark whether paper used a mgmt-relevant tissue
+  group_by(paper_id) %>% 
+  summarize(class=paste(sort(unique(class)), collapse=", "), 
+            tissue=paste(sort(unique(tissue)), collapse=", "), 
+            mgmt_yn=paste(sort(unique(mgmt_yn)), collapse=", ")) %>% 
+  ungroup() %>% 
+  # Filter
+  filter(mgmt_yn=="no")
+  
+
 # Plot data
 ################################################################################
 
