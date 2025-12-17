@@ -2,7 +2,7 @@
 
 This the GitHub repository for a project seeking to predict biotoxin depuration rates for all low-trophic seafood species through the systematic review and meta-analysis of published depuration rates. The project is associated with the following paper in preparation
 
-* Free CM, Fang Y (in prep) Biotoxin depuration rates from seafood species: a meta-analysis of analytic approaches and results. **Near submission** to _Harmful Algae_.
+* Free CM, Fang Y (in review) Marine biotoxin depuration rates: management applications, research priorities, and predictions for unstudied species. **Submitted** to _Harmful Algae_.
 
 Please contact Chris Free (cfree14@gmail.com) with questions about the paper or repository.
 
@@ -17,6 +17,7 @@ The GitHub repository has the following general structure:
  * **code:** code to conduct the phylogenetic regession analysis and to produce the figures in the paper
  * **tables:** tables for the paper
  * **figures:** figures for the paper
+ * **output:** regression model objects and regression model predictions
 
 The **data** folder contains subfolders for the following datasets:
 
@@ -25,8 +26,10 @@ The **data** folder contains subfolders for the following datasets:
 * **haedat:** Observations of toxigenic events resulting from HABs from the [HAEDAT database](https://haedat.iode.org/browseEvents.php) 
 * **lit_review:** The database of published depuration rates and characteristics of their studies
 * **extracted_data:** Data extracted from studies in which depuration rates and/or half lives are not directly reported
+* **toxicities:** Data extracted from select studies documenting maximum toxicities observed in non-bivalve species
+* **other:** Other miscellaneous data
 
 Visitors may primarily be interested in the database of depuration rates or the predicted depuration rates. These are located in the following locations:
 
-* **Database of depuration rates:** _file path coming soon_
-* **Predictions of depuration rates:** _file path coming soon_
+* **Database of depuration rates:** data/lit_review/processed/database.Rds (this folder includes other important meta-data on the final database)
+* **Predictions of depuration rates:** output/bivalve_prediction_data.Rds
