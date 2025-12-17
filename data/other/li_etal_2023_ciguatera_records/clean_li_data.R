@@ -10,7 +10,7 @@ library(stringr)
 library(tidyverse)
 
 # Read data
-data_orig <- readxl::read_excel("data/other/Li_etal_2023_ciguatera_records.xlsx", na=c("NM", "NC", "NC[4]"))
+data_orig <- readxl::read_excel("data/other/li_etal_2023_ciguatera_records/Li_etal_2023_ciguatera_records.xlsx", na=c("NM", "NC", "NC[4]"))
 
 
 # Format data
@@ -141,4 +141,4 @@ ggplot(data1, aes(y=reorder(comm_name, desc(toxicity_ug_kg)), x=toxicity_ug_kg))
 ################################################################################
 
 # Export
-saveRDS(data1, file="data/other/Li_etal_2023_ciguatera_records.Rds")
+saveRDS(data1, file="data/other/li_etal_2023_ciguatera_records/Li_etal_2023_ciguatera_records.Rds")
