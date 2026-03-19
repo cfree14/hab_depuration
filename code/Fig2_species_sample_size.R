@@ -59,6 +59,15 @@ data %>%
             p_papers=npapers/npapers_tot) %>% 
   arrange(desc(npapers))
 
+# Number of species/rates by toxin-clade
+data %>% 
+  group_by(syndrome, class) %>% 
+  summarise(nord=n_distinct(order),
+            nfam=n_distinct(family),
+            nspp=n_distinct(sci_name),
+            nrates=n()) %>% 
+  arrange(desc(nspp))
+
 # Build data
 ################################################################################
 

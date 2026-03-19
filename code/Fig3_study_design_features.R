@@ -249,7 +249,7 @@ stats_model <- data %>%
                       "two"="Two",
                       "one vs. two"="One vs. two", 
                       "one"="One",
-                      "no model"="None",
+                      "no model"="No model",
                       "zero"="Zero",
                       "no model, two, one"="Mixture",
                       "one vs. two vs. three"="     One vs. two vs. three")) %>% # pad for plotting
