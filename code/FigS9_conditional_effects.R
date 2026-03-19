@@ -6,7 +6,6 @@ rm(list = ls())
 ################################################################################
 
 # Packages
-library(rotl)
 library(ape)
 library(phytools)
 library(picante)
