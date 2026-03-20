@@ -51,6 +51,6 @@ data <- data_orig %>%
 freeR::complete(data)
 
 # Export
-write.csv(data, file=file.path(tabledir, "TableSX_priority_species_new_taxa.csv"), row.names=F)
+write.csv(data, file=file.path(tabledir, "TableS4_priority_species_new_taxa.csv"), row.names=F)
 
 

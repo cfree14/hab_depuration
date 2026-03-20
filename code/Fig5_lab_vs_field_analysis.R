@@ -26,11 +26,12 @@ data <- data_orig %>%
   # Abs rate
   mutate(rate_d=abs(rate_d)) %>% 
   # Summarize
-  group_by(syndrome, comm_name, sci_name, study_type, tissue) %>% 
+  group_by(syndrome, comm_name, sci_name, tissue, study_type) %>% 
   summarize(n=n(),
             rate_d=mean(rate_d, na.rm=T)) %>% 
   ungroup() %>% 
   # Reduce to ones with both lab and field available
+  filter(study_type!="field (non-toxic site)") %>% 
   group_by(syndrome, comm_name, sci_name, tissue) %>% 
   mutate(ntypes=n()) %>% 
   ungroup() %>% 
@@ -39,7 +40,14 @@ data <- data_orig %>%
   # Build label
   mutate(label=paste0(comm_name, " (", tissue, ")")) %>% 
   # Format study type
-  mutate(study_type=stringr::str_to_sentence(study_type) %>% recode(., "Lab"="Laboratory"))
+  mutate(study_type=stringr::str_to_sentence(study_type) %>% recode(., "Lab"="Laboratory")) %>% 
+  # Arrange toxins
+  mutate(syndrome=factor(syndrome,
+                         levels=c("Paralytic", "Amnesic", "Diarrhetic", "Neurotoxic", "Other") %>% rev())) %>% 
+  # Add conversion factor
+  group_by(syndrome, comm_name, sci_name, tissue) %>% 
+  mutate(conv=rate_d[study_type=="Laboratory"]/rate_d[study_type=="Field"]) %>% 
+  ungroup()
 
 
 # Plot data
@@ -59,6 +67,7 @@ my_theme <-  theme(axis.text=element_text(size=8),
                    panel.background = element_blank(), 
                    axis.line = element_line(colour = "black"),
                    # Legend
+                   legend.margin = margin(b=-5),
                    legend.position = "top",
                    legend.key = element_rect(fill = NA, color=NA),
                    legend.background = element_rect(fill=alpha('blue', 0)))
@@ -69,6 +78,9 @@ g <- ggplot(data, aes(y=label, x=rate_d, shape=study_type, color=study_type, gro
   # Data
   geom_line(color="grey30") + 
   geom_point(size=2) + 
+  # Conversion
+  geom_text(mapping=aes(x=0.001, y=label, label=format(round(conv, 1), nsmall = 1)), 
+            size=2.4, color="grey30", hjust=0) +
   # Labels
   labs(x=expression("Decay constant, k (day"^-1*")"), #"Depuration rate (day-1)", 
        y="") +
@@ -76,7 +88,7 @@ g <- ggplot(data, aes(y=label, x=rate_d, shape=study_type, color=study_type, gro
                      breaks=c(0.001, 0.01, 0.1, 1, 10),
                      labels=c("0.001", "0.01", "0.1", "1", "10")) +
   # Legend
-  scale_color_discrete(name="") +
+  scale_color_manual(name="", values=c("#35B779", "#440154")) +
   scale_shape_discrete(name="") +
   # Theme
   theme_bw() + my_theme

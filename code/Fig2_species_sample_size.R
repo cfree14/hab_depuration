@@ -159,7 +159,8 @@ g1 <- ggplot(stats_ordered, aes(x=n, fill=syndrome, y=comm_name))+
   # Labels
   labs(x="Number of papers\n\n\n", y="") +
   # Legend
-  scale_fill_ordinal(name="Toxin syndrome") +
+  # scale_fill_ordinal(name="Toxin syndrome") +
+  scale_fill_manual(name="Toxin syndrome", values=RColorBrewer::brewer.pal(8, "Set3")) +
   # Theme
   theme_bw() + base_theme +
   theme(legend.position=c(0.65,0.35),
@@ -227,7 +228,9 @@ g1 <- ggplot(stats_ordered %>% filter(class=="Bivalves"), aes(x=n, fill=syndrome
   # Labels
   labs(x="Number of papers\n\n\n", y="") +
   # Legend
-  scale_fill_ordinal(name="Syndrome") +
+  # scale_fill_ordinal(name="Syndrome") +
+  scale_fill_manual(name="Toxin syndrome", values=RColorBrewer::brewer.pal(8, "Set3")) +
+  
   # Theme
   theme_bw() + base_theme +
   theme(legend.position=c(0.65,0.9),
