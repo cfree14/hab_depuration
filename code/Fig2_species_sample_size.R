@@ -20,8 +20,9 @@ data <- data_orig %>%
   # Remove NA and pos rates
   filter(rate_d<0 & !is.na(rate_d)) %>% 
   # Recode some common namae
-  mutate(comm_name=ifelse(grepl("Pacific oyster", comm_name), "Pacific oyster", comm_name))
-
+  mutate(comm_name=ifelse(grepl("Pacific oyster", comm_name), "Pacific oyster", comm_name),
+         comm_name=recode(comm_name, 
+                          "Warty venus"="Striped venus")) 
 
 # Stats for paper
 ################################################################################

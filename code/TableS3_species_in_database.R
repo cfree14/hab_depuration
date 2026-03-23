@@ -35,7 +35,10 @@ data <- data_orig %>%
   # Arrange
   select(class, family, genus, sci_name, comm_name,
          Paralytic, Amnesic, Diarrhetic, Cyanotoxin, Neurotoxic, Ciguatera,
-         Azaspiracid, Other)
+         Azaspiracid, Other) %>% 
+  # Fix some commone names
+  mutate(comm_name=recode(comm_name, 
+                          "Warty venus"="Striped venus"))
 
 
 # Export table

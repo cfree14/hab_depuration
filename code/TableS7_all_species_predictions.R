@@ -6,7 +6,6 @@ rm(list = ls())
 ################################################################################
 
 # Packages
-library(rotl)
 library(ape)
 library(phytools)
 library(picante)
@@ -40,7 +39,10 @@ preds <- preds_all_full %>%
   # Spread
   spread(key="study_type", value="rate_label") %>% 
   # Arrange
-  arrange(order, sci_name)
+  arrange(order, sci_name) %>% 
+  # Fix some common names
+  mutate(comm_name=recode(comm_name, 
+                          "Japanese carpet shell"="Manila clam"))
 
 # Export table
 ################################################################################

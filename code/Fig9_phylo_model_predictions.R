@@ -50,7 +50,13 @@ data_all <- preds_all_full %>%
   mutate(data_yn=ifelse(sci_name %in% data_orig$sci_name, "yes", "no")) 
 data <- data_all %>% 
   # Suppress Tridacna gigas (Lmax) and Crassostrea rhizophorae (K) b/c rates are ridiculous
-  filter(!sci_name %in% c("Tridacna gigas", "Crassostrea rhizophorae")) 
+  filter(!sci_name %in% c("Tridacna gigas", "Crassostrea rhizophorae"))  %>% 
+  # Fix some common names
+  mutate(comm_name=recode(comm_name, 
+                          "Warty venus" = "Striped venus",
+                          "Japanese carpet shell" ="Manila clam",
+                          "Northern quahog(=Hard clam)" = "Northern quahog",
+                          "Atl.jackknife(=Atl.razor clam)" = "Atlantic jackknife clam"))
 
 # Count species without predictions
 data %>% 

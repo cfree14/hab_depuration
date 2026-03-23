@@ -33,8 +33,6 @@ load(file.path(outdir, "phylogenetic_models.Rdata"))
 data <- fit3$data
 
 
-
-
 # Predict depuration rates
 ################################################################################
 
@@ -61,7 +59,7 @@ preds_stats <- as_tibble(t(apply(preds, 2, function(x) {
 
 
 # Merge pred stats with data
-preds_full <- bind_cols(obs, preds_stats) %>% 
+preds_full <- bind_cols(data, preds_stats) %>% 
   # Exponentiate observed rate
   mutate(rate_d_obs=exp(rate_d_log)) %>% 
   # Format study type
@@ -69,6 +67,9 @@ preds_full <- bind_cols(obs, preds_stats) %>%
          study_type=recode(study_type, "Lab"="Laboratory")) %>% 
   # Format tissue type
   mutate(tissue=stringr::str_to_sentence(tissue))
+
+r2 <- brms::bayes_R2(fit3) %>% 
+  as_tibble() %>% pull(Estimate)
 
 
 # Plot observations vs. predictions
@@ -99,6 +100,11 @@ x2 <- max(c(preds_full$rate_d, preds_full$rate_d_obs))
 g <- ggplot(preds_full, aes(x=rate_d_obs, y=rate_d, color=tissue, shape=study_type)) +
   geom_errorbar(aes(ymin=rate_d_lo, ymax=rate_d_hi), alpha=0.3) +
   geom_point(size=1.5) +
+  # R2
+  annotate(geom="text", x=x1, y=x2, 
+           # label=bquote(R^2 == .(round(r2, 2))), 
+           label = expression(R^2 == 0.67),
+           hjust=0) +
   # Labels
   labs(x="Observed\ndepuration rate (1/day)", y="Predicted\ndepuration rate (1/day)") +
   # Reference line
@@ -115,5 +121,5 @@ g <- ggplot(preds_full, aes(x=rate_d_obs, y=rate_d, color=tissue, shape=study_ty
 g
 
 # Export figure
-ggsave(g, filename=file.path(plotdir, "FigSX_obs_vs_preds_simple.png"), 
+ggsave(g, filename=file.path(plotdir, "FigS8_obs_vs_preds_simple.png"), 
        width=6.5, height=4.5, units="in", dpi=600, bg="white")

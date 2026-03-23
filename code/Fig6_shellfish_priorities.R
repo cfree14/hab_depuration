@@ -225,7 +225,10 @@ merge_new <- bind_rows(para_new, amne_new, cyan_new, brev_new, diar_new, azas_ne
   mutate(label=gsub("\\*", "", label)) %>% 
   # Arrange
   arrange(syndrome, type, desc(prod_mt)) %>% 
-  select(syndrome, type, label, comm_name, sci_name, prod_mt, everything())
+  select(syndrome, type, label, comm_name, sci_name, prod_mt, everything()) %>% 
+  # Fox some common names
+  mutate(comm_name=recode(comm_name,
+                          "Japanese carpet shell"="Manila clam"))
 
 # Export
 write.csv(merge_new, file=file.path(tabledir, "TableSX_priority_species_new_taxa_raw.csv"), row.names = F)

@@ -33,8 +33,8 @@ samp <- data %>%
   # Remove ones after two clean tests
   filter(day<=60) %>% 
   # Mark 
-  mutate(program=ifelse(day %in% c(0, 35, 42, 49, 56), "Optimized (5 tests)", "Standard (9 tests)"),
-         program=factor(program, levels=c("Standard (9 tests)", "Optimized (5 tests)")))
+  mutate(program=ifelse(day %in% c(0, 35, 42, 49, 56), "Optimized (5 tests)", "Unneeded (4 tests)"),
+         program=factor(program, levels=c("Unneeded (4 tests)", "Optimized (5 tests)")))
 
 
 # Build data for second example
@@ -109,7 +109,7 @@ samp2_opt <- samp2_std %>%
 # Merge
 samp2 <- bind_rows(samp2_std, samp2_opt) %>% 
   mutate(program=recode_factor(program, 
-                               "Standard"="Standard (15 tests)", 
+                               "Standard"="Unneeded (6 tests)", # "Standard"="Standard (15 tests)"
                                "Optimized"="Optimized (9 tests)"))
 
 # Merge lines for panel B
@@ -189,6 +189,7 @@ g2 <- ggplot() +
   # Legend
   scale_color_manual(name="Biotoxin trajectory", values=c("black", "darkorange")) +
   scale_fill_manual(name="Monitoring program", values=c( "forestgreen", "darkorange")) +
+  guides(fill = guide_legend(order = 1), color = guide_legend(order = 2)) +
   # Theme
   theme_bw() + my_theme +
   theme(axis.title.y=element_blank(),
