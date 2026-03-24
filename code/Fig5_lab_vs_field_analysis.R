@@ -31,7 +31,7 @@ data <- data_orig %>%
             rate_d=mean(rate_d, na.rm=T)) %>% 
   ungroup() %>% 
   # Reduce to ones with both lab and field available
-  filter(study_type!="field (non-toxic site)") %>% 
+  filter(study_type!="field (non-toxic site)") %>%
   group_by(syndrome, comm_name, sci_name, tissue) %>% 
   mutate(ntypes=n()) %>% 
   ungroup() %>% 
