@@ -16,6 +16,10 @@ plotdir <- "figures"
 # Read data
 data <- readRDS(file=file.path(outdir, "toxicity_data.Rds"))
 
+# Get harvested species
+fao_orig <- readRDS(file="/Users/cfree/Dropbox/Chris/UCSB/data/fao/global_production/processed/1950_2023_fao_global_production.Rds")
+fao_spp <- fao_orig %>% 
+  pull(sci_name) %>% unique() %>% sort()
 
 # Build data
 ################################################################################
@@ -53,6 +57,8 @@ stats <- data %>%
   # Add thresh
   left_join(thresh) %>% 
   filter(toxicity_mgkg_use >= action_level_mg_kg) %>% 
+  # Mark harvested
+  mutate(harvested_yn=ifelse(species %in% fao_spp, "Yes", "No") %>% factor(., levels=c("No", "Yes"))) %>% 
   # Format class
   mutate(class=recode_factor(class, 
                             "Actinopterygii"="Bony fish",
@@ -93,7 +99,7 @@ my_theme <-  theme(axis.text=element_text(size=6),
 # Plot data
 g <- ggplot(stats, aes(x=tidytext::reorder_within(comm_name, desc(toxicity_mgkg_use), syndrome), 
                   y=toxicity_mgkg_use, 
-                  shape=toxicity_mgkg_use_type, 
+                  shape=harvested_yn, toxicity_mgkg_use_type, 
                   color=class)) +
   # facet
   facet_grid(.~syndrome, scales="free_x", space="free_x") +
@@ -110,7 +116,7 @@ g <- ggplot(stats, aes(x=tidytext::reorder_within(comm_name, desc(toxicity_mgkg_
                      labels=c("0.01", "0.1", "1", "10", "100", "1,000", "10,000", "100,000", "1 million", "10 million")) +
   # Legends
   scale_color_discrete(name="Taxa group") +
-  scale_shape_manual(name="Unit type", values=c(16, 21)) +
+  scale_shape_manual(name="Harvested?", values=c(21, 16)) + # Unite type
   # Theme
   theme_bw() + my_theme +
   theme(legend.position=c(0.9, 0.7))
@@ -157,7 +163,7 @@ stats2 <- stats %>%
 # Plot data
 g1 <- ggplot(stats1, aes(y=tidytext::reorder_within(comm_name, desc(toxicity_mgkg_use), syndrome),  
                         x=toxicity_mgkg_use,
-                        shape=toxicity_mgkg_use_type, 
+                        shape=harvested_yn, #toxicity_mgkg_use_type, 
                         color=class)) +
   # Facet
   facet_grid(syndrome~., scales="free_y", space="free_y") +
@@ -176,7 +182,8 @@ g1 <- ggplot(stats1, aes(y=tidytext::reorder_within(comm_name, desc(toxicity_mgk
                      labels=c("0.01", "0.1", "1", "10", "100", "1,000", "10,000", "100,000", "1 million", "10 million")) +
   # Legends
   scale_color_discrete(name="Taxa group", drop=F) +
-  scale_shape_manual(name="Unit type", values=c(16, 21), drop=F) +
+  scale_shape_manual(name="Harvested?", values=c(21, 16)) +
+  # scale_shape_manual(name="Unit type", values=c(16, 21), drop=F) +
   # Theme
   theme_bw() + my_theme +
   theme(legend.position = "none")
@@ -185,7 +192,7 @@ g1
 # Plot data
 g2 <- ggplot(stats2, aes(y=tidytext::reorder_within(comm_name, desc(toxicity_mgkg_use), syndrome),  
                          x=toxicity_mgkg_use,
-                         shape=toxicity_mgkg_use_type, 
+                         shape=harvested_yn, #toxicity_mgkg_use_type, 
                          color=class)) +
   # Facet
   facet_grid(syndrome~., scales="free_y", space="free_y") +
@@ -204,7 +211,8 @@ g2 <- ggplot(stats2, aes(y=tidytext::reorder_within(comm_name, desc(toxicity_mgk
                      labels=c("0.01", "0.1", "1", "10", "100", "1,000", "10,000", "100,000", "1 million", "10 million")) +
   # Legends
   scale_color_discrete(name="Taxa group", drop=F) +
-  scale_shape_manual(name="Unit type", values=c(16, 21), drop=F) +
+  scale_shape_manual(name="Harvested?", values=c(21, 16), drop=F) +
+  # scale_shape_manual(name="Unit type", values=c(16, 21), drop=F) +
   # Theme
   theme_bw() + my_theme +
   theme(legend.position = "none")
@@ -240,7 +248,7 @@ my_theme <-  theme(axis.text=element_text(size=6),
 # Plot data
 g1 <- ggplot(stats1, aes(x=tidytext::reorder_within(comm_name, desc(toxicity_mgkg_use), syndrome),  
                          y=toxicity_mgkg_use,
-                         shape=toxicity_mgkg_use_type, 
+                         shape=harvested_yn, #toxicity_mgkg_use_type, 
                          color=class)) +
   # Facet
   facet_grid(.~syndrome, scales="free_x", space="free_x") +
@@ -257,7 +265,8 @@ g1 <- ggplot(stats1, aes(x=tidytext::reorder_within(comm_name, desc(toxicity_mgk
                      labels=c("0.01", "0.1", "1", "10", "100", "1,000", "10,000", "100,000", "1 million", "10 million")) +
   # Legends
   scale_color_discrete(name="Taxa group", drop=F, guide="none") +
-  scale_shape_manual(name="Unit type", values=c(16, 21), drop=F) +
+  scale_shape_manual(name="Harvested?", values=c(21, 16)) +
+  # scale_shape_manual(name="Unit type", values=c(16, 21), drop=F) +
   # Theme
   theme_bw() + my_theme +
   theme(legend.position = c(0.9, 0.7))
@@ -266,7 +275,7 @@ g1
 # Plot data
 g2 <- ggplot(stats2, aes(x=tidytext::reorder_within(comm_name, desc(toxicity_mgkg_use), syndrome),  
                          y=toxicity_mgkg_use,
-                         shape=toxicity_mgkg_use_type, 
+                         shape=harvested_yn, #toxicity_mgkg_use_type, 
                          color=class)) +
   # Facet
   facet_grid(.~syndrome, scales="free_x", space="free_x") +
@@ -284,7 +293,8 @@ g2 <- ggplot(stats2, aes(x=tidytext::reorder_within(comm_name, desc(toxicity_mgk
                      labels=c("0.01", "0.1", "1", "10", "100", "1,000", "10,000", "100,000", "1 million", "10 million")) +
   # Legends
   scale_color_discrete(name="Taxa group", drop=F) +
-  scale_shape_manual(name="Unit type", values=c(16, 21), drop=F, guide="none") +
+  scale_shape_manual(name="Harvested?", values=c(21, 16), drop=F, guide="none") +
+  # scale_shape_manual(name="Unit type", values=c(16, 21), drop=F, guide="none") +
   # Theme
   theme_bw() + my_theme +
   theme(legend.title=element_blank(),

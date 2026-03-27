@@ -53,7 +53,7 @@ data <- data_all %>%
   filter(!sci_name %in% c("Tridacna gigas", "Crassostrea rhizophorae"))  %>% 
   # Fix some common names
   mutate(comm_name=recode(comm_name, 
-                          "Warty venus" = "Striped venus",
+                          # "Warty venus" = "Striped venus",
                           "Japanese carpet shell" ="Manila clam",
                           "Northern quahog(=Hard clam)" = "Northern quahog",
                           "Atl.jackknife(=Atl.razor clam)" = "Atlantic jackknife clam"))

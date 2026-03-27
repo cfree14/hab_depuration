@@ -86,7 +86,7 @@ stats <- data %>%
   ungroup() %>% 
   # Recode class
   mutate(class=recode(class,
-                      "Actinopterygii"="Finfish",
+                      # "Actinopterygii"="Finfish",
                       "Teleostei"="Finfish",
                       "Ascidiacea"="Other",
                       "Bivalvia"="Bivalves",      
@@ -106,6 +106,9 @@ class_order <- stats %>%
   ungroup() %>% 
   arrange(desc(n)) %>% 
   pull(class) %>% rev()
+
+#
+class_order1 <- c("Bivalves", "Finfish", "Crustaceans", "Copepods", "Gastropods", "Other") %>% rev()
 
 # Species order
 species_order <- stats %>% 
@@ -127,7 +130,7 @@ syndrome_order <- stats %>%
 
 # Order data
 stats_ordered <- stats %>% 
-  mutate(class=factor(class, class_order),
+  mutate(class=factor(class, class_order1),
          comm_name=factor(comm_name, species_order),
          syndrome=factor(syndrome, syndrome_order))
 

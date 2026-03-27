@@ -39,7 +39,7 @@ data <- data_orig %>%
                       "Thecostraca"="Crustaceans")) %>% 
   # Order class
   mutate(class=factor(class,
-                      levels=c("Bivalves", "Crustaceans", "Finfish", "Copepods", "Other", "Gastropods") %>% rev())) %>% 
+                      levels=c("Bivalves",  "Finfish", "Crustaceans", "Copepods", "Gastropods", "Other") %>% rev())) %>% 
   # Filter
   # remove one crazy outlier that should really be an increase
   filter(!is.na(hlife_d) & rate_d<0 & rate_d < -0.0001) %>% 
@@ -76,7 +76,7 @@ my_theme <-  theme(axis.text=element_text(size=6),
                    panel.grid.minor.x = element_blank(),
                    panel.background = element_blank(), 
                    axis.line = element_line(colour = "black"),
-                   panel.spacing = unit(0, "lines"),
+                   panel.spacing = unit(0.2, "lines"),
                    # Legend
                    legend.key = element_rect(fill = NA, color=NA),
                    legend.background = element_rect(fill=alpha('blue', 0)))

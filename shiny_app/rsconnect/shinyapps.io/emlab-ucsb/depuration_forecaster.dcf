@@ -5,7 +5,7 @@ account: emlab-ucsb
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 16993862
-bundleId: 11765649
+bundleId: 11765664
 url: https://emlab-ucsb.shinyapps.io/depuration_forecaster/
 version: 1
 asMultiple: FALSE
