@@ -1,8 +1,8 @@
 # Systematic review and meta-analysis of biotoxin depuration rates in marine seafood species
 
-This the GitHub repository for a project seeking to predict biotoxin depuration rates for all low-trophic seafood species through the systematic review and meta-analysis of published depuration rates. The project is associated with the following paper in preparation
+This the GitHub repository for the following paper:
 
-* Free CM, Fang Y (in review) Marine biotoxin depuration rates: management applications, research priorities, and predictions for unstudied species. **Submitted** to _Harmful Algae_.
+* Free CM, Fang Y (in review) Marine biotoxin depuration rates: management applications, research priorities, and predictions for unstudied species. **In second review** at _Harmful Algae_.
 
 Please contact Chris Free (cfree14@gmail.com) with questions about the paper or repository.
 
@@ -33,3 +33,7 @@ Visitors may primarily be interested in the database of depuration rates or the 
 
 * **Database of depuration rates:** data/lit_review/processed/database.Rds (this folder includes other important meta-data on the final database)
 * **Predictions of depuration rates:** output/bivalve_prediction_data.Rds
+
+## Depuration forecast tool
+
+We developed the following R Shiny web tool to help managers forecast depuration timelines and schedule biotoxin monitoring based on these forecasts: [https://emlab-ucsb.shinyapps.io/depuration_forecaster/](https://emlab-ucsb.shinyapps.io/depuration_forecaster/)
