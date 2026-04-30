@@ -2,7 +2,7 @@
 
 This the GitHub repository for the following paper:
 
-* Free CM, Fang Y (in review) Marine biotoxin depuration rates: management applications, research priorities, and predictions for unstudied species. **In second review** at _Harmful Algae_.
+* Free CM, Fang Y (2026) Marine biotoxin depuration rates: management applications, research priorities, and predictions for unstudied species.  _Harmful Algae_ [10.1016/j.hal.2026.103126](https://www.sciencedirect.com/science/article/pii/S1568988326000788).
 
 Please contact Chris Free (cfree14@gmail.com) with questions about the paper or repository.
 
